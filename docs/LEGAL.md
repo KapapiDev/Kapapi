@@ -15,7 +15,9 @@ Working structure:
 - **GM ↔ PLAYER**: actual service/work contract parties as appropriate
 - **KAPAPI**: matching and transaction-support platform
 
-The product should trade a **QUEST/result**, not a worker's controlled time.
+The product trades a **defined QUEST/result**, not controlled worker-hours.
+
+This legal boundary also matches the product philosophy: GM specifies what result is needed and by when; PLAYER decides whether and how to perform it.
 
 ---
 
@@ -45,15 +47,38 @@ Avoid designing KAPAPI around:
 - shift scheduling
 - strong day-to-day supervision
 - exclusivity
-- hourly employee-like management
+- employee-like absence/attendance management
+- hourly staffing sold as a substitute employee
 
 Contract labels alone do not determine worker status; actual operating behavior matters.
 
 ---
 
-## 3. Payment / escrow
+## 3. Fractional Employee / time-purchase concept is deferred
 
-For a commercial product, KAPAPI should not hold customer funds directly in its ordinary operating bank account.
+An earlier roadmap concept considered allowing a GM to reserve or “buy” recurring blocks of PLAYER time, such as 20 hours per month.
+
+**Current decision: remove/defer that model from the KAPAPI roadmap.**
+
+Reason:
+
+- it weakens the clear QUEST/result-based transaction boundary
+- recurring time control can create additional worker-status / job-placement / labor-supply questions
+- it is unnecessary to validate the current marketplace thesis
+
+If a future KAPAPI revisits retained/fractional professional capacity, it requires a separate legal/product review before implementation.
+
+Current KAPAPI should optimize:
+
+> **defined result + PLAYER-set price + PLAYER-set delivery commitment**
+
+not controlled person-hours.
+
+---
+
+## 4. Payment / escrow
+
+For a commercial product, KAPAPI should **not hold customer funds directly in its ordinary operating bank account**.
 
 Preferred commercial direction:
 
@@ -62,11 +87,33 @@ Preferred commercial direction:
 - platform transaction records
 - clear cancellation/refund/dispute rules
 
-Early test mode may avoid platform custody of money while validating demand, subject to legal/accounting review.
+A commercial fixed-price marketplace will likely benefit materially from pre-funded/safe-payment protection because it addresses both sides' fears:
+
+- PLAYER: “What if I work and do not get paid?”
+- GM: “What if I pay and the PLAYER disappears?”
+
+But the implementation must use a compliant provider rather than KAPAPI casually acting as a payment custodian.
 
 ---
 
-## 4. Taxes and evidence
+## 5. Early validation payment posture
+
+For pre-commercial transaction testing, the current recommended posture is intentionally simple:
+
+- adults initially
+- result-based fixed-price QUEST
+- KAPAPI fee: **0** during initial mechanism testing
+- GM ↔ PLAYER direct payment if a real payment is needed
+- KAPAPI does not custody money
+- no promise that this early flow is the final commercial settlement design
+
+This allows demand/supply testing without prematurely building a regulated payment stack.
+
+Before production payment launch, obtain legal/accounting review and implement an appropriate PG/escrow structure.
+
+---
+
+## 6. Taxes and transaction evidence
 
 Do **not** hard-code a universal “3.3%” tax treatment.
 
@@ -75,15 +122,37 @@ PLAYER may be:
 - an individual freelancer
 - sole proprietor
 - corporation
-- other taxable/exempt participant type
+- another taxable/exempt participant type
+
+Tax treatment, withholding, evidence and settlement may differ by participant and transaction structure.
 
 Commercial settlement/evidence flows must be reviewed with an accountant/tax specialist.
 
-A major GM value hypothesis is reduced administrative burden, so correct transaction evidence eventually matters to product retention.
+A major GM value hypothesis is reduced administrative burden, so correct transaction evidence is a product feature, not merely back-office accounting.
 
 ---
 
-## 5. Confidential files and NDA
+## 7. Marketplace/intermediary posture
+
+Do not rely on “KAPAPI is only an intermediary” as a blanket liability shield.
+
+Commercial product design should clearly disclose:
+
+- identities/roles of transaction parties
+- whether GM and PLAYER contract directly
+- what KAPAPI facilitates
+- what KAPAPI does and does not guarantee
+- fees
+- cancellation/refund process
+- complaint/dispute handling
+- prohibited/gated QUEST types
+- reporting/sanction process
+
+Exact Korean e-commerce/intermediary registration, disclosure and dispute obligations must be checked before launch.
+
+---
+
+## 8. Confidential files and NDA
 
 Professional QUESTs may contain confidential client/project data.
 
@@ -100,9 +169,11 @@ KAPAPI should support, as appropriate:
 
 Security claims must not exceed actual technical/legal protection.
 
+For early architecture work, the GM should confirm they have authority to provide the uploaded source files/materials.
+
 ---
 
-## 6. Intellectual property
+## 9. Intellectual property
 
 Do not assume payment automatically transfers every copyright/IP right.
 
@@ -119,7 +190,7 @@ Moral rights and other non-transferable rights must be handled accurately rather
 
 ---
 
-## 7. Architecture-specific boundary
+## 10. Architecture-specific boundary
 
 Initial architecture/CAD experiments must distinguish **production/support work** from legally regulated architectural professional services.
 
@@ -134,11 +205,60 @@ Potentially suitable support categories, subject to exact facts:
 
 Do not casually market unlicensed PLAYERs as independently providing statutory architectural design or other legally reserved professional acts.
 
-If regulated professional work is ever supported, credential verification and responsibility structure require dedicated legal review.
+For MVP validation:
+
+- block clearly regulated architecture QUESTs unless separately reviewed
+- if a regulated category is later supported, require appropriate credential/responsibility design
+- distinguish work produced as support under the responsible professional from independent statutory professional judgment
+
+If KAPAPI later expands into law, medicine, tax or other regulated professions, treat each as a separate gated category requiring dedicated review.
 
 ---
 
-## 8. Autopilot changes the responsibility profile
+## 11. Personal data and project-file security
+
+Product should be designed around data minimization.
+
+Baseline direction:
+
+- collect only needed personal information
+- do not store raw passwords insecurely
+- minimize KAPAPI handling of payment details by delegating payment processing to the provider
+- role-based file access
+- logs/audit trail appropriate to the service
+- retention/deletion policy
+- privacy policy matched to actual processing
+
+Privacy/security documents must be refreshed against the law and actual technical design before commercial launch.
+
+---
+
+## 12. SOW / dispute design reduces legal and operational risk
+
+A clear QUEST/SOW should define, as appropriate:
+
+- scope
+- inputs
+- deliverables
+- deadline
+- acceptance criteria
+- revision boundary
+- confidentiality conditions
+- payment amount
+
+This turns later disagreements from vague “quality was bad” disputes toward more concrete questions of whether agreed requirements were met.
+
+Product quality architecture should initially be:
+
+1. objective technical preflight where reliable
+2. GM approval / revision request
+3. platform dispute process when necessary
+
+Do not promise that AI can conclusively adjudicate subjective professional quality.
+
+---
+
+## 13. Autopilot changes the responsibility profile
 
 Marketplace Mode:
 
@@ -159,30 +279,13 @@ Before strong SLA/outcome guarantees, review:
 - insurance needs
 - refund/compensation rules
 - subcontracting structure
+- responsibility for replacement PLAYERs
 
 Autopilot must not be launched merely by changing marketing copy.
 
 ---
 
-## 9. Marketplace disclosure and dispute handling
-
-Do not rely on “KAPAPI is only an intermediary” as a blanket liability shield.
-
-Commercial product design should clearly disclose:
-
-- identities/roles of transaction parties
-- what KAPAPI does and does not guarantee
-- fees
-- cancellation/refund process
-- complaint/dispute handling
-- prohibited QUEST types
-- reporting/sanction process
-
-Exact Korean e-commerce/intermediary obligations must be checked before launch.
-
----
-
-## 10. Initial prohibited / gated work
+## 14. Initial prohibited / gated work
 
 Until reviewed, block or gate:
 
@@ -195,7 +298,7 @@ Until reviewed, block or gate:
 
 ---
 
-## 11. MVP legal posture
+## 15. MVP legal posture
 
 Recommended early validation posture:
 
@@ -203,15 +306,19 @@ Recommended early validation posture:
 - business/professional-oriented GM use cases
 - result-based fixed-price QUESTs
 - no hourly shift marketplace
+- no Fractional Employee / controlled time blocks
 - clear GM/PLAYER role disclosure
+- PLAYER sets price and delivery commitment
 - basic terms + privacy + QUEST contract + NDA
 - minimal personal-data collection
-- no direct KAPAPI custody of funds in early test mode
+- KAPAPI fee 0 for initial transaction-engine tests
+- no direct KAPAPI custody of funds
+- direct GM↔PLAYER payment when a real pre-commercial payment is required
 - exclude regulated professional tasks unless separately verified
 
 ---
 
-## 12. Legal questions to resolve before production payment launch
+## 16. Legal questions to resolve before production payment launch
 
 1. Exact Korean online intermediary / e-commerce registration and disclosure requirements
 2. PG/escrow structure and refund flow
@@ -223,3 +330,20 @@ Recommended early validation posture:
 8. Platform liability in Assist and Autopilot modes
 9. Appropriate insurance/indemnity design for confidential or high-value work
 10. Trademark/name conflict review for KAPAPI before commercialization
+11. Whether any future retained/fractional-capacity product changes worker/intermediary classification
+
+---
+
+## 17. Trademark / brand clearance
+
+KAPAPI is the chosen working brand/service name, but commercial use should not assume name availability merely because domains or GitHub handles exist.
+
+Before commercialization:
+
+- formal KIPRIS/trademark search
+- relevant class strategy
+- domestic/overseas same-name service review
+- major app-store/social-handle conflicts where relevant
+- filing strategy if the brand is to be scaled
+
+Brand clearance is separate from product-name preference.
