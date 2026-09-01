@@ -10,7 +10,9 @@ This file records durable product/business decisions and the reason behind them.
 
 **Decision:** Use **KAPAPI / 카파피** as the marketplace/service name.
 
-**Reason:** Strong memorability and existing brand familiarity. The product itself should carry the KAPAPI name rather than hiding behind a separate service brand.
+**Reason:** Strong memorability and category independence. The product itself should carry the KAPAPI name rather than hiding behind a separate service brand.
+
+**Open item:** commercial trademark / same-name conflict clearance remains required.
 
 ---
 
@@ -19,16 +21,17 @@ This file records durable product/business decisions and the reason behind them.
 **Decision:** Use:
 
 - GM = client / issuer
-- PLAYER = professional worker
+- PLAYER = independent professional
 - QUEST = task
-- BID = proposal
+- BID = price + delivery proposal
 - REWARD = compensation
 - TIME ATTACK = urgent task
 - LEVEL / EXP = reputation/history
-
-**Reason:** Creates a memorable product world while keeping the underlying transaction serious.
+- QUEST COMPLETE = completion
 
 **Constraint:** Do not use “NPC.” Do not use “운영자” as the primary Korean label for GM because it can conflict with platform-admin meaning.
+
+**Communication rule:** explain the platform in plain language first, then introduce KAPAPI world terms. World-building must not become an onboarding barrier.
 
 ---
 
@@ -38,7 +41,7 @@ This file records durable product/business decisions and the reason behind them.
 
 **Reason:** GM value is not only low cost. Urgent work creates meaningful willingness to pay for earlier completion.
 
-**Clarification:** Delivery time means elapsed time from acceptance to delivery, not estimated labor hours.
+**Clarification:** Delivery time means elapsed time from acceptance/contract to delivery, not estimated labor hours.
 
 ---
 
@@ -46,7 +49,7 @@ This file records durable product/business decisions and the reason behind them.
 
 **Decision:** Initial KAPAPI should focus on fixed-price, result-based QUESTs rather than hourly work.
 
-**Reason:** Better aligns with independent professional work, easier MVP scope, clearer GM value and lower risk of drifting toward employee-like control.
+**Reason:** Clearer GM value, simpler MVP scope, stronger fit with independent professional work and lower risk of drifting toward employee-like control.
 
 ---
 
@@ -68,7 +71,7 @@ This file records durable product/business decisions and the reason behind them.
 
 > A person or small organization that has a professional task exceeding current internal capacity.
 
-**Reason:** Initial GM interview suggests the demand trigger is more accurately explained by capacity/deadline/skill/employment gaps than by company size alone.
+**Reason:** Capacity/deadline/skill/employment gaps explain outsourcing demand better than company size alone.
 
 ---
 
@@ -104,7 +107,7 @@ This file records durable product/business decisions and the reason behind them.
 
 **Reason:** Real professional-vendor relationships can persist for years once trust is built.
 
-**Response:** Earn repeated use through contracts/NDA, tax/admin convenience, vendor history, comparison access, backup supply, availability, dispute support and eventually outcome assurance.
+**Response:** Earn repeated use through contracts/NDA, safe payment, tax/admin convenience, vendor history, comparison access, backup supply, availability, dispute support and eventually outcome assurance.
 
 ---
 
@@ -114,7 +117,7 @@ This file records durable product/business decisions and the reason behind them.
 
 > **GM drops work → KAPAPI orchestrates → GM receives result.**
 
-**Reason:** The strongest GM interview response was that PLAYER identity and price are secondary if the required quality result arrives by the required time, and an automated process would be strongly preferred.
+**Reason:** The strongest GM interview response was that PLAYER identity and price become secondary when the required-quality result reliably arrives by the required time.
 
 This changes KAPAPI from a simple freelancer marketplace toward a professional-work orchestration platform.
 
@@ -127,7 +130,7 @@ This changes KAPAPI from a simple freelancer marketplace toward a professional-w
 Product stages:
 
 1. **Marketplace Mode** — QUEST → BID → GM selection
-2. **Assist Mode** — files/instruction → AI QUEST → recommendation → GM approval
+2. **Assist Mode** — files/instruction → AI QUEST/SOW → recommendation → GM approval
 3. **Autopilot Mode** — work drop → orchestration → result
 
 **Reason:** Marketplace activity creates the supply, trust and transaction data required before KAPAPI can safely automate routing and promise outcomes.
@@ -136,7 +139,7 @@ Product stages:
 
 ## D-013 — AI is initially a scoping/orchestration aid, not the final judge
 
-**Decision:** Early AI should help turn vague GM input/files into a structured work instruction and identify missing information.
+**Decision:** Early AI should turn vague GM input/files into a structured work instruction and identify missing information.
 
 **Do not initially position AI as:**
 
@@ -144,7 +147,7 @@ Product stages:
 - subjective final quality judge
 - replacement for regulated professional judgment
 
-**Reason:** These claims exceed current evidence and create unnecessary risk.
+**Reason:** These claims exceed current evidence and fail on real-world context/edge cases.
 
 ---
 
@@ -169,10 +172,9 @@ Include:
 - TIME ATTACK
 - LEVEL / EXP
 - NDA/security concept
+- simple delivery/completion flow
 
 Defer production payment, tax automation, deep dispute tooling and Autopilot guarantees.
-
-**Reason:** 1R is idea review; 2R is the stage designed to support serious MVP production and market validation.
 
 ---
 
@@ -180,7 +182,7 @@ Defer production payment, tax automation, deep dispute tooling and Autopilot gua
 
 **Decision:** Optimize the pre-1R product for understanding and credibility, then use 1R to validate external GM demand.
 
-**Reason:** The critical business uncertainty is demand/liquidity, not whether the team can build a large feature set.
+**Reason:** The critical uncertainty is demand/liquidity, not whether a large feature set can be built.
 
 ---
 
@@ -199,3 +201,169 @@ Defer production payment, tax automation, deep dispute tooling and Autopilot gua
 **Decision:** Design work is prepared on `docs/initial-product-design`, but approved documentation should ultimately be merged into `main` alongside the deployable prototype.
 
 **Reason:** Future developers/AI agents should recover product intent from the repository without searching chat history. Permanent docs-only divergence would create design/code drift.
+
+---
+
+## D-019 — Preserve proven Upwork transaction mechanics
+
+**Decision:** Adopt the principle:
+
+> **Upwork에서 검증된 것은 함부로 바꾸지 않는다.**
+
+Commercial transaction design should strongly benchmark:
+
+- post → proposal → client selection
+- contract
+- pre-funded/safe payment
+- milestones when needed
+- workroom/messages/files/records
+- submit work
+- approval/revision
+- settlement
+- two-sided review
+- dispute/payment protection
+
+**Reason:** KAPAPI's differentiation does not require reinventing basic marketplace safety. Innovate in speed, localization, lightweight bidding, AI scoping, gamified UX and outcome orchestration.
+
+---
+
+## D-020 — SOW clarity comes before sophisticated QA
+
+**Decision:** Prioritize turning vague requests into clear QUEST/SOW specifications before trying to automate professional-quality judgment.
+
+**Reason:** A clear scope reduces explanation, pricing ambiguity, revisions and disputes, and gives later automation objective criteria to work with.
+
+SOW should define inputs, exact scope, outputs, deadline and acceptance/revision boundaries where appropriate.
+
+---
+
+## D-021 — Initial quality architecture has three layers
+
+**Decision:**
+
+1. objective automated preflight where reliable
+2. GM final acceptance / revision
+3. platform dispute process only when needed
+
+**Reason:** AI should not act as subjective professional judge, and manual platform inspection of every low-value QUEST would damage unit economics.
+
+---
+
+## D-022 — Early market can be Concierge before it is automated
+
+**Decision:** Allow early validation to operate as a **Concierge Marketplace**.
+
+A GM can send a file + rough request, and KAPAPI can manually/AI-assistively convert it into a QUEST/SOW before PLAYER bidding.
+
+**Reason:** This tests the future “drop work, get result” experience now, learns real requirements and avoids building automation before demand is proven.
+
+---
+
+## D-023 — Founder-funded QUESTs validate supply, not GM demand
+
+**Decision:** Founder-originated real CAD work can seed the first PLAYER pool and exercise the transaction engine.
+
+Working test discussed: approximately 10 real QUESTs with roughly KRW 300k–500k total reward budget.
+
+**Rule:** These transactions are excluded from primary external GM-demand metrics.
+
+**Reason:** They prove supply response and execution, but not independent willingness to pay.
+
+---
+
+## D-024 — Self-funded repeat is the strongest early GM signal
+
+**Decision:** If first-QUEST subsidies are used, measure success by **external GMs who return with their own money**, not by free/subsidized first usage.
+
+**Reason:** Subsidies can buy usage but cannot prove repeat economic demand.
+
+Subsidy amount and conversion threshold remain experiment parameters, not product policy.
+
+---
+
+## D-025 — Trust/reputation is two-sided
+
+**Decision:** Commercial transaction design should include two-sided reviews/reputation.
+
+PLAYER trust includes relevant career, task history, on-time and revision signals.
+
+GM trust may include payment/transaction completion, approval speed, cancellations/disputes and PLAYER ratings.
+
+**Reason:** Qualified PLAYERs also need to judge whether a QUEST/GM is worth accepting.
+
+A user may be GM in one QUEST and PLAYER in another; roles are transaction roles, not permanent account classes.
+
+---
+
+## D-026 — Liquidity is category-specific
+
+**Decision:** Do not use total PLAYER count as evidence that TIME ATTACK or rapid bidding works.
+
+Each category is effectively a separate micro-market.
+
+**Expansion requirement:** repeat GM demand + sufficient qualified active supply in that category.
+
+**Reason:** A platform with 1,000 PLAYERs but only 20 CAD-capable PLAYERs still has a 20-person CAD market.
+
+---
+
+## D-027 — Monetization remains open
+
+**Decision:** Do not lock a 10% take rate or fee side yet.
+
+Validate:
+
+- GM fee vs PLAYER fee
+- all-in price vs visible fee
+- value of safe payment/admin/backup supply
+- support/dispute economics
+- direct-trade leakage
+
+**Early test posture:** KAPAPI fee 0, no KAPAPI custody of funds, direct GM↔PLAYER payment if required.
+
+**Reason:** The transaction model should be proven before fee design is optimized.
+
+---
+
+## D-028 — Fractional Employee / PLAYER-hours model is removed from current roadmap
+
+**Decision:** Do not currently sell recurring controlled PLAYER hours such as “20 hours/month” as a KAPAPI product.
+
+**Current unit:** completed QUEST/result.
+
+**Reason:** The time-purchase concept weakens the clear result-based model and creates additional worker-status/labor-intermediation questions. Revisit only with separate legal/product review if KAPAPI later becomes large enough to justify it.
+
+---
+
+## D-029 — Visual direction is premium tech + thin HUD
+
+**Decision:** Use a premium black/white tech-product direction influenced by Linear / Vercel / Raycast, with world-building appearing through thin HUD-like metadata.
+
+Examples:
+
+- `LV.12`
+- `+240 EXP`
+- `QUEST #0182`
+- countdowns
+
+Avoid obvious swords/coins/pixel-RPG motifs.
+
+**Reason:** The service must feel lively and memorable to PLAYERs while remaining credible for professional GMs spending meaningful money.
+
+---
+
+## D-030 — Game world is secondary to the business thesis in external explanation
+
+**Decision:** For judges/investors/new users, explain the real transaction/problem first and the game world second.
+
+Do not lead with “GM makes QUESTs and PLAYERs level up.”
+
+Lead with:
+
+- short online professional work
+- client-led posting
+- price + delivery-time competition
+- lower outsourcing friction
+- long-term outcome orchestration
+
+**Reason:** Otherwise KAPAPI risks being dismissed as “gamified Kmong” before the actual business mechanism is understood.
