@@ -1,6 +1,6 @@
 # KAPAPI Decisions
 
-Updated: 2026-09-01
+Updated: 2026-09-02
 
 This file records durable product/business decisions and the reason behind them. New evidence may reverse a decision; when that happens, add a new decision instead of silently erasing history.
 
@@ -135,6 +135,8 @@ Product stages:
 
 **Reason:** Marketplace activity creates the supply, trust and transaction data required before KAPAPI can safely automate routing and promise outcomes.
 
+**Superseded for GM selection by D-031.** The data-building logic remains valid, but default GM proposal comparison/selection is no longer the intended primary flow.
+
 ---
 
 ## D-013 — AI is initially a scoping/orchestration aid, not the final judge
@@ -163,7 +165,7 @@ Product stages:
 
 **Decision:** Before the 모두의 창업 1R application, build only enough product to clearly demonstrate the core mechanism.
 
-Include:
+Original include list:
 
 - QUEST creation
 - price + delivery BID
@@ -175,6 +177,8 @@ Include:
 - simple delivery/completion flow
 
 Defer production payment, tax automation, deep dispute tooling and Autopilot guarantees.
+
+**Superseded for prototype GM selection by D-031.** The prototype should still expose price + delivery competition, but routine GM comparison/selection should be hidden behind KAPAPI routing in the default demo.
 
 ---
 
@@ -224,6 +228,8 @@ Commercial transaction design should strongly benchmark:
 - dispute/payment protection
 
 **Reason:** KAPAPI's differentiation does not require reinventing basic marketplace safety. Innovate in speed, localization, lightweight bidding, AI scoping, gamified UX and outcome orchestration.
+
+**Explicit exception added by D-031:** mandatory client comparison/selection is one proven Upwork mechanic KAPAPI now intentionally removes from the default GM path because eliminating that decision is central to the product thesis.
 
 ---
 
@@ -367,3 +373,87 @@ Lead with:
 - long-term outcome orchestration
 
 **Reason:** Otherwise KAPAPI risks being dismissed as “gamified Kmong” before the actual business mechanism is understood.
+
+---
+
+## D-031 — Default GM flow is hands-off auto-routing
+
+**Decision:** After a GM submits a valid QUEST with the required result, deadline and commercial constraints, routine BID comparison and PLAYER selection become **KAPAPI's job**, not the GM's job.
+
+Default GM flow:
+
+```text
+발주 / QUEST 확정
+→ GM routine work ends
+→ PLAYERs BID with price + delivery
+→ KAPAPI ranks/selects/routes
+→ PLAYER executes
+→ result delivered
+→ GM accepts or requests revision
+```
+
+Default PLAYER/internal market flow:
+
+```text
+QUEST
+→ eligible PLAYERs
+→ PRICE × DELIVERY BIDs
+→ hard-filter + trust/performance + task-fit ranking
+→ KAPAPI assignment
+→ execution
+```
+
+### Routing rule
+
+KAPAPI selection must not be an opaque LLM-only decision.
+
+Use:
+
+1. hard eligibility / credential / security / deadline / budget filters
+2. actual BID price and committed delivery
+3. relevant verified career and task history
+4. on-time / revision / failure / dispute signals
+5. availability
+6. AI-assisted semantic task-fit where useful
+7. an inspectable routing policy
+
+The GM remains the **final result judge** through acceptance/revision.
+
+### Manual selection
+
+Manual GM BID comparison may remain as:
+
+- exceptional fallback
+- trust-building/debug mode during validation
+- category-specific requirement where auto-routing is not reliable
+
+It is **not** the primary product promise or default prototype story.
+
+### Why
+
+The product's strongest thesis is not “compare freelancers faster.” It is:
+
+> **일 던져놔. 결과만 받아.**
+
+If the GM must wait for BIDs, study profiles and make the final vendor decision every time, KAPAPI remains structurally close to a faster Upwork/Kmong. Removing routine selection creates a materially different product and aligns the initial experience with the long-term orchestration thesis.
+
+### Validation burden
+
+This is a hypothesis that increases platform responsibility and must be tested.
+
+Track:
+
+- routing decision latency
+- GM override / “who did you select?” demand
+- on-time rate
+- revision rate
+- replacement/recovery rate
+- final acceptance
+- GM management minutes
+- repeat self-funded usage
+
+If auto-routing materially increases regret/failure or users insist on choosing themselves, the routing policy or category scope must be adjusted rather than protecting the idea.
+
+### Supersedes
+
+This decision supersedes the **default GM selection** portions of D-012, D-015 and D-019. It does **not** remove bidding, contracts, safe payment, workroom records, approval/revision, settlement, reviews or dispute protection.
