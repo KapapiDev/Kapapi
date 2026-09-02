@@ -1,0 +1,274 @@
+# KAPAPI Reference Board
+
+Status: **design evidence / non-canonical reference map**  
+Updated: **2026-09-02**
+
+This document records what KAPAPI intentionally extracts from external design and motion references.
+
+It exists to prevent two failure modes:
+
+1. blindly cloning a reference,
+2. forgetting why a reference was useful and later mixing incompatible styles.
+
+Canonical authorities remain:
+
+- `PRODUCT.md` for product meaning,
+- `KAPAPI_DESIGN.md` for visual language,
+- `KAPAPI_MOTION.md` for motion language.
+
+---
+
+## 1. Visual reference matrix
+
+| Reference | Extract | Best KAPAPI use | Do not copy |
+| --- | --- | --- | --- |
+| **Linear** | precision, compact information hierarchy, hairlines, product-tool density | QUEST Board, BID comparison, Workroom, trust modules | exact dark palette, lime accent, recognizable app layout |
+| **Hyperstudio** | editorial black/off-white contrast, art direction, oversized regular typography, print-like composition | landing, brand statements, major narrative sections | agency-portfolio experimentation, decorative composition over product clarity |
+| **Factory** | operational dark surfaces, live work objects, terse status, terminal-war-room discipline | active QUEST, TIME ATTACK, Workroom | developer-tool cosplay, code-terminal aesthetic everywhere |
+| **Vercel** | white-paper restraint, type hierarchy, neutral hairlines, transaction/settings clarity | forms, BID selection, file/result, contracts/review concepts | sterile sameness, literal Vercel geometry |
+| **Mercury** | premium B2B trust, restrained data surfaces, calm confidence | PLAYER profile, reliability, future payment/admin | banking metaphors, finance-dashboard styling |
+| **Raycast** | tactile power-tool feeling, micro HUD, compact affordances, polished interaction | small controls, state indicators, micro-interactions | colorful utility grid, glass-heavy macOS mimicry |
+
+### Combined formula
+
+```text
+Linear precision
++ Hyperstudio editorial confidence
++ Factory operational work state
++ Vercel transaction clarity
++ Mercury trust
++ Raycast tactile energy
+= KAPAPI
+```
+
+This is a synthesis formula, not a visual collage.
+
+---
+
+## 2. Screen-to-reference map
+
+### Landing / Hero
+
+Primary influence:
+
+- Hyperstudio
+- Linear
+
+Secondary:
+
+- Raycast micro detail
+
+Desired result:
+
+> editorial brand page with a credible live product instrument inside it.
+
+### QUEST Board
+
+Primary:
+
+- Linear
+- Factory
+
+Desired result:
+
+> dense enough to scan real work, quiet enough to make urgency meaningful.
+
+### QUEST Detail / BID comparison
+
+Primary:
+
+- Vercel
+- Linear
+
+Secondary:
+
+- Mercury
+
+Desired result:
+
+> serious decision surface where PRICE × DELIVERY TIME is instantly comparable.
+
+### PLAYER profile
+
+Primary:
+
+- Mercury
+- Linear
+
+Desired result:
+
+> proof of execution, not a social profile.
+
+### Workroom
+
+Primary:
+
+- Factory
+- Linear
+
+Secondary:
+
+- Vercel
+
+Desired result:
+
+> mission control for one professional task, not a chat app.
+
+### Completion
+
+Primary:
+
+- Vercel
+- Factory restraint
+
+Desired result:
+
+> the visual system gets quieter because the work is finished.
+
+### Autopilot vision
+
+Primary:
+
+- Hyperstudio editorial narrative
+- Vercel reduction
+
+Motion support:
+
+- Magic UI Animated Beam concept
+
+Desired result:
+
+> visible complexity disappears until only input, KAPAPI and result remain.
+
+---
+
+# 3. Motion reference matrix
+
+| Reference | KAPAPI decision | Extract | KAPAPI use |
+| --- | --- | --- | --- |
+| Number Flow / Maxwell Barvian | **ADOPT / P0** | live numeric interpolation | PRICE, DELIVERY, BIDS, EXP, trust changes |
+| Magic UI Animated List | **REMIX / P0** | insertion + `AnimatePresence` + layout reflow | BID arrival / live event insertion |
+| Motion official Layout/Reordering | **ADOPT PATTERN / P0** | spatial continuity during reorder | BID set reflow / ranking changes |
+| Animated Feature Carousel / Le Thanh | **REMIX / P0** | stable shell + sequential narrative states | hero transaction story |
+| Motion Primitives Morphing Dialog | **ADOPT PATTERN / P1** | shared object continuity, accessibility behavior | QUEST detail, PLAYER profile |
+| Magic UI Animated Beam | **REMIX / P1** | meaningful routing between DOM objects | Autopilot orchestration story |
+| ReUI Timeline / Stepper | **ADOPT SEMANTICS / P0** | completed/active/pending/failure states | QUEST progress |
+| Blur Fade | **REMIX / P2** | sparse editorial reveal | rare supporting copy only |
+| Animated Card Chart / badtz | **TBD / low priority** | only if historical pattern matters | PLAYER trust history, if justified |
+| Animated Card Diagram / badtz | **TBD / low priority** | possible concept diagram pattern | future evolution story only if source merits it |
+| Jessi Animate Card Animation | **REJECT AS PRIMARY** | limited entry/stagger implementation ideas | not BID card styling |
+| Spotlight Card / cursor glow | **DEFAULT REJECT** | possible tiny experimental spotlight only | no normal product use |
+
+---
+
+# 4. Reference decisions in plain language
+
+## Number Flow
+
+Keep because KAPAPI has real numbers that change.
+
+Do not turn every number into a slot machine.
+
+## Animated List + Motion layout
+
+Keep because it maps directly to the signature event:
+
+```text
+another PLAYER submits a BID
+```
+
+The important part is not the demo card appearance. It is insertion plus coherent reflow.
+
+## Morphing Dialog
+
+Keep because KAPAPI contains objects users inspect repeatedly.
+
+A QUEST card should feel like it became the QUEST detail rather than disappearing into a generic modal.
+
+## Animated Beam
+
+Keep only for product storytelling.
+
+It is dangerous because app-logo beams instantly look like generic automation SaaS. KAPAPI must replace integration-logo constellations with actual work objects and let the animation stop after it explains routing.
+
+## Timeline / Stepper
+
+Keep the state model, not the default component skin.
+
+Human professional work should show observable stages, timestamps and risk states, not fake percentages.
+
+## Blur Fade
+
+Use as punctuation, never grammar.
+
+A KAPAPI page where every section blur-fades is a failed design.
+
+## Spotlight / 3D card effects
+
+Useful mainly as a boundary marker.
+
+They show where “premium interaction” becomes “portfolio effect.” KAPAPI should remain on the product side of that line.
+
+---
+
+# 5. Source pools for future gaps
+
+Reference collection for Prototype v1 is closed by default.
+
+If implementation exposes a named missing interaction, consult in this order:
+
+1. Motion official examples
+2. Motion Primitives
+3. ReUI
+4. Magic UI
+5. PatternFly archive for enterprise/accessibility state thinking
+
+See:
+
+`docs/motion-sources/MOTION_SOURCE_POOLS.md`
+
+A new reference is allowed only when it answers a concrete problem such as:
+
+- file upload state is unclear,
+- blocked/revision flow lacks semantics,
+- mobile comparison interaction fails,
+- dialog accessibility needs a proven pattern,
+- state transition performance is poor.
+
+Do not collect components simply because they look impressive.
+
+---
+
+# 6. Anti-cloning checklist
+
+Before adapting any reference, ask:
+
+1. What product problem does this solve?
+2. What is the smallest useful structural or motion principle?
+3. Can KAPAPI express it with its existing tokens?
+4. Does the reference introduce a second visual language?
+5. Does it make the work, deadline, decision or result clearer?
+6. Would a reviewer remember the effect more than KAPAPI's transaction model?
+
+If question 5 is no, reject it.
+
+If question 6 is yes, reduce it or reject it.
+
+---
+
+# 7. Final reference principle
+
+KAPAPI is not designed **from** references.
+
+References help solve individual problems, but the final product language comes from the transaction itself:
+
+```text
+QUEST
+→ BID
+→ PRICE × DELIVERY
+→ PLAYER SELECTED
+→ WORK MOVING
+→ RESULT
+```
+
+That sequence is the real design system.
