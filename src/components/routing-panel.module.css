@@ -108,7 +108,9 @@
 }
 
 .rowMuted {
-  opacity: 0.4;
+  /* De-emphasised but still inspectable: these rows carry the reason a
+     candidate was filtered out, which is the point of showing them. */
+  opacity: 0.68;
 }
 
 .rowSelected {

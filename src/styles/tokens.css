@@ -13,9 +13,9 @@
   --k-white: #ffffff;
   --k-ink: #111111;
   --k-black: #0a0a0a;
-  --k-graphite: #3a3a3d;
-  --k-muted: #6b6b70;
-  --k-faint: #8e8e93;
+  --k-graphite: #3f3f43;
+  --k-muted: #5f5f65;
+  --k-faint: #6a6a6f;
   --k-line: #e3e3de;
   --k-line-strong: #d2d2cb;
   --k-wash: #efefea;
@@ -26,8 +26,8 @@
   --k-dark-line: #26262b;
   --k-dark-line-strong: #35353c;
   --k-dark-ink: #f2f2f0;
-  --k-dark-muted: #8d8d96;
-  --k-dark-faint: #6a6a73;
+  --k-dark-muted: #9a9aa3;
+  --k-dark-faint: #85858e;
 
   /* ---- Signal accent: one restrained cool sapphire family ---- */
   --k-sapphire: #1c58d9;
@@ -37,9 +37,9 @@
   --k-sapphire-line: #b9cdf7;
 
   /* ---- Semantic state (only where the state truly exists) ---- */
-  --k-ok: #1a7f52;
+  --k-ok: #15704a;
   --k-ok-wash: #e8f4ee;
-  --k-warn: #9a6206;
+  --k-warn: #8c5905;
   --k-warn-wash: #fbf2e2;
   --k-risk: #a8321f;
   --k-risk-wash: #fbeceA;

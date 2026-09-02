@@ -229,7 +229,7 @@
 }
 
 .processArrow {
-  color: var(--k-line-strong);
+  color: var(--k-muted);
   font-family: var(--k-font-mono);
   font-size: 12px;
 }
