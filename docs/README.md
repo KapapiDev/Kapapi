@@ -1,71 +1,99 @@
 # KAPAPI Documentation
 
-This directory is the product/business design canon for KAPAPI.
+This directory is the product/business/design canon for KAPAPI.
 
-The implementation handoff also uses two root-level files:
+## Prototype v2 execution authority
 
-- [`../CLAUDE_HANDOFF.md`](../CLAUDE_HANDOFF.md) — Claude Code master handoff, reading order, implementation protocol and definition of done
-- [`../TASK_QUEUE.md`](../TASK_QUEUE.md) — ordered Prototype v1 implementation queue
+`feat/prototype-v2` is a from-scratch visual rebuild. For v2 implementation, read the root-level v2 directives **before** older visual examples.
 
-## Core documents
+### Mandatory v2 reading order
 
-- [DECISIONS.md](./DECISIONS.md) — durable decisions and why they were made; later decisions explicitly supersede earlier ones where stated
-- [PRODUCT.md](./PRODUCT.md) — product definition, GM/PLAYER/QUEST world, default auto-routing transaction mechanics, Routing Intelligence and Outcome Autopilot architecture
-- [IDENTITY_ROLE_MODEL.md](./IDENTITY_ROLE_MODEL.md) — one universal user identity; GM and PLAYER are contextual QUEST roles, never permanent account types
-- [PROTOTYPE_SPEC.md](./PROTOTYPE_SPEC.md) — canonical buildable scope for Prototype v1: screens, states, routing fixtures, first-touch behavior and demo loop
-- [KAPAPI_ART_DIRECTION.md](./KAPAPI_ART_DIRECTION.md) — current public art direction and world-building intensity layer
-- [KAPAPI_DESIGN.md](./KAPAPI_DESIGN.md) — canonical Prototype v1 visual language, screen hierarchy, component styling, responsive/accessibility and anti-template rules
-- [KAPAPI_MOTION.md](./KAPAPI_MOTION.md) — canonical Prototype v1 motion language, signature motions, timing, accessibility, performance and QA rules
-- [HERO_MEDIA.md](./HERO_MEDIA.md) — approved hero product-movie narrative, current footage status, real-UI replacement rules and website integration behavior
-- [QA_CHECKLIST.md](./QA_CHECKLIST.md) — Prototype v1 release/review gate
-- [ROADMAP.md](./ROADMAP.md) — current 1R routed-marketplace prototype phase through validation, commercial beta, Routing Intelligence and Outcome Autopilot
-- [VALIDATION.md](./VALIDATION.md) — observed GM interview evidence, hypotheses, tests, metrics and kill signals
-- [LEGAL.md](./LEGAL.md) — legal/product boundaries, payment/security/IP/professional-service and routing-responsibility risk
-- [PROGRAM_2026_MODU.md](./PROGRAM_2026_MODU.md) — 2026 모두의 창업 project strategy and current 1R assumptions
+1. `../REBUILD_V2_FINAL_DIRECTIVE.md`
+2. `../REBUILD_V2_HANDOFF.md`
+3. `PROTOTYPE_V2_CONTENT_GOVERNANCE.md`
+4. `PROTOTYPE_V2_VISUAL_RESEARCH_PROTOCOL.md`
+5. `PROTOTYPE_V2_REFERENCE_ADDENDUM.md`
+6. `PROTOTYPE_V2_VISUAL_COMMUNICATION_RULES.md`
+7. `PROTOTYPE_V2_KOREAN_UX_WRITING.md`
+8. `PROTOTYPE_V2_HERO_COMPOSITING.md`
+9. `DECISIONS.md`
+10. `PRODUCT.md`
+11. `IDENTITY_ROLE_MODEL.md`
+12. `PROTOTYPE_SPEC.md`
+13. `KAPAPI_ART_DIRECTION.md`
+14. `KAPAPI_DESIGN.md`
+15. `KAPAPI_MOTION.md`
+16. `UPWORK_FIRST_TOUCH_REFERENCE.md`
+17. `HERO_MEDIA.md`
+18. `QA_CHECKLIST.md`
+19. `../TASK_QUEUE.md`
+20. `LEGAL.md`
+21. `VALIDATION.md`
+22. `REFERENCE_BOARD.md`
 
-## Supporting reference documents
+When older copy/visual examples conflict with a v2 override, **the v2 override wins**. Product/business behavior still follows the latest applicable decision/product canon.
 
-- [UPWORK_FIRST_TOUCH_REFERENCE.md](./UPWORK_FIRST_TOUCH_REFERENCE.md) — first-touch simplicity reference; KAPAPI should be even more result-oriented and default to light-first public UX
-- [REFERENCE_BOARD.md](./REFERENCE_BOARD.md) — what KAPAPI intentionally extracts from Linear, Hyperstudio, Factory, Vercel, Mercury, Raycast and the motion reference set; non-canonical evidence map
-- [MOTION_REFERENCES_21ST.md](./MOTION_REFERENCES_21ST.md) — provisional reference research; `KAPAPI_MOTION.md` overrides it when priorities or decisions conflict
-- [`motion-sources/`](./motion-sources/) — captured source code, demos and assessment notes used to derive the canonical motion system
+## v2 non-negotiable rules
 
-## Implementation reading order
+- Prototype v1 implementation is a rejected visual example and must not be reused or cosmetically reskinned.
+- Public visual quality is P0. Functional correctness does not compensate for weak art direction.
+- Live references must be opened, scrolled, visually compared and used as evidence. Text summaries are insufficient.
+- Mandatory references include Upwork, Linear, Vercel, Factory, Raycast, Hyperstudio, Mercury, Kmong, Wishket and Soomgo, plus broad additional current research.
+- Korean public copy must be rewritten from zero and reviewed against real Korean product/marketplace language.
+- `할 일을 던져주세요.`, `일 던져놔. 결과만 받아.`, `Good. Done.` and similar internal shorthand are not approved public copy.
+- The Hero footage's laptop display is intended to carry real KAPAPI UI where technically feasible; otherwise use a clean editorial cut into real UI, not a detached dashboard card.
+- Public landing copy must not become a document/pitch deck. Prefer product UI, motion, state, media and real examples over paragraph explanations.
+- Every visible public element must be `PRODUCT REQUIRED`, `REFERENCE-SUPPORTED UX`, or `APPROVED BRAND/WORLD`. Otherwise remove it.
+- Fixture names/personas are test data, not global brand content.
+- `QUEST NETWORK`, fake `ONLINE` status, public `RESET`, arbitrary logged-in user identity and v1's `이런 일들이 올라옵니다` treatment are not canonical product requirements.
+- KAPAPI has one universal user identity; GM/PLAYER are contextual roles per QUEST.
+- Default GM behavior uses KAPAPI auto-routing, not routine manual PLAYER selection.
+- Public UX is light-first; dark is contextual operational punctuation.
+- World-building comes from real QUEST/BID/PLAYER/TIME ATTACK/LEVEL/EXP state grammar, not invented pseudo-lore or fantasy decoration.
 
-For Prototype v1 implementation, use this order:
+## Core product documents
 
-1. `docs/README.md`
-2. `docs/DECISIONS.md`
-3. `docs/PRODUCT.md`
-4. `docs/IDENTITY_ROLE_MODEL.md`
-5. `docs/PROTOTYPE_SPEC.md`
-6. `docs/KAPAPI_ART_DIRECTION.md`
-7. `docs/KAPAPI_DESIGN.md`
-8. `docs/KAPAPI_MOTION.md`
-9. `docs/UPWORK_FIRST_TOUCH_REFERENCE.md`
-10. `docs/HERO_MEDIA.md`
-11. `docs/QA_CHECKLIST.md`
-12. `TASK_QUEUE.md`
-13. `docs/LEGAL.md`
-14. `docs/VALIDATION.md`
-15. `docs/REFERENCE_BOARD.md`
+- [DECISIONS.md](./DECISIONS.md) — durable decisions and supersession history
+- [PRODUCT.md](./PRODUCT.md) — product definition and routed marketplace mechanics
+- [IDENTITY_ROLE_MODEL.md](./IDENTITY_ROLE_MODEL.md) — universal identity / contextual GM-PLAYER roles
+- [PROTOTYPE_SPEC.md](./PROTOTYPE_SPEC.md) — buildable prototype behavior and demo loop
+- [ROADMAP.md](./ROADMAP.md) — routed marketplace through Routing Intelligence / Outcome Autopilot
+- [VALIDATION.md](./VALIDATION.md) — observed evidence, hypotheses, metrics and kill signals
+- [LEGAL.md](./LEGAL.md) — legal/product/payment/security/professional-service boundaries
+- [PROGRAM_2026_MODU.md](./PROGRAM_2026_MODU.md) — 2026 모두의 창업 strategy
 
-`CLAUDE_HANDOFF.md` at the repository root is the implementation entry point and repeats the priority rules in operational form.
+## Visual / interaction documents
 
-## Canon rules
+- [KAPAPI_ART_DIRECTION.md](./KAPAPI_ART_DIRECTION.md) — public art-direction and world-building layer; legacy copy examples remain illustrative under v2
+- [KAPAPI_DESIGN.md](./KAPAPI_DESIGN.md) — detailed visual language and anti-template rules; v2 overrides govern conflicts
+- [KAPAPI_MOTION.md](./KAPAPI_MOTION.md) — motion language and accessibility/performance rules
+- [HERO_MEDIA.md](./HERO_MEDIA.md) — original product-movie narrative and source-media strategy; v2 compositing authority overrides implementation ambiguity
+- [QA_CHECKLIST.md](./QA_CHECKLIST.md) — functional/review gates, supplemented by v2 visual/content gates
 
-1. Chat discussion is not the final source of truth once a decision has been recorded here.
-2. New evidence may change KAPAPI. Major changes must be recorded in `DECISIONS.md`.
-3. `VALIDATION.md` must distinguish observed evidence from hypotheses.
-4. Architecture/CAD is the initial wedge and testbed, not the final market boundary.
-5. **Default GM transaction behavior is defined by `PRODUCT.md` + the latest applicable `DECISIONS.md` + `PROTOTYPE_SPEC.md`.** As of D-031, routine BID comparison / PLAYER selection is KAPAPI's job after a valid QUEST is submitted.
-6. **KAPAPI has one universal user identity.** `GM` and `PLAYER` are contextual roles created by a user's relationship to each QUEST, never permanent account types. `IDENTITY_ROLE_MODEL.md` is the implementation authority for this rule.
-7. Strong SLA/outcome guarantees remain a later Autopilot threshold; default auto-routing does not itself prove an outcome guarantee.
-8. **Public Prototype v1 is light-first.** Landing and core marketplace surfaces default to white/off-white; dark surfaces are contextual operational moments. This rule governs how legacy dark-reference language in `KAPAPI_DESIGN.md` is interpreted.
-9. `KAPAPI_ART_DIRECTION.md` is the current public art-direction/world-building interpretation layer and overrides older visual examples where they conflict.
-10. `KAPAPI_DESIGN.md` is the detailed visual authority for Prototype v1, but visual examples must not override current product behavior, universal identity, or the light-first public rule. Any legacy GM-manual-selection example is superseded by D-031 / `PROTOTYPE_SPEC.md`.
-11. `KAPAPI_MOTION.md` is the motion authority for Prototype v1, but motion choreography must follow current product behavior. Any legacy `GM selects BID` choreography is superseded by D-031 and should be interpreted as `KAPAPI routes/selects` for the default flow.
-12. `HERO_MEDIA.md` governs the hero product-movie narrative and asset integration. Generated-video UI is not authoritative product UI; real KAPAPI HTML/CSS should replace it where necessary.
-13. `QA_CHECKLIST.md` plus the mandatory role-model QA in `IDENTITY_ROLE_MODEL.md` are final review gates for Prototype v1.
-14. `REFERENCE_BOARD.md` explains source influence but is not an implementation style authority.
-15. After review, approved documentation should be merged into `main` so product intent and implementation remain together.
+## Prototype v2 override documents
+
+- [PROTOTYPE_V2_CONTENT_GOVERNANCE.md](./PROTOTYPE_V2_CONTENT_GOVERNANCE.md) — prevents arbitrary personas, labels, pseudo-branding, debug UI and meaningless invented public content
+- [PROTOTYPE_V2_VISUAL_RESEARCH_PROTOCOL.md](./PROTOTYPE_V2_VISUAL_RESEARCH_PROTOCOL.md) — broad live visual-research requirement
+- [PROTOTYPE_V2_REFERENCE_ADDENDUM.md](./PROTOTYPE_V2_REFERENCE_ADDENDUM.md) — global + Korean marketplace mandatory references
+- [PROTOTYPE_V2_VISUAL_COMMUNICATION_RULES.md](./PROTOTYPE_V2_VISUAL_COMMUNICATION_RULES.md) — show rather than explain; copy-deletion gate
+- [PROTOTYPE_V2_KOREAN_UX_WRITING.md](./PROTOTYPE_V2_KOREAN_UX_WRITING.md) — Korean public-copy rewrite authority
+- [PROTOTYPE_V2_HERO_COMPOSITING.md](./PROTOTYPE_V2_HERO_COMPOSITING.md) — laptop-screen real-UI compositing authority and clean-cut fallback
+
+## Supporting references
+
+- [UPWORK_FIRST_TOUCH_REFERENCE.md](./UPWORK_FIRST_TOUCH_REFERENCE.md) — first-touch behavioral reference, not a copy/layout authority
+- [REFERENCE_BOARD.md](./REFERENCE_BOARD.md) — reference influence map, not direct implementation authority
+- [MOTION_REFERENCES_21ST.md](./MOTION_REFERENCES_21ST.md) and [`motion-sources/`](./motion-sources/) — motion evidence/reference material
+
+## Canon interpretation rules
+
+1. Chat discussion is not the final source of truth once recorded here.
+2. New major product decisions must be recorded in `DECISIONS.md`.
+3. Observed evidence and hypotheses remain separate in `VALIDATION.md`.
+4. Architecture/CAD is an initial proof/testbed, not KAPAPI's market identity.
+5. D-031/current product canon supersedes routine GM BID comparison / PLAYER selection examples.
+6. Universal identity supersedes any permanent buyer/seller account interpretation.
+7. Examples in documents are illustrative unless explicitly marked required/canonical/approved.
+8. A visual or copy example never outranks current product behavior.
+9. For Prototype v2, the v2 override documents above are the implementation interpretation layer.
+10. Founder visual approval is required before v2 is treated as ready for main/Production.
