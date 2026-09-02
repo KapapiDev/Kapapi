@@ -55,6 +55,11 @@ a {
   text-decoration: none;
 }
 
+/* A link wrapping a button must inherit the button's hit area, not a text line box. */
+a:has(> button) {
+  display: inline-flex;
+}
+
 button,
 input,
 textarea,

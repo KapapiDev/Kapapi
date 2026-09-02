@@ -233,11 +233,19 @@
 }
 
 .captionNote {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding-inline: 4px;
   font-family: var(--k-font-mono);
   font-size: var(--k-hud);
   letter-spacing: var(--k-hud-track);
   text-transform: uppercase;
   color: var(--k-faint);
+}
+
+button.captionNote:hover {
+  color: var(--k-ink);
 }
 
 /* ---- Static fallback: reduced motion, or no video available ---- */

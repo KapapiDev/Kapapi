@@ -250,15 +250,15 @@
   display: inline-flex;
   align-items: center;
   gap: 5px;
+  min-height: 32px;
   font-weight: 600;
   color: var(--k-ink);
-  border-bottom: 1px solid var(--k-line-strong);
-  padding-bottom: 1px;
+  box-shadow: inset 0 -1px 0 var(--k-line-strong);
   transition: border-color var(--k-micro) var(--k-ease);
 }
 
 .secondaryLink:hover {
-  border-color: var(--k-ink);
+  box-shadow: inset 0 -1px 0 var(--k-ink);
 }
 
 /* ---- Media column ---- */
@@ -266,6 +266,9 @@
 .media {
   position: sticky;
   top: 88px;
+  /* Editorial offset: the film starts level with the work-entry surface, so the
+     left column keeps the optical lead above the fold. */
+  margin-top: clamp(0px, 9vw, 128px);
 }
 
 @media (max-width: 980px) {
@@ -277,6 +280,7 @@
   .media {
     position: static;
     order: 2;
+    margin-top: 0;
   }
 
   .entryColumn {

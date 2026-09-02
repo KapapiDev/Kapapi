@@ -284,6 +284,7 @@
 }
 
 .fileName {
+  display: block;
   font-size: var(--k-body-sm);
   font-weight: 550;
   overflow: hidden;
@@ -292,6 +293,8 @@
 }
 
 .fileMeta {
+  display: block;
+  margin-top: 1px;
   font-family: var(--k-font-mono);
   font-size: var(--k-hud);
   letter-spacing: 0.05em;

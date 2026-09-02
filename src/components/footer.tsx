@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 
+import { useDemo } from "@/lib/demo-store";
 import s from "./footer.module.css";
 
 /**
@@ -7,6 +10,8 @@ import s from "./footer.module.css";
  * The prototype must not imply escrow, SLA guarantees or AI quality judgment.
  */
 export function SiteFooter() {
+  const { reset } = useDemo();
+
   return (
     <footer className={s.footer}>
       <div className={`k-frame ${s.grid}`}>
@@ -59,6 +64,15 @@ export function SiteFooter() {
             </li>
           </ul>
         </div>
+      </div>
+
+      <div className={`k-frame ${s.resetRow}`}>
+        <button type="button" className={s.resetButton} onClick={reset}>
+          데모 상태 초기화
+        </button>
+        <span className={s.resetNote}>
+          입력한 QUEST와 진행 상태를 처음으로 되돌립니다.
+        </span>
       </div>
 
       <div className={`k-frame ${s.disclaimer}`}>

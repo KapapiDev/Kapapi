@@ -36,15 +36,50 @@
 
 .list {
   display: grid;
-  gap: 7px;
+  gap: 2px;
   font-size: var(--k-body-sm);
   color: var(--k-graphite);
+}
+
+.list a {
+  display: inline-block;
+  padding-block: 6px;
 }
 
 .link:hover {
   color: var(--k-ink);
   text-decoration: underline;
   text-underline-offset: 3px;
+}
+
+.resetRow {
+  margin-top: var(--k-5);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--k-3);
+}
+
+.resetButton {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 0 14px;
+  border: 1px solid var(--k-line-strong);
+  border-radius: var(--k-r-md);
+  background: var(--k-white);
+  font-size: var(--k-body-sm);
+  color: var(--k-graphite);
+}
+
+.resetButton:hover {
+  border-color: var(--k-ink);
+  color: var(--k-ink);
+}
+
+.resetNote {
+  font-size: var(--k-meta);
+  color: var(--k-faint);
 }
 
 .disclaimer {

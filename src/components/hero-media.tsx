@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 
+import { useReducedMotion } from "@/lib/use-reduced-motion";
 import s from "./hero-media.module.css";
 
 /**
@@ -58,17 +59,9 @@ export function HeroProductMovie() {
    * second `phase` state removes any chance of the two desyncing mid-loop.
    */
   const [step, setStep] = useState(-1);
-  const [reduced, setReduced] = useState(false);
+  const reduced = useReducedMotion();
   /** False only when the file itself failed. A blocked autoplay keeps the poster. */
   const [filmOk, setFilmOk] = useState(true);
-
-  useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const apply = () => setReduced(mq.matches);
-    apply();
-    mq.addEventListener("change", apply);
-    return () => mq.removeEventListener("change", apply);
-  }, []);
 
   const clearTimers = useCallback(() => {
     timers.current.forEach((t) => window.clearTimeout(t));

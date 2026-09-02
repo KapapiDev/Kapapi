@@ -18,6 +18,12 @@ export const CATEGORIES: Record<string, string> = {
   data: "데이터 정리",
 };
 
+/** Display labels for skills, including sub-skills that are not QUEST categories. */
+export const SKILL_LABELS: Record<string, string> = {
+  ...CATEGORIES,
+  dwg: "DWG 도면 작성",
+};
+
 export const USERS: Record<string, User> = {
   "u-kim": {
     id: "u-kim",
@@ -516,9 +522,12 @@ const questsList: Quest[] = [
     missingInfo: [],
     taskFit: { "u-yun": 0.93, "u-noh": 0.8, "u-bae": 0.76 },
     bids: [
+      // u-noh is the cheapest and still loses: 8H misses a 6H deadline.
       bid("c1", "u-noh", 96000, 8, 9),
       bid("c2", "u-yun", 118000, 5, 17),
       bid("c3", "u-bae", 132000, 6, 24),
+      // u-im has no image work on file — filtered on skills, not on identity.
+      bid("c4", "u-im", 104000, 5, 31),
     ],
     events: [
       { at: "10:12", state: "OPEN", label: "QUEST 등록", detail: "QUEST #0182 CREATED" },

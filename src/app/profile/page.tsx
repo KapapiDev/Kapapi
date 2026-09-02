@@ -3,7 +3,7 @@
 import NumberFlow from "@number-flow/react";
 
 import { Chip } from "@/components/ui";
-import { CATEGORIES } from "@/lib/fixtures";
+import { CATEGORIES, SKILL_LABELS } from "@/lib/fixtures";
 import { CURRENT_USER_ID, USERS, useDemo } from "@/lib/demo-store";
 import { pct } from "@/lib/format";
 import { groupQuests } from "@/lib/roles";
@@ -116,7 +116,7 @@ export default function ProfilePage() {
             <p className={s.blockLabel}>수행 가능 분야 · SKILLS</p>
             <div className={s.skills}>
               {me.skills.map((skill) => (
-                <Chip key={skill}>{CATEGORIES[skill] ?? skill}</Chip>
+                <Chip key={skill}>{SKILL_LABELS[skill] ?? skill}</Chip>
               ))}
             </div>
           </div>

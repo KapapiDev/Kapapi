@@ -1,12 +1,13 @@
 "use client";
 
 import NumberFlow from "@number-flow/react";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { USERS } from "@/lib/fixtures";
 import { pct, won } from "@/lib/format";
 import { routeQuest } from "@/lib/routing";
+import { useReducedMotion } from "@/lib/use-reduced-motion";
 import type { Quest } from "@/lib/types";
 import s from "./routing-panel.module.css";
 
@@ -46,7 +47,7 @@ export function RoutingPanel({ quest, mode = "auto", showReplay = true }: Props)
   const played = useRef(false);
 
   /** Reduced motion and the static mode both skip straight to the settled result. */
-  const settled = mode === "static" || reduced === true;
+  const settled = mode === "static" || reduced;
   const stage: Stage = settled ? "assigned" : playState.stage;
   const visibleBids = settled ? ordered.length : playState.visible;
 
@@ -126,7 +127,7 @@ export function RoutingPanel({ quest, mode = "auto", showReplay = true }: Props)
         <span className={s.headId}>QUEST #{quest.id}</span>
         <span className={s.headMeta}>{quest.categoryLabel}</span>
         <span className={s.headMeta}>마감 {quest.deadlineLabel}</span>
-        {quest.nda ? <span className={s.headMeta}>NDA ON</span> : null}
+        {quest.nda ? <span className={s.headMetaHud}>NDA ON</span> : null}
         <span className={s.headSpacer} />
         {showReplay && !settled ? (
           <button type="button" className={s.replay} onClick={replay}>

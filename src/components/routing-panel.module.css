@@ -28,6 +28,12 @@
 }
 
 .headMeta {
+  font-size: var(--k-meta);
+  color: var(--s-faint);
+}
+
+/* Machine metadata keeps the HUD treatment; Korean prose does not. */
+.headMetaHud {
   font-family: var(--k-font-mono);
   font-size: var(--k-hud);
   letter-spacing: var(--k-hud-track);

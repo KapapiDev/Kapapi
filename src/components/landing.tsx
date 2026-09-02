@@ -433,7 +433,7 @@ export function PlayerEntrySection() {
     <section className={s.sectionPlain} aria-labelledby="player-title">
       <div className="k-frame">
         <SectionHead
-          index="09 / 일 찾기"
+          index="09 / FIND WORK"
           title="같은 계정으로 일을 받을 수도 있습니다"
           note="카파피에는 의뢰인 계정과 작업자 계정이 따로 없습니다. 어떤 QUEST에서는 맡기는 쪽이 되고, 다른 QUEST에서는 수행하는 쪽이 됩니다."
           id="player-title"

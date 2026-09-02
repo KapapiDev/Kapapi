@@ -8,7 +8,9 @@
     "start": "next start -p 3210",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "test": "tsc -p tsconfig.test.json && node --test .test-build/*.test.js"
+    "test": "tsc -p tsconfig.test.json && node --test .test-build/*.test.js",
+    "qa": "node scripts/shots.mjs qa",
+    "demo:check": "node scripts/demo-flow.mjs"
   },
   "dependencies": {
     "@number-flow/react": "^0.5.10",

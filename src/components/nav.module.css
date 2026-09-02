@@ -50,6 +50,8 @@
 }
 
 .link {
+  display: inline-block;
+  white-space: nowrap;
   padding: 7px 11px;
   border-radius: var(--k-r-sm);
   font-size: var(--k-body-sm);
@@ -127,6 +129,11 @@
     display: none;
   }
 
+  /* Reclaim the row for navigation; the demo reset lives in the footer too. */
+  .reset {
+    display: none;
+  }
+
   .links {
     gap: 0;
     overflow-x: auto;
@@ -140,6 +147,10 @@
   .link {
     padding: 7px 9px;
     font-size: var(--k-meta);
+  }
+
+  .links li {
+    flex: none;
   }
 
   .who {

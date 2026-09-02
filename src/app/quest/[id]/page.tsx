@@ -232,7 +232,8 @@ export default function QuestPage() {
                 <div className={s.workroomHead}>
                   <span className={s.workroomTitle}>QUEST #{quest.id}</span>
                   <span className="k-hud" style={{ color: "var(--k-dark-muted)" }}>
-                    마감 {quest.deadlineLabel} · {quest.nda ? "NDA ON" : "NDA OFF"}
+                    마감 {quest.deadlineLabel}
+                    {quest.nda ? " · NDA ON" : ""}
                   </span>
                 </div>
 

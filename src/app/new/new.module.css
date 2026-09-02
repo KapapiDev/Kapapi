@@ -21,6 +21,17 @@
   margin-bottom: var(--k-4);
 }
 
+.crumb a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding-inline: 2px;
+}
+
+.crumb a:hover {
+  color: var(--k-ink);
+}
+
 .title {
   font-size: clamp(1.6rem, 1.15rem + 1.5vw, 2.25rem);
   letter-spacing: -0.034em;

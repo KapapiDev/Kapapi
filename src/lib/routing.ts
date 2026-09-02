@@ -106,7 +106,7 @@ function evaluate(bid: Bid, player: User, quest: Quest): RoutingCandidate {
     `유사 QUEST ${relevantCompletionCount}건`,
     `정시 납품 ${Math.round(player.execution.onTimeRate * 100)}%`,
     `수정 요청 ${Math.round(player.execution.revisionRate * 100)}%`,
-    `예산 상한 내 ${Math.round((bid.price / quest.budgetCeiling) * 100)}%`,
+    `제시 가격은 예산 상한의 ${Math.round((bid.price / quest.budgetCeiling) * 100)}%`,
   ];
 
   return candidate;

@@ -174,12 +174,14 @@
 }
 
 .eventLabel {
+  display: block;
   font-size: var(--k-body-sm);
   font-weight: 550;
   color: var(--s-ink);
 }
 
 .eventDetail {
+  display: block;
   margin-top: 2px;
   font-family: var(--k-font-mono);
   font-size: var(--k-hud);
@@ -221,12 +223,14 @@
 }
 
 .trustName {
+  display: block;
   font-size: var(--k-body);
   font-weight: 620;
   letter-spacing: var(--k-tight);
 }
 
 .trustCareer {
+  display: block;
   margin-top: 2px;
   font-size: var(--k-body-sm);
   color: var(--s-muted);

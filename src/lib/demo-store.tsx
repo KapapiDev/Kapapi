@@ -4,6 +4,7 @@ import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useReducer,
   type ReactNode,
@@ -23,6 +24,13 @@ import type { FileObject, Quest, QuestEvent, QuestState } from "./types";
  */
 
 export const LIVE_QUEST_ID = "0219";
+
+/**
+ * Session key. The demo has no backend, but a reviewer who reloads or opens a
+ * QUEST link directly must still find their QUEST — otherwise the loop is not
+ * replayable (QA_CHECKLIST K3). Session-scoped, so a fresh tab starts clean.
+ */
+const STORAGE_KEY = "kapapi.demo.v1";
 
 interface DraftState {
   text: string;
@@ -51,6 +59,7 @@ type Action =
   | { type: "accept"; questId: string }
   | { type: "revision"; questId: string; note: string }
   | { type: "bid"; questId: string; price: number; deliveryHours: number; note?: string }
+  | { type: "hydrate"; state: DemoState }
   | { type: "reset" };
 
 const initialState: DemoState = {
@@ -133,11 +142,14 @@ function reducer(state: DemoState, action: Action): DemoState {
         next = {
           ...next,
           result: {
-            files: next.outputFormats.map((f, i) => ({
-              name: `${next.title.slice(0, 12).replace(/\s/g, "_")}_결과${i > 0 ? `_${i + 1}` : ""}.${f.split(" ")[0].toLowerCase()}`,
-              kind: f.split(" ")[0],
-              size: i === 0 ? "2.4 MB" : "860 KB",
-            })),
+            files: next.outputFormats.map((format, i) => {
+              const kind = format.split(" ")[0];
+              return {
+                name: `QUEST${next.id}_결과물.${kind.toLowerCase()}`,
+                kind,
+                size: i === 0 ? "2.4 MB" : "860 KB",
+              };
+            }),
             deliveredAt: "방금",
             minutesVsDeadline: 34,
             checks: [
@@ -211,6 +223,9 @@ function reducer(state: DemoState, action: Action): DemoState {
       return { ...state, quests: { ...state.quests, [action.questId]: next } };
     }
 
+    case "hydrate":
+      return action.state;
+
     case "reset":
       return initialState;
 
@@ -235,6 +250,29 @@ const DemoContext = createContext<DemoApi | null>(null);
 
 export function DemoProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  // Restore after mount rather than during render, so server and client agree
+  // on the first paint and hydration stays clean.
+  useEffect(() => {
+    try {
+      const raw = window.sessionStorage.getItem(STORAGE_KEY);
+      if (raw) dispatch({ type: "hydrate", state: JSON.parse(raw) as DemoState });
+    } catch {
+      /* Private mode or blocked storage: the demo just starts fresh. */
+    }
+  }, []);
+
+  useEffect(() => {
+    // Never persist the untouched initial state: on mount this effect runs
+    // before the restore dispatch above has committed, and writing here would
+    // clobber the session it is about to restore.
+    if (state === initialState) return;
+    try {
+      window.sessionStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    } catch {
+      /* Storage is a convenience here, never a requirement. */
+    }
+  }, [state]);
 
   const startDraft = useCallback(
     (text: string, files: FileObject[]) => dispatch({ type: "draft", text, files }),
@@ -264,7 +302,14 @@ export function DemoProvider({ children }: { children: ReactNode }) {
       dispatch({ type: "bid", questId, price, deliveryHours, note }),
     [],
   );
-  const reset = useCallback(() => dispatch({ type: "reset" }), []);
+  const reset = useCallback(() => {
+    try {
+      window.sessionStorage.removeItem(STORAGE_KEY);
+    } catch {
+      /* ignore */
+    }
+    dispatch({ type: "reset" });
+  }, []);
 
   const value = useMemo<DemoApi>(
     () => ({
