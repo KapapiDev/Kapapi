@@ -79,6 +79,14 @@ When older copy/visual examples conflict with a v2 override, **the v2 override w
 - [PROTOTYPE_V2_KOREAN_UX_WRITING.md](./PROTOTYPE_V2_KOREAN_UX_WRITING.md) — Korean public-copy rewrite authority
 - [PROTOTYPE_V2_HERO_COMPOSITING.md](./PROTOTYPE_V2_HERO_COMPOSITING.md) — laptop-screen real-UI compositing authority and clean-cut fallback
 
+Evidence produced while executing the v2 rebuild, rather than authority over it:
+
+- [PROTOTYPE_V2_LIVE_REFERENCE_AUDIT.md](./PROTOTYPE_V2_LIVE_REFERENCE_AUDIT.md) — 38 sites opened and measured in a browser; the first-viewport character and card counts the design was gated on
+- [PROTOTYPE_V2_VISUAL_GATE.md](./PROTOTYPE_V2_VISUAL_GATE.md) — the three rendered directions, why A was chosen, and the hero compositing proof with its tracked corners
+- [PROTOTYPE_V2_CONTENT_NECESSITY_AUDIT.md](./PROTOTYPE_V2_CONTENT_NECESSITY_AUDIT.md) — every visible landing element against governance §0, plus the v1-leakage negative audit
+- [PROTOTYPE_V2_TOOL_AUDIT.md](./PROTOTYPE_V2_TOOL_AUDIT.md) — what was used, what was genuinely unavailable, and what no harness caught
+- [PROTOTYPE_V2_PREVIEW_QA.md](./PROTOTYPE_V2_PREVIEW_QA.md) — the deployed Preview URL and the QA run against it
+
 ## Supporting references
 
 - [UPWORK_FIRST_TOUCH_REFERENCE.md](./UPWORK_FIRST_TOUCH_REFERENCE.md) — first-touch behavioral reference, not a copy/layout authority
