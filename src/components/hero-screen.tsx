@@ -44,6 +44,7 @@ export function HeroScreen({ step }: { step: number }) {
         {step >= 0 ? <p className={s.en}>{active.en}</p> : null}
       </div>
 
+      <div className={s.body}>
       {showBids ? (
         <div className={s.rows}>
           {ORDER.map((c) => {
@@ -88,16 +89,27 @@ export function HeroScreen({ step }: { step: number }) {
       ) : null}
 
       {showResult && QUEST.result ? (
-        <div className={s.result}>
-          <span className={s.kind} aria-hidden="true">{QUEST.result.files[0].kind}</span>
-          <span style={{ minWidth: 0 }}>
-            <span className={s.rname} style={{ display: "block" }}>{QUEST.result.files[0].name}</span>
-            <span className={s.rmeta}>
-              {QUEST.result.at} · 마감보다 {QUEST.result.earlyMinutes}분 일찍
+        <>
+          <div className={s.result}>
+            <span className={s.kind} aria-hidden="true">{QUEST.result.files[0].kind}</span>
+            <span style={{ minWidth: 0 }}>
+              <span className={s.rname} style={{ display: "block" }}>{QUEST.result.files[0].name}</span>
+              <span className={s.rmeta}>
+                {QUEST.result.at} · 마감보다 {QUEST.result.earlyMinutes}분 일찍
+              </span>
             </span>
-          </span>
-        </div>
+          </div>
+          <div className={s.checks}>
+            {QUEST.result.checks.map((c) => (
+              <p key={c} className={s.check}>
+                <span className={s.tick2} aria-hidden="true">✓</span>
+                {c}
+              </p>
+            ))}
+          </div>
+        </>
       ) : null}
+      </div>
 
       <div className={s.foot}>
         <span>같은 유형 <b>{ROUTED.picked?.relevant ?? 0}건</b></span>

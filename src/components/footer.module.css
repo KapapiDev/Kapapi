@@ -1,4 +1,6 @@
-.footer { margin-top: var(--s10); border-top: 1px solid var(--line); background: var(--white); padding-block: var(--s8) var(--s6); }
+/* Sections already carry up to 128px of bottom padding; an extra footer margin
+   on top of that left a dead quarter-screen before the rule. */
+.footer { border-top: 1px solid var(--line); background: var(--white); padding-block: var(--s8) var(--s6); }
 .grid { display: grid; grid-template-columns: minmax(0,1.5fr) minmax(0,1fr) minmax(0,1fr); gap: var(--s6); }
 .brand { font-weight: 800; font-size: 1.1rem; }
 .tag { margin-top: var(--s2); font-size: var(--body-sm); color: var(--graphite); max-width: 32ch; }

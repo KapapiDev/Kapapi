@@ -56,6 +56,8 @@
 .screenOn { opacity: 1; }
 .screenUI {
   position: absolute; top: 0; left: 0; transform-origin: 0 0;
+  /* The panel is laid out on the fixed 1280x720 canvas, so its scale is fixed too. */
+  font-size: 22px;
   background: #fff; overflow: hidden; will-change: transform;
   /* Graded so it reads as an emitting panel rather than a pasted element. */
   filter: saturate(.92) brightness(1.02) contrast(.96);
@@ -68,8 +70,14 @@
 
 /* ---------- full-frame product cut ---------- */
 
+/* The composer overlaps the stage's lower edge by 38px, so the full-frame panel
+   is inset by that much: its own footer and progress track must not run behind it. */
 .full {
   position: absolute; inset: 0; background: var(--white);
+  padding-bottom: 46px;
+  /* Full-frame the panel is laid out at the stage's real width, which runs from
+     ~1310px on a desktop down to ~350px on a phone. One font-size scales it all. */
+  font-size: clamp(11px, 1.55vw, 22px);
   opacity: 0; pointer-events: none;
   transition: opacity 420ms var(--ease);
   display: flex; flex-direction: column;
@@ -145,8 +153,10 @@
 }
 .chip:hover { border-color: var(--ink); color: var(--ink); }
 
+/* Bottom right, inside the 46px strip the full-frame panel leaves free. Top right
+   is the panel's own deadline meta, and the pill sat on top of it. */
 .replay {
-  position: absolute; right: clamp(16px, 2.2vw, 24px); top: clamp(16px, 2.2vw, 24px);
+  position: absolute; right: clamp(16px, 2.2vw, 24px); bottom: 7px;
   z-index: 4; display: inline-flex; align-items: center; gap: 6px;
   height: 32px; padding: 0 12px; border-radius: 999px;
   background: rgba(16,17,16,.5); color: rgba(255,255,255,.9);
@@ -155,6 +165,13 @@
   backdrop-filter: blur(8px);
 }
 .replay:hover { background: rgba(16,17,16,.72); color: #fff; }
+/* Over the full-frame product cut the film is gone; a dark scrim pill on white
+   reads as a smudge, so the control takes the paper surface instead. */
+.replayLight {
+  background: var(--white); color: var(--graphite);
+  border-color: var(--line-2); backdrop-filter: none;
+}
+.replayLight:hover { background: var(--paper-2); color: var(--ink); }
 
 @media (max-width: 900px) {
   .stage { aspect-ratio: 4 / 5; max-height: none; min-height: 0; }
@@ -165,4 +182,8 @@
   .attach { flex: 1 1 auto; justify-content: center; }
   .submit { flex: 1 1 auto; justify-content: center; }
   .chips { justify-content: flex-start; }
+  /* The composer goes full width on a phone, so the stage has no free corner for
+     the replay pill. The sequence loops on its own, so the control is dropped
+     rather than parked on top of the input. */
+  .replay { display: none; }
 }

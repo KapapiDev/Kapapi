@@ -1,81 +1,94 @@
 /*
   The KAPAPI product surface that appears inside the laptop and then full-frame.
-  One component, two scales: inside the screen it is rendered at 1280×720 and
-  transformed; full-frame it fills the stage. Type sizes are therefore set for
-  the 1280×720 canvas and scaled with it.
+
+  One component, two very different boxes: inside the laptop it is laid out on a
+  fixed 1280x720 canvas and then transformed onto the screen, while full-frame it
+  is laid out at whatever size the stage happens to be — 1310px on a desktop,
+  350px on a phone. So nothing here may carry a fixed px size: every dimension is
+  em, and the single font-size on the parent (hero.module.css) sets the scale.
 */
 
 .ui {
   width: 100%; height: 100%;
   background: var(--white); color: var(--ink);
   display: flex; flex-direction: column;
-  font-size: 22px; line-height: 1.5;
+  font-size: inherit; line-height: 1.5;
 }
 
 .bar {
-  display: flex; align-items: center; gap: 14px;
-  padding: 20px 32px; border-bottom: 1px solid var(--line);
+  display: flex; align-items: center; gap: .64em;
+  padding: .91em 1.45em; border-bottom: 1px solid var(--line);
 }
-.mark { font-weight: 800; font-size: 21px; letter-spacing: .02em; }
-.meta { font-size: 16px; color: var(--faint); }
-.metaNum { font-family: var(--mono); font-size: 16px; letter-spacing: .04em; color: var(--faint); font-variant-numeric: tabular-nums; }
+.mark { font-weight: 800; font-size: .955em; letter-spacing: .02em; }
+.meta { font-size: .727em; color: var(--faint); }
+.metaNum { font-family: var(--mono); font-size: .727em; letter-spacing: .04em; color: var(--faint); font-variant-numeric: tabular-nums; }
 .metaEnd { margin-left: auto; }
 
-.state { padding: 26px 32px 6px; min-height: 108px; }
-.ko { font-size: 31px; font-weight: 700; letter-spacing: -.032em; }
+.state { padding: 1.18em 1.45em .27em; }
+.ko { font-size: 1.41em; font-weight: 700; letter-spacing: -.032em; }
 .en {
-  margin-top: 8px; font-family: var(--mono); font-size: 16px;
+  margin-top: .5em; font-family: var(--mono); font-size: .727em;
   letter-spacing: .11em; text-transform: uppercase; color: var(--sapphire);
 }
 
+/* The steps carry very different amounts of content inside one fixed panel.
+   Centring the variable region keeps the last step from leaving a dead
+   half-panel under a single delivered file. */
+.body { flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: center; }
+
 .rows {
-  margin: 6px 32px 0; border: 1px solid var(--line);
-  border-radius: 10px; overflow: hidden;
+  margin: 0 1.45em; border: 1px solid var(--line);
+  border-radius: .45em; overflow: hidden;
 }
 .row {
   display: grid; grid-template-columns: minmax(0,1fr) auto auto;
-  gap: 24px; align-items: center;
-  padding: 15px 22px; border-bottom: 1px solid var(--line);
+  gap: 1.1em; align-items: center;
+  padding: .68em 1em; border-bottom: 1px solid var(--line);
   transition: opacity var(--t-state) var(--ease), background var(--t-state) var(--ease);
 }
 .row:last-child { border-bottom: 0; }
-.name { font-size: 21px; font-weight: 650; }
-.career { display: block; font-size: 16px; color: var(--muted); margin-top: 2px; }
-.price { font-family: var(--mono); font-size: 21px; font-weight: 650; font-variant-numeric: tabular-nums; }
-.hours { font-family: var(--mono); font-size: 20px; color: var(--muted); min-width: 4.4em; text-align: right; }
+.name { font-size: .955em; font-weight: 650; }
+.career { display: block; font-size: .727em; color: var(--muted); margin-top: .1em; }
+.price { font-family: var(--mono); font-size: .955em; font-weight: 650; font-variant-numeric: tabular-nums; }
+.hours { font-family: var(--mono); font-size: .91em; color: var(--muted); min-width: 4.4em; text-align: right; }
 .rowMuted { opacity: .42; }
-.rowOut { opacity: .42; }
-.rowPick { background: var(--sapphire-wash); box-shadow: inset 4px 0 0 var(--sapphire); }
+.rowPick { background: var(--sapphire-wash); box-shadow: inset .18em 0 0 var(--sapphire); }
 .tag {
-  display: inline-block; margin-left: 10px; font-family: var(--mono);
-  font-size: 14px; letter-spacing: .1em; color: var(--sapphire); text-transform: uppercase;
+  display: inline-block; margin-left: .48em; font-family: var(--mono);
+  font-size: .667em; letter-spacing: .1em; color: var(--sapphire); text-transform: uppercase;
 }
-.outWhy { display: block; font-size: 15px; color: var(--faint); margin-top: 2px; }
+.outWhy { display: block; font-size: .682em; color: var(--faint); margin-top: .1em; }
 
-.why { margin: 18px 32px 0; padding-top: 16px; border-top: 1px solid var(--line); }
-.whyTitle { font-size: 19px; font-weight: 650; margin-bottom: 10px; }
-.whyList { display: grid; gap: 6px; }
-.whyRow { display: flex; gap: 10px; font-size: 18px; color: var(--muted); }
-.whyMark { color: var(--sapphire); flex: none; font-family: var(--mono); font-size: 15px; }
+.why { margin: .82em 1.45em 0; padding-top: .73em; border-top: 1px solid var(--line); }
+.whyTitle { font-size: .864em; font-weight: 650; margin-bottom: .52em; }
+.whyList { display: grid; gap: .27em; }
+.whyRow { display: flex; gap: .55em; font-size: .818em; color: var(--muted); }
+.whyMark { color: var(--sapphire); flex: none; font-family: var(--mono); font-size: .833em; }
 
-.result { margin: 6px 32px 0; display: flex; align-items: center; gap: 16px;
-  border: 1px solid var(--line-2); border-radius: 10px; padding: 18px 20px; }
+.result {
+  margin: 0 1.45em; display: flex; align-items: center; gap: .73em;
+  border: 1px solid var(--line-2); border-radius: .45em; padding: .82em .91em;
+}
 .kind {
-  display: grid; place-items: center; width: 46px; height: 46px; flex: none;
-  border: 1px solid var(--line-2); border-radius: 6px;
-  font-family: var(--mono); font-size: 13px; color: var(--muted);
+  display: grid; place-items: center; width: 2.09em; height: 2.09em; flex: none;
+  border: 1px solid var(--line-2); border-radius: .27em;
+  font-family: var(--mono); font-size: .591em; color: var(--muted);
 }
-.rname { font-size: 20px; font-weight: 600; }
-.rmeta { font-family: var(--mono); font-size: 16px; color: var(--ok); margin-top: 3px; letter-spacing: .04em; }
+.rname { font-size: .91em; font-weight: 600; }
+.rmeta { font-family: var(--mono); font-size: .727em; color: var(--ok); margin-top: .14em; letter-spacing: .04em; }
+
+.checks { margin: .73em 1.45em 0; display: grid; gap: .36em; }
+.check { display: flex; gap: .55em; font-size: .818em; color: var(--muted); }
+.tick2 { color: var(--ok); flex: none; }
 
 /* Korean never goes in the mono face with tracking — it renders as fragments. */
 .foot {
-  margin-top: auto; display: flex; gap: 30px;
-  padding: 16px 32px; border-top: 1px solid var(--line);
-  font-size: 17px; color: var(--faint);
+  display: flex; gap: 1.36em;
+  padding: .73em 1.45em; border-top: 1px solid var(--line);
+  font-size: .773em; color: var(--faint);
 }
 .foot b { font-family: var(--mono); font-weight: 600; font-variant-numeric: tabular-nums; color: var(--muted); }
 
-.track { display: flex; gap: 4px; padding: 0 32px 18px; }
-.tick { height: 3px; flex: 1; border-radius: 3px; background: var(--line); transition: background var(--t-state) var(--ease); }
+.track { display: flex; gap: .18em; padding: 0 1.45em .82em; }
+.tick { height: .14em; flex: 1; border-radius: .14em; background: var(--line); transition: background var(--t-state) var(--ease); }
 .tickOn { background: var(--sapphire); }

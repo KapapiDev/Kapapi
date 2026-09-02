@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import { useDemo } from "@/lib/demo";
-import { useReducedMotion } from "@/lib/use-reduced-motion";
+import { useNarrowStage, useReducedMotion } from "@/lib/use-reduced-motion";
 import { COMPOSITE_IN, COMPOSITE_OUT, transformFor } from "@/lib/screen-quad";
 import { HeroScreen } from "./hero-screen";
 import s from "./hero.module.css";
@@ -54,6 +54,7 @@ export function Hero() {
   const [step, setStep] = useState(-1);
   const [phase, setPhase] = useState<"film" | "composite" | "full" | "payoff">("film");
   const reduced = useReducedMotion();
+  const narrow = useNarrowStage();
   const [filmOk, setFilmOk] = useState(true);
 
   const clearTimers = useCallback(() => {
@@ -92,8 +93,14 @@ export function Hero() {
 
     const at = (ms: number, fn: () => void) => timers.current.push(window.setTimeout(fn, ms));
 
-    // The product UI appears inside the laptop as the push-in begins.
-    at(COMPOSITE_IN * 1000, () => { setPhaseBoth("composite"); setStep(0); });
+    // The product UI appears inside the laptop as the push-in begins. On a narrow
+    // stage the laptop is cropped away, so the same beat cuts straight to the
+    // full-frame product instead of compositing onto a screen that isn't there.
+    at(COMPOSITE_IN * 1000, () => {
+      if (narrow) videoRef.current?.pause();
+      setPhaseBoth(narrow ? "full" : "composite");
+      setStep(0);
+    });
     at((COMPOSITE_IN + 0.5) * 1000, () => setStep(1));
     at((COMPOSITE_IN + 1.0) * 1000, () => setStep(2));
 
@@ -117,7 +124,7 @@ export function Hero() {
       }
     });
     at((T_FULL_END + (T_PAYOFF_END - T_PAYOFF_IN)) * 1000, () => videoRef.current?.pause());
-  }, [clearTimers, setPhaseBoth]);
+  }, [clearTimers, setPhaseBoth, narrow]);
 
   /* Play only while the hero is on screen and the tab is visible. */
   useEffect(() => {
@@ -213,7 +220,7 @@ export function Hero() {
         </div>
 
         {!reduced ? (
-          <button type="button" className={s.replay} onClick={run}>
+          <button type="button" className={`${s.replay} ${showFull ? s.replayLight : ""}`} onClick={run}>
             다시 보기
           </button>
         ) : null}
