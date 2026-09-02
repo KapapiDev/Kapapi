@@ -124,6 +124,10 @@
     gap: var(--k-3);
   }
 
+  .links {
+    margin-left: auto;
+  }
+
   .whoName,
   .brandMark {
     display: none;
@@ -132,6 +136,11 @@
   /* Reclaim the row for navigation; the demo reset lives in the footer too. */
   .reset {
     display: none;
+  }
+
+  .who {
+    padding-left: var(--k-3);
+    margin-left: 0;
   }
 
   .links {
@@ -153,8 +162,28 @@
     flex: none;
   }
 
+}
+
+/*
+  Below ~430px the four labels no longer fit beside the brand and the avatar.
+  The avatar is a second link to 프로필, which is already in the nav, so it is
+  the right thing to drop — otherwise the last item renders clipped mid-word.
+*/
+@media (max-width: 430px) {
   .who {
-    padding-left: var(--k-3);
-    margin-left: 0;
+    display: none;
+  }
+
+  .inner {
+    padding-inline: 14px;
+  }
+
+  .link {
+    padding-inline: 7px;
+  }
+
+  /* Under ~360px the labels genuinely cannot fit; the fade reads as scrollable. */
+  .links {
+    mask-image: linear-gradient(to right, #000 calc(100% - 18px), transparent);
   }
 }
