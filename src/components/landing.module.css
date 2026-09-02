@@ -1,0 +1,448 @@
+/* Landing narrative. Each section gets its own composition — no repeated card grid. */
+
+.section {
+  padding-block: clamp(56px, 7vw, 104px);
+  border-bottom: 1px solid var(--k-line);
+}
+
+.sectionPlain {
+  padding-block: clamp(56px, 7vw, 104px);
+}
+
+.bandDark {
+  padding-block: clamp(56px, 7vw, 104px);
+  background: var(--k-black);
+  color: var(--k-dark-ink);
+}
+
+/* ---- 02 How it works ---- */
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 1px solid var(--k-line);
+}
+
+.step {
+  padding: var(--k-5) var(--k-4) var(--k-5) 0;
+  border-right: 1px solid var(--k-line);
+}
+
+.step:last-child {
+  border-right: 0;
+}
+
+.step:not(:first-child) {
+  padding-left: var(--k-5);
+}
+
+.stepIndex {
+  font-family: var(--k-font-mono);
+  font-size: var(--k-hud);
+  letter-spacing: var(--k-hud-track);
+  color: var(--k-faint);
+}
+
+.stepTitle {
+  margin-top: var(--k-3);
+  font-size: var(--k-h3);
+  font-weight: 620;
+  letter-spacing: var(--k-tight);
+}
+
+.stepBody {
+  margin-top: var(--k-2);
+  font-size: var(--k-body-sm);
+  color: var(--k-graphite);
+  line-height: 1.62;
+}
+
+.stepTerm {
+  margin-top: var(--k-3);
+  font-family: var(--k-font-mono);
+  font-size: var(--k-hud);
+  letter-spacing: var(--k-hud-track);
+  color: var(--k-faint);
+}
+
+/* ---- 03 Messy middle (dark) ---- */
+
+.middleGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: clamp(28px, 4vw, 64px);
+  align-items: start;
+}
+
+.darkEyebrow {
+  font-family: var(--k-font-mono);
+  font-size: var(--k-hud);
+  letter-spacing: var(--k-hud-track);
+  text-transform: uppercase;
+  color: var(--k-dark-faint);
+}
+
+.darkTitle {
+  margin-top: var(--k-4);
+  font-size: clamp(1.7rem, 1.1rem + 1.9vw, 2.6rem);
+  line-height: 1.16;
+  letter-spacing: -0.032em;
+  font-weight: 620;
+}
+
+.darkBody {
+  margin-top: var(--k-4);
+  max-width: 40ch;
+  color: var(--k-dark-muted);
+  font-size: var(--k-body);
+  line-height: 1.68;
+}
+
+.darkList {
+  margin-top: var(--k-5);
+  display: grid;
+  gap: 10px;
+  border-top: 1px solid var(--k-dark-line);
+  padding-top: var(--k-4);
+}
+
+.darkListRow {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  font-size: var(--k-body-sm);
+  color: var(--k-dark-muted);
+}
+
+.darkListMark {
+  font-family: var(--k-font-mono);
+  font-size: var(--k-hud);
+  color: var(--k-sapphire-bright);
+  flex: none;
+}
+
+/* ---- 04 Flagship ---- */
+
+.caseGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
+  gap: clamp(24px, 3.4vw, 56px);
+  align-items: start;
+}
+
+.spec {
+  border-top: 1px solid var(--k-ink);
+  padding-top: var(--k-3);
+}
+
+.specTitle {
+  font-size: var(--k-h2);
+  letter-spacing: var(--k-tight);
+  margin-bottom: var(--k-4);
+}
+
+.caseNote {
+  margin-top: var(--k-5);
+  padding-top: var(--k-4);
+  border-top: 1px solid var(--k-line);
+  font-size: var(--k-meta);
+  color: var(--k-muted);
+  line-height: 1.65;
+}
+
+.artifacts {
+  display: grid;
+  gap: 8px;
+  margin-bottom: var(--k-5);
+}
+
+.artifactLabel {
+  font-family: var(--k-font-mono);
+  font-size: var(--k-hud);
+  letter-spacing: var(--k-hud-track);
+  text-transform: uppercase;
+  color: var(--k-faint);
+  margin-bottom: var(--k-2);
+}
+
+/* ---- 05 Trust ---- */
+
+.trustGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(28px, 4vw, 72px);
+  align-items: center;
+}
+
+.evidence {
+  border: 1px solid var(--k-line-strong);
+  border-radius: var(--k-r-lg);
+  background: var(--k-white);
+  padding: clamp(20px, 2.6vw, 32px);
+}
+
+.evidenceName {
+  font-size: clamp(1.3rem, 1rem + 1vw, 1.75rem);
+  font-weight: 640;
+  letter-spacing: -0.03em;
+}
+
+.evidenceCareer {
+  margin-top: 6px;
+  font-size: clamp(1rem, 0.94rem + 0.3vw, 1.14rem);
+  color: var(--k-ink);
+  font-weight: 500;
+}
+
+.evidenceStats {
+  margin-top: var(--k-5);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--k-line);
+  border: 1px solid var(--k-line);
+  border-radius: var(--k-r-sm);
+  overflow: hidden;
+}
+
+.evidenceStat {
+  background: var(--k-white);
+  padding: var(--k-3) var(--k-4);
+}
+
+.evidenceStatKey {
+  font-family: var(--k-font-mono);
+  font-size: var(--k-hud);
+  letter-spacing: var(--k-hud-track);
+  text-transform: uppercase;
+  color: var(--k-faint);
+}
+
+.evidenceStatValue {
+  margin-top: 3px;
+  font-family: var(--k-font-mono);
+  font-size: 1.32rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  font-weight: 500;
+}
+
+.evidenceFoot {
+  margin-top: var(--k-4);
+  padding-top: var(--k-3);
+  border-top: 1px solid var(--k-line);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.evidenceFootNote {
+  font-size: var(--k-meta);
+  color: var(--k-faint);
+}
+
+/* ---- 06 TIME ATTACK ---- */
+
+.timeGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.92fr);
+  gap: clamp(24px, 3.4vw, 56px);
+  align-items: center;
+}
+
+/* ---- 07 Result loop ---- */
+
+.resultGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(24px, 3.4vw, 56px);
+  align-items: center;
+}
+
+/* ---- 08 Autopilot ---- */
+
+.autopilot {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(28px, 4vw, 72px);
+  align-items: center;
+}
+
+.collapse {
+  display: grid;
+  gap: var(--k-3);
+}
+
+.collapseRow {
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr);
+  gap: var(--k-4);
+  align-items: start;
+  padding-block: var(--k-3);
+  border-top: 1px solid var(--k-line);
+}
+
+.collapseStage {
+  font-family: var(--k-font-mono);
+  font-size: var(--k-hud);
+  letter-spacing: var(--k-hud-track);
+  text-transform: uppercase;
+  color: var(--k-faint);
+  padding-top: 3px;
+}
+
+.collapseItems {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.collapseItem {
+  padding: 4px 9px;
+  border: 1px solid var(--k-line-strong);
+  border-radius: var(--k-r-hud);
+  font-family: var(--k-font-mono);
+  font-size: var(--k-hud);
+  letter-spacing: 0.05em;
+  color: var(--k-graphite);
+  background: var(--k-white);
+}
+
+.collapseItemGone {
+  border-style: dashed;
+  color: var(--k-faint);
+  background: transparent;
+  text-decoration: line-through;
+  text-decoration-color: var(--k-line-strong);
+}
+
+.collapseItemKeep {
+  border-color: var(--k-ink);
+  color: var(--k-ink);
+  font-weight: 600;
+}
+
+.autopilotDisclaimer {
+  margin-top: var(--k-5);
+  padding: var(--k-3) var(--k-4);
+  border-left: 2px solid var(--k-warn);
+  background: var(--k-warn-wash);
+  font-size: var(--k-meta);
+  color: var(--k-warn);
+  line-height: 1.6;
+  border-radius: 0 var(--k-r-sm) var(--k-r-sm) 0;
+}
+
+/* ---- 09 PLAYER entry ---- */
+
+.playerGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(28px, 4vw, 64px);
+  align-items: center;
+}
+
+.oneAccount {
+  margin-top: var(--k-5);
+  padding: var(--k-4);
+  border: 1px dashed var(--k-line-strong);
+  border-radius: var(--k-r-md);
+  background: var(--k-white);
+}
+
+.oneAccountTitle {
+  font-size: var(--k-body-sm);
+  font-weight: 600;
+  margin-bottom: var(--k-3);
+}
+
+.oneAccountRow {
+  display: flex;
+  align-items: center;
+  gap: var(--k-3);
+  padding: 7px 0;
+  border-top: 1px solid var(--k-line);
+  font-size: var(--k-body-sm);
+  color: var(--k-graphite);
+}
+
+.oneAccountId {
+  font-family: var(--k-font-mono);
+  font-size: var(--k-hud);
+  letter-spacing: 0.05em;
+  color: var(--k-faint);
+  flex: none;
+  min-width: 8ch;
+}
+
+.ctaRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--k-3);
+  margin-top: var(--k-5);
+}
+
+/* ---- Shared narrow copy ---- */
+
+.lead {
+  font-size: clamp(1.5rem, 1.05rem + 1.5vw, 2.25rem);
+  line-height: 1.22;
+  letter-spacing: -0.032em;
+  font-weight: 620;
+  max-width: 20ch;
+}
+
+.body {
+  margin-top: var(--k-4);
+  max-width: 42ch;
+  font-size: var(--k-body);
+  color: var(--k-graphite);
+  line-height: 1.68;
+}
+
+/* ---- Responsive ---- */
+
+@media (max-width: 980px) {
+  .middleGrid,
+  .caseGrid,
+  .trustGrid,
+  .timeGrid,
+  .resultGrid,
+  .autopilot,
+  .playerGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .step {
+    border-bottom: 1px solid var(--k-line);
+  }
+
+  .step:nth-child(2n) {
+    border-right: 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .steps {
+    grid-template-columns: 1fr;
+  }
+
+  .step {
+    border-right: 0;
+    padding-left: 0 !important;
+  }
+
+  .evidenceStats {
+    grid-template-columns: 1fr;
+  }
+
+  .collapseRow {
+    grid-template-columns: 1fr;
+    gap: var(--k-2);
+  }
+}

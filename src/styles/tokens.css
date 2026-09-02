@@ -1,0 +1,139 @@
+/*
+  KAPAPI design tokens — Prototype v1
+  Authority: docs/KAPAPI_ART_DIRECTION.md (public art direction),
+             docs/KAPAPI_DESIGN.md (materials), docs/KAPAPI_MOTION.md (motion).
+
+  Public default is LIGHT FIRST. Dark is an operational surface applied
+  per-component via [data-surface="dark"], never as a global theme.
+*/
+
+:root {
+  /* ---- Neutrals: paper side (public default) ---- */
+  --k-paper: #f7f7f4;
+  --k-white: #ffffff;
+  --k-ink: #111111;
+  --k-black: #0a0a0a;
+  --k-graphite: #3a3a3d;
+  --k-muted: #6b6b70;
+  --k-faint: #8e8e93;
+  --k-line: #e3e3de;
+  --k-line-strong: #d2d2cb;
+  --k-wash: #efefea;
+
+  /* ---- Neutrals: operational dark side ---- */
+  --k-dark-bg: #0d0d0f;
+  --k-dark-raise: #16161a;
+  --k-dark-line: #26262b;
+  --k-dark-line-strong: #35353c;
+  --k-dark-ink: #f2f2f0;
+  --k-dark-muted: #8d8d96;
+  --k-dark-faint: #6a6a73;
+
+  /* ---- Signal accent: one restrained cool sapphire family ---- */
+  --k-sapphire: #1c58d9;
+  --k-sapphire-press: #17489f;
+  --k-sapphire-bright: #4d8cff;
+  --k-sapphire-wash: #eaf0fe;
+  --k-sapphire-line: #b9cdf7;
+
+  /* ---- Semantic state (only where the state truly exists) ---- */
+  --k-ok: #1a7f52;
+  --k-ok-wash: #e8f4ee;
+  --k-warn: #9a6206;
+  --k-warn-wash: #fbf2e2;
+  --k-risk: #a8321f;
+  --k-risk-wash: #fbeceA;
+
+  /* ---- Typography ---- */
+  --k-font-sans: "Pretendard Variable", Pretendard, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic",
+    system-ui, sans-serif;
+  --k-font-mono: ui-monospace, "SFMono-Regular", "JetBrains Mono", Menlo,
+    Consolas, "Liberation Mono", monospace;
+
+  --k-display: clamp(2.5rem, 1.4rem + 4.4vw, 5rem);
+  --k-display-sm: clamp(1.9rem, 1.2rem + 2.6vw, 3.1rem);
+  --k-h1: clamp(1.6rem, 1.2rem + 1.4vw, 2.2rem);
+  --k-h2: clamp(1.28rem, 1.08rem + 0.7vw, 1.6rem);
+  --k-h3: 1.06rem;
+  --k-body: 0.975rem;
+  --k-body-sm: 0.875rem;
+  --k-meta: 0.8125rem;
+  --k-hud: 0.6875rem;
+
+  --k-tight: -0.022em;
+  --k-tighter: -0.032em;
+  --k-hud-track: 0.09em;
+
+  /* ---- Spacing: 4px rhythm ---- */
+  --k-1: 4px;
+  --k-2: 8px;
+  --k-3: 12px;
+  --k-4: 16px;
+  --k-5: 24px;
+  --k-6: 32px;
+  --k-7: 48px;
+  --k-8: 64px;
+  --k-9: 96px;
+  --k-10: 128px;
+
+  /* ---- Frame ---- */
+  --k-max: 1240px;
+  --k-gutter: clamp(20px, 4vw, 56px);
+
+  /* ---- Radii: restrained ---- */
+  --k-r-hud: 2px;
+  --k-r-sm: 4px;
+  --k-r-md: 6px;
+  --k-r-lg: 10px;
+
+  /* ---- Elevation: only for true overlays ---- */
+  --k-shadow-overlay: 0 24px 64px -24px rgba(10, 10, 10, 0.32),
+    0 2px 8px -2px rgba(10, 10, 10, 0.12);
+
+  /* ---- Motion (docs/KAPAPI_MOTION.md section 3) ---- */
+  --k-micro: 140ms;
+  --k-state: 220ms;
+  --k-layout: 260ms;
+  --k-major: 340ms;
+  --k-narrative: 560ms;
+
+  --k-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --k-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --k-ease-in: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* ---- Resolved surface vars, remapped by [data-surface="dark"] ---- */
+  --s-bg: var(--k-paper);
+  --s-raise: var(--k-white);
+  --s-ink: var(--k-ink);
+  --s-muted: var(--k-muted);
+  --s-faint: var(--k-faint);
+  --s-line: var(--k-line);
+  --s-line-strong: var(--k-line-strong);
+  --s-accent: var(--k-sapphire);
+  --s-accent-wash: var(--k-sapphire-wash);
+}
+
+[data-surface="dark"] {
+  --s-bg: var(--k-dark-bg);
+  --s-raise: var(--k-dark-raise);
+  --s-ink: var(--k-dark-ink);
+  --s-muted: var(--k-dark-muted);
+  --s-faint: var(--k-dark-faint);
+  --s-line: var(--k-dark-line);
+  --s-line-strong: var(--k-dark-line-strong);
+  --s-accent: var(--k-sapphire-bright);
+  --s-accent-wash: rgba(77, 140, 255, 0.14);
+  color: var(--s-ink);
+  background: var(--s-bg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --k-micro: 1ms;
+    --k-state: 1ms;
+    --k-layout: 1ms;
+    --k-major: 1ms;
+    --k-narrative: 1ms;
+  }
+}

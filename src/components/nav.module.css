@@ -1,0 +1,149 @@
+.bar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: color-mix(in srgb, var(--k-paper) 88%, transparent);
+  backdrop-filter: saturate(1.4) blur(10px);
+  border-bottom: 1px solid var(--k-line);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  gap: var(--k-5);
+  height: 60px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 9px;
+  font-weight: 700;
+  font-size: 0.98rem;
+  letter-spacing: 0.06em;
+  flex: none;
+}
+
+.brandMark {
+  font-family: var(--k-font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.09em;
+  color: var(--k-faint);
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.live {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--k-ok);
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-left: auto;
+}
+
+.link {
+  padding: 7px 11px;
+  border-radius: var(--k-r-sm);
+  font-size: var(--k-body-sm);
+  font-weight: 500;
+  color: var(--k-graphite);
+  transition:
+    background var(--k-micro) var(--k-ease),
+    color var(--k-micro) var(--k-ease);
+}
+
+.link:hover {
+  background: var(--k-wash);
+  color: var(--k-ink);
+}
+
+.active {
+  color: var(--k-ink);
+  font-weight: 600;
+  background: var(--k-wash);
+}
+
+.who {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-left: var(--k-4);
+  margin-left: var(--k-2);
+  border-left: 1px solid var(--k-line);
+  flex: none;
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--k-ink);
+  color: var(--k-white);
+  font-family: var(--k-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+}
+
+.whoName {
+  font-size: var(--k-meta);
+  font-weight: 550;
+}
+
+.reset {
+  font-family: var(--k-font-mono);
+  font-size: var(--k-hud);
+  letter-spacing: var(--k-hud-track);
+  text-transform: uppercase;
+  color: var(--k-faint);
+  padding: 6px 8px;
+  border-radius: var(--k-r-sm);
+}
+
+.reset:hover {
+  color: var(--k-ink);
+  background: var(--k-wash);
+}
+
+/* ---- Mobile ---- */
+
+@media (max-width: 860px) {
+  .inner {
+    height: 56px;
+    gap: var(--k-3);
+  }
+
+  .whoName,
+  .brandMark {
+    display: none;
+  }
+
+  .links {
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .links::-webkit-scrollbar {
+    display: none;
+  }
+
+  .link {
+    padding: 7px 9px;
+    font-size: var(--k-meta);
+  }
+
+  .who {
+    padding-left: var(--k-3);
+    margin-left: 0;
+  }
+}

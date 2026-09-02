@@ -1,0 +1,239 @@
+/*
+  KAPAPI routing proof. Dark because routing is an operational moment
+  (docs/KAPAPI_ART_DIRECTION.md section 7), not because the product is dark.
+*/
+
+.panel {
+  border: 1px solid var(--s-line);
+  border-radius: var(--k-r-lg);
+  background: var(--s-raise);
+  overflow: hidden;
+}
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--k-2) var(--k-3);
+  padding: var(--k-4) var(--k-5);
+  border-bottom: 1px solid var(--s-line);
+}
+
+.headId {
+  font-family: var(--k-font-mono);
+  font-size: var(--k-hud);
+  letter-spacing: var(--k-hud-track);
+  color: var(--s-ink);
+  font-weight: 600;
+}
+
+.headMeta {
+  font-family: var(--k-font-mono);
+  font-size: var(--k-hud);
+  letter-spacing: var(--k-hud-track);
+  text-transform: uppercase;
+  color: var(--s-faint);
+}
+
+.headSpacer {
+  margin-left: auto;
+}
+
+.replay {
+  font-family: var(--k-font-mono);
+  font-size: var(--k-hud);
+  letter-spacing: var(--k-hud-track);
+  text-transform: uppercase;
+  color: var(--s-faint);
+  padding: 5px 8px;
+  border: 1px solid var(--s-line);
+  border-radius: var(--k-r-hud);
+}
+
+.replay:hover {
+  color: var(--s-ink);
+  border-color: var(--s-line-strong);
+}
+
+/* ---- State line ---- */
+
+.state {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--k-4);
+  padding: var(--k-4) var(--k-5);
+  border-bottom: 1px solid var(--s-line);
+  min-height: 62px;
+}
+
+.stateKo {
+  font-size: var(--k-body);
+  font-weight: 550;
+  color: var(--s-ink);
+}
+
+.stateEn {
+  font-family: var(--k-font-mono);
+  font-size: var(--k-hud);
+  letter-spacing: var(--k-hud-track);
+  color: var(--s-accent);
+  white-space: nowrap;
+}
+
+/* ---- BID rows ---- */
+
+.rows {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  grid-template-areas: "who price delivery" "trust trust trust";
+  align-items: center;
+  gap: 4px var(--k-4);
+  padding: var(--k-3) var(--k-5);
+  border-bottom: 1px solid var(--s-line);
+  transition:
+    opacity var(--k-state) var(--k-ease),
+    background var(--k-state) var(--k-ease);
+}
+
+.rowMuted {
+  opacity: 0.4;
+}
+
+.rowSelected {
+  background: var(--s-accent-wash);
+  box-shadow: inset 3px 0 0 var(--s-accent);
+}
+
+.who {
+  grid-area: who;
+  min-width: 0;
+}
+
+.name {
+  font-size: var(--k-body-sm);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-wrap: wrap;
+}
+
+.career {
+  font-size: var(--k-meta);
+  color: var(--s-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.price {
+  grid-area: price;
+  font-family: var(--k-font-mono);
+  font-size: 0.95rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.015em;
+  font-weight: 550;
+  text-align: right;
+}
+
+.delivery {
+  grid-area: delivery;
+  font-family: var(--k-font-mono);
+  font-size: 0.95rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--s-muted);
+  min-width: 3.4em;
+  text-align: right;
+}
+
+.trust {
+  grid-area: trust;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 2px;
+}
+
+.trustItem {
+  font-family: var(--k-font-mono);
+  font-size: var(--k-hud);
+  letter-spacing: 0.05em;
+  color: var(--s-faint);
+  text-transform: uppercase;
+}
+
+.excluded {
+  font-family: var(--k-font-mono);
+  font-size: var(--k-hud);
+  letter-spacing: 0.05em;
+  color: var(--s-faint);
+}
+
+.assignedFlag {
+  font-family: var(--k-font-mono);
+  font-size: var(--k-hud);
+  letter-spacing: var(--k-hud-track);
+  color: var(--s-accent);
+}
+
+/* ---- Rationale ---- */
+
+.why {
+  padding: var(--k-4) var(--k-5) var(--k-5);
+}
+
+.whyTitle {
+  font-size: var(--k-body-sm);
+  font-weight: 600;
+  margin-bottom: var(--k-3);
+}
+
+.whyList {
+  display: grid;
+  gap: 7px;
+}
+
+.whyRow {
+  display: flex;
+  gap: 9px;
+  align-items: baseline;
+  font-size: var(--k-body-sm);
+  color: var(--s-muted);
+}
+
+.whyMark {
+  color: var(--s-accent);
+  font-family: var(--k-font-mono);
+  font-size: var(--k-hud);
+  flex: none;
+}
+
+.whyNote {
+  margin-top: var(--k-4);
+  padding-top: var(--k-3);
+  border-top: 1px solid var(--s-line);
+  font-size: var(--k-meta);
+  color: var(--s-faint);
+  line-height: 1.6;
+}
+
+@media (max-width: 640px) {
+  .row {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas: "who price" "who delivery" "trust trust";
+    row-gap: 2px;
+  }
+
+  .head,
+  .state,
+  .row,
+  .why {
+    padding-inline: var(--k-4);
+  }
+}

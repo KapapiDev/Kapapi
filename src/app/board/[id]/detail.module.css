@@ -1,0 +1,356 @@
+.wrap {
+  padding-block: clamp(28px, 3.4vw, 52px) clamp(48px, 6vw, 88px);
+}
+
+.crumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--k-font-mono);
+  font-size: var(--k-hud);
+  letter-spacing: var(--k-hud-track);
+  text-transform: uppercase;
+  color: var(--k-faint);
+  margin-bottom: var(--k-4);
+}
+
+.head {
+  padding-bottom: var(--k-5);
+  border-bottom: 1px solid var(--k-line);
+}
+
+.title {
+  font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.1rem);
+  letter-spacing: -0.034em;
+  font-weight: 630;
+  max-width: 26ch;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: var(--k-3);
+}
+
+.summary {
+  margin-top: var(--k-4);
+  max-width: 58ch;
+  font-size: var(--k-body);
+  color: var(--k-graphite);
+  line-height: 1.7;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.85fr);
+  gap: clamp(24px, 3.2vw, 52px);
+  align-items: start;
+  margin-top: var(--k-6);
+}
+
+.section {
+  margin-bottom: var(--k-6);
+}
+
+.sectionTitle {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--k-3);
+  padding-bottom: 9px;
+  margin-bottom: var(--k-3);
+  border-bottom: 1px solid var(--k-line);
+}
+
+.sectionKo {
+  font-size: var(--k-h3);
+  font-weight: 620;
+  letter-spacing: var(--k-tight);
+}
+
+.sectionEn {
+  font-family: var(--k-font-mono);
+  font-size: var(--k-hud);
+  letter-spacing: var(--k-hud-track);
+  color: var(--k-faint);
+}
+
+.list {
+  display: grid;
+  gap: 7px;
+}
+
+.item {
+  display: flex;
+  gap: 9px;
+  align-items: baseline;
+  font-size: var(--k-body-sm);
+  line-height: 1.65;
+  color: var(--k-graphite);
+}
+
+.mark {
+  font-family: var(--k-font-mono);
+  font-size: var(--k-hud);
+  color: var(--k-faint);
+  flex: none;
+}
+
+.files {
+  display: grid;
+  gap: 7px;
+}
+
+/* ---- BID form ---- */
+
+.bid {
+  position: sticky;
+  top: 84px;
+  border: 1px solid var(--k-line-strong);
+  border-radius: var(--k-r-lg);
+  background: var(--k-white);
+  overflow: hidden;
+}
+
+.bidHead {
+  padding: var(--k-4) var(--k-5);
+  border-bottom: 1px solid var(--k-line);
+  background: var(--k-paper);
+}
+
+.bidTitle {
+  font-size: var(--k-h3);
+  font-weight: 620;
+  letter-spacing: var(--k-tight);
+}
+
+.bidSub {
+  margin-top: 5px;
+  font-size: var(--k-meta);
+  color: var(--k-muted);
+}
+
+.bidContext {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--k-2) var(--k-5);
+  padding: var(--k-3) var(--k-5);
+  border-bottom: 1px solid var(--k-line);
+}
+
+.ctxItem {
+  display: grid;
+  gap: 2px;
+}
+
+.ctxKey {
+  font-family: var(--k-font-mono);
+  font-size: var(--k-hud);
+  letter-spacing: var(--k-hud-track);
+  text-transform: uppercase;
+  color: var(--k-faint);
+}
+
+.ctxValue {
+  font-family: var(--k-font-mono);
+  font-size: var(--k-body-sm);
+  font-variant-numeric: tabular-nums;
+  font-weight: 550;
+}
+
+.bidBody {
+  padding: var(--k-5);
+  display: grid;
+  gap: var(--k-4);
+}
+
+/* PRICE and DELIVERY are visually paired — neither is optional. */
+.pair {
+  display: grid;
+  grid-template-columns: 1.25fr auto 1fr;
+  align-items: end;
+  gap: var(--k-3);
+}
+
+.pairTimes {
+  padding-bottom: 11px;
+  color: var(--k-faint);
+  font-family: var(--k-font-mono);
+  font-size: 1rem;
+}
+
+.money {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--k-line-strong);
+  border-radius: var(--k-r-md);
+  background: var(--k-white);
+  padding: 0 11px;
+  transition: border-color var(--k-micro) var(--k-ease);
+}
+
+.money:focus-within,
+.hoursWrap:focus-within {
+  border-color: var(--k-sapphire);
+  box-shadow: 0 0 0 3px var(--k-sapphire-wash);
+}
+
+.moneySign {
+  color: var(--k-muted);
+  font-family: var(--k-font-mono);
+}
+
+.moneyInput,
+.hoursInput {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  padding: 11px 0;
+  font-family: var(--k-font-mono);
+  font-size: 1.05rem;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.hoursWrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--k-line-strong);
+  border-radius: var(--k-r-md);
+  background: var(--k-white);
+  padding: 0 11px;
+}
+
+.hoursUnit {
+  color: var(--k-muted);
+  font-family: var(--k-font-mono);
+}
+
+.fieldLabel {
+  display: block;
+  font-size: var(--k-meta);
+  font-weight: 550;
+  color: var(--k-muted);
+  margin-bottom: 6px;
+}
+
+.note {
+  width: 100%;
+  min-height: 60px;
+  padding: 10px 12px;
+  border: 1px solid var(--k-line-strong);
+  border-radius: var(--k-r-md);
+  background: var(--k-white);
+  font-size: var(--k-body-sm);
+  resize: vertical;
+}
+
+.preview {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--k-3);
+  padding: var(--k-3) var(--k-4);
+  border: 1px solid var(--k-line);
+  border-radius: var(--k-r-sm);
+  background: var(--k-paper);
+}
+
+.previewLabel {
+  font-family: var(--k-font-mono);
+  font-size: var(--k-hud);
+  letter-spacing: var(--k-hud-track);
+  text-transform: uppercase;
+  color: var(--k-faint);
+}
+
+.previewValue {
+  font-family: var(--k-font-mono);
+  font-size: 1.05rem;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+.error {
+  font-size: var(--k-meta);
+  color: var(--k-risk);
+}
+
+.hint {
+  font-size: var(--k-meta);
+  color: var(--k-faint);
+  line-height: 1.6;
+}
+
+.blocked {
+  padding: var(--k-5);
+  display: grid;
+  gap: var(--k-3);
+}
+
+.blockedTitle {
+  font-size: var(--k-body-sm);
+  font-weight: 620;
+  color: var(--k-warn);
+}
+
+.blockedItem {
+  display: flex;
+  gap: 8px;
+  font-size: var(--k-body-sm);
+  color: var(--k-graphite);
+}
+
+.submitted {
+  padding: var(--k-5);
+  display: grid;
+  gap: var(--k-3);
+}
+
+.submittedTitle {
+  font-size: var(--k-h3);
+  font-weight: 620;
+  letter-spacing: var(--k-tight);
+}
+
+.notFound {
+  max-width: 560px;
+  margin-inline: auto;
+  text-align: center;
+  padding-block: clamp(48px, 7vw, 96px);
+}
+
+@media (max-width: 980px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bid {
+    position: static;
+  }
+}
+
+@media (max-width: 560px) {
+  .pair {
+    grid-template-columns: 1fr;
+    gap: var(--k-3);
+  }
+
+  .pairTimes {
+    display: none;
+  }
+
+  .bidBody,
+  .bidHead,
+  .bidContext,
+  .blocked,
+  .submitted {
+    padding-inline: var(--k-4);
+  }
+}

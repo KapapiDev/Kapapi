@@ -1,0 +1,329 @@
+/* KAPAPI primitives. Hairlines, small radii, no ambient shadow. */
+
+.btn {
+  --btn-bg: transparent;
+  --btn-fg: var(--s-ink);
+  --btn-line: var(--s-line-strong);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--k-2);
+  min-height: 44px;
+  padding: 0 var(--k-5);
+  border: 1px solid var(--btn-line);
+  border-radius: var(--k-r-md);
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  font-size: var(--k-body-sm);
+  font-weight: 550;
+  letter-spacing: -0.008em;
+  white-space: nowrap;
+  transition:
+    background var(--k-micro) var(--k-ease),
+    border-color var(--k-micro) var(--k-ease),
+    color var(--k-micro) var(--k-ease);
+}
+
+.btn:disabled {
+  opacity: 0.42;
+  cursor: not-allowed;
+}
+
+.primary {
+  --btn-bg: var(--k-ink);
+  --btn-fg: var(--k-white);
+  --btn-line: var(--k-ink);
+  font-weight: 600;
+}
+
+.primary:not(:disabled):hover {
+  --btn-bg: var(--k-black);
+}
+
+.accent {
+  --btn-bg: var(--k-sapphire);
+  --btn-fg: #fff;
+  --btn-line: var(--k-sapphire);
+  font-weight: 600;
+}
+
+.accent:not(:disabled):hover {
+  --btn-bg: var(--k-sapphire-press);
+  --btn-line: var(--k-sapphire-press);
+}
+
+.secondary {
+  --btn-bg: var(--s-raise);
+}
+
+.secondary:not(:disabled):hover {
+  --btn-line: var(--s-ink);
+}
+
+.ghost {
+  --btn-line: transparent;
+  padding-inline: var(--k-3);
+}
+
+.ghost:not(:disabled):hover {
+  --btn-line: var(--s-line);
+}
+
+.sm {
+  min-height: 34px;
+  padding-inline: var(--k-3);
+  font-size: var(--k-meta);
+}
+
+.lg {
+  min-height: 52px;
+  padding-inline: var(--k-6);
+  font-size: var(--k-body);
+}
+
+/*
+  Signature submission confirmation (docs/HERO_MEDIA.md section 8):
+  ~0.28s, localized to the control, no room-wide wash, fires once.
+*/
+.confirming::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: inherit;
+  border: 2px solid var(--k-sapphire);
+  animation: confirmRing 280ms var(--k-ease-out) forwards;
+  pointer-events: none;
+}
+
+@keyframes confirmRing {
+  0% {
+    opacity: 1;
+    transform: scale(0.985);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .confirming::after {
+    animation: none;
+    opacity: 0.9;
+  }
+}
+
+/* ---- Chips ---- */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px;
+  border: 1px solid var(--s-line);
+  border-radius: var(--k-r-hud);
+  background: var(--s-raise);
+  color: var(--s-muted);
+  font-family: var(--k-font-mono);
+  font-size: var(--k-hud);
+  letter-spacing: var(--k-hud-track);
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.chipInk {
+  background: var(--k-ink);
+  border-color: var(--k-ink);
+  color: var(--k-white);
+}
+
+.chipAccent {
+  background: var(--k-sapphire-wash);
+  border-color: var(--k-sapphire-line);
+  color: var(--k-sapphire-press);
+}
+
+.chipOk {
+  background: var(--k-ok-wash);
+  border-color: color-mix(in srgb, var(--k-ok) 26%, transparent);
+  color: var(--k-ok);
+}
+
+.chipWarn {
+  background: var(--k-warn-wash);
+  border-color: color-mix(in srgb, var(--k-warn) 30%, transparent);
+  color: var(--k-warn);
+}
+
+.chipRisk {
+  background: var(--k-risk-wash);
+  border-color: color-mix(in srgb, var(--k-risk) 28%, transparent);
+  color: var(--k-risk);
+}
+
+/* Status is never colour-only: a leading glyph carries the same meaning. */
+.chipDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+  flex: none;
+}
+
+/* ---- Field ---- */
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-size: var(--k-meta);
+  font-weight: 550;
+  color: var(--s-muted);
+}
+
+.input,
+.textarea {
+  width: 100%;
+  padding: 11px 13px;
+  border: 1px solid var(--s-line-strong);
+  border-radius: var(--k-r-md);
+  background: var(--s-raise);
+  color: var(--s-ink);
+  font-size: var(--k-body);
+  transition: border-color var(--k-micro) var(--k-ease);
+}
+
+.input:hover,
+.textarea:hover {
+  border-color: var(--s-ink);
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: var(--s-faint);
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 92px;
+  line-height: 1.6;
+}
+
+.hint {
+  font-size: var(--k-meta);
+  color: var(--s-faint);
+}
+
+/* ---- Section header ---- */
+
+.sectionHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--k-3);
+  padding-bottom: var(--k-4);
+  border-bottom: 1px solid var(--s-line);
+  margin-bottom: var(--k-6);
+}
+
+.sectionIndex {
+  font-family: var(--k-font-mono);
+  font-size: var(--k-hud);
+  letter-spacing: var(--k-hud-track);
+  color: var(--s-faint);
+  text-transform: uppercase;
+}
+
+.sectionTitle {
+  font-size: var(--k-h1);
+  letter-spacing: var(--k-tighter);
+}
+
+.sectionNote {
+  font-size: var(--k-body-sm);
+  color: var(--s-muted);
+  max-width: 46ch;
+}
+
+/* ---- File object ---- */
+
+.file {
+  display: flex;
+  align-items: center;
+  gap: var(--k-3);
+  padding: 10px 12px;
+  border: 1px solid var(--s-line);
+  border-radius: var(--k-r-sm);
+  background: var(--s-raise);
+}
+
+.fileKind {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--s-line-strong);
+  border-radius: var(--k-r-hud);
+  font-family: var(--k-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.04em;
+  color: var(--s-muted);
+  background: var(--s-bg);
+}
+
+.fileBody {
+  min-width: 0;
+  flex: 1;
+}
+
+.fileName {
+  font-size: var(--k-body-sm);
+  font-weight: 550;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fileMeta {
+  font-family: var(--k-font-mono);
+  font-size: var(--k-hud);
+  letter-spacing: 0.05em;
+  color: var(--s-faint);
+}
+
+/* ---- Metadata row ---- */
+
+.metaRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--k-4);
+  padding: 9px 0;
+  border-bottom: 1px solid var(--s-line);
+}
+
+.metaRow:last-child {
+  border-bottom: 0;
+}
+
+.metaKey {
+  flex: none;
+  font-family: var(--k-font-mono);
+  font-size: var(--k-hud);
+  letter-spacing: var(--k-hud-track);
+  text-transform: uppercase;
+  color: var(--s-faint);
+}
+
+.metaValue {
+  text-align: right;
+  font-size: var(--k-body-sm);
+  color: var(--s-ink);
+}

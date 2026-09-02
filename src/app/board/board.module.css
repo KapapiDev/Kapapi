@@ -1,0 +1,124 @@
+.wrap {
+  padding-block: clamp(28px, 3.4vw, 52px) clamp(48px, 6vw, 88px);
+}
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--k-4);
+  padding-bottom: var(--k-5);
+  border-bottom: 1px solid var(--k-line);
+}
+
+.eyebrow {
+  font-family: var(--k-font-mono);
+  font-size: var(--k-hud);
+  letter-spacing: var(--k-hud-track);
+  text-transform: uppercase;
+  color: var(--k-faint);
+}
+
+.title {
+  margin-top: 8px;
+  font-size: clamp(1.6rem, 1.15rem + 1.5vw, 2.25rem);
+  letter-spacing: -0.034em;
+  font-weight: 630;
+}
+
+.sub {
+  margin-top: var(--k-3);
+  max-width: 50ch;
+  font-size: var(--k-body);
+  color: var(--k-graphite);
+  line-height: 1.66;
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--k-5);
+}
+
+.stat {
+  display: grid;
+  gap: 2px;
+}
+
+.statKey {
+  font-family: var(--k-font-mono);
+  font-size: var(--k-hud);
+  letter-spacing: var(--k-hud-track);
+  text-transform: uppercase;
+  color: var(--k-faint);
+}
+
+.statValue {
+  font-family: var(--k-font-mono);
+  font-size: 1.28rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: var(--k-5);
+  margin-bottom: var(--k-5);
+}
+
+.filter {
+  padding: 7px 13px;
+  border: 1px solid var(--k-line-strong);
+  border-radius: 999px;
+  background: var(--k-white);
+  font-size: var(--k-body-sm);
+  color: var(--k-graphite);
+  transition:
+    border-color var(--k-micro) var(--k-ease),
+    background var(--k-micro) var(--k-ease),
+    color var(--k-micro) var(--k-ease);
+}
+
+.filter:hover {
+  border-color: var(--k-ink);
+}
+
+.filterOn {
+  background: var(--k-ink);
+  border-color: var(--k-ink);
+  color: var(--k-white);
+  font-weight: 550;
+}
+
+.list {
+  display: grid;
+  gap: var(--k-3);
+}
+
+.empty {
+  padding: var(--k-8) var(--k-5);
+  border: 1px dashed var(--k-line-strong);
+  border-radius: var(--k-r-md);
+  text-align: center;
+  color: var(--k-muted);
+  font-size: var(--k-body-sm);
+}
+
+.footNote {
+  margin-top: var(--k-6);
+  padding-top: var(--k-4);
+  border-top: 1px solid var(--k-line);
+  font-size: var(--k-meta);
+  color: var(--k-faint);
+  line-height: 1.68;
+  max-width: 70ch;
+}
+
+@media (max-width: 700px) {
+  .stats {
+    gap: var(--k-4);
+  }
+}
