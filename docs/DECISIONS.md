@@ -457,3 +457,60 @@ If auto-routing materially increases regret/failure or users insist on choosing 
 ### Supersedes
 
 This decision supersedes the **default GM selection** portions of D-012, D-015 and D-019. It does **not** remove bidding, contracts, safe payment, workroom records, approval/revision, settlement, reviews or dispute protection.
+
+---
+
+## D-032 — One universal user identity; GM and PLAYER are contextual QUEST roles
+
+**Decision:** KAPAPI has **one universal user identity**. `GM` and `PLAYER` are roles created by the user's relationship to each QUEST, not permanent account types, onboarding classes, or mutually exclusive product modes.
+
+A single user may simultaneously:
+
+- issue one QUEST as GM,
+- BID on another QUEST as PLAYER,
+- execute a third QUEST as PLAYER.
+
+### Product rule
+
+Do not require:
+
+- permanent `GM / PLAYER` selection at signup,
+- separate GM and PLAYER accounts,
+- separate login identities,
+- a role switch that behaves like changing account type.
+
+Prefer action-oriented product entry:
+
+```text
+일 맡기기
+일 찾기
+내 QUEST
+프로필
+```
+
+A temporary filter/view may organize issuer-side and execution-side activity, but it must not redefine the user's identity.
+
+### Reputation rule
+
+One profile may contain separate reputation domains:
+
+- **execution/PLAYER evidence** — relevant career, task history, on-time, revision, disputes, LEVEL/EXP
+- **issuer/GM evidence** — transaction completion, approval speed, cancellations/disputes, PLAYER ratings of the GM
+
+Do not collapse both sides into one meaningless universal score.
+
+### Qualification rule
+
+Universal identity does not mean universal eligibility. A user may only BID/execute QUESTs for which they satisfy the relevant category, skill, credential, security and other eligibility rules.
+
+### Why
+
+KAPAPI's world is stronger when GM and PLAYER are **roles inside a QUEST system**, not permanent social classes. The intended mental model is:
+
+> 오늘은 내가 QUEST를 던지고, 다른 QUEST에서는 PLAYER로 참여할 수 있다.
+
+This also reduces onboarding friction and avoids unnecessarily splitting marketplace liquidity across artificial account identities.
+
+### Implementation authority
+
+`docs/IDENTITY_ROLE_MODEL.md` is the canonical implementation specification for this decision.
