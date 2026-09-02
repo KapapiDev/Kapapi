@@ -300,6 +300,26 @@
   gap: 9px;
   font-size: var(--k-body-sm);
   color: var(--s-muted);
+  /* MOTION-E: short mechanical stagger, one pass, then still. No reward burst. */
+  animation: checkIn var(--k-state) var(--k-ease-out) both;
+  animation-delay: calc(var(--check-index, 0) * 80ms);
+}
+
+@keyframes checkIn {
+  from {
+    opacity: 0;
+    transform: translateY(3px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .check {
+    animation: none;
+  }
 }
 
 .checkMark {

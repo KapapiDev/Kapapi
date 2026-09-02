@@ -270,8 +270,12 @@ export function ResultObject({
       </div>
 
       <div className={s.checks}>
-        {result.checks.map((check) => (
-          <p key={check.label} className={s.check}>
+        {result.checks.map((check, i) => (
+          <p
+            key={check.label}
+            className={s.check}
+            style={{ "--check-index": i } as React.CSSProperties}
+          >
             <span className={s.checkMark} aria-hidden="true">
               {check.passed ? "✓" : "—"}
             </span>

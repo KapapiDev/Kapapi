@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 
 import { CURRENT_USER_ID, FLAGSHIP_QUEST, QUESTS, USERS } from "@/lib/fixtures";
 import { pct, won } from "@/lib/format";
@@ -101,7 +102,12 @@ export function MessyMiddle() {
           </div>
         </div>
 
-        <RoutingPanel quest={quest} />
+        <div>
+          <p className={s.darkEyebrow} style={{ marginBottom: 10 }}>
+            완료된 QUEST 기록 · #{quest.id}
+          </p>
+          <RoutingPanel quest={quest} />
+        </div>
       </div>
     </section>
   );
@@ -370,6 +376,26 @@ const COLLAPSE = [
 ];
 
 export function AutopilotSection() {
+  const diagramRef = useRef<HTMLDivElement>(null);
+  const [played, setPlayed] = useState(false);
+
+  // One-shot when the diagram is first seen; it settles and stays settled.
+  useEffect(() => {
+    const node = diagramRef.current;
+    if (!node) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) {
+          setPlayed(true);
+          io.disconnect();
+        }
+      },
+      { threshold: 0.4 },
+    );
+    io.observe(node);
+    return () => io.disconnect();
+  }, []);
+
   return (
     <section className={s.section} aria-labelledby="autopilot-title">
       <div className="k-frame">
@@ -394,7 +420,10 @@ export function AutopilotSection() {
             </div>
           </div>
 
-          <div className={s.collapse}>
+          <div
+            className={`${s.collapse} ${played ? s.collapseReady : ""}`}
+            ref={diagramRef}
+          >
             {COLLAPSE.map((row) => (
               <div key={row.stage} className={s.collapseRow}>
                 <span className={s.collapseStage}>{row.stage}</span>
