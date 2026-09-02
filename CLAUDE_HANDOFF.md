@@ -38,28 +38,30 @@ Before writing application code, read these files in this order:
 1. `docs/README.md`
 2. `docs/DECISIONS.md`
 3. `docs/PRODUCT.md`
-4. `docs/PROTOTYPE_SPEC.md`
-5. `docs/KAPAPI_ART_DIRECTION.md`
-6. `docs/KAPAPI_DESIGN.md`
-7. `docs/KAPAPI_MOTION.md`
-8. `docs/UPWORK_FIRST_TOUCH_REFERENCE.md`
-9. `docs/HERO_MEDIA.md`
-10. `docs/QA_CHECKLIST.md`
-11. `TASK_QUEUE.md`
-12. `docs/LEGAL.md`
-13. `docs/VALIDATION.md`
-14. `docs/REFERENCE_BOARD.md`
+4. `docs/IDENTITY_ROLE_MODEL.md`
+5. `docs/PROTOTYPE_SPEC.md`
+6. `docs/KAPAPI_ART_DIRECTION.md`
+7. `docs/KAPAPI_DESIGN.md`
+8. `docs/KAPAPI_MOTION.md`
+9. `docs/UPWORK_FIRST_TOUCH_REFERENCE.md`
+10. `docs/HERO_MEDIA.md`
+11. `docs/QA_CHECKLIST.md`
+12. `TASK_QUEUE.md`
+13. `docs/LEGAL.md`
+14. `docs/VALIDATION.md`
+15. `docs/REFERENCE_BOARD.md`
 
 Authority rules:
 
 - Product behavior: latest `DECISIONS.md` + `PRODUCT.md` + `PROTOTYPE_SPEC.md`.
+- Identity / role architecture: **`IDENTITY_ROLE_MODEL.md`**.
 - Current public art direction / world-building: **`KAPAPI_ART_DIRECTION.md`**.
 - Detailed component/material/layout reference: `KAPAPI_DESIGN.md`, only where it does not conflict with current product/art direction.
 - Motion timing/behavior: `KAPAPI_MOTION.md`, with legacy `GM selects BID` choreography interpreted as **KAPAPI routes/selects** for the default flow.
 - Hero media integration: `HERO_MEDIA.md`.
-- Acceptance: `QA_CHECKLIST.md` + the mandatory visual/world QA gate in `KAPAPI_ART_DIRECTION.md`.
+- Acceptance: `QA_CHECKLIST.md` + the mandatory visual/world QA gate in `KAPAPI_ART_DIRECTION.md` + the role-model QA gate in `IDENTITY_ROLE_MODEL.md`.
 
-If an older example conflicts with D-031, the current prototype spec, light-first public direction or `KAPAPI_ART_DIRECTION.md`, the newer rule wins.
+If an older example conflicts with D-031, the universal-user role model, the current prototype spec, light-first public direction or `KAPAPI_ART_DIRECTION.md`, the newer rule wins.
 
 ---
 
@@ -72,9 +74,47 @@ If an older example conflicts with D-031, the current prototype spec, light-firs
 5. PLAYERs still compete behind the scenes with mandatory **PRICE + committed DELIVERY TIME**.
 6. KAPAPI selection is not an opaque LLM whim. The UI should imply hard eligibility + market terms + verified trust/performance + task fit + routing policy.
 7. The GM remains the final result judge through **accept / revision request**.
-8. Architecture/CAD is the flagship test case below the hero, not the market definition and not the hero master category.
-9. Do not claim production escrow, SLA guarantees, authoritative AI quality judgment, tax automation, or regulated-professional coverage that does not exist.
-10. This is a thin public prototype. Visual/product clarity matters more than backend breadth.
+8. **KAPAPI has one universal user identity. GM and PLAYER are contextual QUEST roles, never permanent account types.** A single user may issue one QUEST as GM and BID/execute another as PLAYER, including during the same period.
+9. Do not require a permanent `GM / PLAYER` choice during signup/onboarding, separate logins, or two accounts. Prefer action-oriented entry such as `일 맡기기`, `일 찾기`, `내 QUEST`.
+10. Architecture/CAD is the flagship test case below the hero, not the market definition and not the hero master category.
+11. Do not claim production escrow, SLA guarantees, authoritative AI quality judgment, tax automation, or regulated-professional coverage that does not exist.
+12. This is a thin public prototype. Visual/product clarity matters more than backend breadth.
+
+---
+
+# ONE USER, CONTEXTUAL ROLES
+
+Do not accidentally implement GM and PLAYER as two user species.
+
+Canonical model:
+
+```text
+USER A
+├─ QUEST #0104 → issuer → GM
+├─ QUEST #0182 → assigned executor → PLAYER
+└─ QUEST #0201 → bidder → PLAYER
+```
+
+Role is derived from the user's relationship to each QUEST.
+
+This means:
+
+- signup is universal,
+- identity is universal,
+- a user may hand off work and also take other work,
+- qualification may restrict which QUESTs a user can execute, but does not change account identity,
+- profile architecture may show both issuer-side and execution-side reputation without collapsing them into one meaningless score.
+
+Do not build:
+
+- `GM account` vs `PLAYER account`,
+- permanent role onboarding,
+- mutually exclusive `GM MODE / PLAYER MODE`,
+- a separate supply-side product that requires another account.
+
+A temporary filter/view toggle is acceptable if it only organizes activity and does not change identity semantics.
+
+The world-building implication is important: GM and PLAYER are **roles inside each QUEST**, not RPG classes chosen at signup.
 
 ---
 
@@ -269,10 +309,12 @@ KAPAPI
 
 일 등록 → KAPAPI 자동 배정 → 작업 → 결과 확인
 
-일하러 오셨나요? → 일 찾기
+일 찾기 →
 ```
 
 Do not copy this layout literally if a stronger composition passes the same tests. The task-entry action must remain visually dominant.
+
+`일 찾기` is a secondary **action available to the same universal user**, not an entrance to a separate permanent PLAYER account.
 
 The hero may use the real-video concept documented in `docs/HERO_MEDIA.md`, but the CTA/input remains the protagonist. Do not turn the hero into a mini dashboard.
 
@@ -286,17 +328,20 @@ The prototype must allow a reviewer to experience or clearly demo:
 
 ```text
 LANDING
-→ GM describes work / attaches file
+→ user describes work / attaches file
 → AI-assisted scope preview (thin prototype)
 → SUBMIT / 맡기기
+→ that user is GM for this QUEST
 → hands-off orchestration status
-→ PLAYER side sees QUEST and submits PRICE + DELIVERY BID
+→ supply-side perspective: eligible users can see QUEST and submit PRICE + DELIVERY BID as PLAYERs
 → KAPAPI receives BIDs and auto-routes a PLAYER
 → work status progresses
 → result is delivered
 → GM chooses 결과 확인 / 수정 요청
 → completion / trust history updates
 ```
+
+The demo may switch transaction perspectives to explain both sides, but it must never imply that GM and PLAYER require different permanent accounts.
 
 Use deterministic mock data/state where production backend is unnecessary. The demo must be stable and repeatable.
 
@@ -333,11 +378,12 @@ Before heavy implementation, do all of the following **in text only**:
    - mobile viability.
 3. Choose the strongest structure yourself.
 4. Write a short **world-building integration map** for:
-   - GM first-touch,
+   - first-touch,
    - GM orchestration,
    - PLAYER board/profile,
    - completion/result.
-5. Verify the chosen structure does not visually copy Upwork.
+5. Write a short **identity-role map** showing how the same universal user can access `일 맡기기`, `일 찾기`, and mixed GM/PLAYER QUEST history without permanent role selection.
+6. Verify the chosen structure does not visually copy Upwork.
 
 Then implement.
 
@@ -351,10 +397,10 @@ Do not stop and ask the user to choose between normal implementation options unl
 2. Re-read the canon before choosing screen structure.
 3. Complete the mandatory pre-code design gate above.
 4. Implement in small coherent tasks following `TASK_QUEUE.md`.
-5. After each major surface, self-audit against `docs/QA_CHECKLIST.md` and `docs/KAPAPI_ART_DIRECTION.md`.
+5. After each major surface, self-audit against `docs/QA_CHECKLIST.md`, `docs/KAPAPI_ART_DIRECTION.md`, and `docs/IDENTITY_ROLE_MODEL.md`.
 6. Test desktop and mobile.
 7. Run build/typecheck/lint/tests available in the repository.
-8. Do a final visual/product/world audit before declaring completion.
+8. Do a final visual/product/world/role-model audit before declaring completion.
 9. Do **not** merge to `main` automatically. Stop with the implementation branch ready for review.
 
 Do not make the user act as a technical courier. Resolve normal implementation choices, retries and debugging independently.
@@ -367,8 +413,11 @@ Prototype v1 is ready for review when:
 
 - a new visitor understands the service at a glance,
 - the landing page is unmistakably light-first,
-- one obvious GM task-entry action dominates above the fold,
-- PLAYER entry exists but is secondary,
+- one obvious task-entry action dominates above the fold,
+- `일 찾기` exists but is secondary to demand-side first-touch,
+- a single universal user can conceptually act as GM on one QUEST and PLAYER on another without a permanent role/account split,
+- signup/onboarding does not require a permanent GM/PLAYER choice,
+- navigation/profile architecture does not imply mutually exclusive user classes,
 - the prototype demonstrates mandatory PRICE × DELIVERY bidding,
 - KAPAPI auto-routing is visible and the GM is not asked to select a routine BID,
 - world-building feels structurally integrated rather than pasted on,
@@ -381,7 +430,7 @@ Prototype v1 is ready for review when:
 - responsive/accessibility/reduced-motion behavior is credible,
 - no unsupported production/legal promises are made,
 - the 30–60 second demo path can be performed without confusion,
-- the final output passes `docs/QA_CHECKLIST.md` and the mandatory art/world QA gate in `docs/KAPAPI_ART_DIRECTION.md`.
+- the final output passes `docs/QA_CHECKLIST.md`, the mandatory art/world QA gate in `docs/KAPAPI_ART_DIRECTION.md`, and the role-model QA gate in `docs/IDENTITY_ROLE_MODEL.md`.
 
 Before stopping, self-score:
 
@@ -389,6 +438,7 @@ Before stopping, self-score:
 - product differentiation: target 9/10+
 - visual/art-direction quality: target 9/10+
 - world-building coherence: target 9/10+
+- universal-role coherence: target 10/10
 - interaction/motion polish: target 9/10+
 - professional trust: target 9/10+
 
@@ -400,4 +450,4 @@ The desired reaction is not:
 
 It is:
 
-> **“I give KAPAPI the work, it handles the messy middle, and this product has a world of its own.”**
+> **“I give KAPAPI the work, it handles the messy middle, and I can also take QUESTs I’m qualified to do without becoming a different kind of user.”**
