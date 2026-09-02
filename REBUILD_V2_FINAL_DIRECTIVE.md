@@ -19,7 +19,11 @@ Do not reuse:
 - its public-header treatment,
 - its paragraph-heavy landing sections,
 - its Korean copy,
-- its self-awarded visual scores.
+- its self-awarded visual scores,
+- its arbitrary fixture/user identity in public chrome,
+- its `QUEST NETWORK` pseudo-sub-brand,
+- its `RESET` debug control,
+- its arbitrary example-section labels/chips.
 
 Do not cosmetically reskin it. Start from zero on `feat/prototype-v2`.
 
@@ -67,15 +71,16 @@ Read and obey first:
 
 1. `REBUILD_V2_FINAL_DIRECTIVE.md`
 2. `REBUILD_V2_HANDOFF.md`
-3. `docs/PROTOTYPE_V2_VISUAL_RESEARCH_PROTOCOL.md`
-4. `docs/PROTOTYPE_V2_REFERENCE_ADDENDUM.md`
-5. `docs/PROTOTYPE_V2_VISUAL_COMMUNICATION_RULES.md`
-6. `docs/PROTOTYPE_V2_KOREAN_UX_WRITING.md`
-7. `docs/PROTOTYPE_V2_HERO_COMPOSITING.md`
+3. `docs/PROTOTYPE_V2_CONTENT_GOVERNANCE.md`
+4. `docs/PROTOTYPE_V2_VISUAL_RESEARCH_PROTOCOL.md`
+5. `docs/PROTOTYPE_V2_REFERENCE_ADDENDUM.md`
+6. `docs/PROTOTYPE_V2_VISUAL_COMMUNICATION_RULES.md`
+7. `docs/PROTOTYPE_V2_KOREAN_UX_WRITING.md`
+8. `docs/PROTOTYPE_V2_HERO_COMPOSITING.md`
 
 Then read the full product/design canon.
 
-All old public Korean-copy examples are provisional and may not be copied verbatim unless they independently pass the v2 Korean UX-writing review.
+All old public Korean-copy examples, names, sample labels, example personas, numbers and illustrative UI fragments are provisional and may not be copied verbatim unless they independently pass the v2 content/copy review.
 
 In particular, **do not ship `할 일을 던져주세요.`** That was internal brainstorming language, not approved public product copy.
 
@@ -230,7 +235,38 @@ The target is:
 
 **Korean transaction familiarity + global visual quality + KAPAPI state/world grammar.**
 
-## 11. Render, compare, reject, repeat
+## 11. Do not invent meaningless public content
+
+Follow `docs/PROTOTYPE_V2_CONTENT_GOVERNANCE.md`.
+
+Every visible public element must be justified as one of:
+
+- `PRODUCT REQUIRED`
+- `REFERENCE-SUPPORTED UX`
+- `APPROVED BRAND/WORLD`
+
+If it fits none, remove it.
+
+Before adding a new visible element, answer:
+
+> **If this disappeared, what would the user no longer understand, trust, or be able to do?**
+
+If the answer is effectively nothing, do not add it.
+
+Prototype v1 leakage is explicitly forbidden:
+
+- no arbitrary `김도현` or other fixture persona in public landing chrome,
+- no fake logged-in identity on the neutral first visit,
+- no `QUEST NETWORK` logo suffix/pseudo-sub-brand,
+- no `QUEST NETWORK · ONLINE` decorative eyebrow,
+- no `RESET` or debug tooling in public navigation,
+- no `이런 일들이 올라옵니다` merely because v1 invented it,
+- no fixed example-chip row unless the chosen v2 design and reference evidence justify it,
+- no fake network/system-status ornament without real product meaning.
+
+Document examples are not requirements. Names, labels, numbers, personas and snippets are illustrative unless clearly marked as canonical/required.
+
+## 12. Render, compare, reject, repeat
 
 After every major public section:
 
@@ -240,13 +276,14 @@ After every major public section:
 4. capture desktop/mobile evidence,
 5. compare side-by-side with the best relevant live references,
 6. inspect whether visuals or paragraphs are doing the communication,
-7. reject and redesign if generic.
+7. inspect whether every visible element earns its place,
+8. reject and redesign if generic or content is arbitrary.
 
 Do not rely on code review as visual QA.
 
 Do not self-score 9/10 without comparative screenshots/evidence.
 
-## 12. Product truths that must still survive
+## 13. Product truths that must still survive
 
 Do not let visual redesign break current product canon:
 
@@ -263,7 +300,7 @@ Do not let visual redesign break current product canon:
 - restrained sapphire state signal,
 - no fantasy/game-cosplay UI.
 
-## 13. Stop condition
+## 14. Stop condition
 
 Do not merge `main`.
 Do not intentionally promote Production.
@@ -275,6 +312,7 @@ Stop only when:
 - desktop/mobile live Preview has been visually inspected,
 - Korean copy has been rewritten,
 - hero media integration has been attempted according to the compositing authority,
+- every visible landing element has passed the content-necessity audit,
 - the page has survived side-by-side comparison with strong references,
 - the result is ready for founder visual review.
 
