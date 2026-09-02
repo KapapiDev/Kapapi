@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>B · 지면</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+/* Swiss editorial sheet — Stripe/Linear lineage. Visible container rules, no cards. */
+.frame { max-width: 1240px; margin: 0 auto; padding: 0 64px; position: relative; }
+.frame::before, .frame::after {
+  content: ""; position: absolute; top: 0; bottom: 0; width: 1px; background: var(--line);
+}
+.frame::before { left: 64px; } .frame::after { right: 64px; }
+.navwrap { border-bottom: 1px solid var(--line); }
+.hero { padding: 96px 0 0; position: relative; }
+.eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: .11em; text-transform: uppercase; color: var(--faint); }
+h1 { margin-top: 22px; font-size: 68px; line-height: 1.1; letter-spacing: -.045em; font-weight: 700; max-width: 15ch; }
+h1 em { font-style: normal; color: var(--muted); }
+.lead { margin-top: 22px; font-size: 19px; color: var(--graphite); max-width: 40ch; }
+.entry {
+  margin-top: 40px; max-width: 720px; display: flex; gap: 10px; align-items: center;
+  border: 1px solid var(--line-2); background: #fff; border-radius: 14px; padding: 9px 9px 9px 18px;
+}
+.entry input { flex: 1; border: 0; outline: 0; height: 48px; font-size: 17px; font-family: inherit; background: transparent; }
+.entry input::placeholder { color: #8b8e85; }
+.attach { display: inline-flex; align-items: center; gap: 7px; height: 44px; padding: 0 14px; border: 1px solid var(--line-2); border-radius: 10px; color: var(--graphite); font-size: 14.5px; font-weight: 500; }
+.chips { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+.chip { border: 1px solid var(--line-2); border-radius: 999px; padding: 8px 14px; font-size: 14px; color: var(--graphite); background: #fff; }
+
+/* film enters as a wide cinematic band below the fold */
+.band { margin-top: 84px; position: relative; overflow: hidden; border-top: 1px solid var(--line); }
+.bandInner { position: relative; aspect-ratio: 21/8; background: #0d0e0c; }
+.bandInner video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.bandLabel { position: absolute; left: 28px; bottom: 24px; color: #fff; }
+.bandLabel .hud { color: rgba(255,255,255,.62); }
+.bandLabel .k { font-size: 26px; font-weight: 650; letter-spacing: -.03em; margin-top: 6px; }
+.mini { width:100%;height:100%;background:#fff;color:var(--ink);display:flex;flex-direction:column;font-size:22px; }
+.miniTop { display:flex;align-items:center;gap:14px;padding:20px 30px;border-bottom:1px solid var(--line); }
+.miniState { padding:26px 30px 10px; }
+.miniState .ko { font-size:30px;font-weight:650;letter-spacing:-.03em; }
+.miniState .en { margin-top:8px;font-family:var(--mono);font-size:17px;letter-spacing:.1em;color:var(--sapphire); }
+.miniRows { margin:12px 30px 0;border:1px solid var(--line);border-radius:10px;overflow:hidden; }
+.miniRow { display:grid;grid-template-columns:1fr auto auto;gap:22px;align-items:center;padding:16px 20px;border-bottom:1px solid var(--line); }
+.miniRow:last-child{border-bottom:0}
+.miniRow .who{font-weight:600;font-size:21px}.miniRow .sub{font-size:16px;color:var(--muted);margin-top:3px}
+.miniRow .val{font-family:var(--mono);font-size:21px;font-weight:600}.miniRow .dl{font-family:var(--mono);font-size:20px;color:var(--muted)}
+.metaRow { display: flex; gap: 48px; padding: 26px 0; border-top: 1px solid var(--line); }
+.metaRow div { display: grid; gap: 4px; }
+.metaRow .k { font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--faint); }
+.metaRow .v { font-family: var(--mono); font-size: 22px; font-weight: 600; }
+</style></head>
+<body>
+<div class="navwrap"><div class="frame"><nav class="nav" style="padding:0">
+  <span class="brand">KAPAPI</span>
+  <ul><li><a href="#">작업 찾기</a></li><li><a href="#">이용 방법</a></li></ul>
+  <span class="right"><a class="btn btn-ghost" href="#">로그인</a><a class="btn btn-primary" href="#">의뢰 등록</a></span>
+</nav></div></div>
+
+<div class="frame">
+  <section class="hero">
+    <p class="eyebrow">전문 업무 위탁</p>
+    <h1>맡길 업무만 등록하세요<em>. 나머지는 카파피가 합니다.</em></h1>
+    <p class="lead">전문가 배정부터 결과 전달까지 카파피가 진행합니다.</p>
+    <div class="entry">
+      <input placeholder="어떤 작업이 필요하신가요?">
+      <span class="attach">＋ 파일 첨부</span>
+      <button class="btn btn-accent">의뢰 등록</button>
+    </div>
+    <div class="chips"><span class="chip">도면 정리</span><span class="chip">상세페이지 이미지</span><span class="chip">문서 서식 통일</span><span class="chip">실측 데이터 정리</span></div>
+    <div class="metaRow">
+      <div><span class="k">평균 제안</span><span class="v">6건</span></div>
+      <div><span class="k">배정까지</span><span class="v">18분</span></div>
+      <div><span class="k">정시 납품</span><span class="v">97%</span></div>
+    </div>
+  </section>
+</div>
+
+<section class="band"><div class="bandInner">
+  <video id="v" src="media/hero.mp4" poster="media/hero-poster.jpg" muted playsinline preload="auto"></video>
+  <div class="screenLayer" id="layer"><div class="screenUI" id="ui">
+    <div class="mini">
+      <div class="miniTop"><b>KAPAPI</b><span class="mono" style="color:#6c6f66;font-size:17px">의뢰 #0182</span></div>
+      <div class="miniState"><div class="ko" id="mko">제안 3건이 도착했습니다</div><div class="en" id="men">3 BIDS RECEIVED</div></div>
+      <div class="miniRows">
+        <div class="miniRow"><span><span class="who">노아린</span><span class="sub">제품 사진 보정 3년</span></span><span class="val">₩96,000</span><span class="dl">8시간</span></div>
+        <div class="miniRow"><span><span class="who">윤가람</span><span class="sub">이커머스 상세페이지 6년</span></span><span class="val">₩118,000</span><span class="dl">5시간</span></div>
+        <div class="miniRow"><span><span class="who">배소윤</span><span class="sub">편집디자인 8년</span></span><span class="val">₩132,000</span><span class="dl">6시간</span></div>
+      </div>
+    </div>
+  </div></div>
+  <div class="bandLabel"><div class="hud">등록 이후</div><div class="k">사용자가 자리를 비운 사이에 진행됩니다</div></div>
+</div></section>
+
+<script type="module">
+import { makeScreenComposite } from "./screen.js";
+const v=document.getElementById("v");
+const comp=makeScreenComposite({video:v,frame:document.querySelector(".bandInner"),ui:document.getElementById("ui"),layer:document.getElementById("layer")});
+function tick(){comp.apply();requestAnimationFrame(tick)}
+v.play().catch(()=>{});requestAnimationFrame(tick);
+window.seek=(t)=>{v.pause();v.currentTime=t;setTimeout(comp.apply,60)};
+</script>
+</body></html>

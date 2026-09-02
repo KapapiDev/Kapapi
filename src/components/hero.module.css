@@ -1,0 +1,168 @@
+.wrap { padding: 0 var(--gutter) var(--s5); }
+
+.stage {
+  position: relative;
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  background: #0d0e0c;
+  aspect-ratio: 16 / 9;
+  max-height: calc(100vh - 190px);
+  min-height: 460px;
+}
+
+.film {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover;
+  transition: opacity 420ms var(--ease);
+}
+.filmOut { opacity: 0; }
+
+/* Legibility veil, weighted to the top where the headline sits. */
+.veil {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    linear-gradient(to bottom, rgba(9,10,9,.66) 0%, rgba(9,10,9,.24) 38%, rgba(9,10,9,0) 60%),
+    linear-gradient(to top, rgba(9,10,9,.38) 0%, rgba(9,10,9,0) 26%);
+  transition: opacity var(--t-major) var(--ease);
+}
+.veilOut { opacity: 0; }
+
+.copy {
+  position: absolute; top: clamp(28px, 4vw, 52px); left: clamp(24px, 3.4vw, 48px);
+  right: clamp(24px, 3.4vw, 48px); color: #fff;
+  transition: opacity var(--t-major) var(--ease), transform var(--t-major) var(--ease);
+}
+.copyOut { opacity: 0; transform: translateY(-6px); }
+
+.headline {
+  font-size: var(--d1); line-height: 1.13; letter-spacing: var(--tighter);
+  font-weight: 700; max-width: 15ch;
+  text-shadow: 0 2px 34px rgba(0,0,0,.30);
+}
+.sub {
+  margin-top: var(--s4); font-size: clamp(1rem, .93rem + .3vw, 1.15rem);
+  color: rgba(255,255,255,.9); max-width: 34ch;
+  text-shadow: 0 1px 18px rgba(0,0,0,.34);
+}
+
+/* ---------- composited laptop screen ---------- */
+
+.screenLayer {
+  position: absolute; inset: 0; pointer-events: none;
+  opacity: 0; transition: opacity 300ms var(--ease);
+  /* Clip the 1280x720 UI so nothing can spill outside the laptop screen. */
+  overflow: hidden;
+}
+.screenOn { opacity: 1; }
+.screenUI {
+  position: absolute; top: 0; left: 0; transform-origin: 0 0;
+  background: #fff; overflow: hidden; will-change: transform;
+  /* Graded so it reads as an emitting panel rather than a pasted element. */
+  filter: saturate(.92) brightness(1.02) contrast(.96);
+  box-shadow: inset 0 0 90px rgba(150,170,190,.28);
+}
+.screenUI::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(118deg, rgba(255,255,255,.30) 0%, rgba(255,255,255,0) 38%);
+}
+
+/* ---------- full-frame product cut ---------- */
+
+.full {
+  position: absolute; inset: 0; background: var(--white);
+  opacity: 0; pointer-events: none;
+  transition: opacity 420ms var(--ease);
+  display: flex; flex-direction: column;
+}
+.fullOn { opacity: 1; }
+
+/* ---------- action, overlapping the stage's lower edge ---------- */
+
+.actionWrap {
+  position: relative; z-index: 3;
+  margin: -38px auto 0; max-width: 880px;
+  padding: 0 clamp(6px, 2vw, 24px);
+}
+.action {
+  display: flex; align-items: center; gap: var(--s2);
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: 9px 9px 9px 20px;
+  box-shadow: var(--shadow-float);
+  transition: border-color var(--t-state) var(--ease), box-shadow var(--t-state) var(--ease);
+}
+.action:focus-within { border-color: var(--sapphire); box-shadow: var(--shadow-float), 0 0 0 3px var(--sapphire-wash); }
+
+.input {
+  flex: 1; min-width: 0; border: 0; outline: 0; background: transparent;
+  height: 52px; font-size: clamp(1rem, .95rem + .25vw, 1.08rem);
+}
+.input::placeholder { color: #8d9086; }
+
+.attach {
+  display: inline-flex; align-items: center; gap: 7px; flex: none;
+  height: 46px; padding: 0 15px;
+  border: 1px solid var(--line-2); border-radius: var(--r-md);
+  background: var(--white); color: var(--graphite);
+  font-size: var(--body-sm); font-weight: 500;
+  transition: border-color var(--t-micro) var(--ease), color var(--t-micro) var(--ease);
+}
+.attach:hover { border-color: var(--ink); color: var(--ink); }
+.fileInput { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+.fileInput:focus-visible + .attach { outline: 2px solid var(--sapphire); outline-offset: 2px; }
+
+.submit {
+  flex: none; height: 46px; padding: 0 22px; border-radius: var(--r-md);
+  background: var(--sapphire); color: #fff; font-weight: 600; font-size: var(--body-sm);
+  display: inline-flex; align-items: center; gap: 7px;
+  transition: background var(--t-micro) var(--ease);
+}
+.submit:hover { background: var(--sapphire-press); }
+.submit:disabled { opacity: .5; cursor: not-allowed; }
+
+.files { display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 12px 0; }
+.file {
+  display: inline-flex; align-items: center; gap: 7px; padding: 5px 8px 5px 11px;
+  border: 1px solid var(--line); border-radius: var(--r-sm); background: var(--paper-2);
+  font-size: var(--meta); color: var(--graphite); max-width: 100%;
+}
+.fileName { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 24ch; }
+.fileX { display: grid; place-items: center; width: 18px; height: 18px; border-radius: 4px; color: var(--muted); }
+.fileX:hover { background: var(--line); color: var(--ink); }
+
+.err { margin: 10px auto 0; max-width: 880px; padding-inline: 24px; font-size: var(--meta); color: var(--risk); }
+
+/* Chips carry no heading — Kmong evidence. */
+.chips {
+  display: flex; flex-wrap: wrap; gap: 7px; justify-content: center;
+  margin: var(--s4) auto 0; max-width: 880px; padding-inline: 24px;
+}
+.chip {
+  border: 1px solid var(--line-2); border-radius: 999px;
+  padding: 8px 14px; font-size: var(--meta); color: var(--graphite); background: var(--white);
+  transition: border-color var(--t-micro) var(--ease), color var(--t-micro) var(--ease);
+}
+.chip:hover { border-color: var(--ink); color: var(--ink); }
+
+.replay {
+  position: absolute; right: clamp(16px, 2.2vw, 24px); top: clamp(16px, 2.2vw, 24px);
+  z-index: 4; display: inline-flex; align-items: center; gap: 6px;
+  height: 32px; padding: 0 12px; border-radius: 999px;
+  background: rgba(16,17,16,.5); color: rgba(255,255,255,.9);
+  border: 1px solid rgba(255,255,255,.22);
+  font-size: var(--meta); font-weight: 500;
+  backdrop-filter: blur(8px);
+}
+.replay:hover { background: rgba(16,17,16,.72); color: #fff; }
+
+@media (max-width: 900px) {
+  .stage { aspect-ratio: 4 / 5; max-height: none; min-height: 0; }
+  .headline { max-width: 12ch; }
+  .actionWrap { margin-top: -30px; }
+  .action { flex-wrap: wrap; padding: 12px; }
+  .input { flex: 1 1 100%; height: 46px; padding-inline: 8px; }
+  .attach { flex: 1 1 auto; justify-content: center; }
+  .submit { flex: 1 1 auto; justify-content: center; }
+  .chips { justify-content: flex-start; }
+}

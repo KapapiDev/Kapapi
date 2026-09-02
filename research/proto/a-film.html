@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A · 필름</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+.page { padding: 0 22px 22px; }
+.stage {
+  position: relative; border-radius: 22px; overflow: hidden;
+  background: #0d0e0c; aspect-ratio: 16/9; min-height: 560px;
+}
+.stage video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.veil {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(8,9,8,.86) 0%, rgba(8,9,8,.42) 34%, rgba(8,9,8,0) 62%);
+}
+.stageCopy {
+  position: absolute; left: 44px; right: 44px; bottom: 40px; color: #fff;
+  display: flex; align-items: flex-end; justify-content: space-between; gap: 40px;
+}
+.stageCopy h1 {
+  font-size: 62px; line-height: 1.14; letter-spacing: -0.042em; font-weight: 700;
+  text-shadow: 0 2px 30px rgba(0,0,0,.28);
+}
+.stageCopy p { margin-top: 14px; font-size: 18px; color: rgba(255,255,255,.86); max-width: 34ch; }
+
+/* action floats on the film — Mercury/Upwork evidence */
+.action {
+  position: absolute; left: 44px; bottom: 40px; right: 44px;
+  display: flex; gap: 10px; align-items: center;
+  background: rgba(255,255,255,.97); border-radius: 16px; padding: 10px 10px 10px 18px;
+  box-shadow: 0 22px 60px -18px rgba(0,0,0,.45);
+}
+.action input {
+  flex: 1; border: 0; outline: 0; background: transparent; height: 48px;
+  font-size: 17px; font-family: inherit; letter-spacing: -0.011em;
+}
+.action input::placeholder { color: #8b8e85; }
+.attach {
+  display: inline-flex; align-items: center; gap: 7px; height: 44px; padding: 0 14px;
+  border: 1px solid var(--line-2); border-radius: 10px; color: var(--graphite); font-size: 14.5px; font-weight: 500;
+  background: #fff;
+}
+.chips { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+.chip {
+  border: 1px solid rgba(255,255,255,.34); color: rgba(255,255,255,.94);
+  background: rgba(255,255,255,.10); backdrop-filter: blur(6px);
+  border-radius: 999px; padding: 8px 14px; font-size: 14px; font-weight: 500;
+}
+.subline { margin-top: 18px; display: flex; align-items: center; gap: 10px; color: rgba(255,255,255,.72); font-size: 14px; }
+
+/* the KAPAPI UI that lives inside the laptop screen */
+.mini { width: 100%; height: 100%; background: #fff; color: var(--ink); display: flex; flex-direction: column; font-size: 22px; }
+.miniTop { display: flex; align-items: center; gap: 14px; padding: 20px 30px; border-bottom: 1px solid var(--line); }
+.miniTop b { font-size: 22px; letter-spacing: .01em; }
+.miniState { padding: 26px 30px 10px; }
+.miniState .ko { font-size: 30px; font-weight: 650; letter-spacing: -.03em; }
+.miniState .en { margin-top: 8px; font-family: var(--mono); font-size: 17px; letter-spacing: .1em; color: var(--sapphire); text-transform: uppercase; }
+.miniRows { margin: 12px 30px 0; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.miniRow { display: grid; grid-template-columns: 1fr auto auto; gap: 22px; align-items: center; padding: 16px 20px; border-bottom: 1px solid var(--line); transition: opacity .25s, background .25s; }
+.miniRow:last-child { border-bottom: 0; }
+.miniRow .who { font-weight: 600; font-size: 21px; }
+.miniRow .sub { font-size: 16px; color: var(--muted); margin-top: 3px; }
+.miniRow .val { font-family: var(--mono); font-size: 21px; font-weight: 600; }
+.miniRow .dl { font-family: var(--mono); font-size: 20px; color: var(--muted); }
+.miniRow.mute { opacity: .34; }
+.miniRow.pick { background: var(--sapphire-wash); box-shadow: inset 4px 0 0 var(--sapphire); }
+.miniFoot { margin-top: auto; padding: 18px 30px; border-top: 1px solid var(--line); display: flex; gap: 26px; color: var(--muted); font-size: 17px; }
+
+.below { max-width: 1240px; margin: 0 auto; padding: 110px 32px; }
+.below h2 { font-size: 42px; letter-spacing: -.035em; font-weight: 700; }
+</style></head>
+<body>
+<div class="page">
+<nav class="nav">
+  <span class="brand">KAPAPI</span>
+  <ul><li><a href="#">작업 찾기</a></li><li><a href="#">이용 방법</a></li></ul>
+  <span class="right"><a class="btn btn-ghost" href="#">로그인</a><a class="btn btn-primary" href="#">의뢰 등록</a></span>
+</nav>
+
+<section class="stage">
+  <video id="v" src="media/hero.mp4" poster="media/hero-poster.jpg" muted playsinline preload="auto"></video>
+  <div class="veil"></div>
+  <div class="screenLayer" id="layer"><div class="screenUI" id="ui">
+    <div class="mini">
+      <div class="miniTop"><b>KAPAPI</b><span class="mono" style="color:#6c6f66;font-size:17px">의뢰 #0182</span><span class="mono" style="margin-left:auto;color:#6c6f66;font-size:17px">NDA</span></div>
+      <div class="miniState"><div class="ko" id="mko">제안 3건이 도착했습니다</div><div class="en" id="men">3 BIDS RECEIVED</div></div>
+      <div class="miniRows" id="mrows">
+        <div class="miniRow"><span><span class="who">노아린</span><span class="sub">제품 사진 보정 3년</span></span><span class="val">₩96,000</span><span class="dl">8시간</span></div>
+        <div class="miniRow"><span><span class="who">윤가람</span><span class="sub">이커머스 상세페이지 6년</span></span><span class="val">₩118,000</span><span class="dl">5시간</span></div>
+        <div class="miniRow"><span><span class="who">배소윤</span><span class="sub">편집디자인 8년</span></span><span class="val">₩132,000</span><span class="dl">6시간</span></div>
+      </div>
+      <div class="miniFoot"><span>같은 유형 88건</span><span>정시 97%</span><span>수정 6%</span></div>
+    </div>
+  </div></div>
+
+  <div class="stageCopy" id="copy">
+    <div>
+      <h1>맡길 업무만<br>등록하세요</h1>
+      <p>전문가 배정부터 결과 전달까지 카파피가 진행합니다.</p>
+      <div class="chips"><span class="chip">도면 정리</span><span class="chip">상세페이지 이미지</span><span class="chip">문서 서식 통일</span><span class="chip">실측 데이터 정리</span></div>
+    </div>
+  </div>
+
+  <div class="action" id="action" style="display:none">
+    <input placeholder="어떤 작업이 필요하신가요?">
+    <span class="attach">＋ 파일 첨부</span>
+    <button class="btn btn-accent">의뢰 등록</button>
+  </div>
+</section>
+
+<div class="below"><h2>아래 섹션</h2></div>
+</div>
+
+<script type="module">
+import { makeScreenComposite, WINDOW_IN, WINDOW_OUT } from "./screen.js";
+const v = document.getElementById("v");
+const comp = makeScreenComposite({ video: v, frame: document.querySelector(".stage"), ui: document.getElementById("ui"), layer: document.getElementById("layer") });
+const ko = document.getElementById("mko"), en = document.getElementById("men");
+const rows = [...document.querySelectorAll(".miniRow")];
+const SEQ = [
+  [4.10, "의뢰가 등록되었습니다", "QUEST CREATED", -1],
+  [4.45, "제안 3건이 도착했습니다", "3 BIDS RECEIVED", -1],
+  [4.80, "조건을 확인하고 있습니다", "ELIGIBILITY CHECK", -2],
+  [5.10, "전문가가 배정되었습니다", "PLAYER ASSIGNED", 1],
+];
+function tick(){
+  comp.apply();
+  const t = v.currentTime;
+  let s = null; for (const e of SEQ) if (t >= e[0]) s = e;
+  if (s){ ko.textContent = s[1]; en.textContent = s[2];
+    rows.forEach((r,i)=>{ r.classList.toggle("mute", s[3]===-2 ? i===0 : (s[3]>=0 && i!==s[3])); r.classList.toggle("pick", s[3]===i); }); }
+  requestAnimationFrame(tick);
+}
+v.play().catch(()=>{}); requestAnimationFrame(tick);
+window.seek = (t)=>{ v.pause(); v.currentTime = t; setTimeout(comp.apply, 60); };
+</script>
+</body></html>

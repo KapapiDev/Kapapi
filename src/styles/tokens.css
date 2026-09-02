@@ -1,0 +1,93 @@
+/*
+  KAPAPI v2 design tokens.
+
+  Derived from measured reference evidence (docs/PROTOTYPE_V2_LIVE_REFERENCE_AUDIT.md),
+  not from Prototype v1. Nothing here is carried over from the rejected build.
+
+  Neutrals are warmed very slightly (a green-leaning grey rather than a blue-leaning one)
+  so the paper reads as paper next to the footage's cool office light, instead of the
+  default cold SaaS grey.
+*/
+
+:root {
+  /* Paper side — public default */
+  --paper: #fbfbf9;
+  --paper-2: #f4f4f1;
+  --white: #ffffff;
+  --ink: #14150f;
+  --graphite: #3d3f38;
+  --muted: #5c5f57;
+  --faint: #6b6e65;
+  --line: #e5e5df;
+  --line-2: #d2d2ca;
+
+  /* Operational dark — used only where work is actually running */
+  --dark: #101110;
+  --dark-2: #191a18;
+  --dark-3: #212320;
+  --dark-line: #2c2e2a;
+  --dark-line-2: #3a3c37;
+  --dark-ink: #f4f4f0;
+  --dark-muted: #a0a399;
+  --dark-faint: #878a80;
+
+  /* Single signal accent. Sapphire only where state or interaction is real. */
+  --sapphire: #1450e8;
+  --sapphire-press: #0f3cb0;
+  --sapphire-bright: #5b90ff;
+  --sapphire-wash: #ebf1ff;
+  --sapphire-line: #bed1fb;
+
+  --ok: #17693f;
+  --ok-wash: #e9f3ed;
+  --warn: #8a5a04;
+  --warn-wash: #faf1e0;
+  --risk: #a33020;
+
+  /* Type. Pretendard is the Korean web standard — Kmong and Wanted both ship it. */
+  --sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
+    "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  --mono: ui-monospace, "SFMono-Regular", "JetBrains Mono", Menlo, Consolas, monospace;
+
+  /* Scale sits at 56–68px: Upwork 72, Toss 80, Linear 64, Mercury 49.
+     Pitch's 180 and Sanity's 112 were rejected as too loud for money and deadlines. */
+  --d1: clamp(2.5rem, 1.25rem + 4.1vw, 4.5rem);
+  --d2: clamp(1.9rem, 1.3rem + 1.9vw, 2.75rem);
+  --h1: clamp(1.5rem, 1.2rem + 1.1vw, 2rem);
+  --h2: clamp(1.2rem, 1.06rem + 0.5vw, 1.4rem);
+  --h3: 1.0625rem;
+  --body: 1rem;
+  --body-sm: 0.9375rem;
+  --meta: 0.8438rem;
+  --hud: 0.6875rem;
+
+  --tight: -0.028em;
+  --tighter: -0.042em;
+
+  /* 4px rhythm */
+  --s1: 4px;  --s2: 8px;  --s3: 12px; --s4: 16px; --s5: 24px;
+  --s6: 32px; --s7: 48px; --s8: 64px; --s9: 96px; --s10: 128px;
+
+  --frame: 1240px;
+  --gutter: clamp(20px, 3.2vw, 44px);
+
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 14px;
+  --r-xl: 22px;
+
+  --shadow-float: 0 24px 64px -22px rgba(20, 21, 15, 0.34), 0 2px 8px -3px rgba(20, 21, 15, 0.1);
+
+  --t-micro: 140ms;
+  --t-state: 220ms;
+  --t-layout: 280ms;
+  --t-major: 360ms;
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --t-micro: 1ms; --t-state: 1ms; --t-layout: 1ms; --t-major: 1ms;
+  }
+}

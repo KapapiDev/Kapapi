@@ -1,0 +1,81 @@
+/*
+  The KAPAPI product surface that appears inside the laptop and then full-frame.
+  One component, two scales: inside the screen it is rendered at 1280×720 and
+  transformed; full-frame it fills the stage. Type sizes are therefore set for
+  the 1280×720 canvas and scaled with it.
+*/
+
+.ui {
+  width: 100%; height: 100%;
+  background: var(--white); color: var(--ink);
+  display: flex; flex-direction: column;
+  font-size: 22px; line-height: 1.5;
+}
+
+.bar {
+  display: flex; align-items: center; gap: 14px;
+  padding: 20px 32px; border-bottom: 1px solid var(--line);
+}
+.mark { font-weight: 800; font-size: 21px; letter-spacing: .02em; }
+.meta { font-size: 16px; color: var(--faint); }
+.metaNum { font-family: var(--mono); font-size: 16px; letter-spacing: .04em; color: var(--faint); font-variant-numeric: tabular-nums; }
+.metaEnd { margin-left: auto; }
+
+.state { padding: 26px 32px 6px; min-height: 108px; }
+.ko { font-size: 31px; font-weight: 700; letter-spacing: -.032em; }
+.en {
+  margin-top: 8px; font-family: var(--mono); font-size: 16px;
+  letter-spacing: .11em; text-transform: uppercase; color: var(--sapphire);
+}
+
+.rows {
+  margin: 6px 32px 0; border: 1px solid var(--line);
+  border-radius: 10px; overflow: hidden;
+}
+.row {
+  display: grid; grid-template-columns: minmax(0,1fr) auto auto;
+  gap: 24px; align-items: center;
+  padding: 15px 22px; border-bottom: 1px solid var(--line);
+  transition: opacity var(--t-state) var(--ease), background var(--t-state) var(--ease);
+}
+.row:last-child { border-bottom: 0; }
+.name { font-size: 21px; font-weight: 650; }
+.career { display: block; font-size: 16px; color: var(--muted); margin-top: 2px; }
+.price { font-family: var(--mono); font-size: 21px; font-weight: 650; font-variant-numeric: tabular-nums; }
+.hours { font-family: var(--mono); font-size: 20px; color: var(--muted); min-width: 4.4em; text-align: right; }
+.rowMuted { opacity: .42; }
+.rowOut { opacity: .42; }
+.rowPick { background: var(--sapphire-wash); box-shadow: inset 4px 0 0 var(--sapphire); }
+.tag {
+  display: inline-block; margin-left: 10px; font-family: var(--mono);
+  font-size: 14px; letter-spacing: .1em; color: var(--sapphire); text-transform: uppercase;
+}
+.outWhy { display: block; font-size: 15px; color: var(--faint); margin-top: 2px; }
+
+.why { margin: 18px 32px 0; padding-top: 16px; border-top: 1px solid var(--line); }
+.whyTitle { font-size: 19px; font-weight: 650; margin-bottom: 10px; }
+.whyList { display: grid; gap: 6px; }
+.whyRow { display: flex; gap: 10px; font-size: 18px; color: var(--muted); }
+.whyMark { color: var(--sapphire); flex: none; font-family: var(--mono); font-size: 15px; }
+
+.result { margin: 6px 32px 0; display: flex; align-items: center; gap: 16px;
+  border: 1px solid var(--line-2); border-radius: 10px; padding: 18px 20px; }
+.kind {
+  display: grid; place-items: center; width: 46px; height: 46px; flex: none;
+  border: 1px solid var(--line-2); border-radius: 6px;
+  font-family: var(--mono); font-size: 13px; color: var(--muted);
+}
+.rname { font-size: 20px; font-weight: 600; }
+.rmeta { font-family: var(--mono); font-size: 16px; color: var(--ok); margin-top: 3px; letter-spacing: .04em; }
+
+/* Korean never goes in the mono face with tracking — it renders as fragments. */
+.foot {
+  margin-top: auto; display: flex; gap: 30px;
+  padding: 16px 32px; border-top: 1px solid var(--line);
+  font-size: 17px; color: var(--faint);
+}
+.foot b { font-family: var(--mono); font-weight: 600; font-variant-numeric: tabular-nums; color: var(--muted); }
+
+.track { display: flex; gap: 4px; padding: 0 32px 18px; }
+.tick { height: 3px; flex: 1; border-radius: 3px; background: var(--line); transition: background var(--t-state) var(--ease); }
+.tickOn { background: var(--sapphire); }

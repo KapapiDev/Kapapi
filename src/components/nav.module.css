@@ -1,0 +1,24 @@
+/*
+  Public landing header: brand, essential navigation, account entry, one action.
+  Neutral first visit — no persona, no avatar, no system status, no demo controls.
+*/
+.bar { position: sticky; top: 0; z-index: 40; background: color-mix(in srgb, var(--paper) 86%, transparent); backdrop-filter: saturate(1.5) blur(12px); }
+.inner { display: flex; align-items: center; gap: var(--s5); height: 68px; }
+.brand { font-weight: 800; font-size: 1.22rem; letter-spacing: 0.005em; flex: none; }
+.links { display: flex; align-items: center; gap: var(--s2); margin-left: var(--s3); }
+.link { display: inline-block; white-space: nowrap; padding: 8px 12px; border-radius: var(--r-sm); font-size: var(--body-sm); font-weight: 500; color: var(--graphite); transition: background var(--t-micro) var(--ease), color var(--t-micro) var(--ease); }
+.link:hover { background: var(--paper-2); color: var(--ink); }
+.active { color: var(--ink); font-weight: 600; }
+.right { margin-left: auto; display: flex; align-items: center; gap: var(--s2); flex: none; }
+.signin { padding: 8px 12px; font-size: var(--body-sm); font-weight: 500; color: var(--graphite); border-radius: var(--r-sm); }
+.signin:hover { color: var(--ink); }
+.cta { display: inline-flex; align-items: center; height: 42px; padding: 0 18px; border-radius: var(--r-md); background: var(--ink); color: #fff; font-size: var(--body-sm); font-weight: 600; transition: background var(--t-micro) var(--ease); }
+.cta:hover { background: #000; }
+@media (max-width: 720px) {
+  .inner { height: 60px; gap: var(--s3); }
+  .links { gap: 0; margin-left: 0; overflow-x: auto; scrollbar-width: none; }
+  .links::-webkit-scrollbar { display: none; }
+  .link { padding: 8px 9px; font-size: var(--meta); }
+  .signin { display: none; }
+  .cta { height: 38px; padding: 0 14px; font-size: var(--meta); }
+}

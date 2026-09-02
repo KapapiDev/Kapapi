@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>C · 작업대</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+/* Centred worksheet — the entry surface itself is the object that becomes the QUEST. */
+body { background: #f4f4f1; }
+.wrap { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+.hero { text-align: center; padding: 74px 0 0; }
+h1 { font-size: 60px; line-height: 1.14; letter-spacing: -.044em; font-weight: 700; }
+h1 .hl { background: var(--sapphire-wash); border-radius: 12px; padding: 0 12px; }
+.lead { margin: 18px auto 0; font-size: 19px; color: var(--graphite); max-width: 44ch; }
+
+/* the work order sheet */
+.sheet {
+  margin: 40px auto 0; max-width: 860px; background: #fff; text-align: left;
+  border: 1px solid var(--line-2); border-radius: 18px; overflow: hidden;
+  box-shadow: 0 30px 70px -34px rgba(20,21,15,.30);
+}
+.sheetHead { display: flex; align-items: center; gap: 12px; padding: 14px 20px; border-bottom: 1px solid var(--line); background: #fcfcfb; }
+.sheetHead .hud { color: var(--faint); }
+.sheetBody { padding: 22px 24px 18px; }
+.sheetBody textarea {
+  width: 100%; border: 0; outline: 0; resize: none; min-height: 96px;
+  font-family: inherit; font-size: 19px; line-height: 1.6; letter-spacing: -.011em; background: transparent;
+}
+.sheetBody textarea::placeholder { color: #8b8e85; }
+.sheetBar { display: flex; align-items: center; gap: 10px; padding: 12px 16px 14px 20px; border-top: 1px solid var(--line); }
+.attach { display: inline-flex; align-items: center; gap: 7px; height: 42px; padding: 0 14px; border: 1px solid var(--line-2); border-radius: 10px; color: var(--graphite); font-size: 14.5px; font-weight: 500; }
+.sheetBar .btn { margin-left: auto; }
+.chips { display: flex; gap: 8px; margin-top: 16px; justify-content: center; flex-wrap: wrap; }
+.chip { border: 1px solid var(--line-2); border-radius: 999px; padding: 8px 14px; font-size: 14px; color: var(--graphite); background: #fff; }
+
+/* film sits below as a framed object on the desk surface */
+.filmwrap { margin: 72px auto 0; max-width: 1180px; }
+.film { position: relative; border-radius: 18px; overflow: hidden; aspect-ratio: 16/9; background: #0d0e0c; }
+.film video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.mini{width:100%;height:100%;background:#fff;color:var(--ink);display:flex;flex-direction:column;font-size:22px}
+.miniTop{display:flex;align-items:center;gap:14px;padding:20px 30px;border-bottom:1px solid var(--line)}
+.miniState{padding:26px 30px 10px}.miniState .ko{font-size:30px;font-weight:650;letter-spacing:-.03em}
+.miniState .en{margin-top:8px;font-family:var(--mono);font-size:17px;letter-spacing:.1em;color:var(--sapphire)}
+.miniRows{margin:12px 30px 0;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.miniRow{display:grid;grid-template-columns:1fr auto auto;gap:22px;align-items:center;padding:16px 20px;border-bottom:1px solid var(--line)}
+.miniRow:last-child{border-bottom:0}
+.miniRow .who{font-weight:600;font-size:21px}.miniRow .sub{font-size:16px;color:var(--muted);margin-top:3px}
+.miniRow .val{font-family:var(--mono);font-size:21px;font-weight:600}.miniRow .dl{font-family:var(--mono);font-size:20px;color:var(--muted)}
+.cap { display: flex; justify-content: space-between; margin-top: 14px; color: var(--muted); font-size: 14px; }
+</style></head>
+<body>
+<div class="wrap">
+<nav class="nav" style="padding:0;height:70px">
+  <span class="brand">KAPAPI</span>
+  <ul><li><a href="#">작업 찾기</a></li><li><a href="#">이용 방법</a></li></ul>
+  <span class="right"><a class="btn btn-ghost" href="#">로그인</a><a class="btn btn-primary" href="#">의뢰 등록</a></span>
+</nav>
+
+<section class="hero">
+  <h1>맡길 업무만 <span class="hl">등록</span>하세요</h1>
+  <p class="lead">전문가 배정부터 결과 전달까지 카파피가 진행합니다.</p>
+
+  <div class="sheet">
+    <div class="sheetHead"><span class="hud">의뢰서</span><span class="hud" style="margin-left:auto">작성 중</span></div>
+    <div class="sheetBody"><textarea placeholder="어떤 작업이 필요하신가요?"></textarea></div>
+    <div class="sheetBar"><span class="attach">＋ 파일 첨부</span><button class="btn btn-accent">의뢰 등록</button></div>
+  </div>
+
+  <div class="chips"><span class="chip">도면 정리</span><span class="chip">상세페이지 이미지</span><span class="chip">문서 서식 통일</span><span class="chip">실측 데이터 정리</span></div>
+</section>
+</div>
+
+<div class="filmwrap"><div class="film">
+  <video id="v" src="media/hero.mp4" poster="media/hero-poster.jpg" muted playsinline preload="auto"></video>
+  <div class="screenLayer" id="layer"><div class="screenUI" id="ui">
+    <div class="mini">
+      <div class="miniTop"><b>KAPAPI</b><span class="mono" style="color:#6c6f66;font-size:17px">의뢰 #0182</span></div>
+      <div class="miniState"><div class="ko">제안 3건이 도착했습니다</div><div class="en">3 BIDS RECEIVED</div></div>
+      <div class="miniRows">
+        <div class="miniRow"><span><span class="who">노아린</span><span class="sub">제품 사진 보정 3년</span></span><span class="val">₩96,000</span><span class="dl">8시간</span></div>
+        <div class="miniRow"><span><span class="who">윤가람</span><span class="sub">이커머스 상세페이지 6년</span></span><span class="val">₩118,000</span><span class="dl">5시간</span></div>
+        <div class="miniRow"><span><span class="who">배소윤</span><span class="sub">편집디자인 8년</span></span><span class="val">₩132,000</span><span class="dl">6시간</span></div>
+      </div>
+    </div>
+  </div></div>
+</div>
+<div class="wrap"><div class="cap"><span>등록한 뒤에는 카파피가 진행합니다</span><span class="hud">의뢰 #0182</span></div></div>
+</div>
+
+<script type="module">
+import { makeScreenComposite } from "./screen.js";
+const v=document.getElementById("v");
+const comp=makeScreenComposite({video:v,frame:document.querySelector(".film"),ui:document.getElementById("ui"),layer:document.getElementById("layer")});
+function tick(){comp.apply();requestAnimationFrame(tick)}
+v.play().catch(()=>{});requestAnimationFrame(tick);
+window.seek=(t)=>{v.pause();v.currentTime=t;setTimeout(comp.apply,60)};
+</script>
+</body></html>

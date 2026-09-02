@@ -1,0 +1,22 @@
+import { createServer } from "node:http"; import { readFile } from "node:fs/promises";
+import path from "node:path"; import puppeteer from "puppeteer-core";
+const TYPES={".html":"text/html",".css":"text/css",".js":"text/javascript",".mp4":"video/mp4",".jpg":"image/jpeg"};
+const s=createServer(async(q,r)=>{try{const p=path.join("research/proto",decodeURIComponent(q.url.split("?")[0]));
+const b=await readFile(p);r.writeHead(200,{"Content-Type":TYPES[path.extname(p)]??"application/octet-stream","Accept-Ranges":"bytes"});r.end(b);}catch(e){r.writeHead(404);r.end("nf")}});
+await new Promise(r=>s.listen(4599,r));
+const b=await puppeteer.launch({executablePath:"C:/Program Files/Google/Chrome/Application/chrome.exe",headless:"shell",args:["--autoplay-policy=no-user-gesture-required"]});
+const p=await b.newPage();
+p.on("console",m=>console.log("CONSOLE",m.type(),m.text().slice(0,200)));
+p.on("pageerror",e=>console.log("PAGEERROR",e.message.slice(0,300)));
+p.on("requestfailed",r=>console.log("REQFAIL",r.failure()?.errorText,r.url().slice(-40)));
+await p.setViewport({width:1440,height:900});
+await p.goto("http://localhost:4599/a-film.html",{waitUntil:"networkidle2"});
+await new Promise(r=>setTimeout(r,2500));
+console.log(await p.evaluate(()=>{const v=document.getElementById("v");
+ return JSON.stringify({hasSeek:typeof window.seek,ready:v.readyState,dur:v.duration,t:v.currentTime,paused:v.paused,
+ layerOn:document.getElementById("layer").className, uiTransform:document.getElementById("ui").style.transform.slice(0,60)});}));
+await p.evaluate(()=>window.seek&&window.seek(4.9));
+await new Promise(r=>setTimeout(r,1200));
+console.log(await p.evaluate(()=>{const v=document.getElementById("v");
+ return JSON.stringify({t:v.currentTime,layerOn:document.getElementById("layer").className,uiTransform:document.getElementById("ui").style.transform.slice(0,70)});}));
+await b.close(); s.close();
