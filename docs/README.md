@@ -18,6 +18,8 @@ The implementation handoff also uses two root-level files:
 - [KAPAPI_MOTION.md](./KAPAPI_MOTION.md) — canonical Prototype v1 motion language, signature motions, timing, accessibility, performance and QA rules
 - [HERO_MEDIA.md](./HERO_MEDIA.md) — approved hero product-movie narrative, current footage status, real-UI replacement rules and website integration behavior
 - [QA_CHECKLIST.md](./QA_CHECKLIST.md) — Prototype v1 release/review gate
+- [PROTOTYPE_V1_DESIGN_GATE.md](./PROTOTYPE_V1_DESIGN_GATE.md) — pre-code hero/world/role decisions recorded before implementation
+- [PROTOTYPE_V1_QA_REPORT.md](./PROTOTYPE_V1_QA_REPORT.md) — audit of the implemented prototype against the gate above
 - [ROADMAP.md](./ROADMAP.md) — current 1R routed-marketplace prototype phase through validation, commercial beta, Routing Intelligence and Outcome Autopilot
 - [VALIDATION.md](./VALIDATION.md) — observed GM interview evidence, hypotheses, tests, metrics and kill signals
 - [LEGAL.md](./LEGAL.md) — legal/product boundaries, payment/security/IP/professional-service and routing-responsibility risk

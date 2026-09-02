@@ -11,7 +11,8 @@
     "test": "tsc -p tsconfig.test.json && node --test .test-build/*.test.js",
     "qa": "node scripts/shots.mjs qa",
     "demo:check": "node scripts/demo-flow.mjs",
-    "a11y": "node scripts/a11y.mjs"
+    "a11y": "node scripts/a11y.mjs",
+    "perf": "node scripts/perf.mjs"
   },
   "dependencies": {
     "@number-flow/react": "^0.5.10",

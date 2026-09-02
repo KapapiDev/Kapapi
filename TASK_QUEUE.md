@@ -1,8 +1,16 @@
 # KAPAPI Prototype v1 — TASK QUEUE
 
-Status: **implementation queue**  
+Status: **implementation complete — awaiting founder review**  
 Updated: **2026-09-02**  
 Target implementation branch: `feat/prototype-v1`
+
+All P0 and P1 tasks below are implemented on `feat/prototype-v1`.
+Audit: [`docs/PROTOTYPE_V1_QA_REPORT.md`](./docs/PROTOTYPE_V1_QA_REPORT.md).
+Pre-code design gate: [`docs/PROTOTYPE_V1_DESIGN_GATE.md`](./docs/PROTOTYPE_V1_DESIGN_GATE.md).
+
+One deliberate deferral: **KAP-091 `OBJECT_MORPH`** (P1) — QUEST card to detail is a
+route change, so shared-layout continuity needs the still-experimental View
+Transitions API. Deferred rather than shipped as fragile browser theatre.
 
 Rules:
 
@@ -24,7 +32,7 @@ Status values:
 
 ## KAP-000 — Canon preflight
 
-**Status:** OPEN  
+**Status:** DONE  
 **Priority:** P0
 
 Read all implementation-authority docs in `CLAUDE_HANDOFF.md` order.
@@ -45,7 +53,7 @@ Acceptance:
 
 ## KAP-001 — Create implementation branch
 
-**Status:** OPEN  
+**Status:** DONE  
 **Priority:** P0  
 **Depends on:** KAP-000
 
@@ -65,7 +73,7 @@ Acceptance:
 
 ## KAP-002 — Technical scaffold
 
-**Status:** OPEN  
+**Status:** DONE  
 **Priority:** P0  
 **Depends on:** KAP-001
 
@@ -95,7 +103,7 @@ Acceptance:
 
 ## KAP-010 — Design token foundation
 
-**Status:** OPEN  
+**Status:** DONE  
 **Priority:** P0  
 **Depends on:** KAP-002
 
@@ -121,7 +129,7 @@ Acceptance:
 
 ## KAP-011 — Typography and page frame
 
-**Status:** OPEN  
+**Status:** DONE  
 **Priority:** P0  
 **Depends on:** KAP-010
 
@@ -144,7 +152,7 @@ Acceptance:
 
 ## KAP-012 — Core primitive components
 
-**Status:** OPEN  
+**Status:** DONE  
 **Priority:** P0  
 **Depends on:** KAP-010
 
@@ -173,7 +181,7 @@ Acceptance:
 
 ## KAP-020 — Hero structure exploration
 
-**Status:** OPEN  
+**Status:** DONE  
 **Priority:** P0  
 **Depends on:** KAP-011
 
@@ -200,7 +208,7 @@ Acceptance:
 
 ## KAP-021 — Landing hero implementation
 
-**Status:** OPEN  
+**Status:** DONE  
 **Priority:** P0  
 **Depends on:** KAP-020, KAP-012
 
@@ -228,7 +236,7 @@ Acceptance:
 
 ## KAP-022 — Hero product-movie component
 
-**Status:** OPEN  
+**Status:** DONE  
 **Priority:** P0  
 **Depends on:** KAP-021
 
@@ -256,7 +264,7 @@ Acceptance:
 
 ## KAP-023 — Hero real-UI transaction sequence
 
-**Status:** OPEN  
+**Status:** DONE  
 **Priority:** P0  
 **Depends on:** KAP-022, KAP-040
 
@@ -286,7 +294,7 @@ Acceptance:
 
 ## KAP-030 — GM task-entry state
 
-**Status:** OPEN  
+**Status:** DONE  
 **Priority:** P0  
 **Depends on:** KAP-021
 
@@ -307,7 +315,7 @@ Acceptance:
 
 ## KAP-031 — AI-assisted scope preview
 
-**Status:** OPEN  
+**Status:** DONE  
 **Priority:** P0  
 **Depends on:** KAP-030
 
@@ -339,7 +347,7 @@ Acceptance:
 
 ## KAP-032 — Hands-off submission confirmation
 
-**Status:** OPEN  
+**Status:** DONE  
 **Priority:** P0  
 **Depends on:** KAP-031
 
@@ -362,7 +370,7 @@ Acceptance:
 
 ## KAP-040 — Typed demo data model
 
-**Status:** OPEN  
+**Status:** DONE  
 **Priority:** P0  
 **Depends on:** KAP-002
 
@@ -389,7 +397,7 @@ Acceptance:
 
 ## KAP-041 — Routing policy fixture
 
-**Status:** OPEN  
+**Status:** DONE  
 **Priority:** P0  
 **Depends on:** KAP-040
 
@@ -423,7 +431,7 @@ Acceptance:
 
 ## KAP-042 — BID arrival system
 
-**Status:** OPEN  
+**Status:** DONE  
 **Priority:** P0  
 **Depends on:** KAP-040, KAP-012
 
@@ -444,7 +452,7 @@ Acceptance:
 
 ## KAP-043 — KAPAPI auto-routing decision
 
-**Status:** OPEN  
+**Status:** DONE  
 **Priority:** P0  
 **Depends on:** KAP-041, KAP-042
 
@@ -470,7 +478,7 @@ Acceptance:
 
 ## KAP-044 — GM orchestration status surface
 
-**Status:** OPEN  
+**Status:** DONE  
 **Priority:** P0  
 **Depends on:** KAP-043
 
@@ -495,7 +503,7 @@ Acceptance:
 
 ## KAP-050 — QUEST Board
 
-**Status:** OPEN  
+**Status:** DONE  
 **Priority:** P0  
 **Depends on:** KAP-040, KAP-012
 
@@ -522,7 +530,7 @@ Acceptance:
 
 ## KAP-051 — QUEST Detail
 
-**Status:** OPEN  
+**Status:** DONE  
 **Priority:** P0  
 **Depends on:** KAP-050
 
@@ -544,7 +552,7 @@ Acceptance:
 
 ## KAP-052 — PRICE × DELIVERY BID form
 
-**Status:** OPEN  
+**Status:** DONE  
 **Priority:** P0  
 **Depends on:** KAP-051
 
@@ -569,7 +577,7 @@ Acceptance:
 
 ## KAP-060 — PLAYER profile
 
-**Status:** OPEN  
+**Status:** DONE  
 **Priority:** P0  
 **Depends on:** KAP-040, KAP-012
 
@@ -595,7 +603,7 @@ Acceptance:
 
 ## KAP-070 — Workroom timeline
 
-**Status:** OPEN  
+**Status:** DONE  
 **Priority:** P0  
 **Depends on:** KAP-044
 
@@ -613,7 +621,7 @@ Acceptance:
 
 ## KAP-071 — Delivery / result surface
 
-**Status:** OPEN  
+**Status:** DONE  
 **Priority:** P0  
 **Depends on:** KAP-070
 
@@ -635,7 +643,7 @@ Acceptance:
 
 ## KAP-072 — Revision loop
 
-**Status:** OPEN  
+**Status:** DONE  
 **Priority:** P0  
 **Depends on:** KAP-071
 
@@ -650,7 +658,7 @@ Acceptance:
 
 ## KAP-073 — QUEST completion
 
-**Status:** OPEN  
+**Status:** DONE  
 **Priority:** P0  
 **Depends on:** KAP-071
 
@@ -674,7 +682,7 @@ Acceptance:
 
 ## KAP-080 — Flagship CAD case study
 
-**Status:** OPEN  
+**Status:** DONE  
 **Priority:** P0  
 **Depends on:** KAP-043, KAP-060
 
@@ -695,7 +703,7 @@ Acceptance:
 
 ## KAP-081 — TIME ATTACK section/state
 
-**Status:** OPEN  
+**Status:** DONE  
 **Priority:** P0  
 **Depends on:** KAP-050
 
@@ -711,7 +719,7 @@ Acceptance:
 
 ## KAP-082 — Autopilot direction section
 
-**Status:** OPEN  
+**Status:** DONE  
 **Priority:** P0  
 **Depends on:** KAP-044
 
@@ -734,7 +742,7 @@ Acceptance:
 
 ## KAP-090 — Motion token implementation
 
-**Status:** OPEN  
+**Status:** DONE  
 **Priority:** P1  
 **Depends on:** KAP-010
 
@@ -749,7 +757,7 @@ Acceptance:
 
 ## KAP-091 — Object continuity / morph polish
 
-**Status:** OPEN  
+**Status:** DEFERRED (P1, see header)  
 **Priority:** P1  
 **Depends on:** KAP-050, KAP-060
 
@@ -764,7 +772,7 @@ Acceptance:
 
 ## KAP-092 — Completion / routing micro-polish
 
-**Status:** OPEN  
+**Status:** DONE  
 **Priority:** P1  
 **Depends on:** KAP-043, KAP-073
 
@@ -786,7 +794,7 @@ Acceptance:
 
 ## KAP-100 — Mobile pass
 
-**Status:** OPEN  
+**Status:** DONE  
 **Priority:** P0  
 **Depends on:** KAP-021, KAP-050, KAP-071
 
@@ -798,7 +806,7 @@ Acceptance follows `QA_CHECKLIST.md` mobile rules.
 
 ## KAP-101 — Keyboard / focus / semantics pass
 
-**Status:** OPEN  
+**Status:** DONE  
 **Priority:** P0  
 **Depends on:** core surface completion
 
@@ -812,7 +820,7 @@ Acceptance:
 
 ## KAP-102 — Reduced motion pass
 
-**Status:** OPEN  
+**Status:** DONE  
 **Priority:** P0  
 **Depends on:** KAP-090
 
@@ -828,7 +836,7 @@ Acceptance:
 
 ## KAP-110 — Hero/media performance pass
 
-**Status:** OPEN  
+**Status:** DONE  
 **Priority:** P0  
 **Depends on:** KAP-022
 
@@ -844,7 +852,7 @@ Audit:
 
 ## KAP-111 — Full QA checklist audit
 
-**Status:** OPEN  
+**Status:** DONE  
 **Priority:** P0  
 **Depends on:** all P0 implementation tasks
 
@@ -861,7 +869,7 @@ Output a report with:
 
 ## KAP-112 — Build / lint / typecheck / tests
 
-**Status:** OPEN  
+**Status:** DONE  
 **Priority:** P0  
 **Depends on:** KAP-111
 
@@ -879,7 +887,7 @@ Acceptance:
 
 ## KAP-113 — 60-second demo rehearsal
 
-**Status:** OPEN  
+**Status:** DONE  
 **Priority:** P0  
 **Depends on:** KAP-112
 
@@ -905,7 +913,7 @@ Acceptance:
 
 ## KAP-114 — Final review package
 
-**Status:** OPEN  
+**Status:** DONE  
 **Priority:** P0  
 **Depends on:** KAP-113
 
