@@ -11,5 +11,4 @@ next-env.d.ts
 tsconfig.tsbuildinfo
 .test-build/
 qa/
-live/
 qa-live/

@@ -235,6 +235,65 @@ Per `PROTOTYPE_SPEC.md` §16, none of these are built or implied: production pay
 
 ---
 
+# Deployment — Vercel Preview
+
+| Field | Value |
+| --- | --- |
+| Project | `kapapi` |
+| Project ID | `prj_OE2VU0XUNFCnjGebuJLeVkKhEy5s` |
+| Team | CalCome (`team_cuJFcIPj1zvkSmGeDk3hckZd`) |
+| Repository | `KapapiDev/Kapapi`, framework auto-detected as Next.js |
+| Preview URL | https://kapapi-git-feat-prototype-v1-calcome.vercel.app |
+| Immutable URL | https://kapapi-bg8s1fxq9-calcome.vercel.app |
+| Deployment ID | `dpl_7fW5EBfmWv6pFzjQH4To2hFWvMVC` |
+| Target | preview |
+| Branch / SHA | `feat/prototype-v1` @ `6e5bace` |
+| Status | READY |
+
+`main` is untouched and nothing was promoted to production.
+
+## Live QA against the deployment
+
+Every harness was re-run with `KAPAPI_BASE` pointed at the Preview, not localhost.
+
+| Check | Result |
+| --- | --- |
+| Routes and assets | 9/9 return 200, including `/media/kapapi-hero.mp4`, the poster and `/icon.svg` |
+| Runtime errors | **0** across 7 routes, in both normal and reduced-motion |
+| Hydration | no mismatch reported in either mode |
+| Failed requests | **0** (`ERR_ABORTED` on RSC prefetches and video range requests is navigation cancelling work we interrupted, not a delivery failure) |
+| Hero film | decodes from the CDN: `readyState 4`, 1280px, `muted`, `playsInline`, poster resolves, no media error |
+| Demo loop | 16/16 canon invariants pass |
+| Contrast and keyboard | no failures; 16–36 focus stops per surface |
+| Layout | no horizontal overflow or sub-24px target at 390 / 834 / 1440 |
+| FCP / LCP / CLS | 1216 ms / 1648 ms / 0.0001 on a throttled 1.6 Mbps connection |
+
+## Deployment-specific fix
+
+**Mobile nav clipped its last item.** At 390px the four labels needed 246px and had
+224px, so `프로필` rendered as `프로`. A scrollable nav whose last item is sliced
+mid-word reads as a defect rather than an affordance, and it is the first thing a
+reviewer sees on a phone. Below 430px the avatar now drops — it was a second link
+to `프로필`, already present in the nav — so all four labels fit from 360px up, the
+avatar returns on tablet and wider, and 320px still scrolls behind a right-edge fade.
+
+Nothing else surfaced only on the deployment.
+
+## Notes on the hosting setup
+
+- **Vercel Authentication was disabled** at the founder's direction so the Preview is
+  openable without a Vercel login. The enum offers no "production only" scope, so this
+  also makes the production URL public. The deployment sends `x-robots-tag: noindex`,
+  so it stays out of search results.
+- **An initial production deployment exists** (`dpl_B5BRtfYy8Kcma4xiAc7zB9fwy734`,
+  SHA `6433fa6`). Vercel promotes the first build of a newly created project to
+  production regardless of branch; it was not promoted deliberately. The founder chose
+  to leave it. The branch alias points at the Preview, not at it.
+- The hero film stays in `public/media` at 539 KB. No blob or object storage was
+  introduced.
+
+---
+
 # Remaining asset dependency
 
 None blocking. The approved hero film is committed at `public/media/kapapi-hero.mp4`
