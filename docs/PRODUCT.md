@@ -1,15 +1,23 @@
 # KAPAPI Product Design
 
 Status: **canonical product direction**  
-Updated: 2026-09-01
+Updated: 2026-09-02
 
 ## 1. Product definition
 
 KAPAPI is a result-oriented professional-work platform.
 
-Initial form:
+Default GM-facing form:
 
-> A client posts a short online professional task. Qualified professionals submit **price + committed delivery time**. The client compares and selects.
+> A client defines the work, deadline and spending boundary once. Qualified professionals compete with **price + committed delivery time** behind the scenes. KAPAPI selects the best-fit PLAYER, routes the work and returns the result for GM acceptance or revision.
+
+Default GM flow:
+
+`work request → KAPAPI routing → execution → result → accept / revise`
+
+Default PLAYER flow:
+
+`find eligible QUEST → BID price + delivery → KAPAPI selection/routing → complete → earn → build verified history`
 
 KAPAPI world terms:
 
@@ -58,7 +66,7 @@ The strongest alternative may be neither Kmong nor Wishket, but:
 
 > **“I will just do it myself / work late.”**
 
-Therefore KAPAPI must reduce **delegation cost**, not only search cost.
+Therefore KAPAPI must reduce **delegation cost and decision burden**, not only search cost.
 
 ---
 
@@ -70,17 +78,19 @@ KAPAPI can be understood as an **online professional side-job platform**.
 
 PLAYER flow:
 
-`find QUEST → BID → complete → earn → build verified history`
+`find QUEST → BID → get selected/routed → complete → earn → build verified history`
 
 ### GM-facing
 
-KAPAPI should be understood as a **short professional-work outsourcing platform** that makes external capacity available when internal capacity is insufficient.
+KAPAPI should be understood as a **short professional-work outsourcing system** that makes external capacity available when internal capacity is insufficient.
+
+The default GM should not need to browse or compare professionals after a valid QUEST is submitted.
 
 Combined description:
 
 > KAPAPI connects people who have work with people who have professional capacity, while minimizing the work required to outsource.
 
-“Side-job platform” alone is not the investor/judge definition. The core business mechanism is **client-led short online professional work + price × delivery-time bidding + progressive outcome orchestration**.
+“Side-job platform” alone is not the investor/judge definition. The core business mechanism is **client-led short online professional work + price × delivery-time bidding + KAPAPI routing + result acceptance**.
 
 ---
 
@@ -89,7 +99,7 @@ Combined description:
 Every BID must include:
 
 - **PRICE**
-- **committed elapsed delivery time** from selection/contract to submission
+- **committed elapsed delivery time** from assignment/contract to submission
 
 Delivery time is not estimated labor hours.
 
@@ -101,16 +111,35 @@ Example:
 
 KAPAPI must not default to lowest-price ranking.
 
-Selection/recommendation should eventually consider:
+Default routing should eventually consider:
 
+- hard eligibility / qualification requirements
 - relevant industry career
 - task-specific completion history
 - on-time rate
 - revision/rework rate
+- dispute/failure history
 - rating
 - current availability
+- security/NDA requirements
 - price
 - delivery time
+- GM deadline
+- GM budget ceiling or other committed commercial constraint
+
+### Selection architecture
+
+KAPAPI selection must not mean “an LLM picks a person because it feels right.”
+
+Preferred architecture:
+
+1. **hard filters** — category/credential/security/deadline/budget eligibility
+2. **market data** — price, committed delivery, availability
+3. **verified performance data** — relevant history, on-time, revision/failure, career
+4. **task-fit scoring** — semantic/relevance assistance may use AI
+5. **routing policy** — choose the highest-confidence eligible option under the GM's committed constraints
+
+AI can help interpret task fit, but the selection system should remain inspectable and data-backed.
 
 TIME ATTACK is the urgent expression of this mechanism. It only becomes a credible promise when category-level liquidity is sufficient.
 
@@ -120,46 +149,62 @@ TIME ATTACK is the urgent expression of this mechanism. It only becomes a credib
 
 Product principle:
 
-> **Do not casually replace transaction mechanisms already proven by Upwork.**
+> **Do not casually replace transaction mechanisms already proven by Upwork, except where KAPAPI has an explicit product reason to remove GM work.**
 
 Commercial transaction architecture should strongly consider preserving:
 
 1. job/QUEST posting
-2. professional proposals
-3. client selection
-4. contract
-5. pre-funded payment / escrow through a compliant provider
-6. Milestones where the work becomes larger
-7. Workroom with messages, files, contract terms and history
-8. submit work
-9. client approval or revision request
-10. settlement
-11. two-sided review
-12. dispute/payment protection
+2. professional proposals/BIDs
+3. contract record
+4. pre-funded payment / escrow through a compliant provider
+5. Milestones where the work becomes larger
+6. Workroom with messages, files, contract terms and history
+7. submit work
+8. client approval or revision request
+9. settlement
+10. two-sided review
+11. dispute/payment protection
+
+### Deliberate KAPAPI deviation
+
+Upwork normally asks the client to compare and select talent.
+
+KAPAPI's default GM path intentionally removes this step:
+
+`BIDs → KAPAPI routing/selection → execution`
+
+The market still discovers price and delivery, but routine proposal comparison becomes an internal KAPAPI operation rather than a mandatory GM task.
+
+Manual comparison may remain as an exceptional fallback, trust-building/debug mode, or category-specific override, but it is **not the default product promise**.
 
 KAPAPI innovation should primarily target:
 
-- dramatically lower proposal and selection friction
+- dramatically lower delegation and selection friction
 - Korean localization
 - price + delivery-time proposals
+- KAPAPI auto-routing
 - AI-assisted scoping
 - short/small jobs
 - gamified discovery and reputation
-- eventual work-to-result orchestration
+- progressive outcome orchestration
 
 PLAYER proposals should be much lighter than long Upwork proposals. A fast BID should be possible with price, delivery commitment, relevant career/history and a short note.
 
 ---
 
-## 6. Result, not person, is the long-term unit
+## 6. Result, not person, is the unit
 
 Traditional flow:
 
 `search person → evaluate → inquire → quote → schedule → contract → explain → manage → revise → result`
 
-KAPAPI target flow:
+Old KAPAPI marketplace flow:
 
-`work request → orchestration → result`
+`QUEST → BIDs → GM compares → GM selects → work → result`
+
+Default KAPAPI flow:
+
+`work request → KAPAPI orchestrates → result → GM accepts or requests revision`
 
 Key insight from the first architecture GM interview:
 
@@ -173,38 +218,54 @@ This shifts KAPAPI from “freelancer discovery” toward **professional-work or
 
 ## 7. Product evolution
 
-### Stage A — Marketplace Mode
+KAPAPI should not wait until a distant future stage to remove routine GM selection. The default GM experience should start as **Autopilot-lite**, while the underlying supply market remains visible to PLAYERs and operationally observable to KAPAPI.
 
-Visible flow:
+### Stage A — Auto-Routed Marketplace
 
-`QUEST → BID → GM comparison → PLAYER selection → work → delivery → review`
+GM-facing flow:
+
+`file + request + deadline + budget/constraints → QUEST confirmed → KAPAPI handles selection → result → accept / revise`
+
+Internal/PLAYER flow:
+
+`QUEST → eligible PLAYERs → PRICE × DELIVERY BIDs → KAPAPI ranking/routing → PLAYER execution → delivery`
 
 Purpose:
 
 - prove demand
 - create narrow category liquidity
 - collect real price/delivery data
+- validate whether KAPAPI can choose a satisfactory PLAYER without routine GM comparison
 - learn task standardization boundaries
 - build trust signals
-- observe failure, revision and dispute patterns
+- observe failure, revision, replacement and dispute patterns
 
-### Stage B — Assist Mode
+Critical hypothesis:
+
+> **Can KAPAPI remove GM selection without increasing regret, revision or failure enough to erase the convenience gain?**
+
+Manual GM comparison may exist as a fallback during validation, but the primary prototype story should demonstrate hands-off routing.
+
+### Stage B — Assist / Routing Intelligence
 
 Flow:
 
-`file + short instruction → AI-generated QUEST/SOW → missing-info resolution → recommendation → GM approval → execution → result`
+`file + short instruction → AI-generated QUEST/SOW → missing-info resolution before submit → KAPAPI routing → execution → objective preflight → result → accept / revise`
 
-AI assistance:
+AI/platform assistance:
 
 - turn vague request into structured SOW
-- identify missing information
+- identify missing information before the GM leaves the flow
 - define deliverables and deadline
 - infer security requirements
-- use accumulated market data for reference ranges, not authoritative pricing
-- shortlist relevant PLAYERs
+- use accumulated market data for reference ranges
+- score task fit
+- improve routing
 - prepare contract/admin flow
+- detect late/failure risk
+- recommend or trigger replacement
 
-### Stage C — Autopilot Mode
+### Stage C — Outcome Autopilot
 
 Target:
 
@@ -214,7 +275,7 @@ Internal functions may include:
 
 - task classification
 - work specification generation
-- controlled bidding or routing
+- bidding or direct routing hidden entirely from GM
 - security and contracts
 - progress tracking
 - late-risk detection
@@ -222,31 +283,39 @@ Internal functions may include:
 - objective pre-delivery checks
 - SLA delivery logic
 
-In mature Autopilot, PRICE × DELIVERY bidding may move into the backend and become invisible to the GM.
+In mature Autopilot, visible bidding may disappear even for PLAYERs in some categories and become direct dispatch/routing.
 
-Autopilot is a north star, not an initial promise.
+### What is still deferred
+
+Auto-routing does **not** mean KAPAPI should immediately promise universal SLA/outcome guarantees.
+
+Strong guarantees remain a later stage because routing responsibility, replacement cost, QA, payment structure and legal liability must be proven category by category.
 
 ---
 
-## 8. AI role: secretary, not judge
+## 8. AI role: router assistant, not subjective judge
 
 Early AI should **not** be positioned as:
 
 - authoritative final price setter
 - subjective final quality judge
 - regulated professional decision-maker
+- opaque sole authority that chooses PLAYERs without rules/data
 
 Why:
 
-A CAD task that appears simple may contain broken XREFs, bad layer structure or changes propagating across many drawings. A superficial AI estimate can be wrong.
+A task that appears simple may contain hidden technical context. A superficial AI estimate or match can be wrong.
 
 Current decision architecture:
 
 > **Price discovery → market**  
-> **PLAYER selection → GM**  
+> **Eligibility → explicit rules / verified requirements**  
+> **PLAYER ranking/routing → rules + transaction data + AI-assisted task fit**  
 > **Final quality approval → GM**  
 > **Dispute → platform process**  
-> **AI → scoping, missing information, reference data, objective preflight**
+> **AI → scoping, missing information, semantic fit, reference data, objective preflight assistance**
+
+KAPAPI owns the routing experience, but must make routing increasingly evidence-based and recoverable rather than pretending an LLM is an infallible hiring manager.
 
 ---
 
@@ -254,7 +323,7 @@ Current decision architecture:
 
 A key product principle is:
 
-> **Make the order clear before trying to make inspection smart.**
+> **Make the order clear before removing the GM from the process.**
 
 The platform should transform vague instructions into a clear QUEST/SOW containing, as applicable:
 
@@ -264,6 +333,7 @@ The platform should transform vague instructions into a clear QUEST/SOW containi
 - deliverables
 - output format
 - deadline
+- budget ceiling / commercial constraint where auto-routing requires it
 - objective acceptance criteria
 - revision boundary
 - confidentiality level
@@ -280,10 +350,13 @@ Changes:
 3. Update affected dimensions
 Deliverables: DWG + PDF
 Deadline: 2026-09-02 22:00
+Budget ceiling: KRW 180,000
 Revision: one revision for SOW mismatch
 ```
 
-Clear SOW reduces explanation cost, pricing ambiguity, quality disputes and later Autopilot risk.
+Clear SOW reduces explanation cost, pricing ambiguity, routing error, quality disputes and later Autopilot risk.
+
+The GM may need to answer missing mandatory questions **before final submission**. After a valid QUEST is submitted, routine PLAYER comparison/selection should not be required.
 
 ---
 
@@ -301,15 +374,26 @@ Only check what software/AI can reliably verify:
 
 ### Layer 2 — GM acceptance
 
-The paying GM approves or requests revision.
+The paying GM receives the result and chooses:
 
-### Layer 3 — dispute process
+- **accept / QUEST COMPLETE**
+- **request revision** within the defined revision boundary
 
-Ambiguous scope interpretation, responsibility or non-performance moves to platform dispute handling.
+The GM should not have been required to manage the selection process merely to reach this point.
+
+### Layer 3 — recovery / dispute
+
+KAPAPI should distinguish:
+
+- normal revision
+- PLAYER late/failure risk
+- replacement/reassignment
+- scope dispute
+- non-performance dispute
+
+When a PLAYER fails before delivery, KAPAPI's long-term advantage is the ability to reroute/recover without pushing the vendor-search problem back to the GM.
 
 Do not make human platform staff inspect every low-value professional deliverable. That would destroy unit economics.
-
-Autopilot can later increase preflight/QA, but only after category-specific reliability is proven.
 
 ---
 
@@ -320,10 +404,11 @@ Strong early QUEST shape:
 - digitally transferable inputs
 - clear output
 - hours to roughly two days
-- GM can inspect
+- GM can inspect the final result
 - reasonably standardizable
 - mistakes are revisable
 - low irreversible liability
+- enough comparable supply for KAPAPI to route with confidence
 
 Candidate categories:
 
@@ -387,6 +472,18 @@ PLAYER trust signals should emphasize:
 
 Relevant career is important because it reduces instruction burden. An architecture GM seeing “5 years at an architecture office” can infer that common professional conventions require less explanation.
 
+### Routing implication
+
+Trust signals are not only profile decoration. They are routing inputs.
+
+KAPAPI should learn which signals actually predict:
+
+- usable result
+- on-time delivery
+- low revision
+- low GM management burden
+- successful recovery when something goes wrong
+
 ### GM reputation
 
 Trust is two-sided.
@@ -404,19 +501,20 @@ A user can act as GM in one QUEST and PLAYER in another; these are transaction r
 
 ---
 
-## 14. Existing partners are part of the product
+## 14. Existing partners are part of the routing pool
 
 Real GMs often already have trusted vendors.
 
 KAPAPI should allow future workflows such as:
 
 - save/import existing partners
-- invite existing partners to a QUEST
+- invite existing partners into KAPAPI's routing pool
 - simultaneously expose the QUEST to open-market PLAYERs
-- compare old/new proposals in one view
+- compare old/new options internally
 - show availability
 - retain historical price/delivery/quality data
-- recommend substitutes when a preferred partner is unavailable
+- route to a trusted partner when they are best fit
+- recommend or automatically use substitutes when a preferred partner is unavailable
 
 This can move KAPAPI from a discovery board into an **external-work operating layer**.
 
@@ -427,6 +525,7 @@ This can move KAPAPI from a discovery board into an **external-work operating la
 KAPAPI should eventually reduce:
 
 - explanation burden
+- selection burden
 - contract burden
 - NDA/confidentiality burden
 - payment evidence burden
@@ -458,13 +557,14 @@ KAPAPI must earn repeated use through:
 - compliant safe payment
 - transaction/tax evidence
 - vendor history
-- comparison market
+- **automatic routing**
 - backup supply
 - availability visibility
+- replacement/recovery
 - dispute support
 - eventual SLA/outcome assurance
 
-The strongest long-term retention hypothesis is that the GM buys **KAPAPI's result-delivery reliability**, not access to one specific PLAYER.
+The strongest long-term retention hypothesis is that the GM buys **KAPAPI's result-delivery reliability and removal of vendor management**, not access to one specific PLAYER.
 
 ---
 
@@ -480,8 +580,10 @@ Expansion requires:
 
 - repeat GM demand in that category
 - enough qualified active supply
-- acceptable time-to-first-valid-BID
+- acceptable time-to-valid-routing decision
+- enough eligible BIDs/options per QUEST
 - reliable delivery and quality
+- backup/replacement capacity
 
 Therefore broad category expansion should follow proven liquidity, not precede it.
 
@@ -489,9 +591,11 @@ Therefore broad category expansion should follow proven liquidity, not precede i
 
 ## 18. Cold-start operating model
 
-Early KAPAPI may operate partly as a **concierge marketplace**.
+Early KAPAPI may operate partly as a **concierge auto-routed marketplace**.
 
-A GM should not need to learn the platform before proving demand. The GM may initially send files plus a short request, while KAPAPI manually converts that input into a QUEST/SOW.
+A GM should not need to learn the platform before proving demand. The GM may initially send files plus a short request, while KAPAPI manually/AI-assistively converts that input into a QUEST/SOW.
+
+Behind the scenes, KAPAPI can also manually supervise early routing while the product presents the intended hands-off GM experience. This is acceptable validation as long as manual operations are measured rather than disguised as proven automation.
 
 Founder-originated real CAD QUESTs can seed supply and test the transaction engine.
 
@@ -499,13 +603,29 @@ Working seed experiment discussed:
 
 - ~10 real CAD QUESTs
 - roughly KRW 300k–500k total founder-funded reward budget
-- observe PLAYER acquisition, BID density, price/delivery distribution and completion
+- observe PLAYER acquisition, BID density, price/delivery distribution, routing choice and completion
 
 These founder-funded transactions must be excluded from primary GM-demand proof.
 
 A later demand experiment may subsidize the first QUEST for external GMs. The critical signal is whether they return with their **own money**.
 
 Subsidy amounts and conversion thresholds remain experiment parameters, not product policy.
+
+### Auto-routing validation metrics
+
+Track at minimum:
+
+- valid BIDs/options per QUEST
+- routing decision latency
+- selected bid rank by price/delivery/trust
+- whether GM asks who was selected before result
+- GM selection-regret / override requests
+- on-time rate
+- revision rate
+- replacement/recovery rate
+- final acceptance
+- GM management minutes
+- repeat self-funded use
 
 ---
 
@@ -517,8 +637,8 @@ Questions to validate:
 
 - GM fee vs PLAYER fee
 - visible fee vs all-in total price
-- what safe payment/admin value justifies
-- whether low-ticket dispute/support cost destroys contribution margin
+- what safe payment/admin/routing value justifies
+- whether low-ticket dispute/support/replacement cost destroys contribution margin
 - whether direct trade pressure requires a different fee model
 
 Early validation mode can use:
@@ -527,7 +647,7 @@ Early validation mode can use:
 - no KAPAPI custody of funds
 - direct GM↔PLAYER payment where a real test transaction is needed
 
-Commercial payment/settlement requires a compliant provider and accounting structure.
+Commercial auto-routing will eventually need a coherent authorization/payment design so KAPAPI cannot select a bid above what the GM agreed to pay. A compliant provider/escrow or equivalent pre-authorized commercial boundary should precede production-scale routing.
 
 ---
 
@@ -537,18 +657,30 @@ Brand principle:
 
 > **겉은 게임처럼 재미있게, 속은 Upwork보다 진지하게.**
 
+Public marketplace direction is **light-first**. Dark operational moments are contextual, not the default shell.
+
+The GM-facing interaction should visually communicate:
+
+`일 맡기기 → 카파피가 처리 중 → 결과 도착 → 검수`
+
+not:
+
+`일 맡기기 → 입찰 6개 공부하기 → 사람 고르기 → 관리하기`.
+
+PLAYER-facing and internal operational surfaces may still expose BID competition, ranking and live routing state.
+
 Visual direction:
 
-- premium tech-product tone inspired by Linear / Vercel / Raycast
-- black/white foundation
-- strong typography
-- thin HUD-like metadata
+- premium neutral tech-product tone
+- white/off-white public marketplace foundation
+- black/graphite typography
+- thin HUD-like metadata used selectively
 - examples: `LV.12`, `+240 EXP`, `QUEST #0182`, countdowns
 - avoid swords, coins and obvious pixel-RPG clichés
 
 Discovery and achievement can feel game-like.
 
-Contracts, payment, NDA, delivery, dispute and settlement should become visually more sober and precise as money/risk increases.
+Contracts, payment, NDA, delivery, dispute and settlement should remain sober and precise as money/risk increases.
 
 ---
 
@@ -563,14 +695,15 @@ Potential compounding assets:
 - career + success history
 - revision/failure patterns
 - routing success data
+- GM routing preference/acceptance history
 - replacement/recovery data
-- GM preference history
+- GM management-minute reduction
 
 Potential loop:
 
 `more transactions → better SOW/routing → higher delivery reliability → greater GM trust → more transactions`
 
-Long-term Autopilot defensibility depends less on having many profiles and more on knowing:
+Long-term defensibility depends less on having many profiles and more on knowing:
 
 > **which work should go to which qualified PLAYER, at what cost, with what delivery probability and recovery path.**
 
@@ -579,16 +712,18 @@ Long-term Autopilot defensibility depends less on having many profiles and more 
 ## 22. Product principles
 
 1. GM wants a result, not a PLAYER search experience.
-2. Remove outsourcing steps whenever reliability allows.
-3. Marketize price + delivery time + trust together.
-4. Market discovers price; GM owns final acceptance.
-5. Make the SOW clear before automating quality judgment.
-6. Preserve proven safe-market mechanics; innovate in speed, localization, AI and UX.
-7. Existing vendor relationships should be absorbed, not attacked.
-8. AI begins as a secretary, not a judge.
-9. Gamification is a product language and reputation layer, not the core business proof.
-10. Validate GM transactions before optimizing PLAYER registrations.
-11. Architecture/CAD is a wedge, not the whole market.
-12. Autopilot starts only in narrow, measurable categories.
-13. Trade QUEST/results, not controlled employee time.
-14. Keep reducing GM clicks, decisions and management minutes.
+2. **After a valid QUEST is submitted, routine PLAYER comparison/selection is KAPAPI's job.**
+3. Remove outsourcing steps whenever reliability allows.
+4. Marketize price + delivery time + trust together behind the GM experience.
+5. Market discovers price; KAPAPI routes within GM constraints; GM owns final acceptance.
+6. Make the SOW clear before removing the GM from the process.
+7. Preserve proven safe-market mechanics; intentionally replace mandatory GM selection with data-backed routing.
+8. Existing vendor relationships should be absorbed into the routing system, not attacked.
+9. AI helps scope and route but is not an opaque subjective judge.
+10. Gamification is a product language and reputation layer, not the core business proof.
+11. Validate GM transactions before optimizing PLAYER registrations.
+12. Architecture/CAD is a wedge, not the whole market.
+13. Strong SLA/outcome guarantees start only in narrow, measurable categories.
+14. Trade QUEST/results, not controlled employee time.
+15. Keep reducing GM clicks, decisions and management minutes.
+16. When routing fails, recovery/replacement should increasingly be KAPAPI's problem rather than returning vendor search to the GM.
