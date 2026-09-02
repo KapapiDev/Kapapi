@@ -53,9 +53,11 @@
 .hours { font-family: var(--mono); font-size: .91em; color: var(--muted); min-width: 4.4em; text-align: right; }
 .rowMuted { opacity: .42; }
 .rowPick { background: var(--sapphire-wash); box-shadow: inset .18em 0 0 var(--sapphire); }
+/* Korean, so sans and no tracking: the mono face with letter-spacing renders
+   배정 as two detached glyphs. Same rule as .foot and .meta. */
 .tag {
-  display: inline-block; margin-left: .48em; font-family: var(--mono);
-  font-size: .667em; letter-spacing: .1em; color: var(--sapphire); text-transform: uppercase;
+  display: inline-block; margin-left: .48em;
+  font-size: .667em; font-weight: 600; color: var(--sapphire);
 }
 .outWhy { display: block; font-size: .682em; color: var(--faint); margin-top: .1em; }
 

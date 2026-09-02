@@ -4,7 +4,7 @@ desktop  03-quest     chars=423   cards=4   ok
 desktop  04-detail    chars=417   cards=1   ok
 desktop  05-my        chars=266   cards=2   ok
 desktop  06-how       chars=485   cards=4   ok
-mobile   01-home      chars=207   cards=1   ok
+mobile   01-home      chars=202   cards=1   ok
 mobile   02-board     chars=307   cards=2   ok
 mobile   03-quest     chars=220   cards=1   ok
 mobile   04-detail    chars=242   cards=0   ok

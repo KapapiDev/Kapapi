@@ -47,7 +47,11 @@ export function HeroScreen({ step }: { step: number }) {
       <div className={s.body}>
       {showBids ? (
         <div className={s.rows}>
-          {ORDER.map((c) => {
+          {/* Once routing has resolved, the losing bids have had their beat: they were
+              listed on arrival and struck through during the eligibility pass. Keeping
+              all four here alongside the rationale is more rows than the panel's fixed
+              height can hold, and it was the list that got silently clipped. */}
+          {(assigned ? ORDER.filter((c) => c.bid.id === ROUTED.picked?.bid.id) : ORDER).map((c) => {
             const isPick = assigned && c.bid.id === ROUTED.picked?.bid.id;
             const muted = (filtering && c.out) || (assigned && !isPick);
             return (

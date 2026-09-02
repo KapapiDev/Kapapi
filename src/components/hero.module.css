@@ -76,8 +76,10 @@
   position: absolute; inset: 0; background: var(--white);
   padding-bottom: 46px;
   /* Full-frame the panel is laid out at the stage's real width, which runs from
-     ~1310px on a desktop down to ~350px on a phone. One font-size scales it all. */
-  font-size: clamp(11px, 1.55vw, 22px);
+     ~1310px on a desktop down to ~350px on a phone. One font-size scales it all.
+     Held just under the fixed canvas's 22px: the panel has 46px less height here
+     than inside the laptop, and at 22px the assigned step clipped its last row. */
+  font-size: clamp(12px, 1.45vw, 21px);
   opacity: 0; pointer-events: none;
   transition: opacity 420ms var(--ease);
   display: flex; flex-direction: column;
@@ -186,4 +188,7 @@
      the replay pill. The sequence loops on its own, so the control is dropped
      rather than parked on top of the input. */
   .replay { display: none; }
+  /* The stage is 4:5 here, not 16:9, so the panel's height no longer tracks the
+     viewport width the same way and needs its own scale. */
+  .full { font-size: clamp(10px, 2.9vw, 14px); }
 }
