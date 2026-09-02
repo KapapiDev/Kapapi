@@ -1,6 +1,6 @@
 # KAPAPI Legal / Product Boundaries
 
-Updated: 2026-09-01
+Updated: 2026-09-02
 
 > This document is a product-design risk register, **not formal legal advice**. Commercial launch requires Korean legal/accounting review.
 
@@ -13,11 +13,13 @@ KAPAPI should be designed around **independent result-based professional work**,
 Working structure:
 
 - **GM ↔ PLAYER**: actual service/work contract parties as appropriate
-- **KAPAPI**: matching and transaction-support platform
+- **KAPAPI**: marketplace, matching/routing and transaction-support platform
 
 The product trades a **defined QUEST/result**, not controlled worker-hours.
 
-This legal boundary also matches the product philosophy: GM specifies what result is needed and by when; PLAYER decides whether and how to perform it.
+The default product may allow KAPAPI to select/rout a PLAYER after the GM submits a valid QUEST. That does not by itself change the intended result-based independent-work model, but it **does increase the platform's responsibility profile** compared with a pure directory where the GM chooses every provider.
+
+The GM specifies what result is needed, by when, and within what commercial/security constraints. PLAYERs independently decide whether to BID and set their own price/delivery commitment. KAPAPI decides which eligible BID/PLAYER to route under the product's routing policy.
 
 ---
 
@@ -28,16 +30,18 @@ PLAYER should generally retain control over:
 - whether to BID
 - price
 - committed delivery time
+- whether to accept an assignment where a separate acceptance step is required
 - when and where the work is performed
 - work method, subject to deliverable requirements
 
-GM should specify:
+GM/KAPAPI should specify only what is necessary for the result/transaction:
 
 - desired result
 - source materials
 - deadline
 - output format
 - objective requirements
+- budget/security constraints
 
 Avoid designing KAPAPI around:
 
@@ -70,7 +74,7 @@ If a future KAPAPI revisits retained/fractional professional capacity, it requir
 
 Current KAPAPI should optimize:
 
-> **defined result + PLAYER-set price + PLAYER-set delivery commitment**
+> **defined result + PLAYER-set price + PLAYER-set delivery commitment + KAPAPI routing under GM constraints**
 
 not controlled person-hours.
 
@@ -87,12 +91,16 @@ Preferred commercial direction:
 - platform transaction records
 - clear cancellation/refund/dispute rules
 
-A commercial fixed-price marketplace will likely benefit materially from pre-funded/safe-payment protection because it addresses both sides' fears:
+A commercial fixed-price routed marketplace will likely benefit materially from pre-funded/safe-payment protection because it addresses both sides' fears:
 
 - PLAYER: “What if I work and do not get paid?”
-- GM: “What if I pay and the PLAYER disappears?”
+- GM: “What if I pay and the selected PLAYER disappears?”
 
-But the implementation must use a compliant provider rather than KAPAPI casually acting as a payment custodian.
+Auto-routing also creates an additional requirement: **KAPAPI must not assign a BID that exceeds the amount or pricing rule the GM has authorized.**
+
+Commercial design therefore needs a clear budget ceiling, authorized all-in price, or equivalent pre-authorized payment boundary before routing.
+
+Implementation must use a compliant provider rather than KAPAPI casually acting as a payment custodian.
 
 ---
 
@@ -105,9 +113,12 @@ For pre-commercial transaction testing, the current recommended posture is inten
 - KAPAPI fee: **0** during initial mechanism testing
 - GM ↔ PLAYER direct payment if a real payment is needed
 - KAPAPI does not custody money
+- routing decisions may be manually supervised during concierge validation
 - no promise that this early flow is the final commercial settlement design
 
-This allows demand/supply testing without prematurely building a regulated payment stack.
+This allows demand/supply/routing testing without prematurely building a regulated payment stack.
+
+However, direct GM↔PLAYER payment may add friction to a hands-off routed UX. Treat it as a temporary validation compromise, not the desired production flow.
 
 Before production payment launch, obtain legal/accounting review and implement an appropriate PG/escrow structure.
 
@@ -140,15 +151,19 @@ Commercial product design should clearly disclose:
 
 - identities/roles of transaction parties
 - whether GM and PLAYER contract directly
+- that KAPAPI may select/route the PLAYER under a defined routing policy
+- what information/criteria KAPAPI uses at a high level
 - what KAPAPI facilitates
 - what KAPAPI does and does not guarantee
 - fees
 - cancellation/refund process
-- complaint/dispute handling
+- complaint/dispute/replacement handling
 - prohibited/gated QUEST types
 - reporting/sanction process
 
 Exact Korean e-commerce/intermediary registration, disclosure and dispute obligations must be checked before launch.
+
+The more KAPAPI markets its routing as a reason the GM need not choose a provider, the less credible it becomes to describe the platform as a passive bulletin board. Legal/product claims must match actual control and responsibility.
 
 ---
 
@@ -170,6 +185,8 @@ KAPAPI should support, as appropriate:
 Security claims must not exceed actual technical/legal protection.
 
 For early architecture work, the GM should confirm they have authority to provide the uploaded source files/materials.
+
+Auto-routing increases the importance of security filtering: a PLAYER who cannot satisfy the QUEST's confidentiality/access requirements must be excluded **before** ranking or assignment.
 
 ---
 
@@ -209,6 +226,7 @@ For MVP validation:
 
 - block clearly regulated architecture QUESTs unless separately reviewed
 - if a regulated category is later supported, require appropriate credential/responsibility design
+- route only to appropriately eligible/verified participants where credentials matter
 - distinguish work produced as support under the responsible professional from independent statutory professional judgment
 
 If KAPAPI later expands into law, medicine, tax or other regulated professions, treat each as a separate gated category requiring dedicated review.
@@ -244,7 +262,7 @@ A clear QUEST/SOW should define, as appropriate:
 - acceptance criteria
 - revision boundary
 - confidentiality conditions
-- payment amount
+- maximum/authorized payment or pricing rule
 
 This turns later disagreements from vague “quality was bad” disputes toward more concrete questions of whether agreed requirements were met.
 
@@ -252,27 +270,35 @@ Product quality architecture should initially be:
 
 1. objective technical preflight where reliable
 2. GM approval / revision request
-3. platform dispute process when necessary
+3. KAPAPI replacement/recovery for execution failure where the product promises hands-off routing
+4. platform dispute process when necessary
 
 Do not promise that AI can conclusively adjudicate subjective professional quality.
 
 ---
 
-## 13. Autopilot changes the responsibility profile
+## 13. Auto-routing changes the responsibility profile before full Autopilot
 
-Marketplace Mode:
+Previous marketplace assumption:
 
 > GM selects PLAYER and the platform primarily facilitates the transaction.
 
-Autopilot Mode:
+Current default routed-marketplace assumption:
 
-> KAPAPI may promise that work will be completed to a defined quality/time outcome regardless of which PLAYER executes it.
+> GM defines the result/constraints; KAPAPI selects/routes an eligible PLAYER; GM judges the delivered result.
 
-The more KAPAPI controls routing, replacement, QA and outcome promises, the more legal/commercial responsibility may shift toward KAPAPI.
+Strong Outcome Autopilot:
 
-Before strong SLA/outcome guarantees, review:
+> KAPAPI additionally promises a defined quality/time outcome and may absorb replacement/recovery obligations regardless of which PLAYER executes it.
+
+These are **different responsibility levels**.
+
+Auto-routing moves KAPAPI away from a passive matching posture even before strong SLA guarantees exist. The more KAPAPI controls routing, replacement, QA and outcome promises, the more legal/commercial responsibility may shift toward KAPAPI.
+
+Before production-scale routing and especially before strong SLA/outcome guarantees, review:
 
 - platform/intermediary status
+- implications of platform-controlled provider selection
 - service-provider responsibility
 - consumer/commercial transaction obligations
 - liability allocation
@@ -280,8 +306,9 @@ Before strong SLA/outcome guarantees, review:
 - refund/compensation rules
 - subcontracting structure
 - responsibility for replacement PLAYERs
+- whether routing explanations/disclosures are required or prudent
 
-Autopilot must not be launched merely by changing marketing copy.
+Autopilot must not be launched merely by changing marketing copy, and auto-routing must not be treated as legally identical to a passive directory without review.
 
 ---
 
@@ -295,6 +322,7 @@ Until reviewed, block or gate:
 - dangerous/high-liability instructions
 - employment-like shift/dispatch arrangements
 - tasks where KAPAPI cannot reasonably define transaction responsibility
+- tasks where auto-routing cannot safely determine eligibility or responsibility
 
 ---
 
@@ -307,30 +335,35 @@ Recommended early validation posture:
 - result-based fixed-price QUESTs
 - no hourly shift marketplace
 - no Fractional Employee / controlled time blocks
-- clear GM/PLAYER role disclosure
+- clear GM/PLAYER/KAPAPI role disclosure
 - PLAYER sets price and delivery commitment
+- KAPAPI may route/select under explicit GM deadline, budget and eligibility constraints
+- GM remains final acceptance/revision authority
+- no claim that AI alone guarantees the best PLAYER
+- no strong SLA/outcome guarantee yet
 - basic terms + privacy + QUEST contract + NDA
 - minimal personal-data collection
-- KAPAPI fee 0 for initial transaction-engine tests
+- KAPAPI fee 0 for initial transaction/routing-engine tests
 - no direct KAPAPI custody of funds
 - direct GM↔PLAYER payment when a real pre-commercial payment is required
 - exclude regulated professional tasks unless separately verified
 
 ---
 
-## 16. Legal questions to resolve before production payment launch
+## 16. Legal questions to resolve before production payment / routing launch
 
 1. Exact Korean online intermediary / e-commerce registration and disclosure requirements
-2. PG/escrow structure and refund flow
-3. PLAYER settlement and tax evidence by participant type
-4. Standard QUEST contract and NDA enforceability
-5. Architecture/professional-service category boundaries
-6. Personal-data/security requirements for uploaded project files
-7. IP/deliverable ownership defaults
-8. Platform liability in Assist and Autopilot modes
-9. Appropriate insurance/indemnity design for confidential or high-value work
-10. Trademark/name conflict review for KAPAPI before commercialization
-11. Whether any future retained/fractional-capacity product changes worker/intermediary classification
+2. Legal implications of KAPAPI selecting/routing the service provider by default
+3. PG/escrow structure, budget authorization and refund flow
+4. PLAYER settlement and tax evidence by participant type
+5. Standard QUEST contract and NDA enforceability
+6. Architecture/professional-service category boundaries
+7. Personal-data/security requirements for uploaded project files
+8. IP/deliverable ownership defaults
+9. Platform liability in routed marketplace, Assist and Outcome Autopilot modes
+10. Appropriate insurance/indemnity design for confidential or high-value work
+11. Trademark/name conflict review for KAPAPI before commercialization
+12. Whether any future retained/fractional-capacity product changes worker/intermediary classification
 
 ---
 
