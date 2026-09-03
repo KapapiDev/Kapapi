@@ -15,7 +15,7 @@ Canonical growth path:
 ```text
 Task Marketplace
 → Trusted Work Market
-→ Intelligent Recommendation / Routing
+→ Intelligent Routing
 → Repeat Business Capacity
 → Outcome / Execution Layer
 ```
@@ -68,7 +68,7 @@ There is no separate fictional/game vocabulary layer. Do not reintroduce special
 1. **Task first, not profile first.** Work is the core public object, not a worker storefront.
 2. **Price + completion time are mandatory** in every proposal.
 3. **Result-based/fixed-price first.** Do not drift into controlled hourly staffing as the core model.
-4. **Do not pretend routing intelligence exists before the data exists.** Behind the scenes, early selection can be KAPAPI recommendation with human review, lightweight client choice or concierge routing. D-035 governs what the prototype *shows* — 발주자 → 카파피 → 결과 — not a claim that the routing is already automated at scale.
+4. **Do not pretend routing intelligence exists before the data exists.** Behind the contract, early procurement can be concierge/manual with human review (D-033.5). What the prototype shows is fixed — 발주자 → 실행 계약 승인 → 카파피 → 결과 — and it is not a claim that the selection is already automated at scale, or that a quote is instant in every category (D-033.6).
 5. **Routing responsibility grows with evidence.** Verified completion, on-time, revision, failure, availability and category-liquidity data enable stronger recommendations and later default routing.
 6. **The client remains the final result judge** through accept/revise until category-specific evidence justifies stronger guarantees.
 7. **Architecture/CAD is a testbed, not the market identity.**
@@ -108,5 +108,5 @@ What happens inside the middle node, visible on the 작업자 surface and `이�
 Future direction:
 
 ```text
-transactions → trust data → better recommendations → default routing → recovery → execution layer
+transactions → trust data → more accurate selection → instant quoting in proven categories → recovery → execution layer
 ```

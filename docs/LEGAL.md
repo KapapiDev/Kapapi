@@ -315,7 +315,7 @@ Before KAPAPI moves from recommendation to default routing, and again before str
 5. uploaded-file privacy/security obligations
 6. IP/deliverable defaults
 7. regulated-professional category rules
-8. legal implications of KAPAPI recommendations
+8. legal implications of KAPAPI selecting the 작업자 (D-033.1) — see §1's review list
 9. implications when KAPAPI later routes by default
 10. AI/automation/subcontractor responsibility
 11. insurance/indemnity needs

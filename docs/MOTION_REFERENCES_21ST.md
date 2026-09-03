@@ -156,13 +156,15 @@ Do **not** implement a literal feature carousel.
 Use the sequencing pattern to build a hero transaction narrative:
 
 ```text
-업무 등록
-→ 제안 도착
-→ multiple 제안 comparison
+업무 요청
+→ 실행 계약 승인
 → 작업자 배정
-→ DELIVERED
+→ 결과 도착
 → 업무 완료
 ```
+
+제안 도착과 비교는 발주자 화면의 상태가 아닙니다. 그 시퀀스가 필요한 곳은 작업자
+화면과 `이용 방법`입니다 (D-033.1).
 
 The surrounding shell should remain stable while the transaction state evolves inside it.
 
@@ -554,20 +556,3 @@ A motion is successful only if it does at least one of these:
 If it does none of them, remove it.
 
 > **The prototype should feel alive because work is moving through a system, not because the website is performing tricks.**
-
-
-## 실행 계약 (D-033.1)
-
-발주자가 승인하는 것은 작업자가 아니라 **실행 계약**입니다.
-
-```text
-업무 요청 (파일 + 한 줄)
-→ 카파피가 작업 조건(SOW) 정리
-→ 실행 계약: 결과물 + 가격 + 완료시간 + 수정 경계 + 복구 경계
-→ 발주자 승인
-→ (카파피: 제안 · 필수요건 확인 · 선정 · 배정 · 수행)
-→ 결과 → 수락 / 수정 요청
-```
-
-발주자 기준으로는 세 노드입니다 — **발주자 → 카파피 → 결과**. 가격은 해당 유형에 실제로
-들어온 제안에서 산출하고 그 근거를 함께 표시합니다(D-033.6: instant quote is earned).

@@ -286,7 +286,7 @@ Preferred early flow:
 
 *(Superseded by D-035 for the prototype surface: KAPAPI 선정 replaces 추천 + 발주자 확정.)*
 
-Early transactions may use KAPAPI recommendation + client confirmation, lightweight client choice or concierge/manual routing for controlled experiments. *(D-035 removes client confirmation from the prototype surface; back-office experiments are unaffected.)*
+Early transactions may use concierge/manual routing behind the contract for controlled experiments. *(Superseded in part: D-033.1 and D-035 remove client confirmation and client choice from the product surface. What remains available is back-office procurement, which the client does not see.)*
 
 Reliable routing must be earned from real completion, on-time, revision, failure, availability, category-liquidity and recovery evidence.
 

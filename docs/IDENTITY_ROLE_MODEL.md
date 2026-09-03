@@ -82,10 +82,14 @@ That does **not** mean the site defines the visitor as a permanent 발주자.
 Hero hierarchy remains:
 
 ```text
-할 일을 던져주세요.
-[ 맡길 일을 입력 ]
-[ 파일 첨부 ] [ 일 맡기기 → ]
+오늘은 어떤 일을 끝낼까요?
+[ + | 파일을 업로드하고 간단하게 설명해 주세요. ]
+[ 맡기기 ]
 ```
+
+승인 화면은 **실행 계약** 하나입니다 — 결과물 · 가격 · 완료시간 · 수정 경계 · 복구
+경계. 발주자는 작업자를 고르지 않으므로, 이 화면에도 작업자는 등장하지 않습니다
+(D-033.1).
 
 The supply-side entry should be framed as another action available to the same user, for example:
 
@@ -246,6 +250,3 @@ Prototype v1 PASSES when a reviewer can naturally understand:
 ## 10. One-sentence rule
 
 > **One user identity. 발주자 and 작업자 are roles created by each 업무.**
-
-발주자가 승인하는 것은 **실행 계약** — 결과물 + 가격 + 완료시간 + 수정 경계 + 복구 경계
-— 이지 작업자가 아닙니다 (D-033.1).

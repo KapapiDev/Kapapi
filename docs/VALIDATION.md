@@ -191,7 +191,7 @@ Mode B is what the prototype surface demonstrates.
 
 Used only in controlled experiments where helpful.
 
-Measure decision time, recommendation acceptance, override rate, client confidence/regret, completion/on-time/revision outcomes and client management minutes.
+Measure time from upload to contract, contract approval rate, re-quote requests, client confidence/regret, completion/on-time/revision outcomes and client management minutes. There is no override rate to measure — the client does not select a 작업자 (D-033.1).
 
 Preferred prototype default is **Mode B**.
 

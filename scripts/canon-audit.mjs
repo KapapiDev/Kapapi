@@ -24,12 +24,12 @@ const files = [...globSync("docs/*.md"), ...globSync("*.md")]
 
 const CLASSES = [
   ["A vocab(D-034)", /\bGM\b|\bPLAYER\b|\bQUEST\b|\bBID\b|\bREWARD\b|\bEXP\b|TIME ATTACK|\bLV\.|LEVEL \/ EXP/],
-  ["B removed-flow(D-035)", /발주자 확정|발주자가 확정|이 작업자로 진행|다른 제안 보기|추천을 확인|client confirms|GM confirm/],
+  ["B removed-flow(D-035)", /발주자 확정|발주자가 확정|이 작업자로 진행|다른 제안 보기|추천을 확인|client confirms|GM confirm|KAPAPI recommendation|recommendation acceptance|receive recommendation|카파피 추천|카파피가 추천|발주자 CONFIRMS|RECOMMENDATION|→ 추천|추천 \/ 확정/],
   ["D stale-hero", /사람을 찾지 말고, 할 일을 올리세요|의뢰 등록|합성|compositing onto|laptop screen/],
   ["E budget-ceiling", /예산 상한/],
 ];
 
-const EXEMPT = /Historical|previously used|D-03[0-9]|Superseded|superseded|no longer|~~|QUEST NETWORK|imported from|restated|not a failure|unaffected|zero matches|querying|capability ladder|back-office|not a claim|Removing|삭제됨|removed by|removed the|제거|없습니다|아닙니다|nowhere|not on the|There is no|Do \*\*not\*\*|Explicitly \*\*not\*\*|Do not/;
+const EXEMPT = /Historical|previously used|D-03[0-9]|Superseded|superseded|no longer|~~|QUEST NETWORK|imported from|restated|not a failure|unaffected|zero matches|querying|capability ladder|back-office|not a claim|Removing|삭제됨|removed by|removed the|제거|없습니다|아닙니다|쓰지 않습니다|하지 않습니다|않으므로|등장하지|보지 않|상태가 아|nowhere|not on the|There is no|Do \*\*not\*\*|Explicitly \*\*not\*\*|Do not/;
 
 /**
  * Reviewed exceptions: lines that match a pattern but are correct as written.
@@ -59,7 +59,11 @@ for (const f of files) {
     if (n) hits.push(`${name}:${n}`);
   }
   const describesClientFlow = /업무 등록|work request|발주자.*→|client flow/.test(txt);
-  if (describesClientFlow && !/실행 계약|Execution Contract/.test(txt)) hits.push("C no-contract");
+  const contractAt = lines.findIndex((l) => /실행 계약|Execution Contract/.test(l));
+  if (describesClientFlow && contractAt === -1) hits.push("C no-contract");
+  // F: the canon was bolted onto the end instead of replacing the body. A doc that
+  // only mentions the contract in its last fifth is an append, not a rewrite.
+  if (describesClientFlow && contractAt > lines.length * 0.8) hits.push("F append-only");
   if (hits.length && !REVIEWED.has(f.split("\\").join("/"))) rows.push([f, hits.join("  ")]);
 }
 

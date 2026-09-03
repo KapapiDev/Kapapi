@@ -14,7 +14,8 @@ KAPAPI should become a **work-to-result execution layer** where a user can submi
 
 ```text
 Task Marketplace
-발주자가 업무 등록 → 작업자가 가격 + 완료시간 제안 → 선택 → 수행 → 결과
+발주자: 업무 요청 → 실행 계약 승인 → 결과
+작업자: 열린 업무 → 가격 + 완료시간 제안 → 배정 → 수행
 
         ↓ transaction + trust data
 
@@ -23,8 +24,9 @@ KAPAPI learns who reliably completes which kinds of work
 
         ↓ enough category liquidity + performance data
 
-Intelligent Recommendation / Routing
-KAPAPI recommends → 발주자 confirms → later KAPAPI routes by default with override/recovery
+Intelligent Routing
+KAPAPI selects and assigns; the 발주자 approves the 실행 계약, never the worker
+→ later KAPAPI also recovers when the first execution path fails
 
         ↓ repeat usage + proven recovery
 
@@ -45,18 +47,19 @@ work in → KAPAPI scopes/decomposes/executes-or-orchestrates/recovers/checks �
 
 ### Goal
 
-Demonstrate the smallest credible KAPAPI transaction loop without pretending universal automatic routing or outcome guarantees already exist.
+Demonstrate the smallest credible KAPAPI transaction loop without pretending selection is already automated at scale or that outcomes are guaranteed.
 
 ### Prototype story
 
 ```text
-발주자가 업무 등록
-→ 작업자들이 업무 탐색
-→ 가격 + 완료시간 제안
-→ KAPAPI가 조건과 작업이력을 바탕으로 선정
-→ 수행
+발주자: 파일 + 한 줄 설명
+→ 작업 조건 정리
+→ 실행 계약 (결과물 · 가격 · 완료시간 · 수정 경계 · 복구 경계) 승인
 → 결과 전달
 → 수락 / 수정 요청
+
+카파피 내부: 작업자들이 업무 탐색 → 가격 + 완료시간 제안
+→ 자격·마감·예산·보안 확인 → 선정 → 배정 → 수행
 ```
 
 Plain-language value:
@@ -71,7 +74,8 @@ No special glossary should be introduced.
 
 - task-first discovery rather than storefront-first discovery
 - ordinary bounded online-work examples plus one higher-skill example
-- **가격 × 완료시간** as a signature visual moment
+- **가격 × 완료시간** as a signature visual moment on the 작업자 surface and `이용 방법`
+- the 실행 계약 on the 발주자 surface, with the price's basis disclosed
 - genuine urgent-work state
 - task-relevant career/history and reliability
 - KAPAPI selection with visible rationale and the excluded 제안
@@ -95,7 +99,8 @@ Actual transaction validation should start with **one or two category micro-mark
 - platform-held funds
 - automatic settlement/tax engine
 - broad category launch
-- universal automatic worker selection
+- selection automated at scale without a concierge fallback (D-033.5)
+- instant quoting outside proven standardized categories (D-033.6)
 - authoritative AI price/quality judgment
 - universal SLA/outcome guarantee
 
@@ -107,7 +112,7 @@ Actual transaction validation should start with **one or two category micro-mark
 
 Prove real work can move through KAPAPI:
 
-`unresolved → posted → proposals → selected/assigned → completed → accepted → paid`
+`unresolved → contract approved → proposals → selected/assigned → completed → accepted → paid`
 
 ### Supply hypothesis
 
@@ -211,23 +216,29 @@ Treat each category as a micro-market. Measure qualified active supply, repeat d
 
 ---
 
-## Phase 3 — Intelligent Recommendation / Routing
+## Phase 3 — Intelligent Routing
 
 ### Goal
 
-Reduce client decision burden using evidence earned in Phases 1–2.
+Make the selection KAPAPI already performs reliable enough to stand behind, using
+evidence earned in Phases 1–2.
+
+The client-facing flow does not change across this phase — it is already
+`업무 요청 → 실행 계약 승인 → 결과` (D-033.1). What changes is what sits behind the
+contract:
 
 ```text
-client chooses manually
-→ KAPAPI ranks/recommends
-→ client confirms recommendation
-→ KAPAPI routes by default with override
-→ KAPAPI routes + recovers when execution fails
+concierge/manual procurement behind the contract
+→ market-informed quoting from live 가격 × 완료시간 data
+→ automated selection with disclosed criteria
+→ automated re-assignment and recovery when the first path fails
 ```
 
-This is the capability ladder for the business. D-035 put the **prototype surface**
-at the routing rung so the thesis can be seen; the rungs still have to be earned
-with real transaction, trust and recovery data.
+D-033.5 is explicit that a manual back office is validation scaffolding, not the
+permanent model, and D-033.6 that a near-instant quote is earned per category. So
+the rungs here are about KAPAPI's own capability and margin, not about giving the
+client more to decide. Client decision burden is already zero and does not
+increase again.
 
 Routing can consider:
 
@@ -379,20 +390,3 @@ HUMAN + AI + AUTOMATION + PARTNERS ENABLE OUTCOMES
 ```
 
 > **Start with bounded work people can pick up and finish. Grow into an execution layer where users submit work and get the result back.**
-
-
-## 실행 계약 (D-033.1)
-
-발주자가 승인하는 것은 작업자가 아니라 **실행 계약**입니다.
-
-```text
-업무 요청 (파일 + 한 줄)
-→ 카파피가 작업 조건(SOW) 정리
-→ 실행 계약: 결과물 + 가격 + 완료시간 + 수정 경계 + 복구 경계
-→ 발주자 승인
-→ (카파피: 제안 · 필수요건 확인 · 선정 · 배정 · 수행)
-→ 결과 → 수락 / 수정 요청
-```
-
-발주자 기준으로는 세 노드입니다 — **발주자 → 카파피 → 결과**. 가격은 해당 유형에 실제로
-들어온 제안에서 산출하고 그 근거를 함께 표시합니다(D-033.6: instant quote is earned).

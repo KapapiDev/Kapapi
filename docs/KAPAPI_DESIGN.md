@@ -11,25 +11,36 @@ KAPAPI should feel like serious, premium work-execution software.
 
 Current visual transaction:
 
+발주자 surface — three nodes:
+
+```text
+발주자 describes the work + attaches files
+→ 실행 계약: 결과물 · 가격 · 완료시간 · 수정 경계 · 복구 경계 → 승인
+→ RESULT
+→ ACCEPT / REVISE
+```
+
+Behind the contract, on the 작업자 surface and in `이용 방법`:
+
 ```text
 WORK EXISTS
-→ 발주자 creates work
 → 작업자들이 discover it
 → 가격 × 완료시간 proposals arrive
-→ KAPAPI filters/ranks
-→ RECOMMENDATION
-→ 발주자 CONFIRMS
+→ KAPAPI filters by 자격 · 마감 · 예산 · 보안
+→ KAPAPI SELECTS
 → ASSIGNED / WORK
-→ RESULT
 ```
+
+There is no RECOMMENDATION state and no 발주자 CONFIRMS step (D-033.1).
 
 Future evolution:
 
 ```text
 completed-work data
 → trust
-→ recommendation
-→ routing / recovery
+→ more accurate selection
+→ instant quoting in proven categories
+→ recovery
 → repeat capacity
 → WORK IN → RESULT OUT
 ```
@@ -172,7 +183,7 @@ Allowed when real:
 - 유사 업무 완료 건수
 - 정시완료율
 - 수정 요청률
-- 추천 / 확정 / 배정 / 수행 / 결과 / 완료
+- 접수됨 / 배정 / 수행 / 결과 / 완료
 
 Do not use fictional role names, experience points, levels, rarity, coins, swords or pseudo-lore.
 
@@ -203,7 +214,8 @@ Copy direction:
 Product-movie states:
 
 ```text
-업무 등록
+업무 요청 (파일 + 한 줄)
+→ 실행 계약 승인 (결과물 · 가격 · 완료시간 · 수정 경계 · 복구 경계)
 → (카파피: 제안 도착 · 조건 확인 · 선정 · 배정)
 → 결과 도착
 ```
@@ -250,20 +262,3 @@ This must read as product evolution, not current universal capability.
 ## 15. Rejection gate
 
 Reject a screen if it looks like a generic dashboard/template, makes work less prominent than profile decoration, makes recommendation and assignment indistinguishable, implies universal day-one auto-routing, lets CAD define the product, uses gamified decoration instead of real trust evidence, or needs paragraphs to explain what the UI should show.
-
-
-## 실행 계약 (D-033.1)
-
-발주자가 승인하는 것은 작업자가 아니라 **실행 계약**입니다.
-
-```text
-업무 요청 (파일 + 한 줄)
-→ 카파피가 작업 조건(SOW) 정리
-→ 실행 계약: 결과물 + 가격 + 완료시간 + 수정 경계 + 복구 경계
-→ 발주자 승인
-→ (카파피: 제안 · 필수요건 확인 · 선정 · 배정 · 수행)
-→ 결과 → 수락 / 수정 요청
-```
-
-발주자 기준으로는 세 노드입니다 — **발주자 → 카파피 → 결과**. 가격은 해당 유형에 실제로
-들어온 제안에서 산출하고 그 근거를 함께 표시합니다(D-033.6: instant quote is earned).

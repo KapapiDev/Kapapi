@@ -17,17 +17,22 @@ Initial worker-facing form:
 
 Initial client-facing form:
 
-> **사람을 찾지 말고, 할 일을 올린다.** A client uploads the files, describes the work in one line, and sets an approximate price ceiling and deadline. KAPAPI organizes the market, selects a worker from the bids using conditions and work history, and returns the result. Per D-035 the client does not compare proposals or pick a worker; the selection's criteria stay visible to them.
+> **사람을 찾지 말고, 할 일을 올린다.** A client uploads the files and describes the work in one line. KAPAPI structures the scope and returns an **Execution Contract** — deliverables, price, completion time, revision boundary, recovery boundary — which the client approves. KAPAPI then procures and assigns the worker from the market using conditions and work history, and returns the result. The client never compares proposals or picks a worker; the selection's criteria stay visible to them as a record (D-033.1).
 
 Long-term form:
 
 > **해야 할 일을 올리면, 결과로 돌아온다.**
 
-KAPAPI should progressively reduce the need to search, compare, coordinate, recover and manage execution until the user increasingly experiences:
+The client already experiences three nodes:
 
-`work request → KAPAPI → result`
+`발주자 → 카파피 → 결과`
 
-This long-term Outcome / Execution Layer is earned from real transaction, trust, liquidity, QA and recovery data. It is not assumed on day one.
+Approving the Execution Contract is part of the first node, not a step between them
+— it is how the 발주자 hands the work over. What is still earned from real
+transaction, trust, liquidity, QA and recovery data is everything behind that
+contract: selecting without a concierge fallback (D-033.5), quoting instantly in a
+category (D-033.6), and recovering automatically when the first execution path
+fails (D-033.8).
 
 ---
 
@@ -56,7 +61,7 @@ Worker mental model:
 
 Client mental model:
 
-`define work → receive recommendation → confirm → receive result → accept/revise`
+`define work → approve the Execution Contract → receive result → accept/revise`
 
 ---
 
@@ -128,7 +133,9 @@ Example:
 | B | ₩40,000 | 2시간 |
 | C | ₩55,000 | 45분 |
 
-This should be one of KAPAPI's most memorable product moments.
+This should be one of KAPAPI's most memorable product moments — on the 작업자
+surface and in `이용 방법`. The 발주자 never sees this table (D-033.1); what reaches
+them is the single price and completion time of the 실행 계약, derived from it.
 
 It matters because fragmented human availability has economic value. A worker with a free evening may compete on speed; another may compete on price with a longer commitment. Urgent work makes speed especially valuable.
 
@@ -147,11 +154,24 @@ KAPAPI is neither lowest-price-wins nor fastest-wins. Useful selection signals c
 
 ---
 
-## 5. Selection architecture: recommendation first, routing later
+## 5. Selection architecture: KAPAPI selects, the client approves a contract
 
-Current authority: `DECISIONS.md` D-032 through D-034.
+Current authority: `DECISIONS.md` D-033.1, D-034, D-035.
 
-Preferred early default:
+What the client approves is the contract, not the worker:
+
+```text
+업무 요청 (파일 + 한 줄)
+→ 작업 조건(SOW) 정리
+→ 실행 계약: 결과물 + 가격 + 완료시간 + 수정 경계 + 복구 경계
+→ 발주자 승인
+```
+
+The price is market-informed, derived from the proposals the category is actually
+receiving, and its basis is disclosed on screen. D-033.6: an instant quote is
+earned, so do not present it as universal instant pricing.
+
+Selection then runs without the client:
 
 ```text
 제안 도착
@@ -167,7 +187,10 @@ is what keeps the selection inspectable rather than magical — `PRODUCT.md` §1
 rules out positioning AI as a sole and unexplained selector, not the selection
 itself.
 
-Early experiments may also use lightweight client choice or concierge/manual routing.
+Early experiments may use concierge/manual procurement **behind** the contract
+(D-033.5). They must not put the choice back on the 발주자 surface: the client's
+experience of the contract is the same whether a person or a policy procured the
+작업자 behind it.
 
 Routing should become increasingly automatic only after KAPAPI has enough evidence to know which signals predict successful outcomes.
 
@@ -191,7 +214,7 @@ AI can assist semantic task fit and scope interpretation. It should not be the o
 
 Client:
 
-`define work → receive proposals/recommendation → confirm → result → accept/revise`
+`define work → approve the Execution Contract → result → accept/revise`
 
 Worker:
 
@@ -221,16 +244,15 @@ Build:
 - category liquidity measurement
 - secure transaction records
 
-### Stage C — Intelligent Recommendation / Routing
+### Stage C — Intelligent Routing
 
-Evolution:
+The client-facing flow is fixed by D-033.1 and does not evolve here:
+`업무 요청 → 실행 계약 승인 → 결과`. What evolves is what stands behind the contract.
 
-`client manually chooses → KAPAPI recommends → client confirms → KAPAPI routes by default with override/recovery`
+`concierge procurement → market-informed quoting → automated selection with disclosed criteria → automated re-assignment and recovery`
 
-D-035 moved the **prototype surface** to the routing end of this line so the
-product thesis can be seen. The business still has to earn each step with real
-transaction, trust and recovery data — the prototype demonstrates the destination,
-it does not assert the capability is proven.
+The client is never given more to decide at any rung. D-033.5: the manual back
+office is validation scaffolding, not the permanent operating model.
 
 Add:
 
@@ -318,9 +340,18 @@ KAPAPI structures:
 - Deliverable: XLSX, one row per document
 - Deadline: today 18:00
 - Acceptance: all 6 files represented; 12 fields present or marked N/A
+
+KAPAPI then quotes:
+- 결과물: XLSX
+- 가격: ₩84,000
+- 완료시간: 6시간 이내
+- 수정: 합의 범위와 다를 경우 1회
+- 완료되지 않으면: 재배정, 그래도 안 되면 미청구
 ```
 
-Clear scope reduces pricing ambiguity, clarification loops, revisions, disputes and future routing error.
+The client approves that, not a worker. Clear scope is what makes the quote
+possible: it reduces pricing ambiguity, clarification loops, revisions, disputes
+and future routing error.
 
 ---
 
@@ -332,7 +363,7 @@ Only check what software/AI can reliably verify, such as required files, file ty
 
 ### Layer 2 — client acceptance
 
-The paying client chooses:
+The paying client decides:
 
 - accept / complete
 - request revision within scope
@@ -501,20 +532,3 @@ Client-side short form:
 North Star:
 
 > **해야 할 일을 올리면, 결과로 돌아온다.**
-
-
-## 실행 계약 (D-033.1)
-
-발주자가 승인하는 것은 작업자가 아니라 **실행 계약**입니다.
-
-```text
-업무 요청 (파일 + 한 줄)
-→ 카파피가 작업 조건(SOW) 정리
-→ 실행 계약: 결과물 + 가격 + 완료시간 + 수정 경계 + 복구 경계
-→ 발주자 승인
-→ (카파피: 제안 · 필수요건 확인 · 선정 · 배정 · 수행)
-→ 결과 → 수락 / 수정 요청
-```
-
-발주자 기준으로는 세 노드입니다 — **발주자 → 카파피 → 결과**. 가격은 해당 유형에 실제로
-들어온 제안에서 산출하고 그 근거를 함께 표시합니다(D-033.6: instant quote is earned).

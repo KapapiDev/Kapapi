@@ -3,7 +3,7 @@
 Status: **canonical implementation scope for the current public prototype**  
 Updated: 2026-09-03
 
-This document translates the current product canon into a buildable prototype. Universal automatic routing is a later earned capability.
+This document translates the current product canon into a buildable prototype. The 발주자 approves an 실행 계약 and KAPAPI selects the 작업자 (D-033.1); what remains an earned capability is doing that selection automatically at scale, and quoting instantly in every category (D-033.5, D-033.6).
 
 ---
 
@@ -29,8 +29,9 @@ Current client flow:
 
 ```text
 업무 요청 (파일 + 한 줄)
-→ 작업조건 정리
-→ 업무 등록
+→ 작업 조건(SOW) 정리
+→ 실행 계약: 결과물 + 가격 + 완료시간 + 수정 경계 + 복구 경계
+→ 발주자 승인
 → (카파피: 제안 도착 · 필수요건 확인 · 선정 · 배정 · 수행)
 → 결과
 → 수락 / 수정 요청
@@ -55,8 +56,8 @@ Future direction:
 ```text
 transactions
 → trust data
-→ better recommendation
-→ default routing
+→ better selection
+→ instant quoting in proven categories
 → recovery
 → human + AI + automation + partners
 → work in → result out
@@ -73,13 +74,13 @@ After roughly 30–60 seconds, a reviewer should be able to answer:
 3. What can a worker do here?
 4. What do workers compete on?
 5. Why is price × completion time different from lowest-price bidding?
-6. How does the client choose without studying a giant freelancer directory?
+6. Why does the client not have to choose a worker at all?
 7. What happens when work returns?
 8. How can this evolve beyond a conventional marketplace?
 
 Correct short answer:
 
-> **“카파피에는 일이 먼저 올라옵니다. 할 수 있는 사람이 가격과 완료시간을 제안하고, 카파피가 조건과 실제 작업이력을 보고 추천해줘서 발주자가 빠르게 확정합니다. 거래가 쌓이면 추천·배정·복구를 점점 고도화하고 결국 일을 넣으면 사람·AI·자동화 중 적합한 실행수단을 통해 결과를 받는 구조로 발전합니다.”**
+> **“카파피에는 일이 먼저 올라옵니다. 할 수 있는 사람이 가격과 완료시간을 제안하고, 카파피가 조건과 실제 작업이력을 보고 작업자를 정합니다. 발주자는 결과물·가격·완료시간이 적힌 실행 계약만 승인하고 결과를 받습니다. 거래가 쌓이면 배정과 복구를 점점 고도화하고 결국 일을 넣으면 사람·AI·자동화 중 적합한 실행수단을 통해 결과를 받는 구조로 발전합니다.”**
 
 ---
 
@@ -134,15 +135,15 @@ Worker path:
 Required:
 
 1. KAPAPI identity
-2. category-neutral plain-language promise
-3. large work-entry surface
-4. file attachment
-5. primary CTA
-6. short reassurance about the next step
-7. secondary `작업 찾기`
-8. supporting product/media proof
+2. the 발주자 / 작업자 surface toggle
+3. one category-neutral question
+4. a single-line work field with file attachment
+5. one primary CTA — `맡기기`
+6. the hero film, whole, beside the action
 
-Shipped (D-035):
+Nothing else. No secondary CTA, no proof cards, no section links.
+
+Shipped:
 
 ```text
 [발주자 | 작업자]                        내 업무   이용 방법   회원가입
@@ -191,27 +192,44 @@ D-035 removed.
 
 Do not lead with CAD or ultra-cheap prices.
 
-## S02 — 업무 초안 / 조건 확인
+## S02 — 작업 조건 확인 + 실행 계약
 
 A vague input such as:
 
 > “이 PDF들 표로 정리해서 오늘 안에 주세요.”
 
-may be structured into:
+is structured into 작업 조건 (SOW):
 
 - request summary
 - files
 - scope
 - deliverables
 - output format
-- deadline
+- deadline (editable — changing it re-prices the contract)
 - acceptance criteria
-- revision boundary
-- optional budget ceiling
 - confidentiality/security
 - missing information
 
-Primary action: **`이대로 등록하기`**
+Below the SOW sits the object the 발주자 actually approves — the **실행 계약**
+(D-033.1):
+
+| | |
+|---|---|
+| 결과물 | the deliverable formats |
+| 가격 | one figure, market-informed |
+| 완료시간 | the committed elapsed time |
+| 수정 | the revision boundary |
+| 완료되지 않으면 | re-assignment, and no charge if that also fails |
+
+The price must disclose what it was derived from — the eligible proposals this
+category is currently receiving, as a count and a range. D-033.6: an instant quote
+is earned, so a quote that hides its basis overclaims. If no proposal can meet the
+chosen deadline, withhold the contract and say so rather than quoting something
+KAPAPI cannot procure.
+
+No 작업자 appears on this screen.
+
+Primary action: **`이 조건으로 맡기기`**
 
 ## S03 — 업무 목록 / 작업자 탐색
 
@@ -305,13 +323,16 @@ Core:
 States:
 
 ```text
-배정 완료
+접수됨
+→ 작업자 배정
 → 작업 시작
-→ 작업 중
 → 결과 전달
 → 발주자 확인
 → 업무 완료
 ```
+
+접수됨 covers the interval the 발주자 experiences as "카파피가 하고 있다" — the
+proposals arriving and the selection running. It is one state to them, not four.
 
 No fake human-work progress percentage unless genuinely measurable.
 
@@ -347,8 +368,8 @@ Explain:
 ```text
 more completed work
 → better task-specific trust data
-→ better recommendations
-→ default routing
+→ more accurate selection
+→ instant quoting in proven categories
 → backup/recovery
 → human + AI + automation + partners
 → work in → result out
@@ -422,9 +443,9 @@ Demo transitions must be deterministic and replayable.
 Rules:
 
 - category-neutral master story
-- real KAPAPI UI rather than fake generated readable UI
-- no message implying universal auto-routing already exists
-- motion may show `업무 등록 → 제안 → 가격 × 완료시간 → 추천 → 확정 → 수행 → 결과`
+- the founder's film used as delivered: no crop, no filter, nothing composited onto it
+- no message claiming escrow, completion guarantee, or that selection is already automated at scale
+- 발주자 motion shows `업무 등록 → 실행 계약 승인 → (카파피) → 결과`; the 제안 · 가격 × 완료시간 · 선정 beats belong to the 작업자 surface and `이용 방법`
 - future `work in → result out` may appear as a future-oriented closing beat
 - mobile/reduced-motion paths must preserve understanding without video
 
@@ -435,14 +456,16 @@ Rules:
 발주자 surface:
 
 1. Hero: **오늘은 어떤 일을 끝낼까요?** / 파일 + 한 줄 / `맡기기`
-2. 업무 입력 → 카파피 → 결과, as three beats of one real work item
+2. 업무 입력 → 카파피 → 결과, as three beats of one real work item, with the assignment's criteria on the record
 3. one account, both roles
 
 작업자 surface and `이용 방법` carry the task-first distinction, the
 **가격 × 완료시간** signature scene, the selection with its criteria and excluded
 제안, the completed-work case, urgent work, the result loop and worker trust.
-9. future: data → routing → Human/AI/Automation execution layer
-10. worker entry / open work
+
+The future `data → selection quality → recovery → Human/AI/Automation execution
+layer` beat belongs at the end of whichever surface carries it, clearly labelled as
+direction rather than current capability.
 
 ---
 
@@ -492,7 +515,8 @@ Do not build or claim:
 - native apps
 - authoritative AI pricing
 - subjective AI final quality judgment
-- universal automatic worker routing
+- selection automated at scale without a concierge fallback (D-033.5)
+- instant quoting outside proven standardized categories (D-033.6)
 - universal SLA/outcome guarantee
 - controlled hourly staffing
 - unqualified regulated professional judgment
@@ -502,33 +526,16 @@ Do not build or claim:
 # 14. 60-second demo target
 
 ```text
-00–08s   Landing: “사람을 찾지 말고, 할 일을 올린다” + task input
-08–16s   발주자 input becomes a clear work draft
-16–24s   작업 목록: real work exists first
-24–32s   작업자가 가격 + 완료시간 제안
-32–42s   가격 × 완료시간 comparison → KAPAPI recommends → 발주자 confirms
-42–52s   Work progresses → result delivered
-52–58s   발주자 accepts / requests revision
+00–08s   Landing: “오늘은 어떤 일을 끝낼까요?” + 파일 + 한 줄 설명
+08–18s   실행 계약: 결과물 · 가격 · 완료시간 · 수정 경계 · 복구 경계 → 발주자 승인
+18–26s   작업자 화면으로 전환: 열린 업무가 먼저 존재
+26–34s   작업자가 가격 + 완료시간 제안
+34–42s   카파피가 자격·마감·예산으로 걸러 작업자를 정함 (발주자는 이 화면을 보지 않음)
+42–52s   작업 진행 → 결과 도착
+52–58s   발주자 수락 / 수정 요청
 58–60s   Future: transactions → trust → routing → Human/AI/Automation execution layer
 ```
 
 Desired reviewer reaction:
 
 > **“카파피는 싼 심부름을 모아놓는 곳이 아니라, 끝이 명확한 일을 먼저 올리고 가격과 완료시간으로 거래하면서 결국 일을 넣으면 결과를 받는 실행 레이어로 가는 거구나.”**
-
-
-## 실행 계약 (D-033.1)
-
-발주자가 승인하는 것은 작업자가 아니라 **실행 계약**입니다.
-
-```text
-업무 요청 (파일 + 한 줄)
-→ 카파피가 작업 조건(SOW) 정리
-→ 실행 계약: 결과물 + 가격 + 완료시간 + 수정 경계 + 복구 경계
-→ 발주자 승인
-→ (카파피: 제안 · 필수요건 확인 · 선정 · 배정 · 수행)
-→ 결과 → 수락 / 수정 요청
-```
-
-발주자 기준으로는 세 노드입니다 — **발주자 → 카파피 → 결과**. 가격은 해당 유형에 실제로
-들어온 제안에서 산출하고 그 근거를 함께 표시합니다(D-033.6: instant quote is earned).

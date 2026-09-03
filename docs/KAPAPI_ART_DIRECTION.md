@@ -137,7 +137,22 @@ Avoid relying on effects to create identity.
 
 ---
 
-## 8. Recommendation visual grammar
+## 8. 실행 계약과 선정의 시각 문법
+
+발주자가 승인하는 대상은 작업자가 아니라 **실행 계약**입니다 (D-033.1). 계약면은
+다음을 담습니다:
+
+```text
+결과물 · 가격 · 완료시간 · 수정 경계 · 완료되지 않을 때의 처리
++ 이 가격이 무엇을 근거로 나왔는지
+```
+
+계약면에 작업자는 등장하지 않습니다. 가격과 완료시간이 그 화면에서 가장 큰 값이어야
+하고, 근거 문장은 그보다 작게 붙습니다 — 금액을 크게 쓰되 어디서 나왔는지 숨기지 않는
+것이 이 화면의 신뢰를 만듭니다. 강조색은 계약면 하나에만 씁니다. 발주자가 한 번
+행동하는 지점이기 때문입니다.
+
+선정 시퀀스는 발주자 화면이 아니라 `이용 방법`과 작업자 화면에 속합니다:
 
 ```text
 제안 도착
@@ -147,13 +162,12 @@ Avoid relying on effects to create identity.
 → 배정
 ```
 
-This sequence belongs to `이용 방법` and the 작업자 surface. On the 발주자 surface only
-its outcome appears: 배정된 작업자 with 왜 이 작업자인가요. There is no
-`이 작업자로 진행` control anywhere (D-035).
+발주자 화면에는 그 결과만 나타납니다 — 배정된 작업자와 왜 이 작업자인가요. `추천`,
+`확정`, `이 작업자로 진행`, `다른 제안 보기` 라벨은 어디에도 쓰지 않습니다. 승자 축하나
+잠금 연출도 쓰지 않습니다.
 
-Before confirmation, label `추천`, not `배정`. Keep alternatives available. Do not use winner celebration or locked-assignment visuals.
-
-Never use opaque “AI BEST MATCH” magic as sufficient explanation.
+불투명한 “AI BEST MATCH” 류를 설명으로 쓰지 않습니다. 선정은 근거를 보여주는 방식으로만
+정당해집니다.
 
 ---
 
@@ -281,20 +295,3 @@ Reject if the 발주자 surface shows a ranked comparison or any control that pi
 Desired reaction:
 
 > **“일이 먼저 올라오고, 카파피가 가격·완료시간과 실제 작업이력으로 선택을 쉽게 만들며, 거래가 쌓일수록 더 많은 실행을 맡게 되는 제품.”**
-
----
-
-## 실행 계약의 시각 처리 (D-033.1)
-
-발주자가 승인하는 대상은 작업자가 아니라 **실행 계약**입니다. 계약면은 다음을 담습니다:
-
-```text
-결과물 · 가격 · 완료시간 · 수정 경계 · 완료되지 않을 때의 처리
-+ 이 가격이 무엇을 근거로 나왔는지
-```
-
-계약면에 작업자는 등장하지 않습니다. 가격과 완료시간은 그 화면에서 가장 큰 값이어야
-하고, 근거 문장은 그보다 작게 붙습니다 — 금액을 크게 쓰되 어디서 나왔는지 숨기지 않는
-것이 이 화면의 신뢰를 만듭니다.
-
-강조색은 계약면 하나에만 씁니다. 발주자가 한 번 행동하는 지점이기 때문입니다.

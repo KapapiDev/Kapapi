@@ -35,7 +35,7 @@ What the 발주자 approves is the **실행 계약** — 결과물 + 가격 + �
 ## KAP-101 — Routing responsibility is earned
 **Status:** DONE
 
-- early default can be KAPAPI recommendation + client confirmation
+- the client approves the 실행 계약; KAPAPI selects the 작업자 (D-033.1)
 - routing responsibility grows with data
 - universal outcome/SLA promise deferred
 
@@ -109,7 +109,7 @@ Internal code identifiers may remain technical, but no removed vocabulary may le
 ## KAP-112 — Deterministic fixture logic
 **Status:** OPEN
 
-Keep deterministic ranking for demo stability. Interpret top candidate as recommended, not silently assigned before client confirmation.
+Keep deterministic ranking for demo stability. The top eligible candidate is the assigned 작업자, and the ranking's criteria plus the excluded 제안 are what make that inspectable.
 
 ---
 
@@ -166,10 +166,12 @@ Keep category-neutral input, file attachment and one strong primary CTA (`맡기
 
 Public examples can span Data & Documents / Content & Production / Skilled Support. Actual validation opens one or two micro-markets at a time.
 
-## KAP-122 — Recommendation proof
-**Status:** OPEN
+## KAP-122 — Selection proof
+**Status:** DONE
 
-Show filtering, price × completion time, actual work history, recommendation rationale and client confirmation.
+`이용 방법` shows the arriving 제안, the filtering with each excluded bid's reason,
+the selected 작업자 with 가격 · 완료시간 · 유사 업무 · 정시완료율, and the delivered
+result. The 발주자 surface shows only the outcome and its criteria.
 
 ## KAP-123 — Task-first distinction
 **Status:** OPEN
@@ -262,8 +264,8 @@ New invariants:
 
 - no storefront-first landing
 - price + completion time required
-- recommendation != assignment
-- client confirmation exists
+- the 발주자 surface has no ranked comparison and no selection control
+- the 실행 계약 discloses the basis of its price
 - no universal auto-routing claim
 - Architecture/CAD not hero identity
 - task board remains functional

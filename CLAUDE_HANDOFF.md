@@ -154,12 +154,18 @@ The long-term `work in → result out` story belongs below current transaction p
 
 ## Landing narrative
 
-1. task-entry hero
-2. task-first open-work proof
-3. price × completion time
-4. recommendation + client confirmation
-5. completed-work case
-6. urgent work
+발주자 surface:
+
+1. task-entry hero — one question, one field, `맡기기`
+2. 실행 계약: 결과물 · 가격 · 완료시간 · 수정 경계 · 복구 경계 → `이 조건으로 맡기기`
+3. 업무 입력 → 카파피 → 결과, as beats of one real work item
+4. one account, both roles
+
+작업자 surface and `이용 방법`:
+
+5. task-first open work, 가격 × 완료시간 bidding
+6. the selection with its criteria and the excluded 제안
+7. completed-work case, urgent work
 7. result / accept-revise
 8. worker trust/history
 9. future progression: transactions → trust → routing → execution layer
@@ -197,8 +203,8 @@ The prototype is ready for review when:
 - ordinary online-work examples appear, not just CAD
 - `작업 찾기` visibly supports worker discovery
 - price + completion-time proposals are clear
-- KAPAPI recommendation is visible and evidence-backed
-- client confirmation exists
+- the 실행 계약 states 결과물 · 가격 · 완료시간 · 수정 경계 · 복구 경계, and discloses what the price was derived from
+- the 발주자 surface offers no control that picks a worker
 - no page claims universal automatic routing is solved
 - result/revision loop is visible
 - future routing/execution layer is clearly framed as earned evolution
