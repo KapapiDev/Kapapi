@@ -9,10 +9,10 @@ import { ME, PEOPLE, pct, roleIn, route, won } from "@/lib/kapapi";
 import s from "@/components/app.module.css";
 
 const STAGES = [
-  { st: "ASSIGNED", ko: "확정" },
+  { st: "ASSIGNED", ko: "배정 완료" },
   { st: "IN_PROGRESS", ko: "작업 중" },
   { st: "DELIVERED", ko: "결과 도착" },
-  { st: "COMPLETE", ko: "완료" },
+  { st: "COMPLETE", ko: "업무 완료" },
 ] as const;
 
 export default function QuestPage() {
@@ -30,27 +30,25 @@ export default function QuestPage() {
 
   const state = q?.state;
 
-  /* Prototype only: simulate proposals arriving, then stop at recommendation. */
   useEffect(() => {
     if (!q || q.state !== "OPEN") return;
     clear();
     timers.current.push(window.setTimeout(
-      () => setQuestState(q.id, "BIDDING", { at: "방금", ko: "제안이 도착하고 있습니다", en: "BIDS ARRIVING" }),
+      () => setQuestState(q.id, "BIDDING", { at: "방금", ko: "제안이 도착하고 있습니다", en: "제안 도착" }),
       800,
     ));
     timers.current.push(window.setTimeout(
-      () => setQuestState(q.id, "ROUTING", { at: "방금", ko: "카파피 추천이 준비되었습니다", en: "RECOMMENDATION READY" }),
+      () => setQuestState(q.id, "ROUTING", { at: "방금", ko: "카파피 추천이 준비되었습니다", en: "추천 준비" }),
       2500,
     ));
     return clear;
-    // Re-arm only for a newly created quest.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   useEffect(() => {
     if (state !== "REVISION" || !q) return;
     const t = window.setTimeout(
-      () => setQuestState(q.id, "DELIVERED", { at: "방금", ko: "수정본이 도착했습니다", en: "REVISED FILE" }),
+      () => setQuestState(q.id, "DELIVERED", { at: "방금", ko: "수정본이 도착했습니다", en: "수정본 도착" }),
       3000,
     );
     return () => window.clearTimeout(t);
@@ -59,9 +57,9 @@ export default function QuestPage() {
   if (!q) {
     return (
       <div className={`frame ${s.confirm}`}>
-        <h1 className={s.confirmTitle}>의뢰를 찾을 수 없습니다</h1>
+        <h1 className={s.confirmTitle}>업무를 찾을 수 없습니다</h1>
         <div className={s.confirmActs}>
-          <Link href="/my" className={`${s.btn} ${s.btnLine}`}>내 의뢰로</Link>
+          <Link href="/my" className={`${s.btn} ${s.btnLine}`}>내 업무로</Link>
         </div>
       </div>
     );
@@ -83,13 +81,13 @@ export default function QuestPage() {
   function confirmRecommendation() {
     if (!recommended) return;
     clear();
-    setQuestState(q.id, "ASSIGNED", { at: "방금", ko: `${recommended.person.name} 님으로 확정했습니다`, en: "GM CONFIRMED" });
+    setQuestState(q.id, "ASSIGNED", { at: "방금", ko: `${recommended.person.name} 님으로 확정했습니다`, en: "발주자 확정" });
     timers.current.push(window.setTimeout(
-      () => setQuestState(q.id, "IN_PROGRESS", { at: "방금", ko: "작업을 시작했습니다", en: "WORK STARTED" }),
+      () => setQuestState(q.id, "IN_PROGRESS", { at: "방금", ko: "작업을 시작했습니다", en: "작업 시작" }),
       900,
     ));
     timers.current.push(window.setTimeout(
-      () => setQuestState(q.id, "DELIVERED", { at: "방금", ko: "결과 파일이 도착했습니다", en: "RESULT READY" }),
+      () => setQuestState(q.id, "DELIVERED", { at: "방금", ko: "결과 파일이 도착했습니다", en: "결과 도착" }),
       3800,
     ));
   }
@@ -97,9 +95,9 @@ export default function QuestPage() {
   function finishDemo() {
     if (!recommended) return;
     clear();
-    setQuestState(q.id, "ASSIGNED", { at: "방금", ko: `${recommended.person.name} 님으로 확정했습니다`, en: "GM CONFIRMED" });
-    window.setTimeout(() => setQuestState(q.id, "IN_PROGRESS", { at: "방금", ko: "작업을 시작했습니다", en: "WORK STARTED" }), 0);
-    window.setTimeout(() => setQuestState(q.id, "DELIVERED", { at: "방금", ko: "결과 파일이 도착했습니다", en: "RESULT READY" }), 20);
+    setQuestState(q.id, "ASSIGNED", { at: "방금", ko: `${recommended.person.name} 님으로 확정했습니다`, en: "발주자 확정" });
+    window.setTimeout(() => setQuestState(q.id, "IN_PROGRESS", { at: "방금", ko: "작업을 시작했습니다", en: "작업 시작" }), 0);
+    window.setTimeout(() => setQuestState(q.id, "DELIVERED", { at: "방금", ko: "결과 파일이 도착했습니다", en: "결과 도착" }), 20);
   }
 
   const events = (
@@ -123,7 +121,7 @@ export default function QuestPage() {
   return (
     <div className={`frame ${s.wrap}`}>
       <p className={s.crumb}>
-        <Link href="/my">내 의뢰</Link><span aria-hidden="true">/</span><span>의뢰 #{q.id}</span>
+        <Link href="/my">내 업무</Link><span aria-hidden="true">/</span><span>업무 #{q.id}</span>
       </p>
 
       <div className={s.head}>
@@ -134,9 +132,9 @@ export default function QuestPage() {
           {q.nda ? <span className={s.chip}>보안 서약</span> : null}
           <span className={`${s.chip} ${done ? s.chipOk : s.chipAccent}`}>
             <span className={s.dot} aria-hidden="true" />
-            {waiting ? "제안 받는 중" : recommendationReady ? "추천 확인" : q.state === "IN_PROGRESS" || q.state === "ASSIGNED" ? "작업 중" : delivered ? "결과 도착" : q.state === "REVISION" ? "수정 중" : "완료"}
+            {waiting ? "제안 받는 중" : recommendationReady ? "추천 확인" : q.state === "IN_PROGRESS" || q.state === "ASSIGNED" ? "작업 중" : delivered ? "결과 도착" : q.state === "REVISION" ? "수정 중" : "업무 완료"}
           </span>
-          {role !== "NONE" ? <span className={s.chip}>이 의뢰에서 나는 {isGm ? "맡긴 쪽" : "수행하는 쪽"}</span> : null}
+          {role !== "NONE" ? <span className={s.chip}>이 업무에서 나는 {isGm ? "발주자" : "작업자"}</span> : null}
         </div>
       </div>
 
@@ -146,16 +144,16 @@ export default function QuestPage() {
             <section>
               <div className={s.panelHead}>
                 <h2 className={s.panelTitle}>제안을 받고 있습니다</h2>
-                <span className={s.panelEn}>BIDDING</span>
+                <span className={s.panelEn}>제안 모집</span>
               </div>
               <div className={s.work}>
                 <div className={s.workTop}>
-                  <span className={s.workId}>의뢰 #{q.id}</span>
+                  <span className={s.workId}>업무 #{q.id}</span>
                   <span className={s.workMeta}>현재 제안 {q.bids.length}건</span>
                 </div>
                 {events}
               </div>
-              <p className={s.note} style={{ marginTop: 14 }}>조건을 충족한 제안이 모이면 카파피가 가격, 완료시간과 관련 이력을 함께 보고 추천합니다.</p>
+              <p className={s.note} style={{ marginTop: 14 }}>조건을 충족한 제안이 모이면 카파피가 가격, 완료시간과 관련 작업이력을 함께 보고 추천합니다.</p>
             </section>
           ) : null}
 
@@ -163,7 +161,7 @@ export default function QuestPage() {
             <section>
               <div className={s.panelHead}>
                 <h2 className={s.panelTitle}>카파피 추천</h2>
-                <span className={s.panelEn}>RECOMMENDATION</span>
+                <span className={s.panelEn}>추천</span>
               </div>
               <div className={s.trust}>
                 <div className={s.chips} style={{ marginBottom: 12 }}>
@@ -174,8 +172,8 @@ export default function QuestPage() {
                 <p className={s.trustName}>{recommended.person.name}</p>
                 <p className={s.trustCareer}>{recommended.person.career}</p>
                 <div className={s.stats}>
-                  <span className={s.stat}><span className={s.sk}>같은 유형</span><span className={s.sv}>{recommended.relevant}건</span></span>
-                  <span className={s.stat}><span className={s.sk}>정시 납품</span><span className={s.sv}>{pct(recommended.person.onTime)}</span></span>
+                  <span className={s.stat}><span className={s.sk}>유사 업무</span><span className={s.sv}>{recommended.relevant}건</span></span>
+                  <span className={s.stat}><span className={s.sk}>정시완료</span><span className={s.sv}>{pct(recommended.person.onTime)}</span></span>
                   <span className={s.stat}><span className={s.sk}>수정 요청</span><span className={s.sv}>{pct(recommended.person.revision)}</span></span>
                 </div>
                 <div className={s.note}>
@@ -202,7 +200,7 @@ export default function QuestPage() {
                       <div className={s.chips}>
                         <span className={s.chip}>{won(c.bid.price)}</span>
                         <span className={s.chip}>{c.bid.hours}시간</span>
-                        <span className={s.chip}>유사업무 {c.relevant}건</span>
+                        <span className={s.chip}>유사 업무 {c.relevant}건</span>
                       </div>
                     </div>
                   ))}
@@ -214,16 +212,16 @@ export default function QuestPage() {
           {assignee && assigned ? (
             <section>
               <div className={s.panelHead}>
-                <h2 className={s.panelTitle}>{isGm ? "확정된 작업자" : "이 의뢰를 맡긴 사람"}</h2>
-                <span className={s.panelEn}>{isGm ? "PLAYER" : "GM"}</span>
+                <h2 className={s.panelTitle}>{isGm ? "확정된 작업자" : "이 업무의 발주자"}</h2>
+                <span className={s.panelEn}>{isGm ? "작업자" : "발주자"}</span>
               </div>
               <div className={s.trust}>
                 <p className={s.trustName}>{isGm ? assignee.name : issuer.name}</p>
                 <p className={s.trustCareer}>{isGm ? assignee.career : issuer.career}</p>
                 {isGm ? (
                   <div className={s.stats}>
-                    <span className={s.stat}><span className={s.sk}>같은 유형</span><span className={s.sv}>{assignee.history[q.category] ?? 0}건</span></span>
-                    <span className={s.stat}><span className={s.sk}>정시 납품</span><span className={s.sv}>{pct(assignee.onTime)}</span></span>
+                    <span className={s.stat}><span className={s.sk}>유사 업무</span><span className={s.sv}>{assignee.history[q.category] ?? 0}건</span></span>
+                    <span className={s.stat}><span className={s.sk}>정시완료</span><span className={s.sv}>{pct(assignee.onTime)}</span></span>
                     <span className={s.stat}><span className={s.sk}>수정 요청</span><span className={s.sv}>{pct(assignee.revision)}</span></span>
                   </div>
                 ) : null}
@@ -235,11 +233,11 @@ export default function QuestPage() {
             <section>
               <div className={s.panelHead}>
                 <h2 className={s.panelTitle}>작업 진행 상황</h2>
-                <span className={s.panelEn}>WORKROOM</span>
+                <span className={s.panelEn}>진행 상태</span>
               </div>
               <div className={s.work}>
                 <div className={s.workTop}>
-                  <span className={s.workId}>의뢰 #{q.id}</span>
+                  <span className={s.workId}>업무 #{q.id}</span>
                   <span className={s.workMeta}>마감 {q.deadlineLabel}</span>
                 </div>
                 <div className={s.stages}>
@@ -255,13 +253,13 @@ export default function QuestPage() {
           {(delivered || done) && q.result ? (
             <section>
               <div className={s.panelHead}>
-                <h2 className={s.panelTitle}>{done ? "완료된 의뢰" : "결과가 도착했습니다"}</h2>
-                <span className={s.panelEn}>{done ? "QUEST COMPLETE" : "RESULT READY"}</span>
+                <h2 className={s.panelTitle}>{done ? "완료된 업무" : "결과가 도착했습니다"}</h2>
+                <span className={s.panelEn}>{done ? "업무 완료" : "결과 도착"}</span>
               </div>
               <div className={s.result}>
                 <div className={s.resultHead}>
-                  <p className={s.resultKo}>{done ? "작업이 완료되었습니다" : "결과 파일이 도착했습니다"}</p>
-                  <p className={s.resultEn}>{done ? "QUEST COMPLETE" : "FILE DELIVERED"}</p>
+                  <p className={s.resultKo}>{done ? "업무가 완료되었습니다" : "결과 파일이 도착했습니다"}</p>
+                  <p className={s.resultEn}>{done ? "업무 완료" : "파일 전달"}</p>
                 </div>
                 <div className={s.section}>
                   {q.result.files.map((f) => (
