@@ -1,921 +1,415 @@
-# KAPAPI Prototype v1 — TASK QUEUE
+# KAPAPI — TASK QUEUE
 
-Status: **implementation queue**  
-Updated: **2026-09-02**  
-Target implementation branch: `feat/prototype-v1`
+Status: **current implementation queue**  
+Updated: **2026-09-03**  
+Primary implementation target: `feat/prototype-v2`
 
-Rules:
+Authority:
 
-- Start from the latest `docs/initial-product-design` state.
-- Do not implement directly on `main`.
-- Do not merge to `main` automatically.
-- Product behavior follows latest `docs/DECISIONS.md` + `docs/PRODUCT.md` + `docs/PROTOTYPE_SPEC.md`.
-- Default GM flow is **hands-off auto-routing** after a valid QUEST is submitted.
-- Use `docs/QA_CHECKLIST.md` as the release gate.
-- The final hero MP4 is a pending external asset. Do not block implementation waiting for it.
+1. `docs/ORIGIN_AND_GROWTH_THESIS.md`
+2. `docs/DECISIONS.md` D-032
+3. `docs/PRODUCT.md`
+4. `docs/ROADMAP.md`
+5. `docs/PROTOTYPE_SPEC.md`
+6. current v2 visual/content rules
 
-Status values:
-
-`OPEN` / `IN_PROGRESS` / `BLOCKED` / `DONE`
+Do not restore D-031's universal day-one auto-routing behavior.
 
 ---
 
-# P0 — Canon / implementation baseline
+# P0 — Canon alignment
 
-## KAP-000 — Canon preflight
+## KAP-100 — Task-first canon
 
-**Status:** OPEN  
-**Priority:** P0
-
-Read all implementation-authority docs in `CLAUDE_HANDOFF.md` order.
-
-Output before coding:
-
-- concise implementation plan,
-- assumptions that are mock-only,
-- any actual contradictions that remain after applying supersession rules.
+**Status:** DONE
 
 Acceptance:
 
-- no default GM BID-selection flow survives,
-- light-first public rule acknowledged,
-- hero media dependency understood as non-blocking.
+- founder-origin problem preserved
+- task-first market is explicit
+- Architecture/CAD is testbed only
+- work category is broader than only professional work
+- PRICE + DELIVERY remains mandatory
+- Outcome Layer remains North Star
 
----
+## KAP-101 — Supersede premature auto-routing
 
-## KAP-001 — Create implementation branch
-
-**Status:** OPEN  
-**Priority:** P0  
-**Depends on:** KAP-000
-
-Create/use:
-
-`feat/prototype-v1`
-
-from the latest approved documentation state.
+**Status:** DONE
 
 Acceptance:
 
-- `main` untouched,
-- implementation includes current docs,
-- clean starting status.
+- D-032 supersedes D-031
+- early default can be KAPAPI recommendation + GM confirmation
+- routing responsibility grows with data
+- universal outcome/SLA promise is deferred
 
----
+## KAP-102 — Resource-agnostic Outcome Layer
 
-## KAP-002 — Technical scaffold
-
-**Status:** OPEN  
-**Priority:** P0  
-**Depends on:** KAP-001
-
-Establish the application stack.
-
-Preferred direction:
-
-- Next.js App Router
-- TypeScript
-- disciplined design tokens
-- Motion for state/layout motion
-- Number Flow only where useful
-- typed deterministic mock data
-
-Tailwind is acceptable but must not define the visual identity.
+**Status:** DONE
 
 Acceptance:
 
-- dev server works,
-- production build works,
-- baseline lint/typecheck configured,
-- no default starter/demo UI remains.
+Long-term execution explicitly permits:
+
+- human PLAYER
+- AI
+- deterministic automation
+- specialist partner
+- hybrid execution
+- multi-PLAYER decomposition
 
 ---
 
-# P0 — Design foundation
+# P0 — Prototype behavior realignment
 
-## KAP-010 — Design token foundation
+## KAP-110 — Replace automatic assignment with recommendation + confirmation
 
-**Status:** OPEN  
-**Priority:** P0  
-**Depends on:** KAP-002
+**Status:** OPEN
 
-Implement KAPAPI-native tokens for:
+Change v2 transaction proof from:
 
-- paper/white/ink/graphite neutrals
-- hairline borders
-- one signal accent family
-- semantic state colors
-- spacing rhythm
-- typography roles
-- restrained radii
-- focus state
-- motion timing/eases from `KAPAPI_MOTION.md`
+`BIDs → KAPAPI auto-assigns`
 
-Acceptance:
+to:
 
-- light mode is public default,
-- dark operational surfaces are component/state-level, not global skin,
-- no recognizable stock component-library theme.
+`BIDs → eligibility/ranking → KAPAPI recommendation → GM confirms → assigned`
 
----
+Required UI:
 
-## KAP-011 — Typography and page frame
-
-**Status:** OPEN  
-**Priority:** P0  
-**Depends on:** KAP-010
-
-Implement:
-
-- display/editorial role
-- product heading role
-- Korean/English body role
-- restrained mono/HUD role
-- desktop page frame/grid
-- mobile frame
-
-Acceptance:
-
-- Korean text remains readable at all relevant sizes,
-- no novelty game font,
-- no tiny gray marketing copy.
-
----
-
-## KAP-012 — Core primitive components
-
-**Status:** OPEN  
-**Priority:** P0  
-**Depends on:** KAP-010
-
-Create KAPAPI-native primitives as needed:
-
-- Button
-- Text/Input surface
-- File attachment
-- Status chip
-- Hairline metadata row
-- QUEST card
-- PLAYER/trust compact row
-- Timeline state
-- Result/file object
-- Modal/object-detail primitive
-
-Acceptance:
-
-- custom visual language,
-- keyboard/focus behavior works,
-- no excessive rounded-card aesthetic.
-
----
-
-# P0 — Hero / first touch
-
-## KAP-020 — Hero structure exploration
-
-**Status:** OPEN  
-**Priority:** P0  
-**Depends on:** KAP-011
-
-Before final hero coding, propose **three text-only hero information structures**.
-
-Score each 1–10 on:
-
-- three-second understanding
-- GM primary-action clarity
-- result-first differentiation
-- premium visual potential
-- mobile adaptability
-
-Choose the strongest structure independently.
-
-Do not use a generated full hero screenshot as a layout template.
-
-Acceptance:
-
-- one clear winner selected with short reasoning,
-- task-entry surface remains protagonist.
-
----
-
-## KAP-021 — Landing hero implementation
-
-**Status:** OPEN  
-**Priority:** P0  
-**Depends on:** KAP-020, KAP-012
-
-Implement light-first hero.
-
-Required:
-
-- KAPAPI identity
-- plain-language headline
-- task-entry surface
-- attach-file action
-- `일 맡기기 →`
-- simple process line
-- secondary `일하러 오셨나요? → 일 찾기`
-- media/product proof slot
-
-Acceptance:
-
-- passes three-second test,
-- no KAPAPI vocabulary learning required before action,
-- no mini-dashboard wall,
-- media cannot visually dominate the input.
-
----
-
-## KAP-022 — Hero product-movie component
-
-**Status:** OPEN  
-**Priority:** P0  
-**Depends on:** KAP-021
-
-Implement the component contract from `docs/HERO_MEDIA.md`.
-
-Support:
-
-- video source config
-- poster
-- muted/playsInline
-- responsive crop
-- reduced-motion/static fallback
-- mobile fallback
-- pending-asset state
-
-Do not wait for final MP4.
-
-Acceptance:
-
-- missing video does not break hero,
-- no layout shift,
-- product copy/input renders before heavy media.
-
----
-
-## KAP-023 — Hero real-UI transaction sequence
-
-**Status:** OPEN  
-**Priority:** P0  
-**Depends on:** KAP-022, KAP-040
-
-Create real HTML/CSS product motion for the movie middle:
-
-```text
-WORK SUBMITTED
-→ BIDS ARRIVE
-→ KAPAPI ROUTES
-→ PLAYER ASSIGNED
-→ WORK RUNS
-→ RESULT READY
-```
-
-Use actual KAPAPI components/data rather than AI-video-generated UI.
-
-Acceptance:
-
-- GM never clicks a winning BID,
-- state readable at a glance,
-- routing evidence is data-backed,
-- sequence has a static/reduced-motion equivalent.
-
----
-
-# P0 — GM submit / scope
-
-## KAP-030 — GM task-entry state
-
-**Status:** OPEN  
-**Priority:** P0  
-**Depends on:** KAP-021
-
-Build task entry with:
-
-- free-text request
-- file attachment mock
-- example placeholders across categories
-- submit transition
-
-Acceptance:
-
-- works keyboard/mobile,
-- clear input state,
-- category-neutral hero.
-
----
-
-## KAP-031 — AI-assisted scope preview
-
-**Status:** OPEN  
-**Priority:** P0  
-**Depends on:** KAP-030
-
-Implement deterministic/mock structured scope:
-
-- summary
-- source files
-- exact scope
-- deliverables
-- deadline
-- output format
-- objective acceptance points
-- revision boundary
-- missing info
-- NDA/confidentiality indicator
-- budget boundary if used
-
-Primary action:
-
-`이대로 맡기기`
-
-Acceptance:
-
-- no authoritative AI final price,
-- no subjective AI quality claim,
-- value is scope clarity.
-
----
-
-## KAP-032 — Hands-off submission confirmation
-
-**Status:** OPEN  
-**Priority:** P0  
-**Depends on:** KAP-031
-
-After valid submission, show the product shift clearly.
-
-Copy direction:
-
-> **맡겼습니다. 이제 하시던 일 하세요.**
-
-Use subtle approved sapphire confirmation feedback where appropriate.
-
-Acceptance:
-
-- visitor understands routine sourcing is now KAPAPI's work,
-- no next-step button saying `작업자 선택하기`.
-
----
-
-# P0 — Marketplace / routing engine demo
-
-## KAP-040 — Typed demo data model
-
-**Status:** OPEN  
-**Priority:** P0  
-**Depends on:** KAP-002
-
-Create typed fixtures for:
-
-- QUEST
-- GM
-- PLAYER
-- BID
-- routing evidence
-- status events
-- delivery/result
-- review/revision
-
-State enum must cover spec states.
-
-Acceptance:
-
-- deterministic/replayable,
-- no lorem ipsum as core demo data,
-- architecture fixture plus at least two category-neutral/general examples.
-
----
-
-## KAP-041 — Routing policy fixture
-
-**Status:** OPEN  
-**Priority:** P0  
-**Depends on:** KAP-040
-
-Implement a transparent deterministic prototype routing function/model using fields such as:
-
-- eligibility
-- deadline feasibility
-- budget feasibility
-- relevant completion history
-- on-time
-- revision/failure
-- availability
+- recommended PLAYER
 - PRICE
 - DELIVERY
-- task fit
-
-Output:
-
-- selected PLAYER
-- routing rationale array
-- optional display score
+- relevant trust/history
+- short recommendation rationale
+- primary `이 작업자로 진행`
+- secondary `다른 제안 보기`
 
 Acceptance:
 
-- not lowest-price-only,
-- not shortest-time-only,
-- not opaque LLM-only,
-- same fixture produces same route.
+- no universal auto-routing claim
+- recommendation remains visibly useful
+- user can understand why the recommendation exists
+- alternatives remain accessible without a giant comparison wall
 
----
+## KAP-111 — Update state model
 
-## KAP-042 — BID arrival system
+**Status:** OPEN
 
-**Status:** OPEN  
-**Priority:** P0  
-**Depends on:** KAP-040, KAP-012
-
-Implement `BID_ARRIVAL` motion/state:
-
-- incremental arrival
-- PRICE + DELIVERY resolution
-- trust evidence
-- layout reflow
-
-Acceptance:
-
-- no bounce/pop theatre,
-- existing BIDs remain legible,
-- reduced-motion path works.
-
----
-
-## KAP-043 — KAPAPI auto-routing decision
-
-**Status:** OPEN  
-**Priority:** P0  
-**Depends on:** KAP-041, KAP-042
-
-Implement the modern replacement for legacy `BID_DECISION`.
-
-Sequence:
+Add/rename states as needed:
 
 ```text
-BIDs settle
-→ eligibility/routing evaluation
-→ selected PLAYER state locks
-→ rationale resolves
-→ PLAYER ASSIGNED
+BIDDING
+RECOMMENDATION_READY
+CONFIRMED
+ASSIGNED
+IN_PROGRESS
+DELIVERED
+REVIEW
+COMPLETE
 ```
+
+Remove copy that equates recommendation with already-proven routing automation.
+
+## KAP-112 — Update deterministic fixture logic
+
+**Status:** OPEN
+
+Keep deterministic ranking for demo stability, but interpret the top candidate as **recommended**, not silently assigned before GM confirmation.
 
 Acceptance:
 
-- system performs selection,
-- GM selection control absent by default,
-- non-selected candidates may remain inspectable without asking GM to decide.
+- existing route/rank evidence can be reused
+- confirmation creates assignment
+- tests distinguish recommendation from assignment
 
 ---
 
-## KAP-044 — GM orchestration status surface
+# P0 — Landing/message alignment
 
-**Status:** OPEN  
-**Priority:** P0  
-**Depends on:** KAP-043
+## KAP-120 — Hero copy
 
-Build GM-facing status:
+**Status:** OPEN
 
-- BIDs received count
-- routing state
-- assigned PLAYER
-- why assigned
-- deadline
-- current stage
-- latest event
+Replace current implication:
+
+> 전문가 배정부터 결과 전달까지 카파피가 진행합니다.
+
+with current-stage copy that does not overclaim.
+
+Preferred semantic direction:
+
+> **맡길 일을 적어주세요.**  
+> 카파피가 작업 조건을 정리하고 맞는 제안을 추천합니다.
+
+Keep:
+
+- category-neutral task input
+- file attachment
+- strong primary CTA
+- `작업 찾기` visible as PLAYER path
+
+## KAP-121 — Keep task-first examples broad
+
+**Status:** OPEN
+
+Ensure hero/landing examples span multiple categories, such as:
+
+- spreadsheet/data
+- PPT/document
+- image/e-commerce
+- CAD/skilled support
+
+Architecture/CAD may appear as one proof case, not the visual identity.
+
+## KAP-122 — Rewrite routing proof as recommendation proof
+
+**Status:** OPEN
+
+Current wording like:
+
+> 제안은 경쟁합니다. 비교는 하지 않으셔도 됩니다.
+
+must become a present-tense truthful story:
+
+- KAPAPI filters invalid/ineligible options
+- KAPAPI recommends the strongest fit
+- GM confirms
+- future routing can remove this decision as evidence grows
+
+## KAP-123 — Add explicit task-first distinction
+
+**Status:** OPEN
+
+Landing should demonstrate rather than over-explain:
+
+> work exists first → PLAYER chooses suitable QUEST
+
+Use the real `작업 찾기` board as product proof where possible.
+
+## KAP-124 — Reframe future Outcome Layer
+
+**Status:** OPEN
+
+Add a concise future-evolution moment:
+
+```text
+QUEST COMPLETE data
+→ trust
+→ better recommendation
+→ routing/recovery
+→ work in → result out
+```
+
+Label as future/product evolution. Do not present universal work-in/result-out as already guaranteed.
+
+---
+
+# P0 — GM creation/result flow
+
+## KAP-130 — QUEST draft copy
+
+**Status:** OPEN
+
+Keep AI-assisted scope structure but change post-submit copy that says KAPAPI will automatically find/select and only return a result.
+
+Current-stage confirmation should say approximately:
+
+> 의뢰가 등록되었습니다. 제안이 모이면 카파피가 조건과 이력을 바탕으로 추천해드립니다.
+
+## KAP-131 — Recommendation confirmation
+
+**Status:** OPEN
+
+Create a GM confirmation interaction reachable from the demo path.
 
 Acceptance:
 
-- enough transparency to trust the route,
-- no vendor-management burden recreated.
+- recommended candidate can be confirmed
+- alternatives can be inspected
+- confirmation changes state to assigned
+
+## KAP-132 — Result loop
+
+**Status:** VERIFY
+
+Preserve:
+
+- delivered files
+- deadline/timestamp
+- objective checks
+- accept
+- revision request
+
+Do not add unsupported AI quality claims.
 
 ---
 
 # P0 — PLAYER flow
 
-## KAP-050 — QUEST Board
+## KAP-140 — Preserve task board
 
-**Status:** OPEN  
-**Priority:** P0  
-**Depends on:** KAP-040, KAP-012
+**Status:** VERIFY
 
-Build PLAYER-side QUEST board.
+The current `/board` structure strongly supports task-first identity.
 
-Include:
+Verify:
 
-- clear titles
-- category
-- deadline
-- TIME ATTACK where valid
-- deliverable
-- BID count
-- eligibility metadata
-- status
+- `작업 찾기` remains primary PLAYER path
+- filters include suitable work / urgent work
+- no storefront requirement is introduced
+- one account can issue and perform different QUESTs
 
-Acceptance:
+## KAP-141 — BID form
 
-- scannable,
-- not decorative fake marketplace,
-- mobile usable.
+**Status:** VERIFY
 
----
+Every BID must require:
 
-## KAP-051 — QUEST Detail
+- PRICE
+- committed DELIVERY TIME
 
-**Status:** OPEN  
-**Priority:** P0  
-**Depends on:** KAP-050
+Avoid long proposal theatre.
 
-Show:
+## KAP-142 — Trust history
 
-- inputs/files
-- exact scope
-- deliverables
-- deadline
-- acceptance criteria
-- NDA/security
-- eligibility
+**Status:** VERIFY
 
-Acceptance:
-
-- a professional can decide whether to BID quickly.
+Task-specific career/history, on-time and revision signals should outrank decorative LEVEL / EXP.
 
 ---
 
-## KAP-052 — PRICE × DELIVERY BID form
+# P1 — Long-term concept proof
 
-**Status:** OPEN  
-**Priority:** P0  
-**Depends on:** KAP-051
+## KAP-150 — Outcome execution resource diagram
 
-Required fields:
+**Status:** OPEN
 
-- price
-- committed elapsed delivery time
-
-Optional:
-
-- short note
-
-Acceptance:
-
-- no long proposal letter,
-- price and delivery are visually paired,
-- validation works.
-
----
-
-# P0 — Trust / profile
-
-## KAP-060 — PLAYER profile
-
-**Status:** OPEN  
-**Priority:** P0  
-**Depends on:** KAP-040, KAP-012
-
-Hierarchy:
-
-1. relevant career
-2. task-specific history
-3. on-time
-4. revision rate
-5. completion count
-6. rating
-7. dispute/failure signal where fixture supports it
-8. LEVEL / EXP
-
-Acceptance:
-
-- professional proof dominates game layer,
-- profile answers explanation/execution risk.
-
----
-
-# P0 — Workroom / result
-
-## KAP-070 — Workroom timeline
-
-**Status:** OPEN  
-**Priority:** P0  
-**Depends on:** KAP-044
-
-Build operational status/file timeline.
-
-Use observable stages, timestamps and events.
-
-Acceptance:
-
-- no fake progress percentages,
-- chat is not the primary information architecture,
-- blocked/revision state can be represented.
-
----
-
-## KAP-071 — Delivery / result surface
-
-**Status:** OPEN  
-**Priority:** P0  
-**Depends on:** KAP-070
-
-Show:
-
-- delivered file
-- delivery timestamp
-- deadline relation
-- objective preflight only if actually represented by fixture
-- `결과 확인 / 합격`
-- `수정 요청`
-
-Acceptance:
-
-- result dominates,
-- no AI subjective-quality claim.
-
----
-
-## KAP-072 — Revision loop
-
-**Status:** OPEN  
-**Priority:** P0  
-**Depends on:** KAP-071
-
-Implement a thin revision request tied to agreed scope/criteria.
-
-Acceptance:
-
-- revision can return to work state,
-- acceptance can complete QUEST.
-
----
-
-## KAP-073 — QUEST completion
-
-**Status:** OPEN  
-**Priority:** P0  
-**Depends on:** KAP-071
-
-Implement restrained completion state.
-
-May show:
-
-- file delivered
-- time proof
-- objective checks
-- completion history/EXP update
-
-Acceptance:
-
-- no confetti/coins/trophy animation,
-- interface becomes still after resolution.
-
----
-
-# P0 — Landing narrative proof
-
-## KAP-080 — Flagship CAD case study
-
-**Status:** OPEN  
-**Priority:** P0  
-**Depends on:** KAP-043, KAP-060
-
-Create below-fold real-feeling QUEST #001 demonstrating:
-
-- hand-drawn/current-condition material → DWG/PDF result
-- PRICE × DELIVERY bids
-- relevant career/trust
-- KAPAPI routing
-- result
-
-Acceptance:
-
-- clearly labeled as example/wedge,
-- does not infect hero with CAD-only positioning.
-
----
-
-## KAP-081 — TIME ATTACK section/state
-
-**Status:** OPEN  
-**Priority:** P0  
-**Depends on:** KAP-050
-
-Demonstrate urgency through real countdown/time semantics.
-
-Acceptance:
-
-- no screaming red UI,
-- no constant pulsing card,
-- liquidity/guarantee not overstated.
-
----
-
-## KAP-082 — Autopilot direction section
-
-**Status:** OPEN  
-**Priority:** P0  
-**Depends on:** KAP-044
-
-Show complexity collapsing behind KAPAPI:
+Future-direction proof may show:
 
 ```text
-FILE + DEADLINE
-→ KAPAPI
-→ RESULT
+KAPAPI
+├ human PLAYER
+├ AI
+├ automation
+├ specialist partner
+└ hybrid / multi-PLAYER
+        ↓
+      RESULT
 ```
 
-Acceptance:
+Keep this concise and product-like, not a pitch-deck diagram wall.
 
-- direction is compelling,
-- clearly not a claim that all future functions are production-ready today.
+## KAP-151 — Data flywheel proof
 
----
+**Status:** OPEN
 
-# P1 — Motion polish
+Demonstrate that completed QUESTs produce useful product data:
 
-## KAP-090 — Motion token implementation
+- PRICE
+- DELIVERY
+- task fit
+- on-time
+- revision
+- failure/recovery
 
-**Status:** OPEN  
-**Priority:** P1  
-**Depends on:** KAP-010
-
-Implement canonical motion durations/eases from `KAPAPI_MOTION.md`.
-
-Acceptance:
-
-- reusable tokens,
-- reduced-motion support.
+Then connect that to recommendation/routing.
 
 ---
 
-## KAP-091 — Object continuity / morph polish
+# P0 — QA
 
-**Status:** OPEN  
-**Priority:** P1  
-**Depends on:** KAP-050, KAP-060
+## KAP-160 — Update automated invariants
 
-Use shared-layout/object continuity where it improves understanding.
+**Status:** OPEN
 
-Acceptance:
+Existing v2 scripts that assert no GM picker / automatic routing must be updated.
 
-- no visible spring bounce,
-- keyboard/focus behavior correct.
+New invariants:
 
----
+- no seller-storefront-first landing
+- PRICE + DELIVERY required
+- recommendation != assignment
+- GM confirmation exists
+- no universal auto-routing claim
+- Architecture/CAD not hero identity
+- task board remains functional
+- no permanent GM/PLAYER account split
+- future Outcome Layer clearly labeled as future
 
-## KAP-092 — Completion / routing micro-polish
+## KAP-161 — Build / lint / typecheck
 
-**Status:** OPEN  
-**Priority:** P1  
-**Depends on:** KAP-043, KAP-073
+**Status:** OPEN
 
-Polish:
+Run all available repository checks after code changes.
 
-- selected routing state
-- number changes
-- status transitions
-- completion rows
+## KAP-162 — Desktop/mobile visual QA
 
-Acceptance:
+**Status:** OPEN
 
-- motion supports hierarchy,
-- no decorative overload.
+Verify at minimum:
 
----
+- desktop landing + transaction path
+- mobile landing + transaction path
+- board
+- QUEST detail / BID
+- recommendation / confirmation
+- result
+- reduced motion
 
-# P0 — Responsive / accessibility
+No horizontal overflow, broken touch targets, missing labels or unreadable hero sequence.
 
-## KAP-100 — Mobile pass
+## KAP-163 — Preview QA
 
-**Status:** OPEN  
-**Priority:** P0  
-**Depends on:** KAP-021, KAP-050, KAP-071
+**Status:** OPEN
 
-Audit all required surfaces on mobile.
+When Vercel preview access is available:
 
-Acceptance follows `QA_CHECKLIST.md` mobile rules.
-
----
-
-## KAP-101 — Keyboard / focus / semantics pass
-
-**Status:** OPEN  
-**Priority:** P0  
-**Depends on:** core surface completion
-
-Acceptance:
-
-- all primary actions keyboard-operable,
-- visible focus,
-- semantic landmarks/forms/status.
+- verify the actual deployed URL
+- inspect hero timing/compositing
+- verify copy/state matches D-032
+- record remaining weaknesses honestly
 
 ---
 
-## KAP-102 — Reduced motion pass
+# P1 — Application proof
 
-**Status:** OPEN  
-**Priority:** P0  
-**Depends on:** KAP-090
+## KAP-170 — 60-second 1R demo path
 
-Acceptance:
+**Status:** OPEN
 
-- no lost content,
-- hero remains understandable,
-- routing/progress still clear.
-
----
-
-# P0 — Performance / final QA
-
-## KAP-110 — Hero/media performance pass
-
-**Status:** OPEN  
-**Priority:** P0  
-**Depends on:** KAP-022
-
-Audit:
-
-- initial render not blocked by video
-- poster/fallback
-- layout stability
-- mobile loading
-- asset sizing
-
----
-
-## KAP-111 — Full QA checklist audit
-
-**Status:** OPEN  
-**Priority:** P0  
-**Depends on:** all P0 implementation tasks
-
-Run `docs/QA_CHECKLIST.md`.
-
-Output a report with:
-
-- BLOCKER PASS/FAIL
-- known compromises
-- commands/tests run
-- remaining media dependency
-
----
-
-## KAP-112 — Build / lint / typecheck / tests
-
-**Status:** OPEN  
-**Priority:** P0  
-**Depends on:** KAP-111
-
-Run all repository checks.
-
-Fix failures within prototype scope.
-
-Acceptance:
-
-- production build passes,
-- typecheck passes,
-- configured lint/tests pass or explicit justified exception documented.
-
----
-
-## KAP-113 — 60-second demo rehearsal
-
-**Status:** OPEN  
-**Priority:** P0  
-**Depends on:** KAP-112
-
-Exercise:
+Target:
 
 ```text
 Landing
-→ work input
-→ scope
-→ submit
-→ PLAYER BID
-→ KAPAPI routing
-→ work/result
-→ accept/revision
+→ GM creates QUEST
+→ PLAYER finds work
+→ PRICE + DELIVERY BID
+→ KAPAPI recommendation
+→ GM confirmation
+→ execution/result
+→ accept/revise
+→ future Outcome Layer
 ```
 
-Acceptance:
+## KAP-171 — Preserve honest prototype boundaries
 
-- repeatable without live waiting,
-- service understandable without verbal rescue.
+**Status:** OPEN
+
+Do not imply production availability of:
+
+- escrow/payment custody
+- tax settlement
+- universal identity verification
+- universal auto-routing
+- universal SLA/outcome guarantee
+- subjective AI quality judgment
 
 ---
 
-## KAP-114 — Final review package
+# Completion condition
 
-**Status:** OPEN  
-**Priority:** P0  
-**Depends on:** KAP-113
+The alignment pass is complete when a new reviewer can describe KAPAPI as:
 
-Prepare for founder review:
+> **“일이 먼저 올라오는 Task Market에서 시작해서, 거래 데이터를 쌓아 추천·배정·복구를 발전시키고 결국 일을 넣으면 결과가 돌아오는 시스템으로 가는 서비스.”**
 
-- summary of implemented scope
-- branch/commit
-- QA audit
-- screenshots if available
-- exact remaining asset needs
-- no automatic main merge
-
-Stop for review.
+and no canonical document or current v2 user-facing flow materially contradicts that description.
