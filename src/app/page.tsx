@@ -1,5 +1,5 @@
 import { Hero } from "@/components/hero";
-import { AccountSection, CaseSection, ResultSection, RoutingProof, UrgentSection } from "@/components/sections";
+import { AccountSection, CaseSection, EvolutionSection, ResultSection, RoutingProof, UrgentSection } from "@/components/sections";
 
 export default function Home() {
   return (
@@ -9,6 +9,7 @@ export default function Home() {
       <CaseSection />
       <UrgentSection />
       <ResultSection />
+      <EvolutionSection />
       <AccountSection />
     </>
   );
