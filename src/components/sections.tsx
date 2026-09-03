@@ -12,9 +12,9 @@ const R = route(PROOF);
 const ORDER = [...R.ranked, ...R.dropped];
 
 const STAGES = [
-  { ko: "제안이 도착했습니다", en: "BIDS RECEIVED" },
-  { ko: "조건을 확인합니다", en: "ELIGIBILITY CHECK" },
-  { ko: "추천이 준비되었습니다", en: "RECOMMENDATION READY" },
+  { ko: "제안이 도착했습니다", en: "제안 도착" },
+  { ko: "조건을 확인합니다", en: "조건 확인" },
+  { ko: "추천이 준비되었습니다", en: "추천 준비" },
 ] as const;
 
 export function RoutingProof() {
@@ -47,13 +47,13 @@ export function RoutingProof() {
     <section className={`${s.sec} ${s.secLine}`} aria-labelledby="proof-h">
       <div className="frame">
         <div className={s.head}>
-          <h2 className={s.h} id="proof-h">제안은 가격만 보지 않습니다.<br />카파피가 먼저 추천합니다.</h2>
-          <p className={s.note}>자격·마감·예산을 거르고, 같은 유형 이력과 납기 신뢰까지 함께 봅니다. 추천을 확인한 뒤 진행할 작업자를 확정합니다.</p>
+          <h2 className={s.h} id="proof-h">가격과 완료시간을 함께 봅니다.<br />카파피가 먼저 추천합니다.</h2>
+          <p className={s.note}>자격·마감·예산을 거르고, 유사 업무 이력과 정시완료율까지 함께 봅니다. 추천을 확인한 뒤 진행할 작업자를 확정합니다.</p>
         </div>
 
         <div className={s.proof} ref={ref}>
           <div className={s.proofTop}>
-            <span className={s.proofId}>의뢰 #{PROOF.id}</span>
+            <span className={s.proofId}>업무 #{PROOF.id}</span>
             <span className={s.proofMeta}>{PROOF.categoryLabel}</span>
             <span className={s.proofMeta}>마감 {PROOF.deadlineHours}시간</span>
             <span className={s.proofState}>
@@ -93,7 +93,7 @@ export function RoutingProof() {
                 ))}
               </div>
               <p className={s.whyFoot}>
-                지금 단계의 카파피는 추천 근거를 보여주고 의뢰자가 확정합니다. 거래 데이터가 쌓일수록 이 선택과 복구를 더 많이 맡는 방향으로 발전합니다.
+                지금 단계의 카파피는 추천 근거를 보여주고 발주자가 확정합니다. 거래 데이터가 쌓일수록 이 선택과 복구를 더 많이 맡는 방향으로 발전합니다.
               </p>
             </div>
           ) : null}
@@ -110,14 +110,14 @@ export function CaseSection() {
     <section className={`${s.sec} ${s.secLine}`} aria-labelledby="case-h">
       <div className="frame">
         <div className={s.head}>
-          <h2 className={s.h} id="case-h">작은 사무부터 숙련 업무까지, 단위는 QUEST</h2>
+          <h2 className={s.h} id="case-h">작은 사무부터 숙련 업무까지,<br />끝이 명확하면 거래할 수 있습니다.</h2>
           <p className={s.note}>카파피는 특정 업종 서비스가 아닙니다. 건축·도면은 창업자가 결과를 직접 판단할 수 있어 먼저 깊게 검증하는 고숙련 예시 중 하나입니다.</p>
         </div>
 
         <div className={s.case}>
           <div>
             <div className={s.spec}>
-              <p className="hud" style={{ color: "var(--faint)" }}>의뢰 #{q.id}</p>
+              <p className="hud" style={{ color: "var(--faint)" }}>업무 #{q.id}</p>
               <h3 className={s.specTitle}>{q.title}</h3>
               <div className={s.mrow}><span className={s.mk}>분야</span><span className={s.mv}>{q.categoryLabel}</span></div>
               <div className={s.mrow}><span className={s.mk}>마감</span><span className={s.mv}>{q.deadlineLabel}</span></div>
@@ -126,7 +126,7 @@ export function CaseSection() {
               <div className={s.mrow}><span className={s.mk}>수정</span><span className={s.mv}>{q.revisionRule}</span></div>
             </div>
             <div className={s.cta}>
-              <Link href={`/quest/${q.id}`} className={`${s.btn} ${s.btnLine}`}>완료된 의뢰 보기</Link>
+              <Link href={`/quest/${q.id}`} className={`${s.btn} ${s.btnLine}`}>완료된 업무 보기</Link>
               <Link href="/board" className={`${s.btn} ${s.btnPrimary}`}>열린 작업 보기</Link>
             </div>
           </div>
@@ -156,7 +156,7 @@ export function CaseSection() {
                 <div className={s.delivery}>
                   <span className={s.dItem}><span className={s.dk}>납품</span><span className={s.dv}>{q.result.at}</span></span>
                   <span className={s.dItem}><span className={s.dk}>마감 대비</span><span className={s.dv}>{q.result.earlyMinutes}분 일찍</span></span>
-                  <span className={s.dItem}><span className={s.dk}>선정</span><span className={s.dv}>{r.picked?.person.name}</span></span>
+                  <span className={s.dItem}><span className={s.dk}>작업자</span><span className={s.dv}>{r.picked?.person.name}</span></span>
                 </div>
               </div>
             ) : null}
@@ -191,24 +191,24 @@ export function UrgentSection() {
       <div className="frame">
         <div className={s.head}>
           <h2 className={s.h} id="urgent-h">남는 시간도 시장의 조건이 됩니다</h2>
-          <p className={s.note}>모든 BID는 가격과 실제 완료 약속 시간을 함께 냅니다. TIME ATTACK에서는 지금 가능한 시간이 더 큰 가치가 됩니다.</p>
+          <p className={s.note}>모든 제안은 가격과 실제 완료 약속 시간을 함께 냅니다. 긴급 업무에서는 지금 가능한 시간이 더 큰 가치가 됩니다.</p>
         </div>
         <div className={s.urgentGrid}>
           <div>
-            <p className={s.lead}>₩80,000 · 12시간과 ₩150,000 · 4시간은 다른 제안</p>
-            <p className={s.body}>누군가는 오늘 저녁 시간이 비어 있고, 누군가는 내일 싸게 끝낼 수 있습니다. PRICE × DELIVERY는 파편화된 사람의 시간을 실제 거래 조건으로 만듭니다.</p>
+            <p className={s.lead}>₩80,000 · 12시간과 ₩150,000 · 4시간은 다른 제안입니다</p>
+            <p className={s.body}>누군가는 오늘 저녁 시간이 비어 있고, 누군가는 내일 더 낮은 가격으로 끝낼 수 있습니다. 가격 × 완료시간은 파편화된 사람의 시간을 실제 거래 조건으로 만듭니다.</p>
           </div>
           <Link href={`/board/${q.id}`} className={s.card}>
             <div className={s.cardTop}>
-              <span className={s.cardId}>의뢰 #{q.id}</span>
+              <span className={s.cardId}>업무 #{q.id}</span>
               <span className={s.chipLine}>{q.categoryLabel}</span>
               <span className={s.chipDark}><Countdown hours={q.deadlineHours} /></span>
             </div>
             <h3 className={s.cardTitle}>{q.title}</h3>
             <p className={s.cardSum}>{q.summary}</p>
             <div className={s.cardMeta}>
-              {q.reward ? <span className={s.dItem}><span className={s.dk}>보수</span><span className={s.dv}>{won(q.reward[0])}–{won(q.reward[1])}</span></span> : null}
-              <span className={s.dItem}><span className={s.dk}>완료</span><span className={s.dv}>{q.deadlineHours}시간 이내</span></span>
+              {q.reward ? <span className={s.dItem}><span className={s.dk}>작업대금</span><span className={s.dv}>{won(q.reward[0])}–{won(q.reward[1])}</span></span> : null}
+              <span className={s.dItem}><span className={s.dk}>완료시간</span><span className={s.dv}>{q.deadlineHours}시간 이내</span></span>
               <span className={s.dItem}><span className={s.dk}>제안</span><span className={s.dv}>{q.bids.length}건</span></span>
             </div>
           </Link>
@@ -225,18 +225,18 @@ export function ResultSection() {
       <div className="frame">
         <div className={s.head}>
           <h2 className={s.h} id="result-h">시장의 최종 단위는 완료된 결과</h2>
-          <p className={s.note}>초기에는 의뢰자가 결과를 확인하고 수정 여부를 결정합니다. 반복되는 성공과 실패가 다음 추천의 근거가 됩니다.</p>
+          <p className={s.note}>초기에는 발주자가 결과를 확인하고 수정 여부를 결정합니다. 반복되는 성공과 실패가 다음 추천의 근거가 됩니다.</p>
         </div>
         <div className={s.resultGrid}>
           <div>
-            <p className={s.lead}>QUEST COMPLETE가 다음 거래를 더 똑똑하게 만듭니다</p>
+            <p className={s.lead}>업무 완료가 다음 거래를 더 똑똑하게 만듭니다</p>
             <p className={s.body}>가격, 완료시간, 정시 여부, 수정, 실패와 복구 이력이 쌓일수록 카파피는 어떤 실행자가 어떤 일을 잘 끝내는지 더 정확히 알 수 있습니다.</p>
             <div className={s.cta}><Link href={`/quest/${q.id}`} className={`${s.btn} ${s.btnPrimary}`}>결과 화면 보기</Link></div>
           </div>
 
           {q.result ? (
             <div className={s.result}>
-              <div className={s.resultHead}><p className={s.resultKo}>작업이 완료되었습니다</p><p className={s.resultEn}>QUEST COMPLETE</p></div>
+              <div className={s.resultHead}><p className={s.resultKo}>업무가 완료되었습니다</p><p className={s.resultEn}>업무 완료</p></div>
               <div className={s.resultBody}>
                 {q.result.files.map((f) => <div key={f.name} className={s.file}><span className={s.kind} aria-hidden="true">{f.kind}</span><span style={{ minWidth: 0 }}><span className={s.fname}>{f.name}</span><span className={s.fmeta}>{f.kind} · {f.size}</span></span></div>)}
               </div>
@@ -259,7 +259,7 @@ export function EvolutionSection() {
       <div className="frame">
         <div className={s.head}>
           <h2 className={s.h} id="evo-h">시장은 시작점입니다.<br />목적지는 결과입니다.</h2>
-          <p className={s.note}>자동배정을 먼저 가정하지 않습니다. 완료된 QUEST가 쌓여야 추천이 좋아지고, 추천이 검증돼야 배정과 복구를 더 맡을 수 있습니다.</p>
+          <p className={s.note}>자동배정을 먼저 가정하지 않습니다. 완료된 업무가 쌓여야 추천이 좋아지고, 추천이 검증돼야 배정과 복구를 더 맡을 수 있습니다.</p>
         </div>
         <div className={s.acct}>
           <div>
@@ -267,10 +267,10 @@ export function EvolutionSection() {
             <p className={s.body}>거래 데이터가 신뢰를 만들고, 신뢰가 추천과 라우팅을 가능하게 합니다. 충분히 검증된 업무부터 카파피가 실행의 중간을 더 많이 맡습니다.</p>
           </div>
           <div className={s.acctBox}>
-            <div className={s.acctRow}><span className={s.acctId}>01</span><span className={`${s.badge} ${s.badgeBid}`}>MARKET</span><span className={s.acctWhat}>QUEST · PRICE · DELIVERY</span></div>
+            <div className={s.acctRow}><span className={s.acctId}>01</span><span className={`${s.badge} ${s.badgeBid}`}>MARKET</span><span className={s.acctWhat}>업무 · 가격 · 완료시간</span></div>
             <div className={s.acctRow}><span className={s.acctId}>02</span><span className={`${s.badge} ${s.badgePlayer}`}>TRUST</span><span className={s.acctWhat}>완료 · 정시 · 수정 · 실패</span></div>
             <div className={s.acctRow}><span className={s.acctId}>03</span><span className={`${s.badge} ${s.badgeGm}`}>ROUTE</span><span className={s.acctWhat}>추천 · 배정 · 대체 · 복구</span></div>
-            <p className={s.acctFoot}>장기 실행 자원: HUMAN PLAYER · AI · AUTOMATION · SPECIALIST PARTNER · HYBRID</p>
+            <p className={s.acctFoot}>장기 실행 자원: HUMAN WORKER · AI · AUTOMATION · SPECIALIST PARTNER · HYBRID</p>
           </div>
         </div>
       </div>
@@ -284,21 +284,21 @@ export function AccountSection() {
       <div className="frame">
         <div className={s.head}>
           <h2 className={s.h} id="acct-h">일을 맡기던 사람이, 다른 일을 할 수도 있습니다</h2>
-          <p className={s.note}>의뢰인 계정과 작업자 계정을 따로 만들지 않습니다. 역할은 QUEST마다 달라집니다.</p>
+          <p className={s.note}>발주자 계정과 작업자 계정을 따로 만들지 않습니다. 역할은 업무마다 달라집니다.</p>
         </div>
         <div className={s.acct}>
           <div>
             <p className={s.lead}>작업이 먼저, 역할은 그 다음</p>
-            <p className={s.body}>어떤 의뢰에서는 맡기는 쪽이고, 다른 의뢰에서는 수행하는 쪽입니다. 이것이 카파피의 task-first 시장을 한 계정 안에서 이어줍니다.</p>
+            <p className={s.body}>어떤 업무에서는 맡기는 쪽이고, 다른 업무에서는 수행하는 쪽입니다. 같은 계정 안에서 자연스럽게 이어집니다.</p>
             <div className={s.cta}>
               <Link href="/board" className={`${s.btn} ${s.btnAccent}`}>작업 찾기</Link>
-              <Link href="/my" className={`${s.btn} ${s.btnLine}`}>내 의뢰 보기</Link>
+              <Link href="/my" className={`${s.btn} ${s.btnLine}`}>내 업무 보기</Link>
             </div>
           </div>
           <div className={s.acctBox}>
-            <div className={s.acctRow}><span className={s.acctId}>#0182</span><span className={`${s.badge} ${s.badgeGm}`}>GM</span><span className={s.acctWhat}>내가 맡긴 의뢰 · 완료</span></div>
-            <div className={s.acctRow}><span className={s.acctId}>#0207</span><span className={`${s.badge} ${s.badgePlayer}`}>PLAYER</span><span className={s.acctWhat}>내가 수행 중인 작업</span></div>
-            <div className={s.acctRow}><span className={s.acctId}>#0201</span><span className={`${s.badge} ${s.badgeBid}`}>제안</span><span className={s.acctWhat}>내가 제안을 보낸 의뢰</span></div>
+            <div className={s.acctRow}><span className={s.acctId}>#0182</span><span className={`${s.badge} ${s.badgeGm}`}>발주자</span><span className={s.acctWhat}>내가 맡긴 업무 · 완료</span></div>
+            <div className={s.acctRow}><span className={s.acctId}>#0207</span><span className={`${s.badge} ${s.badgePlayer}`}>작업자</span><span className={s.acctWhat}>내가 수행 중인 업무</span></div>
+            <div className={s.acctRow}><span className={s.acctId}>#0201</span><span className={`${s.badge} ${s.badgeBid}`}>제안 참여</span><span className={s.acctWhat}>내가 제안을 보낸 업무</span></div>
             <p className={s.acctFoot}>세 가지가 같은 계정에서 동시에 성립합니다.</p>
           </div>
         </div>
