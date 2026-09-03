@@ -38,7 +38,7 @@ export default function BoardPage() {
       <div className={s.head}>
         <h1 className={s.title}>지금 열려 있는 작업</h1>
         <p className={s.sub}>
-          {me.name} 님은 다른 의뢰에서는 맡기는 쪽입니다. 계정을 바꾸지 않고 조건이 맞는 작업에 제안을 보낼 수 있습니다.
+          {me.name} 님은 다른 업무에서는 맡기는 쪽입니다. 계정을 바꾸지 않고 조건이 맞는 작업에 제안을 보낼 수 있습니다.
         </p>
         <div className={s.chips}>
           <span className={s.chip}>열린 작업 {open.length}건</span>
@@ -67,7 +67,7 @@ export default function BoardPage() {
           shown.map(({ q, e }) => (
             <Link key={q.id} href={`/board/${q.id}`} className={s.qcard}>
               <div className={s.qtop}>
-                <span className={s.qid}>의뢰 #{q.id}</span>
+                <span className={s.qid}>업무 #{q.id}</span>
                 <span className={s.chip}>{q.categoryLabel}</span>
                 {q.urgent ? <span className={s.chip}>오늘 마감</span> : null}
                 {q.nda ? <span className={s.chip}>보안 서약</span> : null}
@@ -86,15 +86,15 @@ export default function BoardPage() {
                 <span className={s.stat}><span className={s.sk}>마감</span><span className={s.sv}>{q.deadlineLabel}</span></span>
                 <span className={s.stat}><span className={s.sk}>제안</span><span className={s.sv}>{q.bids.length}건</span></span>
               </div>
-              {!e.ok ? <p className={s.qblock}>이 의뢰에는 참여할 수 없습니다 — {e.why.join(", ")}</p> : null}
+              {!e.ok ? <p className={s.qblock}>이 업무에는 참여할 수 없습니다 — {e.why.join(", ")}</p> : null}
             </Link>
           ))
         )}
       </div>
 
       <p className={s.note} style={{ marginTop: 40, maxWidth: "70ch" }}>
-        참여 조건은 의뢰마다 다릅니다. 어떤 의뢰에 참여할 수 없다는 것은 계정 종류가 다르다는 뜻이 아니라,
-        그 의뢰가 요구하는 이력과 보안 조건을 아직 충족하지 않았다는 뜻입니다.
+        참여 조건은 업무마다 다릅니다. 어떤 업무에 참여할 수 없다는 것은 계정 종류가 다르다는 뜻이 아니라,
+        그 업무가 요구하는 이력과 보안 조건을 아직 충족하지 않았다는 뜻입니다.
       </p>
     </div>
   );

@@ -111,7 +111,7 @@ function reducer(s: State, a: Action): State {
         scope: d.scope, outputs: d.outputs, accept: d.accept,
         revisionRule: "합의한 범위와 다를 경우 1회 수정",
         bids: seedBids(d.category), fit: seedFit(d.category),
-        events: [{ at: "방금", ko: "의뢰가 등록되었습니다", en: "업무 등록" }],
+        events: [{ at: "방금", ko: "업무가 등록되었습니다", en: "업무 등록" }],
       };
       return { ...s, submitted: true, quests: { ...s.quests, [NEW_ID]: q } };
     }
@@ -122,7 +122,7 @@ function reducer(s: State, a: Action): State {
       if (a.state === "ASSIGNED" && !next.assigneeId) next = { ...next, assigneeId: route(q).picked?.person.id };
       if (a.state === "DELIVERED" && !next.result) {
         next = { ...next, result: {
-          files: next.outputs.map((o, i) => ({ name: `의뢰${next.id}_결과물.${o.toLowerCase()}`, kind: o, size: i === 0 ? "2.4 MB" : "820 KB" })),
+          files: next.outputs.map((o, i) => ({ name: `업무${next.id}_결과물.${o.toLowerCase()}`, kind: o, size: i === 0 ? "2.4 MB" : "820 KB" })),
           at: "방금", earlyMinutes: 34, checks: ["파일 수신", "요청 형식 포함", "납품 시각 기록"] } };
       }
       return { ...s, quests: { ...s.quests, [a.id]: next } };

@@ -1,25 +1,61 @@
 /*
-  Public landing header: brand, essential navigation, account entry, one action.
+  Public header: brand, the 발주자 / 작업자 surface toggle, account entry.
   Neutral first visit — no persona, no avatar, no system status, no demo controls.
 */
-.bar { position: sticky; top: 0; z-index: 40; background: color-mix(in srgb, var(--paper) 86%, transparent); backdrop-filter: saturate(1.5) blur(12px); }
-.inner { display: flex; align-items: center; gap: var(--s5); height: 68px; }
+.bar {
+  position: sticky; top: 0; z-index: 40;
+  background: color-mix(in srgb, var(--paper) 86%, transparent);
+  backdrop-filter: saturate(1.5) blur(12px);
+}
+.inner {
+  display: flex; align-items: center; gap: var(--s5);
+  height: 68px;
+  width: 100%; max-width: 1780px; margin-inline: auto;
+  padding-inline: var(--gutter);
+}
 .brand { font-weight: 800; font-size: 1.22rem; letter-spacing: 0.005em; flex: none; }
-.links { display: flex; align-items: center; gap: var(--s2); margin-left: var(--s3); }
-.link { display: inline-block; white-space: nowrap; padding: 8px 12px; border-radius: var(--r-sm); font-size: var(--body-sm); font-weight: 500; color: var(--graphite); transition: background var(--t-micro) var(--ease), color var(--t-micro) var(--ease); }
-.link:hover { background: var(--paper-2); color: var(--ink); }
-.active { color: var(--ink); font-weight: 600; }
+
+/* One control, two surfaces of the same account. Deliberately quiet: it is a
+   view switch, not an offer, so it never competes with the page's own action. */
+.modes {
+  display: flex; flex: none; gap: 2px; padding: 3px;
+  background: var(--paper-2); border: 1px solid var(--line);
+  border-radius: 999px;
+}
+.mode {
+  padding: 7px 16px; border-radius: 999px;
+  font-size: var(--body-sm); font-weight: 550; color: var(--muted);
+  transition: color var(--t-micro) var(--ease), background var(--t-micro) var(--ease);
+}
+.mode:hover { color: var(--ink); }
+.modeOn { background: var(--white); color: var(--ink); font-weight: 650; box-shadow: 0 1px 2px rgba(20,21,15,.07); }
+.mode:focus-visible { outline: 2px solid var(--sapphire); outline-offset: 2px; }
+
 .right { margin-left: auto; display: flex; align-items: center; gap: var(--s2); flex: none; }
-.signin { padding: 8px 12px; font-size: var(--body-sm); font-weight: 500; color: var(--graphite); border-radius: var(--r-sm); }
-.signin:hover { color: var(--ink); }
-.cta { display: inline-flex; align-items: center; height: 42px; padding: 0 18px; border-radius: var(--r-md); background: var(--ink); color: #fff; font-size: var(--body-sm); font-weight: 600; transition: background var(--t-micro) var(--ease); }
+.link {
+  display: inline-block; white-space: nowrap; padding: 8px 12px;
+  border-radius: var(--r-sm); font-size: var(--body-sm); font-weight: 500;
+  color: var(--graphite);
+  transition: background var(--t-micro) var(--ease), color var(--t-micro) var(--ease);
+}
+.link:hover { background: var(--paper-2); color: var(--ink); }
+.cta {
+  display: inline-flex; align-items: center; height: 42px; padding: 0 18px;
+  border-radius: var(--r-md); background: var(--ink); color: #fff;
+  font-size: var(--body-sm); font-weight: 600;
+  transition: background var(--t-micro) var(--ease);
+}
 .cta:hover { background: #000; }
-@media (max-width: 720px) {
+
+@media (max-width: 860px) {
   .inner { height: 60px; gap: var(--s3); }
-  .links { gap: 0; margin-left: 0; overflow-x: auto; scrollbar-width: none; }
-  .links::-webkit-scrollbar { display: none; }
-  .link { padding: 8px 9px; font-size: var(--meta); }
-  /* The landing nav is brand + account only, so both entries fit on a phone. */
-  .signin { padding: 8px 8px; font-size: var(--meta); }
+  /* The toggle is the one thing that must survive a phone: it is how the other
+     half of the product is reachable at all. The text links fold into the footer. */
+  .link { display: none; }
+  .mode { padding: 6px 13px; font-size: var(--meta); }
   .cta { height: 38px; padding: 0 14px; font-size: var(--meta); }
+}
+@media (max-width: 380px) {
+  .brand { font-size: 1.06rem; }
+  .mode { padding: 6px 11px; }
 }

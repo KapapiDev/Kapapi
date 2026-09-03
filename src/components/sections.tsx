@@ -253,6 +253,77 @@ export function ResultSection() {
   );
 }
 
+/**
+ * D-035: what the 발주자 actually experiences — 업무 입력 → KAPAPI → 결과.
+ *
+ * Every value here is the real fixture and the real `route()` output. The
+ * assignment rationale is shown as information about a decision KAPAPI already
+ * made, not as a comparison the client is being asked to resolve.
+ */
+export function ResultFlowSection() {
+  const q = QUESTS["0182"];
+  const r = route(q);
+  const picked = r.picked;
+  const result = q.result;
+  if (!picked || !result) return null;
+
+  return (
+    <section className={`${s.sec} ${s.secLine}`} aria-labelledby="flow-h">
+      <div className="frame">
+        <div className={s.head}>
+          <h2 className={s.h} id="flow-h">올리고 나면, 결과가 옵니다</h2>
+          <p className={s.note}>작업자를 찾고 비교하고 고르는 과정은 발주자가 하지 않습니다. 아래는 실제로 오간 업무 #{q.id}의 기록입니다.</p>
+        </div>
+
+        <div className={s.flow}>
+          <div className={s.step}>
+            <p className={s.stepNo}>01</p>
+            <p className={s.stepKo}>업무를 올립니다</p>
+            <p className={s.stepSub}>{q.title}</p>
+            <div className={s.stepFiles}>
+              {q.inputs.map((f) => (
+                <span key={f.name} className={s.stepFile}>
+                  <span className={s.kind} aria-hidden="true">{f.kind}</span>
+                  {f.name}
+                </span>
+              ))}
+            </div>
+            <p className={s.stepMeta}>마감 {q.deadlineHours}시간 · 예산 상한 {won(q.budget)}</p>
+          </div>
+
+          <div className={`${s.step} ${s.stepMid}`}>
+            <p className={s.stepNo}>02</p>
+            <p className={s.stepKo}>카파피가 배정합니다</p>
+            <p className={s.stepSub}>{picked.person.name} · {picked.person.career}</p>
+            <div className={s.stepWhy}>
+              {r.reasons.slice(0, 3).map((x) => (
+                <p key={x} className={s.stepWhyRow}><span className={s.whyMark} aria-hidden="true">▸</span>{x}</p>
+              ))}
+            </div>
+            <p className={s.stepMeta}>{won(picked.bid.price)} · {picked.bid.hours}시간 완료 제안</p>
+          </div>
+
+          <div className={s.step}>
+            <p className={s.stepNo}>03</p>
+            <p className={s.stepKo}>결과가 도착합니다</p>
+            <p className={s.stepSub}>{result.files[0].name}</p>
+            <div className={s.stepChecks}>
+              {result.checks.map((c) => (
+                <p key={c} className={s.stepCheck}><span className={s.tickMark} aria-hidden="true">✓</span>{c}</p>
+              ))}
+            </div>
+            <p className={s.stepMeta}>{result.at} 도착 · 마감보다 {result.earlyMinutes}분 일찍</p>
+          </div>
+        </div>
+
+        <p className={s.flowFoot}>
+          결과를 받고 확인하거나 수정을 요청하는 것은 발주자가 합니다. 카파피는 파일과 형식, 도착 시각까지만 확인하며 완료를 보장하지 않습니다.
+        </p>
+      </div>
+    </section>
+  );
+}
+
 export function EvolutionSection() {
   return (
     <section className={`${s.sec} ${s.secLine}`} aria-labelledby="evo-h">

@@ -6,7 +6,7 @@ import "@/styles/globals.css";
 
 export const metadata: Metadata = {
   title: "KAPAPI · 오늘은 어떤 일을 끝낼까요?",
-  description: "해야 할 일을 올리고, 작업자들이 가격과 완료 시간을 제안하면 카파피가 조건과 이력을 바탕으로 맞는 제안을 추천합니다.",
+  description: "파일을 올리고 한 줄로 설명하면, 카파피가 작업자를 배정하고 결과를 전달합니다.",
 };
 
 export const viewport: Viewport = { themeColor: "#fbfbf9", width: "device-width", initialScale: 1 };

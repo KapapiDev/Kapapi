@@ -20,7 +20,7 @@ export default function BoardDetail() {
   if (!q) {
     return (
       <div className={`frame ${s.confirm}`}>
-        <h1 className={s.confirmTitle}>의뢰를 찾을 수 없습니다</h1>
+        <h1 className={s.confirmTitle}>업무를 찾을 수 없습니다</h1>
         <div className={s.confirmActs}><Link href="/board" className={`${s.btn} ${s.btnLine}`}>작업 찾기로</Link></div>
       </div>
     );
@@ -37,7 +37,7 @@ export default function BoardDetail() {
     const h = Number(hours);
     if (!p || p < 10000) { setErr("금액을 10,000원 이상 입력해 주세요"); return; }
     if (!h || h <= 0) { setErr("완료 시간을 시간 단위로 입력해 주세요"); return; }
-    if (h > q.deadlineHours) { setErr(`이 의뢰의 마감은 ${q.deadlineHours}시간입니다`); return; }
+    if (h > q.deadlineHours) { setErr(`이 업무의 마감은 ${q.deadlineHours}시간입니다`); return; }
     setErr(null);
     placeBid(q.id, p, h);
   }
@@ -45,7 +45,7 @@ export default function BoardDetail() {
   return (
     <div className={`frame ${s.wrap}`}>
       <p className={s.crumb}>
-        <Link href="/board">작업 찾기</Link><span aria-hidden="true">/</span><span>의뢰 #{q.id}</span>
+        <Link href="/board">작업 찾기</Link><span aria-hidden="true">/</span><span>업무 #{q.id}</span>
       </p>
 
       <div className={s.head}>
@@ -103,21 +103,21 @@ export default function BoardDetail() {
 
           {isOwn ? (
             <div className={s.blocked}>
-              <p style={{ fontWeight: 650 }}>내가 맡긴 의뢰입니다</p>
-              <p className={s.hint}>이 의뢰에서 나는 맡긴 쪽입니다. 제안과 추천은 의뢰 화면에서 확인할 수 있습니다.</p>
-              <Link href={`/quest/${q.id}`} className={`${s.btn} ${s.btnLine}`}>의뢰 화면 보기</Link>
+              <p style={{ fontWeight: 650 }}>내가 맡긴 업무입니다</p>
+              <p className={s.hint}>이 업무에서 나는 맡긴 쪽입니다. 제안과 추천은 업무 화면에서 확인할 수 있습니다.</p>
+              <Link href={`/quest/${q.id}`} className={`${s.btn} ${s.btnLine}`}>업무 화면 보기</Link>
             </div>
           ) : mine ? (
             <div className={s.blocked}>
               <p style={{ fontWeight: 650 }}>제안을 보냈습니다</p>
               <div className={s.preview}><span className={s.pk}>내 제안</span><span className={s.pv}>{won(mine.price)} / {mine.hours}시간</span></div>
               <p className={s.hint}>카파피가 자격, 마감, 가격, 완료시간과 관련 이력을 함께 보고 추천 후보를 정리합니다. 최종 확정 전까지는 아직 배정된 것이 아닙니다.</p>
-              <span className={`${s.chip} ${s.chipAccent}`}>이 의뢰에 제안 참여 중</span>
-              <Link href="/my" className={`${s.btn} ${s.btnLine}`}>내 의뢰에서 보기</Link>
+              <span className={`${s.chip} ${s.chipAccent}`}>이 업무에 제안 참여 중</span>
+              <Link href="/my" className={`${s.btn} ${s.btnLine}`}>내 업무에서 보기</Link>
             </div>
           ) : !e.ok ? (
             <div className={s.blocked}>
-              <p style={{ fontWeight: 650, color: "var(--warn)" }}>이 의뢰에는 참여할 수 없습니다</p>
+              <p style={{ fontWeight: 650, color: "var(--warn)" }}>이 업무에는 참여할 수 없습니다</p>
               {e.why.map((w) => <p key={w} className={s.item}>· {w}</p>)}
               <p className={s.hint}>계정 종류의 문제가 아닙니다. 조건을 갖추면 같은 계정으로 바로 제안할 수 있습니다.</p>
               <Link href="/board" className={`${s.btn} ${s.btnLine}`}>참여 가능한 작업 보기</Link>
@@ -147,7 +147,7 @@ export default function BoardDetail() {
               {err ? <p className={s.err} role="alert">{err}</p> : null}
 
               <button type="button" className={`${s.btn} ${s.btnAccent}`} onClick={send}>제안 보내기</button>
-              <p className={s.hint}>카파피가 조건과 이력을 바탕으로 추천하고, 현재 단계에서는 의뢰자가 추천을 확인해 작업자를 확정합니다. 가장 싸거나 가장 빠른 제안이 자동으로 선정되지는 않습니다.</p>
+              <p className={s.hint}>필수 조건을 통과한 제안만 비교 대상이 됩니다. 카파피가 가격과 완료시간, 관련 작업이력을 함께 보고 배정하며, 가장 싸거나 가장 빠른 제안이 자동으로 선정되지는 않습니다.</p>
             </div>
           )}
         </div>

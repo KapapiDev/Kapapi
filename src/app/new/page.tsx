@@ -37,11 +37,11 @@ export default function NewPage() {
         <h1 className={s.confirmTitle}>업무가 등록되었습니다</h1>
         <p className={s.confirmEn}>업무 #{NEW_ID} 등록 완료</p>
         <p className={s.confirmBody}>
-          조건에 맞는 제안이 모이면 카파피가 가격, 완료시간과 관련 작업이력을 바탕으로 추천해드립니다.
+          조건에 맞는 제안이 모이면 카파피가 가격, 완료시간과 관련 작업이력을 바탕으로 작업자를 배정합니다. 발주자가 제안을 비교하거나 고를 필요는 없습니다.
           추천을 확인한 뒤 바로 작업을 시작할 수 있습니다.
         </p>
         <div className={s.confirmActs}>
-          <Link href={`/quest/${NEW_ID}`} className={`${s.btn} ${s.btnPrimary}`}>제안과 추천 보기</Link>
+          <Link href={`/quest/${NEW_ID}`} className={`${s.btn} ${s.btnPrimary}`}>진행 상황 보기</Link>
           <Link href="/" className={`${s.btn} ${s.btnLine}`}>다른 업무 맡기기</Link>
         </div>
         <div className={s.chips} style={{ justifyContent: "center", marginTop: 32 }}>
@@ -156,7 +156,7 @@ export default function NewPage() {
           </button>
           <Link href="/" className={`${s.btn} ${s.btnGhost}`}>다시 적기</Link>
           <p className={s.hint} style={{ maxWidth: "44ch" }}>
-            등록하면 조건을 갖춘 작업자들이 가격과 완료시간을 제안합니다. 제안이 모이면 카파피가 가장 적합한 후보를 추천합니다.
+            등록하면 조건을 갖춘 작업자들이 가격과 완료시간을 제안합니다. 카파피가 그중에서 배정하고, 결과가 도착하면 알려드립니다.
           </p>
         </div>
       </div>

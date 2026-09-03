@@ -21,7 +21,6 @@ export default function QuestPage() {
   const q = quests[id];
   const timers = useRef<number[]>([]);
   const [revising, setRevising] = useState(false);
-  const [showAlternatives, setShowAlternatives] = useState(false);
 
   const clear = useCallback(() => {
     timers.current.forEach(window.clearTimeout);
@@ -38,8 +37,16 @@ export default function QuestPage() {
       800,
     ));
     timers.current.push(window.setTimeout(
-      () => setQuestState(q.id, "ROUTING", { at: "방금", ko: "카파피 추천이 준비되었습니다", en: "추천 준비" }),
+      () => setQuestState(q.id, "ASSIGNED", { at: "방금", ko: "카파피가 작업자를 배정했습니다", en: "작업자 배정" }),
       2500,
+    ));
+    timers.current.push(window.setTimeout(
+      () => setQuestState(q.id, "IN_PROGRESS", { at: "방금", ko: "작업을 시작했습니다", en: "작업 시작" }),
+      3600,
+    ));
+    timers.current.push(window.setTimeout(
+      () => setQuestState(q.id, "DELIVERED", { at: "방금", ko: "결과 파일이 도착했습니다", en: "결과 도착" }),
+      6800,
     ));
     return clear;
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -73,33 +80,12 @@ export default function QuestPage() {
   const assignee = q.assigneeId ? PEOPLE[q.assigneeId] : undefined;
   const issuer = PEOPLE[q.issuerId];
   const waiting = q.state === "OPEN" || q.state === "BIDDING";
-  const recommendationReady = q.state === "ROUTING";
   const assigned = ["ASSIGNED", "IN_PROGRESS", "DELIVERED", "REVISION", "COMPLETE"].includes(q.state);
   const delivered = q.state === "DELIVERED";
   const done = q.state === "COMPLETE";
   const stageIdx = STAGES.findIndex((x) => x.st === q.state);
 
-  function confirmRecommendation() {
-    if (!recommended) return;
-    clear();
-    setQuestState(q.id, "ASSIGNED", { at: "방금", ko: `${recommended.person.name} 님으로 확정했습니다`, en: "발주자 확정" });
-    timers.current.push(window.setTimeout(
-      () => setQuestState(q.id, "IN_PROGRESS", { at: "방금", ko: "작업을 시작했습니다", en: "작업 시작" }),
-      900,
-    ));
-    timers.current.push(window.setTimeout(
-      () => setQuestState(q.id, "DELIVERED", { at: "방금", ko: "결과 파일이 도착했습니다", en: "결과 도착" }),
-      3800,
-    ));
-  }
 
-  function finishDemo() {
-    if (!recommended) return;
-    clear();
-    setQuestState(q.id, "ASSIGNED", { at: "방금", ko: `${recommended.person.name} 님으로 확정했습니다`, en: "발주자 확정" });
-    window.setTimeout(() => setQuestState(q.id, "IN_PROGRESS", { at: "방금", ko: "작업을 시작했습니다", en: "작업 시작" }), 0);
-    window.setTimeout(() => setQuestState(q.id, "DELIVERED", { at: "방금", ko: "결과 파일이 도착했습니다", en: "결과 도착" }), 20);
-  }
 
   const events = (
     <div className={s.events}>
@@ -133,7 +119,7 @@ export default function QuestPage() {
           {q.nda ? <span className={s.chip}>보안 서약</span> : null}
           <span className={`${s.chip} ${done ? s.chipOk : s.chipAccent}`}>
             <span className={s.dot} aria-hidden="true" />
-            {waiting ? "제안 받는 중" : recommendationReady ? "추천 확인" : q.state === "IN_PROGRESS" || q.state === "ASSIGNED" ? "작업 중" : delivered ? "결과 도착" : q.state === "REVISION" ? "수정 중" : "업무 완료"}
+            {waiting ? "접수됨" : q.state === "ASSIGNED" || q.state === "IN_PROGRESS" ? "작업 중" : delivered ? "결과 도착" : q.state === "REVISION" ? "수정 중" : "업무 완료"}
           </span>
           {role !== "NONE" ? <span className={s.chip}>이 업무에서 나는 {isClient ? "발주자" : "작업자"}</span> : null}
         </div>
@@ -158,15 +144,15 @@ export default function QuestPage() {
             </section>
           ) : null}
 
-          {recommendationReady && recommended ? (
+          {assigned && recommended ? (
             <section>
               <div className={s.panelHead}>
-                <h2 className={s.panelTitle}>카파피 추천</h2>
-                <span className={s.panelEn}>추천</span>
+                <h2 className={s.panelTitle}>배정된 작업자</h2>
+                <span className={s.panelEn}>작업자 배정</span>
               </div>
               <div className={s.trust}>
                 <div className={s.chips} style={{ marginBottom: 12 }}>
-                  <span className={`${s.chip} ${s.chipAccent}`}>추천</span>
+                  <span className={`${s.chip} ${s.chipAccent}`}>배정</span>
                   <span className={s.chip}>{won(recommended.bid.price)}</span>
                   <span className={s.chip}>{recommended.bid.hours}시간 완료</span>
                 </div>
@@ -177,36 +163,15 @@ export default function QuestPage() {
                   <span className={s.stat}><span className={s.sk}>정시완료</span><span className={s.sv}>{pct(recommended.person.onTime)}</span></span>
                   <span className={s.stat}><span className={s.sk}>수정 요청</span><span className={s.sv}>{pct(recommended.person.revision)}</span></span>
                 </div>
+                {/* D-035: the rationale stays visible so the assignment is inspectable,
+                    but it is a record of what KAPAPI did, not a decision to make. */}
                 <div className={s.note}>
-                  <strong style={{ color: "var(--ink)" }}>왜 추천하나요?</strong>
+                  <strong style={{ color: "var(--ink)" }}>왜 이 작업자인가요?</strong>
                   <div className={s.list} style={{ marginTop: 8 }}>
                     {r.reasons.map((x) => <p key={x} className={s.item}><span className={s.mark} aria-hidden="true">▸</span>{x}</p>)}
                   </div>
                 </div>
-                {isClient ? (
-                  <div className={s.acts} style={{ marginTop: 18 }}>
-                    <button type="button" className={`${s.btn} ${s.btnAccent}`} onClick={confirmRecommendation}>이 작업자로 진행</button>
-                    <button type="button" className={`${s.btn} ${s.btnLine}`} onClick={() => setShowAlternatives((v) => !v)} aria-expanded={showAlternatives}>다른 제안 보기</button>
-                    <button type="button" className={`${s.btn} ${s.btnGhost}`} onClick={finishDemo}>결과까지 빠르게 보기</button>
-                  </div>
-                ) : null}
               </div>
-
-              {showAlternatives ? (
-                <div className={s.cards} style={{ marginTop: 16 }}>
-                  {r.ranked.slice(1).map((c) => (
-                    <div key={c.bid.id} className={s.card}>
-                      <p className={s.cardTitle}>{c.person.name}</p>
-                      <p className={s.note}>{c.person.career}</p>
-                      <div className={s.chips}>
-                        <span className={s.chip}>{won(c.bid.price)}</span>
-                        <span className={s.chip}>{c.bid.hours}시간</span>
-                        <span className={s.chip}>유사 업무 {c.relevant}건</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              ) : null}
             </section>
           ) : null}
 

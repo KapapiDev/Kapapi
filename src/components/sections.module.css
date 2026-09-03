@@ -1,3 +1,6 @@
+/* D-034 turned these machine labels into Korean. The mono face with tracking
+   was designed for latin state labels and renders Hangul as detached glyphs,
+   so anything that now carries Korean is set in the sans face without it. */
 .sec { padding-block: clamp(72px, 8vw, 128px); }
 .secLine { border-top: 1px solid var(--line); }
 
@@ -12,7 +15,7 @@
 .proofMeta { font-size: var(--meta); color: var(--dark-muted); }
 .proofState { margin-left: auto; display: flex; align-items: baseline; gap: var(--s3); }
 .proofKo { font-size: var(--body-sm); font-weight: 600; }
-.proofEn { font-family: var(--mono); font-size: var(--hud); letter-spacing: .1em; text-transform: uppercase; color: var(--sapphire-bright); }
+.proofEn { font-size: var(--meta); font-weight: 500; text-transform: uppercase; color: var(--sapphire-bright); }
 
 .rows { display: flex; flex-direction: column; }
 .row {
@@ -30,7 +33,7 @@
 .out { display: block; font-size: var(--meta); color: var(--dark-faint); margin-top: 2px; }
 .price { font-family: var(--mono); font-size: 1.02rem; font-weight: 650; font-variant-numeric: tabular-nums; text-align: right; }
 .hours { font-family: var(--mono); font-size: 1.02rem; color: var(--dark-muted); min-width: 4.6em; text-align: right; }
-.pickTag { font-family: var(--mono); font-size: var(--hud); letter-spacing: .1em; text-transform: uppercase; color: var(--sapphire-bright); }
+.pickTag { font-size: var(--meta); font-weight: 500; text-transform: uppercase; color: var(--sapphire-bright); }
 
 .why { padding: var(--s5) var(--s6) var(--s6); border-top: 1px solid var(--dark-line); }
 .whyTitle { font-size: var(--body-sm); font-weight: 650; margin-bottom: var(--s3); }
@@ -61,7 +64,7 @@
 .result { border: 1px solid var(--line-2); border-radius: var(--r-lg); background: var(--white); overflow: hidden; }
 .resultHead { padding: var(--s5); border-bottom: 1px solid var(--line); }
 .resultKo { font-size: var(--h1); font-weight: 700; letter-spacing: var(--tight); }
-.resultEn { margin-top: 5px; font-family: var(--mono); font-size: var(--hud); letter-spacing: .1em; color: var(--ok); }
+.resultEn { margin-top: 5px; font-size: var(--meta); font-weight: 500; color: var(--ok); }
 .resultBody { padding: var(--s5); display: grid; gap: 8px; border-bottom: 1px solid var(--line); }
 .delivery { display: flex; flex-wrap: wrap; gap: var(--s2) var(--s5); padding: var(--s4) var(--s5); border-bottom: 1px solid var(--line); }
 .dItem { display: grid; gap: 2px; }
@@ -83,7 +86,7 @@
 .acctRow:last-child { border-bottom: 0; }
 .acctId { font-family: var(--mono); font-size: var(--meta); color: var(--faint); flex: none; min-width: 7ch; }
 .acctWhat { font-size: var(--body-sm); color: var(--graphite); }
-.badge { flex: none; display: inline-flex; align-items: center; padding: 4px 9px; border-radius: 999px; font-family: var(--mono); font-size: var(--hud); letter-spacing: .08em; }
+.badge { flex: none; display: inline-flex; align-items: center; padding: 4px 9px; border-radius: 999px; font-size: var(--meta); font-weight: 500; }
 .badgeGm { background: var(--ink); color: #fff; }
 .badgePlayer { background: var(--sapphire-wash); color: var(--sapphire-press); border: 1px solid var(--sapphire-line); }
 .badgeBid { background: var(--paper-2); color: var(--muted); border: 1px solid var(--line-2); }
@@ -103,7 +106,7 @@
 .card { display: block; border: 1px solid var(--line-2); border-radius: var(--r-lg); background: var(--white); padding: var(--s5); transition: border-color var(--t-micro) var(--ease); }
 .card:hover { border-color: var(--ink); }
 .cardTop { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 10px; }
-.cardId { font-family: var(--mono); font-size: var(--hud); letter-spacing: .07em; color: var(--faint); }
+.cardId { font-size: var(--meta); font-weight: 500; color: var(--faint); }
 .chipDark { display: inline-flex; align-items: center; gap: 7px; background: var(--ink); color: #fff; border-radius: 999px; padding: 5px 11px; font-size: var(--hud); font-family: var(--mono); letter-spacing: .06em; font-variant-numeric: tabular-nums; }
 .chipLine { display: inline-flex; align-items: center; padding: 5px 10px; border: 1px solid var(--line-2); border-radius: 999px; font-size: var(--meta); color: var(--muted); }
 .cardTitle { font-size: var(--h2); font-weight: 650; letter-spacing: var(--tight); }
@@ -117,4 +120,38 @@
 @media (max-width: 560px) {
   .proofTop, .row, .why { padding-inline: var(--s4); }
   .proofState { margin-left: 0; width: 100%; }
+}
+
+/* ---- D-035 client flow: 업무 입력 → KAPAPI → 결과 ---- */
+.flow { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s4); }
+.step {
+  display: flex; flex-direction: column; gap: 10px;
+  padding: var(--s5); border: 1px solid var(--line-2);
+  border-radius: var(--r-lg); background: var(--white);
+}
+/* The middle beat is the one the client never has to do. Sapphire marks it as
+   the machine's step, which is the whole claim of the section. */
+.stepMid { border-color: var(--sapphire-line); background: var(--sapphire-wash); }
+.stepNo { font-family: var(--mono); font-size: var(--hud); letter-spacing: .12em; color: var(--faint); }
+.stepMid .stepNo { color: var(--sapphire); }
+.stepKo { font-size: var(--h2); font-weight: 700; letter-spacing: var(--tight); }
+.stepSub { font-size: var(--body-sm); color: var(--muted); }
+.stepFiles { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px; }
+.stepFile {
+  display: inline-flex; align-items: center; gap: 7px; max-width: 100%;
+  padding: 5px 10px 5px 5px; border: 1px solid var(--line); border-radius: var(--r-sm);
+  background: var(--paper-2); font-size: var(--meta); color: var(--graphite);
+}
+.stepWhy, .stepChecks { display: grid; gap: 5px; margin-top: 2px; }
+.stepWhyRow, .stepCheck { display: flex; gap: 8px; font-size: var(--meta); color: var(--muted); }
+.stepMeta {
+  margin-top: auto; padding-top: var(--s3); border-top: 1px solid var(--line);
+  font-size: var(--meta); color: var(--faint);
+}
+.stepMid .stepMeta { border-top-color: var(--sapphire-line); }
+.flowFoot { margin-top: var(--s5); font-size: var(--body-sm); color: var(--muted); max-width: 66ch; }
+
+@media (max-width: 900px) {
+  .flow { grid-template-columns: 1fr; }
+  .stepMeta { margin-top: var(--s2); }
 }
