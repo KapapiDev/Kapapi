@@ -1,341 +1,212 @@
 # KAPAPI Hero Media / Product-Movie Specification
 
-Status: **Prototype v1 hero media integration authority**  
-Updated: **2026-09-02**
+Status: **current v2 hero media authority**  
+Updated: **2026-09-03**
 
-This document records the approved hero-media concept and how Claude Code should integrate it without baking fake product UI into generated video.
-
----
+The hero movie should visually support the current D-032 transaction without baking fake generated product UI into the film.
 
 ## 1. Narrative thesis
 
-The hero movie should communicate one idea visually:
-
-> **The GM hands off the work, leaves, KAPAPI handles the messy middle, and the result returns while the GM continues with other work.**
-
-Human story:
+The human story is simple:
 
 ```text
 SUBMIT WORK
-→ WALK AWAY
-→ KAPAPI HANDLES IT
-→ RESULT ARRIVES
-→ QUICK REVIEW
-→ BACK TO LIFE / OTHER WORK
+→ KAPAPI MARKET ACTIVITY APPEARS
+→ RECOMMENDATION
+→ GM CONFIRMS
+→ WORK / RESULT
+→ QUICK RESULT CHECK
+→ QUIET SATISFACTION
 ```
 
-The GM should visibly stop managing the transaction after submission.
+The current prototype does **not** claim that a GM can always disappear immediately after submission while KAPAPI universally auto-routes everything.
+
+The cinematic sequence may compress the GM confirmation into one clean product beat, but it must remain semantically present.
 
 ---
 
 ## 2. Product behavior represented
 
-The middle of the story represents:
+Current middle sequence:
 
 ```text
 BIDs arrive
-→ eligibility / PRICE × DELIVERY / trust / task-fit evaluation
-→ KAPAPI auto-routing
+→ eligibility / PRICE × DELIVERY / trust evidence resolves
+→ KAPAPI recommendation
+→ GM confirmation
 → assignment
 → work progress
 → result ready
 ```
 
-This is not a GM BID-comparison scene. The GM is absent while routing happens.
-
-The ending represents:
+Ending:
 
 ```text
-completion notification
+result ready
 → result view
 → accept / revision path
 ```
 
-The emotional payoff is quiet confidence, not celebration.
+Long-term `work in → result out` may appear only as a clearly future-oriented product evolution message outside or after the current transaction proof.
 
 ---
 
-## 3. Current footage status
+## 3. Current repository assets
 
-The current conversation produced usable source material, but the binary assets are **not yet committed to this repository**.
+The v2 branch currently contains:
 
-Current working assets:
+- `/public/media/kapapi-hero.mp4`
+- `/public/media/kapapi-hero-poster.jpg`
 
-### A — Google Flow primary live-action source
+The application references these through a media constant rather than temporary local filenames.
 
-Working filename used in the session:
-
-`Man_using_laptop_and_smartphone_202609021606.mp4`
-
-Useful content:
-
-- GM at laptop
-- final submission/click moment
-- subtle sapphire/blue confirmation signal
-- GM stands/leaves
-- camera approaches laptop
-- cut to GM in a different professional setting using a phone
-
-Assessment during review: strongest overall live-action master source.
-
-### B — Dreamina human payoff / continuation
-
-Working filename:
-
-`dreamina-2026-09-02-4899-Create an 8-second, 16_9, ultra-realisti....mp4`
-
-Useful content:
-
-- similar GM identity / grey top
-- different professional setting
-- completion notification
-- `View Result` / revision concept
-- result check
-- restrained satisfied reaction
-
-This is useful as an alternate/final human payoff cut if it edits better than the Flow ending.
-
-### C — Dreamina clean transition source
-
-Working filename:
-
-`dreamina-2026-09-02-1990- Create an 8-second, 16_9, ultra-realist....mp4`
-
-Actual generated duration was approximately four seconds because the generation UI was accidentally left on 4s.
-
-Useful content:
-
-- empty office / desk
-- open laptop
-- push-in toward laptop screen
-
-This can be used as an optional transition plate if it improves continuity. It is not mandatory if the Flow push-in is cleaner.
-
-### D — working rough cut
-
-A local rough cut was assembled in the conversation:
-
-`KAPAPI_hero_rough_cut_v1.mp4`
-
-Approximate duration: **15.33s**.
-
-It combined:
-
-```text
-Flow submit/leave
-→ Dreamina clean transition
-→ Dreamina payoff
-```
-
-This rough cut is a structural reference, not a final production asset.
+Historical source-generation/rough-cut notes may remain in research files, but generated readable UI is never product truth.
 
 ---
 
-## 4. Critical implementation rule: generated UI is disposable
+## 4. Generated UI is disposable
 
-AI-video-generated laptop/phone UI is **not** authoritative KAPAPI UI.
+If source footage contains:
 
-If generated footage contains:
+- fake product text
+- incorrect brand names
+- distorted buttons
+- generic dashboards
+- unreadable AI-generated UI
 
-- fake product text,
-- incorrect brand names,
-- distorted buttons,
-- generic dashboards,
-- unreadable AI text,
-
-replace or cover it in post/compositing/product implementation.
+replace, cover or cut away from it.
 
 Preferred final structure:
 
 ```text
 LIVE ACTION
-GM submits / leaves
-
 → CAMERA APPROACHES LAPTOP
-
-REAL KAPAPI HTML/CSS UI
-BID ARRIVAL → ROUTING → ASSIGNED → PROGRESS → RESULT READY
-
-→ LIVE ACTION
-GM receives result elsewhere
+→ REAL KAPAPI HTML/CSS UI
+   BIDS → FILTER → RECOMMENDATION → GM CONFIRMED → RESULT
+→ LIVE ACTION / RESULT PAYOFF
 ```
 
-The KAPAPI UI segment should be real browser/product UI, not text rendered by a video model.
-
 ---
 
-## 5. Website integration strategy
+## 5. Website integration
 
-### Hero priority
+The task-entry surface remains the strongest above-the-fold product object.
 
-The task-entry surface remains the strongest object above the fold.
+Video/product movie is supporting proof.
 
-Approximate visual emphasis target:
+Media component should support:
 
-- task/promise/action: **~60%**
-- video/product movie: **~40%**
-
-This is a guideline, not a rigid CSS ratio.
-
-Do not let autoplay media steal focus from `일 맡기기`.
-
-### Recommended implementation
-
-Build a media component that supports:
-
-- `<video>` source when final asset becomes available
-- `muted`
-- `playsInline`
-- autoplay only when appropriate
-- poster image
+- muted
+- playsInline
+- poster
 - reduced-motion/static fallback
+- responsive crop
 - mobile fallback
-- clean aspect-ratio behavior
 - no layout shift
+- primary text/input before heavy media dependency
 
-Suggested component responsibility:
-
-`HeroProductMovie`
-
-Do not hard-wire the page to a temporary filename. Use an explicit asset constant/config.
+Do not make autoplay media the primary interaction.
 
 ---
 
-## 6. Real UI overlay / transition concept
+## 6. Laptop screen replacement
 
-When the laptop display becomes large enough, transition visually into the real KAPAPI product shell.
+When the laptop screen is visible and sufficiently large, real KAPAPI UI should be integrated through one of:
 
-Acceptable techniques:
+1. browser-layer perspective overlay;
+2. robust precomposited replacement;
+3. clean editorial cut into full-frame real UI.
 
-1. hard/soft cut at a near-full-screen display frame,
-2. masked/corner-pinned screen replacement in final edited media,
-3. browser-layer overlay timed to the footage,
-4. shared visual composition where the video fades and real UI inherits the same screen field.
+Do not build fragile browser CV tracking merely to show complexity.
 
-For the web prototype, option 3 or 4 is preferred if it remains robust and performant.
-
-Do **not** spend prototype time building complex computer-vision tracking in the browser.
-
-A convincing editorial transition is better than fragile technical theatre.
+On mobile/narrow layouts where the laptop is cropped, direct full-frame product UI is acceptable and preferred.
 
 ---
 
-## 7. KAPAPI UI choreography inside hero
+## 7. Current hero UI choreography
 
-Current semantic sequence:
+Canonical sequence:
 
 ```text
-WORK SUBMITTED
-→ BIDS 01 / 02 / 03 arrive
-→ routing signals resolve
-→ KAPAPI assigns best-fit PLAYER
-→ WORK STARTED
-→ FILE DELIVERED
+QUEST CREATED
+→ BIDS 01 / 02 / 03 / 04
+→ ELIGIBILITY CHECK
+→ RECOMMENDATION READY
+→ GM CONFIRMED
 → RESULT READY
 ```
-
-Make the sequence readable without requiring paragraph text.
 
 Useful visible evidence:
 
 - PRICE
 - DELIVERY
-- relevant history
+- relevant completion history
 - on-time rate
-- small routing rationale
+- revision rate
 
-Do not show the GM pressing a selection button.
+Inside the cinematic UI, keep the explanation compact. The detailed interactive route may show full rationale and alternatives.
 
-The selected PLAYER state is a system-routing state.
-
----
-
-## 8. Signature click feedback
-
-The sapphire/blue click feedback from the video experiments was approved as a useful brand interaction direction.
-
-Use it as a restrained KAPAPI submission confirmation:
-
-- roughly 0.2–0.4s
-- localized around the confirmed control/screen interaction
-- no room-wide blue wash
-- no neon/cyberpunk treatment
-- no repeated pulsing
-
-The real web CTA may echo this behavior in a subtle KAPAPI-native form.
-
-Do not literally imitate a video-model artifact if it conflicts with accessibility or the visual system.
+Do not use `PLAYER ASSIGNED` before `GM CONFIRMED` in the current product narrative.
 
 ---
 
-## 9. Category neutrality
+## 8. Category neutrality
 
-The master hero video must not become CAD-specific, coding-specific, design-specific or any other profession-specific story.
+Hero task examples and product imagery must not make KAPAPI look like an Architecture/CAD service.
 
-The hero should represent **professional work being handed off**, not one category.
+The set should suggest multiple forms of bounded digital work, such as:
 
-Specific CAD material belongs in the flagship case study below the hero.
+- PDF/data/spreadsheet
+- image/e-commerce
+- document/PPT
+- CAD/skilled support
 
-For the result screen in hero media, keep output visually generic or abstract enough that the viewer reads `work result`, not `CAD service`.
-
----
-
-## 10. Acting / cinematography tone
-
-Target:
-
-- photorealistic
-- premium Korean tech-commercial feel
-- calm
-- restrained
-- believable professional environment
-- natural light
-- no stock-ad grin
-- no celebration
-- no looking at camera
-- no exaggerated relief
-
-The final human reaction should mean:
-
-> “Good. Done.”
-
-not:
-
-> “This app changed my life!”
+A detailed CAD case may live below the hero.
 
 ---
 
-## 11. Prototype behavior while final media is unavailable
+## 9. Human payoff
 
-Do not block implementation waiting for the final MP4.
+The ending should be quiet and believable.
 
-Until the approved media asset is placed in the repository/project:
+Do not use:
 
-- implement the final media container and responsive behavior,
-- use a neutral placeholder/poster with the correct composition,
-- implement the real KAPAPI UI animation separately,
-- expose a clear asset path/config location,
-- document where the final video should be dropped.
+- `GOOD DONE`
+- `SUCCESS!`
+- exaggerated celebration
+- testimonial copy
+- confetti/trophy imagery
 
-Do not replace the missing video with a random stock clip.
-
-Do not invent a new AI-generated hero image.
+The result object and subtle human reaction carry the payoff.
 
 ---
 
-## 12. Final asset acceptance
+## 10. Responsive / reduced motion
 
-Before an MP4 becomes the public hero master, verify:
+Desktop may use the laptop compositing effect.
 
-- same GM identity reads consistently enough across cuts,
-- no sudden appearing/disappearing props that are visually distracting,
-- no visible AI-video watermark,
-- no third-party logos requiring removal,
-- no authoritative fake KAPAPI UI remains visible,
-- transition into real product UI is believable,
-- media does not make the service look category-specific,
-- mobile crop does not destroy the story,
-- text/task entry remains dominant,
-- loading behavior does not harm first paint.
+Mobile may cut directly to product UI when device framing makes compositing meaningless.
 
-The final media is supporting evidence for the product thesis, not the product itself.
+Reduced-motion path should show a strong static/poster state and preserve:
+
+- task-entry action
+- current product promise
+- result-oriented meaning
+
+No critical product fact should exist only inside autoplay motion.
+
+---
+
+## 11. Verification
+
+Before current hero is considered visually verified:
+
+- capture desktop and mobile states;
+- inspect film/composite/full-frame timing;
+- verify recommendation occurs before confirmation/assignment;
+- verify no generated fake readable UI is authoritative;
+- verify first paint/task input does not depend on video download;
+- verify fallback/reduced-motion behavior;
+- verify actual deployed Preview when current Vercel access is available.
+
+Historical `d003027` Preview QA does not prove the latest D-032-aligned branch head.
