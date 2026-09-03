@@ -21,7 +21,7 @@ export default function NewPage() {
     return (
       <div className={`frame ${s.confirm}`}>
         <h1 className={s.confirmTitle}>맡길 업무를 먼저 적어주세요</h1>
-        <p className={s.confirmBody}>홈 화면에 업무를 적으면 작업 사양으로 정리해 드립니다.</p>
+        <p className={s.confirmBody}>홈 화면에 업무를 적으면 작업 조건으로 정리해 드립니다.</p>
         <div className={s.confirmActs}>
           <Link href="/" className={`${s.btn} ${s.btnAccent}`}>홈으로</Link>
         </div>
@@ -34,10 +34,10 @@ export default function NewPage() {
     return (
       <div className={`frame ${s.confirm}`}>
         <p className={s.confirmMark} aria-hidden="true">✓</p>
-        <h1 className={s.confirmTitle}>의뢰가 등록되었습니다</h1>
-        <p className={s.confirmEn}>QUEST #{NEW_ID} CREATED</p>
+        <h1 className={s.confirmTitle}>업무가 등록되었습니다</h1>
+        <p className={s.confirmEn}>업무 #{NEW_ID} 등록 완료</p>
         <p className={s.confirmBody}>
-          조건에 맞는 제안이 모이면 카파피가 가격, 완료시간과 관련 이력을 바탕으로 추천해드립니다.
+          조건에 맞는 제안이 모이면 카파피가 가격, 완료시간과 관련 작업이력을 바탕으로 추천해드립니다.
           추천을 확인한 뒤 바로 작업을 시작할 수 있습니다.
         </p>
         <div className={s.confirmActs}>
@@ -58,10 +58,10 @@ export default function NewPage() {
 
   return (
     <div className={`frame ${s.wrap}`}>
-      <p className={s.crumb}><Link href="/">의뢰 등록</Link><span aria-hidden="true">/</span><span>작업 사양 확인</span></p>
+      <p className={s.crumb}><Link href="/">업무 등록</Link><span aria-hidden="true">/</span><span>작업 조건 확인</span></p>
       <div className={s.head}>
         <h1 className={s.title}>이렇게 정리했습니다</h1>
-        <p className={s.sub}>작업 범위와 마감만 확인하면 QUEST로 등록됩니다.</p>
+        <p className={s.sub}>작업 범위와 마감만 확인하면 업무로 등록됩니다.</p>
       </div>
 
       <div className={s.sheet}>
@@ -130,7 +130,7 @@ export default function NewPage() {
               <input id="bg" type="number" className={s.number} min={10000} step={10000}
                 value={draft.budget} onChange={(e) => patchDraft({ budget: Math.max(0, Number(e.target.value)) })} />
             </div>
-            <p className={s.hint} style={{ marginTop: 6 }}>이 금액을 넘는 제안은 추천하지 않습니다. 금액은 제안한 사람이 정합니다.</p>
+            <p className={s.hint} style={{ marginTop: 6 }}>이 금액을 넘는 제안은 추천하지 않습니다. 금액은 작업자가 정합니다.</p>
           </div>
         </div>
 
