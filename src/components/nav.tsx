@@ -1,9 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
-import { useMode, type Mode } from "@/lib/mode";
 import s from "./nav.module.css";
 
 /**
@@ -12,55 +11,44 @@ import s from "./nav.module.css";
  * The toggle is a surface switch on one account, not a second signup door
  * (IDENTITY_ROLE_MODEL §1), so it sits beside the brand rather than being sold
  * as a destination — and 회원가입 stays one button for both sides.
+ *
+ * Each surface is a route, so the toggle is two links and the active one is read
+ * off the pathname. There is no stored mode: every route already says which
+ * surface it belongs to, and a second remembered answer could only disagree with
+ * the page the person is actually looking at.
  */
 
-const MODES: { k: Mode; label: string }[] = [
-  { k: "client", label: "발주자" },
-  { k: "worker", label: "작업자" },
-];
+const MODES = [
+  { href: "/", label: "발주자" },
+  { href: "/board", label: "작업자" },
+] as const;
 
-/**
- * Which mode a route belongs to, so the toggle never lies about where you are.
- * The landing is deliberately not listed: it renders both surfaces, so there the
- * toggle follows the stored preference rather than the URL.
- */
-function modeOf(pathname: string): Mode | null {
-  if (pathname.startsWith("/board")) return "worker";
-  if (pathname.startsWith("/new") || pathname.startsWith("/quest")) return "client";
-  return null;
-}
+/** 작업자 owns the board; everything else is the client's side of the account. */
+const isWorker = (pathname: string) => pathname.startsWith("/board");
 
 export function Nav() {
   const pathname = usePathname();
-  const router = useRouter();
-  const { mode, setMode } = useMode();
-  const current = modeOf(pathname) ?? mode;
-
-  // The landing serves both surfaces, so switching there is a re-render. From an
-  // inner route it returns to the landing, because the page you were on belongs
-  // to the surface you just left.
-  function go(m: Mode) {
-    setMode(m);
-    if (pathname !== "/") router.push("/");
-  }
+  const worker = isWorker(pathname);
 
   return (
     <header className={s.bar}>
       <nav className={s.inner} aria-label="주요 메뉴">
-        <Link href="/" className={s.brand}>KAPAPI</Link>
+        <Link href={worker ? "/board" : "/"} className={s.brand}>KAPAPI</Link>
 
         <div className={s.modes} role="group" aria-label="화면 전환">
-          {MODES.map((m) => (
-            <button
-              key={m.k}
-              type="button"
-              className={`${s.mode} ${current === m.k ? s.modeOn : ""}`}
-              aria-pressed={current === m.k}
-              onClick={() => go(m.k)}
-            >
-              {m.label}
-            </button>
-          ))}
+          {MODES.map((m) => {
+            const on = m.href === "/board" ? worker : !worker;
+            return (
+              <Link
+                key={m.href}
+                href={m.href}
+                className={`${s.mode} ${on ? s.modeOn : ""}`}
+                aria-current={on ? "page" : undefined}
+              >
+                {m.label}
+              </Link>
+            );
+          })}
         </div>
 
         <div className={s.right}>

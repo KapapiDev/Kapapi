@@ -44,7 +44,7 @@ try {
   }
   // The 작업자 surface must be reachable from the same account, one toggle away.
   const modes = await p.evaluate(() =>
-    [...document.querySelectorAll('[role="group"] button')].map((b) => b.textContent.trim()));
+    [...document.querySelectorAll('[role="group"] a')].map((x) => x.textContent.trim()));
   assert.deepEqual(modes, ["발주자", "작업자"], `mode toggle missing: ${modes}`);
   const signupDoors = await p.evaluate(() =>
     [...document.querySelectorAll("a, button")].map((e) => (e.textContent || "").trim())

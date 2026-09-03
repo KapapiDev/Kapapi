@@ -1,30 +1,13 @@
-"use client";
-
 import { Hero } from "@/components/hero";
-import { WorkerHero } from "@/components/worker-hero";
-import { AccountSection, ResultFlowSection, UrgentSection } from "@/components/sections";
-import { useMode } from "@/lib/mode";
+import { AccountSection, ResultFlowSection } from "@/components/sections";
 
 /**
- * One landing, two surfaces of the same account.
+ * The 발주자 surface. D-035: 업무 입력 → KAPAPI → 결과, so it carries the upload and
+ * one piece of evidence that the result actually comes back.
  *
- * D-035: the 발주자 side is 업무 입력 → KAPAPI → 결과, so it carries the upload and
- * one piece of evidence that the result actually comes back. The 작업자 side is the
- * market, because proposing 가격 + 완료시간 is what that person is here to do.
+ * The 작업자 surface is /board — the work list itself, not a page in front of it.
  */
 export default function Home() {
-  const { mode } = useMode();
-
-  if (mode === "worker") {
-    return (
-      <>
-        <WorkerHero />
-        <UrgentSection />
-        <AccountSection />
-      </>
-    );
-  }
-
   return (
     <>
       <Hero />
