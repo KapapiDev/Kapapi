@@ -6,28 +6,28 @@ Current visual implementation branch: `feat/prototype-v2`
 
 ## Mission
 
-Build and maintain a high-polish KAPAPI prototype that makes the present transaction understandable in seconds and the long-term Outcome Layer credible without pretending it already exists.
+Build and maintain a high-polish KAPAPI prototype that makes the present transaction understandable in seconds and the long-term execution layer credible without pretending it already exists.
 
-The product is **not** a freelancer directory with game decoration, a CAD marketplace, or a magical auto-outsourcing demo.
+The product is **not** a freelancer directory, a gamified work service, a CAD marketplace or a magical auto-outsourcing demo.
 
 Current product story:
 
 ```text
 TASK FIRST
-GM posts bounded work
-→ PLAYERs discover QUESTs
-→ PLAYERs BID PRICE + DELIVERY TIME
-→ KAPAPI filters/ranks and recommends
-→ GM confirms
-→ PLAYER executes
-→ result returns
-→ GM accepts/revises
+발주자가 bounded work 등록
+→ 작업자가 open work 탐색
+→ 가격 + 완료시간 제안
+→ KAPAPI 필수요건 확인 / 정렬 / 추천
+→ 발주자 확정
+→ 작업자 수행
+→ 결과 전달
+→ 발주자 수락/수정
 ```
 
 Growth story:
 
 ```text
-transactions → trust data → recommendation → routing → recovery → repeat capacity → Outcome Layer
+transactions → trust data → recommendation → routing → recovery → repeat capacity → execution layer
 ```
 
 North Star:
@@ -38,116 +38,90 @@ North Star:
 
 ## Mandatory reading order
 
-Before changing implementation, read:
-
 1. `docs/ORIGIN_AND_GROWTH_THESIS.md`
-2. `docs/DECISIONS.md` — **D-032 is the current routing/selection authority**
+2. `docs/DECISIONS.md` — D-032 through D-034 are current authority
 3. `docs/PRODUCT.md`
 4. `docs/ROADMAP.md`
 5. `docs/VALIDATION.md`
 6. `docs/PROTOTYPE_SPEC.md`
 7. `docs/PROGRAM_2026_MODU.md`
 8. `docs/LEGAL.md`
-9. current v2 visual/content override documents
-10. `docs/KAPAPI_ART_DIRECTION.md`
-11. `docs/KAPAPI_DESIGN.md`
-12. `docs/KAPAPI_MOTION.md`
-13. `docs/HERO_MEDIA.md`
-14. `docs/QA_CHECKLIST.md`
-15. `TASK_QUEUE.md`
+9. current visual/content documents
+10. `TASK_QUEUE.md`
 
-If older copy or behavior conflicts with D-032 or the files above, the newer task-first canon wins.
-
-D-031's day-one universal hands-off auto-routing requirement is superseded.
+Older copy or behavior that conflicts with current canon must be replaced.
 
 ---
 
 ## Non-negotiable product truths
 
-1. **Task first, not profile first.** The core marketplace object is the QUEST.
-2. The GM must understand within seconds that they can submit work here.
-3. The PLAYER must have a clear `작업 찾기` path to real open work.
-4. PLAYERs do not need to create a storefront before earning.
-5. Every BID requires **PRICE + committed DELIVERY TIME**.
-6. Early selection should reduce burden without fake certainty. Preferred prototype default: **KAPAPI recommendation + GM confirmation**.
-7. Alternatives may be visible through `다른 제안 보기`; do not force a giant proposal-comparison wall.
-8. Universal automatic routing is a later capability earned from transaction/trust/liquidity/recovery data.
-9. GM remains the final result judge through accept/revise.
-10. Architecture/CAD is one founder-domain proof case, not the hero category or market definition.
-11. Early categories may include ordinary office/support work and skilled professional support work.
-12. KAPAPI world terms come after ordinary-language understanding.
-13. One universal account; GM/PLAYER are contextual QUEST roles.
-14. AI initially helps scope, missing information, task fit and objective checks. It is not an infallible selector or subjective quality judge.
-15. Long-term execution may use human PLAYERs, AI, automation, specialist partners or hybrid workflows.
-16. Strong SLA/outcome guarantees are earned category by category.
+1. **Task first, not profile first.** Work is the core marketplace object.
+2. A client must understand within seconds that they can submit work here.
+3. Workers need a clear `작업 찾기` path to real open work.
+4. Workers do not need a storefront before earning.
+5. Every proposal requires **price + committed completion time**.
+6. Preferred early default is **KAPAPI recommendation + client confirmation**.
+7. Alternatives may be visible through `다른 제안 보기`; do not force a giant comparison wall.
+8. Universal automatic routing is later, earned from transaction/trust/liquidity/recovery data.
+9. Client remains final result judge through accept/revise.
+10. Architecture/CAD is one founder-domain proof case, not the hero category.
+11. Early categories may include ordinary office/support and skilled professional-support work.
+12. **Use standard terminology only:** 발주자 / 작업자 / 업무 / 제안 / 가격 / 완료시간 / 작업대금 / 긴급 업무 / 작업이력 / 업무 완료.
+13. Do not use fictional roles, special glossary, levels, experience points or gamified completion labels.
+14. One universal account; client/worker are contextual transaction roles.
+15. AI initially helps scope, missing information, fit and objective checks. It is not an infallible selector or subjective quality judge.
+16. Long-term execution may use human workers, AI, automation, specialist partners or hybrid workflows.
+17. Strong SLA/outcome guarantees are earned category by category.
 
 ---
 
-## Current GM UX
-
-Preferred current flow:
+## Current client UX
 
 ```text
 LANDING
 → task input / files
-→ KAPAPI structures QUEST
-→ GM confirms posting
-→ BIDs arrive
+→ KAPAPI structures work
+→ client confirms posting
+→ proposals arrive
 → KAPAPI recommendation appears
-→ GM confirms recommended PLAYER
+→ client confirms recommended worker
 → execution status
 → delivered result
 → accept / revise
 ```
 
-Recommendation surface should show enough evidence to be credible:
+Recommendation surface should show deadline/budget feasibility, relevant history/career, on-time/revision signals, price + completion-time trade-off and short rationale.
 
-- deadline/budget feasibility
-- relevant history/career
-- on-time/revision signals
-- PRICE + DELIVERY trade-off
-- short rationale
+Primary action: **이 작업자로 진행**
 
-Primary action:
-
-> **이 작업자로 진행**
-
-Secondary:
-
-> **다른 제안 보기**
-
-Do not label this universal auto-routing.
+Secondary: **다른 제안 보기**
 
 ---
 
-## Current PLAYER UX
+## Current worker UX
 
 ```text
 작업 찾기
-→ open QUEST board
+→ open work board
 → filter by fit / deadline
 → inspect bounded scope
-→ BID PRICE + DELIVERY
+→ propose price + completion time
 → assignment
 → execute
 → submit result
-→ earn / verified history
+→ get paid / verified work history
 ```
-
-This supply path is strategically important because it preserves the founder-origin problem.
 
 ---
 
 ## Hero requirement
 
-The first viewport should remain category-neutral and action-led.
-
-The task-entry surface is the protagonist.
+The first viewport remains category-neutral and action-led.
 
 Approved semantic direction:
 
 ```text
-맡길 일을 적어주세요.
+사람을 찾지 말고, 할 일을 올리세요.
 카파피가 작업 조건을 정리하고 맞는 제안을 추천합니다.
 
 [ 어떤 작업이 필요하신가요?                         ]
@@ -156,85 +130,66 @@ Approved semantic direction:
 작업을 찾고 있나요? → 작업 찾기
 ```
 
-Do not use copy that implies:
-
-> “등록만 하면 KAPAPI가 이미 완벽하게 자동배정하고 결과만 돌려준다.”
-
-The long-term `work in → result out` story belongs below the current transaction proof or in a clearly future-oriented beat.
+The long-term `work in → result out` story belongs below current transaction proof or in a clearly future-oriented beat.
 
 ---
 
 ## Landing narrative
 
-Recommended order:
-
 1. task-entry hero
-2. task-first distinction / PLAYER open-work entry
-3. PRICE × DELIVERY proof
-4. KAPAPI recommendation + GM confirmation
-5. completed QUEST case across a believable category
-6. TIME ATTACK
+2. task-first open-work proof
+3. price × completion time
+4. recommendation + client confirmation
+5. completed-work case
+6. urgent work
 7. result / accept-revise
-8. trust / LEVEL-EXP
-9. future progression: transactions → trust → routing → Outcome Layer
-
-Do not make Architecture/CAD the dominant identity.
+8. worker trust/history
+9. future progression: transactions → trust → routing → execution layer
 
 ---
 
 ## Visual authority
 
-Keep the v2 quality bar and visual rules unless product behavior conflicts:
-
 - light-first public UX
 - dark as contextual operational punctuation
 - premium typography and spacing
-- restrained HUD/world layer
-- no fantasy RPG cosplay
+- real operational metadata only
+- no fantasy/game vocabulary or visuals
+- no levels/experience points
 - no generic SaaS dashboard wall
-- no arbitrary public pseudo-lore
-- real product states should drive motion
-
-Existing v2 hero compositing work can remain, but the composited product sequence must communicate the current recommendation/confirmation transaction rather than unsupported universal auto-assignment.
+- real product states drive motion
 
 ---
 
 ## Technical posture
 
-Continue the established Next.js App Router + TypeScript implementation unless a real technical blocker requires change.
+Continue Next.js App Router + TypeScript unless a real blocker requires change.
 
-Prefer:
-
-- typed deterministic fixtures for prototype flow
-- stable replayable demo states
-- custom KAPAPI components
-- accessible forms/navigation
-- responsive desktop/mobile behavior
-- reduced-motion path
-- real QA against deployed preview when available
+Prefer typed deterministic fixtures, stable replayable demo states, accessible forms/navigation, responsive desktop/mobile behavior, reduced-motion path and real QA against deployed preview when available.
 
 Do not build production database/payment/auth complexity merely to simulate the 1R transaction.
 
 ---
 
-## Definition of done for the aligned prototype
+## Definition of done
 
 The prototype is ready for review when:
 
 - task-first identity is unmistakable
 - ordinary online-work examples appear, not just CAD
-- `작업 찾기` visibly supports PLAYER discovery
-- PRICE + DELIVERY bidding is clear
+- `작업 찾기` visibly supports worker discovery
+- price + completion-time proposals are clear
 - KAPAPI recommendation is visible and evidence-backed
-- GM confirmation exists
-- no page claims universal automatic routing is already solved
-- result / revision loop is visible
-- future routing/Outcome Layer is clearly framed as earned evolution
-- Architecture/CAD is a testbed/example only
+- client confirmation exists
+- no page claims universal automatic routing is solved
+- result/revision loop is visible
+- future routing/execution layer is clearly framed as earned evolution
+- no special/game terminology appears in user-facing copy
+- no decorative level/experience system remains
+- architecture/CAD is example only
 - current visual polish is preserved
 - desktop/mobile/reduced-motion remain credible
 - build/lint/typecheck/tests available to the repository pass
-- current v2 QA invariants are updated for the new recommendation state
 
 Desired reaction:
 
@@ -244,11 +199,11 @@ Desired reaction:
 
 ## Working protocol
 
-1. Fetch the latest target branch before changes.
-2. Do not implement against stale local assumptions.
-3. Follow the current canon above all older screenshots/copy examples.
-4. Keep code and docs aligned in the same change set.
+1. Fetch latest target branch before changes.
+2. Do not implement against stale assumptions.
+3. Follow current canon above older screenshots/copy.
+4. Keep code and docs aligned.
 5. Run available build/typecheck/lint/tests.
-6. Verify the actual UI visually when a preview is available.
+6. Verify actual UI visually when preview is available.
 7. Do not merge to `main` automatically unless explicitly instructed.
 8. Do not make the user act as a technical courier when connected tools can perform the work.

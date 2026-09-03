@@ -5,7 +5,7 @@ Updated: **2026-09-03**
 
 A **BLOCKER** failure means the current prototype is not ready for founder review/demo.
 
-Product authority: D-032 + current `PRODUCT.md`, `ROADMAP.md`, `PROTOTYPE_SPEC.md`.
+Product authority: current `DECISIONS.md`, `PRODUCT.md`, `ROADMAP.md`, `PROTOTYPE_SPEC.md`.
 
 ---
 
@@ -15,198 +15,136 @@ Product authority: D-032 + current `PRODUCT.md`, `ROADMAP.md`, `PROTOTYPE_SPEC.m
 
 A first-time Korean visitor understands:
 
-- this is a place to submit bounded online work;
-- the main GM action is to describe/attach the work;
-- there is also a clear `작업 찾기` path for people who want to perform work.
+- this is a place to submit bounded online work
+- the main client action is to describe/attach work
+- there is a clear `작업 찾기` path for people who want to perform work
 
-Fail if the first impression is only:
-
-- freelancer directory
-- seller storefront catalog
-- generic job board
-- game launcher
-- AI dashboard
-- developer console
-- architecture/CAD-only service
+Fail if first impression is only freelancer directory, seller storefront catalog, generic job board, gamified work app, AI dashboard, developer console or CAD-only service.
 
 ## A2. Task-first identity — BLOCKER
 
-The product makes clear that work/QUESTs exist first.
+The product makes clear that work exists first. Workers can browse open work without creating a service storefront.
 
-PLAYERs can browse real open work without first creating a service storefront.
+## A3. Standard terminology only — BLOCKER
 
-## A3. Plain language before world terms — BLOCKER
+Public UI uses ordinary language:
 
-A visitor does not need to understand GM / PLAYER / QUEST / BID / LEVEL / EXP / TIME ATTACK before knowing what to do.
+- 발주자
+- 작업자
+- 업무
+- 제안
+- 가격
+- 완료시간
+- 작업대금
+- 긴급 업무
+- 작업이력 / 정시완료율 / 수정률
+- 업무 완료
 
-## A4. PRICE × DELIVERY — BLOCKER
+Fail if the UI introduces fictional role names, a special glossary, levels, experience points or game-style completion/status terms.
 
-Every BID requires:
+## A4. Price × completion time — BLOCKER
 
-- PRICE
-- committed DELIVERY TIME
-
-Delivery means elapsed time from confirmation/assignment to submission, not estimated labor hours.
+Every proposal requires price + committed completion time. Completion time means elapsed time from assignment to submission, not estimated labor hours.
 
 ## A5. Recommendation before assignment — BLOCKER
 
-Current preferred prototype flow is:
-
 ```text
-BIDs
-→ eligibility/ranking
-→ KAPAPI recommendation
-→ GM confirmation
-→ ASSIGNED
+제안
+→ 필수요건/정렬
+→ KAPAPI 추천
+→ 발주자 확정
+→ 배정
 ```
 
-Fail if:
+Fail if a worker is silently assigned before client confirmation, recommendation and assignment look identical, or universal automatic routing is claimed as current.
 
-- a PLAYER is silently assigned before GM confirmation;
-- recommendation and assignment are visually the same state;
-- the product claims universal automatic routing already exists.
+## A6. Decision burden is reduced — BLOCKER
 
-## A6. Decision burden is still reduced — BLOCKER
-
-The GM does not face an overwhelming freelancer-shopping wall.
-
-The default recommendation surface provides:
-
-- one clear recommended candidate
-- short evidence/rationale
-- primary `이 작업자로 진행`
-- secondary access to alternatives
+Default recommendation surface provides one clear recommended worker, concise evidence/rationale, primary `이 작업자로 진행` and secondary access to alternatives.
 
 ## A7. Result loop — BLOCKER
 
-The GM can:
-
-- inspect delivered result/files
-- accept / complete
-- request revision within scope
-
-GM remains the final result judge in the current prototype.
+Client can inspect result/files, accept/complete and request revision within scope.
 
 ## A8. Future routing is framed honestly — BLOCKER
 
-The product may show:
-
-`transactions → trust → recommendation → routing/recovery → Outcome Layer`
-
-but must not present later universal routing/SLA behavior as current production capability.
+Future progression may be shown, but later universal routing/SLA behavior must not be presented as current capability.
 
 ---
 
-# B. Founder-origin / supply side
+# B. Worker / supply side
 
 ## B1. `작업 찾기` exists — BLOCKER
 
-PLAYERs have a real route to open QUESTs.
+Workers have a real route to open work.
 
 ## B2. Board is usable — BLOCKER
 
-The board exposes enough information to judge fit:
-
-- title
-- category
-- compensation/range where applicable
-- deadline
-- TIME ATTACK where real
-- brief scope
-- eligibility
-- BID count/status
+Board exposes title, category, payment/range where applicable, deadline, urgent status when real, brief scope, requirements, proposal count and status.
 
 ## B3. No storefront prerequisite — BLOCKER
 
-A PLAYER can reach a BID opportunity without building a seller shop, audience or long service listing first.
+A worker can reach a proposal opportunity without building a seller shop, audience or long service listing.
 
 ## B4. One universal identity — BLOCKER
 
-A user may be GM in one QUEST and PLAYER/BIDDER in another.
-
-No permanent buyer/seller account fork is required.
+A user may issue one task and perform another. No permanent buyer/seller account fork is required.
 
 ---
 
 # C. First viewport / hero
 
-## C1. One dominant GM action — BLOCKER
+## C1. One dominant client action — BLOCKER
 
-The task-entry surface dominates above the fold.
+The work-entry surface dominates above the fold.
 
 ## C2. Current-stage hero copy — BLOCKER
 
 Hero semantics match the current stage, e.g.:
 
-> 맡길 일을 적어주세요.  
+> **사람을 찾지 말고, 할 일을 올리세요.**  
 > 카파피가 작업 조건을 정리하고 맞는 제안을 추천합니다.
 
 Fail if hero promises universal automatic assignment/result delivery as already solved.
 
 ## C3. Category neutrality — BLOCKER
 
-Examples as a set span multiple kinds of online work. CAD is not the master category.
+Examples span multiple kinds of online work. CAD is not the master category.
 
-## C4. PLAYER entry is visible but secondary
+## C4. Worker entry is visible but secondary
 
-`작업 찾기` is discoverable without competing with the GM primary action.
+`작업 찾기` is discoverable without competing with the main client action.
 
 ## C5. Hero media supports the action
 
-If video is enabled:
-
-- task input renders independently of video download;
-- poster/fallback exists;
-- no authoritative garbled/generated product UI remains;
-- desktop compositing/cut is visually credible;
-- mobile crop/cut remains understandable;
-- reduced-motion fallback remains useful.
+Video, if enabled, must not block primary input, must have poster/fallback, must not contain authoritative garbled/generated UI and must remain understandable on mobile/reduced motion.
 
 ## C6. Hero choreography — BLOCKER
 
-Current product states preserve:
-
 ```text
-QUEST CREATED
-→ BIDS RECEIVED
-→ ELIGIBILITY CHECK
-→ RECOMMENDATION READY
-→ GM CONFIRMED
-→ RESULT READY
+업무 등록
+→ 제안 도착
+→ 조건 확인
+→ 추천 준비
+→ 발주자 확정
+→ 결과 도착
 ```
-
-Do not skip recommendation/confirmation semantics.
 
 ---
 
-# D. QUEST creation / SOW
+# D. Work creation / scope
 
 ## D1. Scope confirmation — BLOCKER
 
-A rough request can become a structured QUEST with appropriate fields such as:
-
-- inputs/files
-- scope
-- deliverables
-- output format
-- deadline
-- acceptance criteria
-- revision boundary
-- budget/commercial boundary
-- confidentiality/security
-- missing information
+A rough request can become structured work with inputs/files, scope, deliverables, output format, deadline, acceptance criteria, revision boundary, budget/commercial boundary, confidentiality/security and missing information where appropriate.
 
 ## D2. Honest submit confirmation — BLOCKER
 
 After posting, copy says proposals will arrive and KAPAPI will recommend based on conditions/history.
 
-Fail if it says the GM can disappear until the result because KAPAPI already universally auto-routes.
-
 ## D3. AI claim hygiene
 
-AI may assist scoping/fit/objective checks.
-
-Do not claim authoritative final price setting, subjective final quality judgment or magical sole selection.
+AI may assist scoping/fit/objective checks. Do not claim authoritative price setting, subjective final quality judgment or magical sole selection.
 
 ---
 
@@ -214,38 +152,23 @@ Do not claim authoritative final price setting, subjective final quality judgmen
 
 ## E1. Eligibility filtering
 
-Ineligible candidates can be visibly excluded for real reasons such as:
-
-- skill/credential mismatch
-- security requirement
-- availability
-- deadline
-- budget
+Ineligible candidates can be excluded for real reasons such as skill/credential mismatch, security requirement, availability, deadline or budget.
 
 ## E2. Recommendation evidence — BLOCKER
 
-Recommendation can be supported by observable evidence such as:
-
-- PRICE
-- DELIVERY
-- relevant completion history/career
-- on-time rate
-- revision rate
-- availability
+Recommendation can be supported by price, completion time, relevant completion history/career, on-time rate, revision rate and availability.
 
 ## E3. Alternatives
 
-The GM can inspect alternatives without being forced to compare every BID by default.
+Client can inspect alternatives without being forced to compare every proposal by default.
 
 ## E4. Confirmation creates assignment — BLOCKER
 
-Before confirmation: recommended, not assigned.
-
-After confirmation: assigned/work state begins.
+Before confirmation: recommended, not assigned. After confirmation: assigned/work state begins.
 
 ## E5. No fake scientific certainty
 
-A routing/recommendation score is a prototype decision aid, not presented as objective truth.
+Recommendation scores are prototype decision aids, not objective truth.
 
 ---
 
@@ -257,56 +180,41 @@ Status/file/timeline first, not chat-first.
 
 ## F2. Observable state only — BLOCKER
 
-No fake human-work progress percentage such as `73% complete` unless genuinely measurable.
+No fake human-work progress percentage unless genuinely measurable.
 
 ## F3. Delivery proof
 
-Result surface can show:
-
-- delivered files
-- timestamp
-- deadline comparison
-- objective checks actually performed
+Show delivered files, timestamp, deadline comparison and objective checks actually performed.
 
 ## F4. Revision boundary
 
-Revision is tied to agreed scope/acceptance criteria, not open-ended dissatisfaction.
+Revision is tied to agreed scope/acceptance criteria.
 
 ## F5. Completion tone
 
-No confetti/trophy/exaggerated celebration is required.
+No confetti, trophy, experience points, level-up or exaggerated celebration.
 
 ---
 
-# G. Outcome Layer / long-term story
+# G. Outcome / execution layer
 
 ## G1. Evolution is understandable
 
-The page can communicate:
-
 ```text
-completed QUESTs
+completed work
 → data
 → trust
 → recommendation
 → routing/recovery
 → repeat capacity
-→ Outcome Layer
+→ execution layer
 ```
 
 ## G2. Resource-agnostic execution
 
-Future execution may include:
-
-- human PLAYER
-- AI
-- deterministic automation
-- specialist partner
-- hybrid / multi-PLAYER
+Future execution may include human worker, AI, deterministic automation, specialist partner and hybrid / multi-worker flows.
 
 ## G3. Current vs future boundary — BLOCKER
-
-The future direction is visually/textually distinguished from current capability.
 
 No universal SLA/guaranteed-result claim without evidence.
 
@@ -340,111 +248,53 @@ Dark operational moments may exist, but do not turn the whole product into a dev
 
 ## I3. No generic template smell — BLOCKER
 
-Reject if it resembles a stock:
+Reject generic dashboards, AI startup templates, crypto landing pages, rounded-card walls and black dashboard collages.
 
-- generic shadcn/Tailwind dashboard
-- AI startup template
-- crypto landing
-- rounded-card wall
-- black dashboard collage
+## I4. Operational metadata only — BLOCKER
 
-## I4. Game energy is restrained
+Allowed when meaningful: task ID, price, completion time, proposal count, deadline, urgent status, similar-work count, on-time rate, revision rate and real work states.
 
-Allowed when meaningful:
-
-- QUEST IDs
-- TIME ATTACK
-- LEVEL / EXP
-- QUEST COMPLETE
-
-Rejected:
-
-- fantasy art
-- coins/swords
-- loot rarity
-- gamer RGB
-- game-launcher composition
-
-## I5. Visual-first communication
-
-Major sections should be understandable through product artifacts/motion before explanatory prose.
+Reject fictional progression, game vocabulary and decorative pseudo-lore.
 
 ---
 
 # J. Responsive / accessibility / performance
 
-## J1. Desktop and mobile — BLOCKER
-
-No horizontal overflow, broken stacking or unreadable transaction state in tested target viewports.
-
-## J2. Touch targets
-
-Interactive mobile controls are comfortably tappable.
-
-## J3. Keyboard / focus / labels — BLOCKER
-
-Core inputs/buttons/links are keyboard-operable, labeled and visibly focusable.
-
-## J4. Reduced motion
-
-The product remains understandable with motion disabled/reduced.
-
-## J5. Media performance
-
-Hero media does not block primary text/input rendering or cause damaging layout shift.
+- desktop/mobile have no horizontal overflow or unreadable transaction states
+- touch targets are comfortable
+- core controls are keyboard-operable, labeled and visibly focusable
+- reduced-motion remains understandable
+- media does not block primary rendering or cause damaging layout shift
 
 ---
 
 # K. Claim / legal hygiene
 
-## K1. Prototype disclaimer — BLOCKER
+Prototype must not imply absent payment custody/escrow, universal auto-routing, universal completion/SLA guarantee, tax automation or subjective AI quality guarantee.
 
-The prototype does not imply current production availability of absent capabilities such as:
-
-- payment custody/escrow
-- universal auto-routing
-- universal completion/SLA guarantee
-- tax automation
-- subjective AI quality guarantee
-
-## K2. Security language
-
-Security/NDA is treated seriously where relevant, without claiming protections not actually implemented.
-
-## K3. Regulated work
-
-Do not imply unqualified PLAYERs or AI can perform regulated professional judgment.
+Security/NDA language must match implementation. Regulated professional judgment must remain gated.
 
 ---
 
 # L. Automated / rendered QA
 
-## L1. Behavioral harness — BLOCKER
+Update automated invariants so current build fails if:
 
-Current `scripts/loop.mjs` passes against the build being reviewed.
+- special/game terminology appears in user-facing copy
+- decorative level/experience systems appear
+- price + completion time is absent
+- recommendation equals assignment
+- client confirmation is missing
+- CAD becomes hero identity
+- work board becomes storefront-first
+- future execution layer is presented as current universal capability
 
-Its D-032 invariants include recommendation-before-assignment and GM confirmation.
-
-## L2. Screenshot audit
-
-Run current route screenshots for desktop/mobile when browser tooling is available.
-
-## L3. Hero timeline audit
-
-Capture current hero beats, including recommendation and result.
-
-## L4. Live Preview verification
-
-If a Vercel Preview is used for review, verify the actual latest branch head rather than relying on historical `d003027` screenshots/QA.
-
-`PROTOTYPE_V2_PREVIEW_QA.md` is historical until replaced by fresh current-head evidence.
+Run build/lint/typecheck/tests and screenshot desktop/mobile/reduced-motion states when tooling is available.
 
 ---
 
 # M. Final founder-review question
 
-A reviewer should be able to say:
+A reviewer should naturally say:
 
-> **“카파피는 일이 먼저 올라오는 시장에서 시작하고, 작업자들이 가격과 완료시간을 제안하면 카파피가 추천해줘서 쉽게 확정할 수 있다. 이 거래 데이터를 쌓아 나중에는 배정과 복구를 더 많이 맡고 결국 일을 넣으면 결과가 돌아오는 시스템으로 가려는 거구나.”**
-
-If that is not the natural description after the demo, the prototype is not aligned yet.
+> **“카파피는 일이 먼저 올라오는 시장에서 시작하고, 작업자들이 가격과 완료시간을 제안하면 카파피가 실제 작업이력과 조건을 보고 추천해줘서 발주자가 쉽게 확정할 수 있다. 이 거래 데이터를 쌓아 나중에는 배정과 복구를 더 많이 맡고 결국 일을 넣으면 결과가 돌아오는 시스템으로 가려는 거구나.”**

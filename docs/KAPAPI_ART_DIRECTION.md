@@ -1,53 +1,43 @@
-# KAPAPI Prototype v2 — Art Direction & World-Building
+# KAPAPI Prototype v2 — Art Direction
 
 Status: **current canonical art-direction layer**  
 Updated: **2026-09-03**
 
-Product behavior comes from current canon, especially D-032. This document defines the public visual/brand interpretation.
+Product behavior follows the current canon, especially D-032 through D-034.
 
 ## 1. Visual thesis
 
 KAPAPI should combine:
 
-> **very easy first touch + a distinctive work-world that appears as real work starts moving.**
+> **very easy first touch + precise, premium work-state visualization.**
 
-The first GM thought should be:
+The first client thought should be:
 
 > **“여기에 내가 맡길 일을 적으면 되는구나.”**
 
-The first PLAYER thought should be:
+The first worker thought should be:
 
 > **“여기에는 내가 할 수 있는 실제 작업이 올라오는구나.”**
 
-Then the KAPAPI world gradually appears through real product grammar:
-
-- work = `QUEST`
-- performer = `PLAYER`
-- proposal = `BID`
-- urgent state = `TIME ATTACK`
-- verified execution history = `LEVEL / EXP`
-- completion = `QUEST COMPLETE`
-
-The world must be felt through product state, not fantasy decoration.
+Product identity should come from real work moving through real states, not from fictional vocabulary or game decoration.
 
 ---
 
-## 2. Current product story the art direction must support
+## 2. Product story the art direction must support
 
 ```text
-WORK EXISTS
-→ QUEST POSTED
-→ PLAYERs BID PRICE × DELIVERY
-→ ELIGIBILITY CHECK
-→ KAPAPI RECOMMENDATION
-→ GM CONFIRMS
-→ PLAYER ASSIGNED
-→ WORK
-→ RESULT
-→ QUEST COMPLETE
+업무 등록
+→ 가격 + 완료시간 제안
+→ 필수요건 확인
+→ KAPAPI 추천
+→ 발주자 확정
+→ 작업자 배정
+→ 수행
+→ 결과
+→ 업무 완료
 ```
 
-Do not visually imply universal automatic assignment before GM confirmation.
+Do not visually imply universal automatic assignment before client confirmation.
 
 Future direction:
 
@@ -57,16 +47,14 @@ completed transactions
 → better recommendation
 → routing/recovery
 → repeat capacity
-→ Outcome Layer
+→ execution layer
 ```
 
 ---
 
 ## 3. Public first-touch
 
-The first viewport has one protagonist: **the task-entry action**.
-
-Current semantic hierarchy:
+The first viewport has one protagonist: **the work-entry action**.
 
 ```text
 KAPAPI
@@ -75,108 +63,50 @@ KAPAPI
 → file attachment
 → primary `의뢰 등록`
 → secondary `작업 찾기`
-→ supporting product movie/proof
+→ supporting product proof
 ```
 
-Current copy direction:
+Copy direction:
 
-> **맡길 일을 적어주세요.**  
+> **사람을 찾지 말고, 할 일을 올리세요.**  
 > 카파피가 작업 조건을 정리하고 맞는 제안을 추천합니다.
-
-Do not lead with game vocabulary or a dense dashboard.
 
 ---
 
 ## 4. Task-first distinction
 
-KAPAPI must not visually read as a seller-storefront marketplace.
-
-PLAYER surfaces should begin from open work:
+Worker surfaces begin from open work:
 
 ```text
 지금 열려 있는 작업
 → 전체 / 내가 할 수 있는 작업 / 오늘 마감
-→ QUEST objects
-→ BID
+→ 업무 목록
+→ 제안
 ```
 
 The work object should be visually stronger than profile self-promotion.
 
 ---
 
-## 5. World-building intensity
+## 5. Operational metadata only
 
-### GM first touch — low
+Use real, immediately understandable work evidence:
 
-Ordinary Korean action language first. World terms appear only as subtle state proof.
+- 가격
+- 완료시간
+- 제안 수
+- 마감까지 남은 시간
+- 관련 경력
+- 유사 업무 완료 건수
+- 정시완료율
+- 수정 요청률
+- 업무 상태
 
-### BID / recommendation — medium
-
-Use:
-
-- QUEST ID
-- BIDS RECEIVED
-- PRICE / DELIVERY
-- trust evidence
-- RECOMMENDATION READY
-- GM CONFIRMED
-
-### PLAYER discovery / execution — stronger
-
-Use meaningful competition/progression language:
-
-- QUEST
-- REWARD
-- TIME ATTACK
-- LEVEL / EXP
-- task-specific history
-
-Professional proof always outranks game status.
-
-### Contract / NDA / payment / result acceptance — low
-
-Use sober professional language. World terminology becomes quiet metadata.
+Do not use fictional role names, progression levels, experience points, game-like completion labels or decorative pseudo-lore.
 
 ---
 
-## 6. Layered language
-
-Pattern:
-
-> **plain-language meaning → state → KAPAPI term**
-
-Examples:
-
-```text
-의뢰가 등록되었습니다
-QUEST CREATED
-```
-
-```text
-제안 4건이 도착했습니다
-4 BIDS RECEIVED
-```
-
-```text
-추천이 준비되었습니다
-RECOMMENDATION READY
-```
-
-```text
-이 작업자로 진행합니다
-GM CONFIRMED
-```
-
-```text
-작업이 완료되었습니다
-QUEST COMPLETE
-```
-
-Do not make first-time users decode a glossary.
-
----
-
-## 7. Visual material
+## 6. Visual material
 
 Public KAPAPI is primarily:
 
@@ -186,155 +116,104 @@ Public KAPAPI is primarily:
 - thin hairlines
 - one restrained signal accent family
 
-Dark surfaces are operational punctuation, not the global theme.
+Dark surfaces are operational punctuation, not the global theme. Use them selectively for genuine urgent work or active operational contrast.
 
-Use dark selectively for:
-
-- TIME ATTACK
-- active work state
-- one deliberate operational contrast
-
-Avoid:
-
-- purple AI gradients
-- neon/cyberpunk
-- glassmorphism ecosystems
-- random 3D decoration
-- giant rounded-card walls
+Avoid purple AI gradients, neon/cyberpunk, glassmorphism ecosystems, random 3D decoration and giant rounded-card walls.
 
 ---
 
-## 8. Premium quality comes from composition
+## 7. Premium quality comes from composition
 
-Use:
-
-- typography
-- editorial composition
-- whitespace
-- grid discipline
-- hairlines
-- realistic work artifacts
-- exact interaction details
-- restrained motion
+Use typography, editorial composition, whitespace, grid discipline, hairlines, realistic work artifacts, exact interaction details and restrained motion.
 
 Avoid relying on effects to create identity.
 
 ---
 
-## 9. Recommendation visual grammar
-
-This is the current signature decision moment.
-
-Correct sequence:
+## 8. Recommendation visual grammar
 
 ```text
-BIDs arrive
-→ ineligible rows quietly mute
-→ PRICE × DELIVERY + trust evidence resolves
-→ one candidate receives RECOMMENDED state
-→ short rationale becomes inspectable
+제안 도착
+→ 부적합 제안은 조용히 약화
+→ 가격 × 완료시간 + 작업이력 확인
+→ 한 작업자를 `추천` 상태로 표시
+→ 짧은 추천 근거
 → [이 작업자로 진행]
-→ GM CONFIRMED
-→ ASSIGNED
+→ 발주자 확정
+→ 배정
 ```
 
-Before confirmation:
+Before confirmation, label `추천`, not `배정`. Keep alternatives available. Do not use winner celebration or locked-assignment visuals.
 
-- label `추천`, not `배정`;
-- keep alternatives available;
-- do not use winner celebration or locked-assignment visuals.
-
-After confirmation:
-
-- transition to assigned/work state;
-- make the change feel mechanical and consequential.
-
-Never use opaque `AI BEST MATCH` magic as sufficient explanation.
+Never use opaque “AI BEST MATCH” magic as sufficient explanation.
 
 ---
 
-## 10. PLAYER world grammar
+## 9. Open-work and trust examples
 
-A good open QUEST object can show:
+A good open-work object:
 
 ```text
-QUEST #0211
-TIME ATTACK · 04:18:22
+긴급 · 마감까지 04:18:22
 
 상세페이지 이미지 규격 정리
-REWARD ₩80,000–₩120,000
-DELIVERY ≤ 6H
-BIDS 05
+예상 작업대금 ₩80,000–₩120,000
+완료시간 ≤ 6시간
+제안 5건
 ```
 
-A good trust profile can show:
+A good worker trust block:
 
 ```text
 관련 경력
-유사 QUEST 42
-ON-TIME 98%
+유사 업무 42건
+정시완료 98%
 수정 요청 4%
-LV.12
 ```
 
-LEVEL is not a substitute for evidence.
+No decorative level or experience meter.
 
 ---
 
-## 11. Result grammar
-
-Completion is satisfying because the work is done.
-
-Target hierarchy:
+## 10. Result grammar
 
 ```text
 결과가 도착했습니다
-RESULT READY
 
 result.zip
-DELIVERED 18:42
-18 MIN EARLY
+전달 18:42
+마감 18분 전
 
-✓ FILE RECEIVED
-✓ REQUIRED OUTPUTS PRESENT
+✓ 파일 수신
+✓ 요청 형식 포함
 
 [ 결과 확인 ]  [ 수정 요청 ]
 ```
 
-After acceptance:
+After acceptance: **업무 완료**.
 
-`QUEST COMPLETE`
-
-A restrained PLAYER-side history/EXP update may follow.
-
-No confetti/trophy/coin explosion.
+No confetti, trophy, coin or progression animation.
 
 ---
 
-## 12. Hero media
-
-The laptop/film is supporting proof, not a second product beside the hero.
+## 11. Hero media
 
 Current real-UI sequence:
 
 ```text
-QUEST CREATED
-→ BIDS RECEIVED
-→ ELIGIBILITY CHECK
-→ RECOMMENDATION READY
-→ GM CONFIRMED
-→ RESULT READY
+업무 등록
+→ 제안 도착
+→ 조건 확인
+→ 추천 준비
+→ 발주자 확정
+→ 결과 도착
 ```
 
 Generated video UI is disposable. Real HTML/CSS UI should replace or cover fake readable UI.
 
-Desktop may composite into the laptop screen; mobile may use a direct full-frame cut.
-
 ---
 
-## 13. Category neutrality
-
-The public first impression must not be CAD/construction-specific.
+## 12. Category neutrality
 
 Use a mixed example set:
 
@@ -349,9 +228,9 @@ Architecture/CAD may appear as a detailed founder-domain proof case below the he
 
 ---
 
-## 14. Future Outcome Layer
+## 13. Future execution layer
 
-Future progression can be visualized as:
+Future progression:
 
 ```text
 MARKET
@@ -361,55 +240,35 @@ MARKET
 → OUTCOME
 ```
 
-Potential mature execution resources:
+Potential execution resources:
 
-`HUMAN PLAYER · AI · AUTOMATION · SPECIALIST PARTNER · HYBRID`
+`HUMAN WORKER · AI · AUTOMATION · SPECIALIST PARTNER · HYBRID`
 
-Make it visually obvious that this is **earned evolution**, not today's universal guarantee.
+Make it visually obvious this is earned evolution, not today's universal guarantee.
 
 ---
 
-## 15. Landing narrative
-
-Recommended sequence:
+## 14. Landing narrative
 
 1. task-entry hero
 2. task-first open-work proof
-3. PRICE × DELIVERY
-4. KAPAPI recommendation + GM confirmation
-5. real completed QUEST
-6. TIME ATTACK
+3. price × completion time
+4. recommendation + client confirmation
+5. real completed work
+6. urgent work
 7. result / accept-revise
 8. trust/history
-9. data → routing/recovery → Outcome Layer
-10. universal identity / PLAYER entry
-
-Do not repeat one generic card grid for every section.
+9. data → routing/recovery → execution layer
+10. worker entry
 
 ---
 
-## 16. Rejection conditions
+## 15. Rejection conditions
 
-Reject the implementation if it primarily reads as:
+Reject implementation if it reads primarily as a freelancer directory, generic AI SaaS/dashboard, developer console, gamified work app, CAD-only service or pitch-deck page.
 
-- Upwork/Kmong clone
-- freelancer directory
-- generic AI SaaS
-- generic dashboard
-- developer console
-- fantasy/game launcher
-- CAD-only service
-- pitch-deck/documentation page
-
-Reject product-state art if:
-
-- recommendation and assignment are indistinguishable;
-- GM confirmation disappears from the current flow;
-- PRICE × DELIVERY is visually weak;
-- LEVEL/EXP outranks real professional evidence;
-- world terms feel pasted on after design;
-- future Outcome Layer is presented as current magic.
+Reject if recommendation and assignment are indistinguishable, client confirmation disappears, price × completion time is visually weak, decorative progression outranks real work evidence, or future execution capability is presented as current magic.
 
 Desired reaction:
 
-> **“처음에는 쉬운 업무 등록/작업 찾기 서비스인데, 실제 일이 움직이기 시작하면 KAPAPI만의 작업 세계와 데이터 엔진이 보인다.”**
+> **“일이 먼저 올라오고, 카파피가 가격·완료시간과 실제 작업이력으로 선택을 쉽게 만들며, 거래가 쌓일수록 더 많은 실행을 맡게 되는 제품.”**

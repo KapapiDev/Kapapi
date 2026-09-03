@@ -7,15 +7,17 @@ Updated: 2026-09-03
 
 KAPAPI is a **task-first online work execution platform**.
 
-The core object is not a freelancer profile or a seller storefront. It is a bounded unit of work: a **QUEST**.
+The core object is not a freelancer profile or seller storefront. It is a bounded unit of work: **업무**.
 
-Initial PLAYER-facing form:
+“Bounded” does not mean cheap, trivial or permanently small. It means the work can be scoped into a transaction with sufficiently clear input, expected result and completion boundary.
 
-> Work already exists. A PLAYER finds a QUEST they can finish, commits **PRICE + DELIVERY TIME**, completes it and earns.
+Initial worker-facing form:
 
-Initial GM-facing form:
+> **Work already exists. A worker finds work they can finish, proposes price + completion time, completes it and gets paid.**
 
-> A GM defines the work and desired result once. KAPAPI makes the market easier to use, recommends the strongest fit from the resulting BIDs, and the GM confirms before execution.
+Initial client-facing form:
+
+> **사람을 찾지 말고, 할 일을 올린다.** A client defines the work and desired result once. KAPAPI organizes the market, recommends a suitable worker using conditions and work history, and the client confirms before execution.
 
 Long-term form:
 
@@ -25,19 +27,19 @@ KAPAPI should progressively reduce the need to search, compare, coordinate, reco
 
 `work request → KAPAPI → result`
 
-This long-term Outcome Layer is earned from real transaction, trust, liquidity, QA and recovery data. It is not assumed on day one.
+This long-term Outcome / Execution Layer is earned from real transaction, trust, liquidity, QA and recovery data. It is not assumed on day one.
 
 ---
 
 ## 2. Why KAPAPI starts task-first
 
-The founder-origin problem is supply-side and concrete:
+Founder-origin problem:
 
-> “I have spare time and useful office skills. I want to pick a small online task I can actually finish and get paid for, without becoming a full-time freelancer, creating a storefront or taking a fixed-shift job.”
+> **I have spare time and useful office skills. I want to pick a small online task I can finish and get paid for, without becoming a full-time freelancer, creating a storefront or taking a fixed-shift job.**
 
-The mirrored GM problem is:
+Mirrored client problem:
 
-> “I have a bounded piece of work that needs to be finished, but hiring another employee or running a heavyweight outsourcing process feels disproportionate.”
+> **I have bounded work that needs to be finished, but hiring another employee or running a heavyweight outsourcing process feels disproportionate.**
 
 KAPAPI connects:
 
@@ -46,44 +48,52 @@ KAPAPI connects:
 
 Therefore KAPAPI starts **task-first**, not profile-first.
 
-PLAYER mental model:
+The word “small” belongs to the founder-origin and initial behavior. It is not the permanent market boundary. KAPAPI should expand from easy-to-transact work into higher-value skilled and professional work while preserving the same work/result unit.
 
-`find real work → judge fit → BID → finish → earn → build verified history`
+Worker mental model:
 
-GM mental model:
+`find real work → judge fit → propose price + completion time → finish → get paid → build verified history`
 
-`define work → receive/review recommendation → confirm → receive result → accept/revise`
+Client mental model:
+
+`define work → receive recommendation → confirm → receive result → accept/revise`
 
 ---
 
 ## 3. What kinds of work fit
 
-KAPAPI is broader than only “professional work,” but it is not “anything imaginable” on day one.
-
-Strong early QUEST properties:
+Strong early work properties:
 
 - digitally transferable inputs
 - bounded scope
 - visible deliverable
 - hours to roughly two days initially
-- GM can inspect the result
+- client can inspect the result
 - mistakes are revisable
 - low irreversible liability
 - enough comparable supply can exist
+- transaction value can support payment/support/revision/recovery economics
 
-Examples:
+### Data & Documents
 
 - spreadsheet cleanup / comparison tables
 - document formatting / structured data entry
 - research and data organization
 - PPT cleanup
+
+### Content & Production
+
 - image cleanup/editing
 - product listing work
 - translation/proofreading
 - subtitle/cut editing
+
+### Skilled Support
+
 - defined CAD/drawing support
 - rendering
 - small web/code fixes
+- other clearly bounded technical support work
 
 Poor early fits:
 
@@ -93,31 +103,36 @@ Poor early fits:
 - complex architectural design
 - regulated professional judgment without appropriate qualification
 - high irreversible liability
+- ultra-low-value microtasks whose support/revision economics are structurally unattractive
 
 Architecture/CAD is a founder-domain **testbed**, not the brand or market boundary.
 
+Public examples may show several families, but actual market validation should open categories narrowly and earn expansion with repeat demand + qualified supply + viable economics.
+
 ---
 
-## 4. Core market mechanism: PRICE × DELIVERY TIME
+## 4. Core market mechanism: price × completion time
 
-Every BID must include:
+Every proposal must include:
 
-1. **PRICE** — compensation requested
-2. **DELIVERY TIME** — committed elapsed time from assignment/contract to submission
+1. **가격** — requested compensation
+2. **완료시간** — committed elapsed time from assignment/contract to submission
 
-Delivery time is not estimated labor hours.
+Completion time is not estimated labor hours.
 
 Example:
 
-| PLAYER | PRICE | DELIVERY |
+| 작업자 | 가격 | 완료시간 |
 | --- | ---: | ---: |
-| A | ₩50,000 | 48H |
-| B | ₩70,000 | 24H |
-| C | ₩100,000 | 6H |
+| A | ₩32,000 | 5시간 |
+| B | ₩40,000 | 2시간 |
+| C | ₩55,000 | 45분 |
 
-This matters because fragmented human availability has economic value. A PLAYER with a free evening may compete on speed; another may compete on price with a longer commitment. TIME ATTACK makes urgent capacity especially valuable.
+This should be one of KAPAPI's most memorable product moments.
 
-KAPAPI is not a lowest-price auction. Useful selection signals can include:
+It matters because fragmented human availability has economic value. A worker with a free evening may compete on speed; another may compete on price with a longer commitment. Urgent work makes speed especially valuable.
+
+KAPAPI is neither lowest-price-wins nor fastest-wins. Useful selection signals can include:
 
 - hard eligibility / credentials / security
 - relevant career
@@ -126,35 +141,30 @@ KAPAPI is not a lowest-price auction. Useful selection signals can include:
 - revision/rework rate
 - failure/dispute history
 - availability
-- PRICE
-- DELIVERY TIME
-- GM deadline and budget/constraints
+- price
+- completion time
+- client deadline and budget/constraints
 
 ---
 
 ## 5. Selection architecture: recommendation first, routing later
 
-Current authority: `DECISIONS.md` D-032.
-
-KAPAPI should reduce selection burden early without pretending universal auto-routing is already solved.
+Current authority: `DECISIONS.md` D-032 through D-034.
 
 Preferred early default:
 
 ```text
-BIDs arrive
-→ hard eligibility filter
-→ trust / task fit / PRICE × DELIVERY ranking
-→ KAPAPI recommendation
-→ GM confirms recommended PLAYER
-→ execution
+제안 도착
+→ 필수요건 확인
+→ 작업이력 / 업무 적합도 / 가격 × 완료시간 정렬
+→ KAPAPI 추천
+→ 발주자 확정
+→ 수행
 ```
 
 Alternatives remain available for transparency and learning.
 
-Early experiments may also use:
-
-- lightweight GM BID selection
-- concierge/manual KAPAPI routing
+Early experiments may also use lightweight client choice or concierge/manual routing.
 
 Routing should become increasingly automatic only after KAPAPI has enough evidence to know which signals predict successful outcomes.
 
@@ -168,7 +178,7 @@ Useful routing evidence includes:
 - category liquidity
 - replacement/recovery success
 
-AI can assist semantic task-fit and scope interpretation. It should not be the opaque sole authority.
+AI can assist semantic task fit and scope interpretation. It should not be the opaque sole authority.
 
 ---
 
@@ -176,21 +186,24 @@ AI can assist semantic task-fit and scope interpretation. It should not be the o
 
 ### Stage A — Task Marketplace
 
-GM:
+Client:
 
-`define QUEST → receive BIDs/recommendation → confirm → result → accept/revise`
+`define work → receive proposals/recommendation → confirm → result → accept/revise`
 
-PLAYER:
+Worker:
 
-`discover QUEST → PRICE + DELIVERY BID → selected/assigned → execute → earn`
+`discover work → price + completion-time proposal → selected/assigned → execute → get paid`
 
 Purpose:
 
-- prove that real work is posted
-- prove useful PLAYER supply responds
-- create real price/delivery distributions
+- prove real work is posted
+- prove useful supply responds
+- create real price/completion-time distributions
 - learn task-definition failures
 - collect completion/revision/trust data
+- find categories and transaction-value bands with repeatable economics
+
+Validate one or two category micro-markets at a time.
 
 ### Stage B — Trusted Work Market
 
@@ -209,71 +222,71 @@ Build:
 
 Evolution:
 
-`GM manually chooses → KAPAPI recommends → GM confirms → KAPAPI routes by default with override/recovery`
+`client manually chooses → KAPAPI recommends → client confirms → KAPAPI routes by default with override/recovery`
 
 Add:
 
-- file + short instruction → structured QUEST/SOW
+- file + short instruction → structured work specification
 - missing-information detection
 - reusable templates
-- reference price/delivery ranges
+- reference price/completion-time ranges
 - contract/admin assistance
 - late-risk detection
-- backup PLAYER preparation
+- backup worker preparation
 - replacement/reassignment
 
 ### Stage D — Repeat Business Capacity
 
-Repeated GMs stop thinking “which freelancer should I search for?” and increasingly think:
+Repeated clients stop thinking “which freelancer should I search for?” and increasingly think:
 
-> “Put this through KAPAPI.”
+> **“카파피로 보내.”**
 
 Add:
 
-- repeat QUEST templates
-- preferred/verified PLAYER pools
+- repeat-work templates
+- preferred/verified worker pools
 - existing vendor import
 - organization history
-- reusable SOW patterns
+- reusable specifications
 - team approvals where needed
 - availability awareness
 - routing policies
 - backup/replacement capacity
 
-### Stage E — Outcome Layer
+### Stage E — Outcome / Execution Layer
 
 Target:
 
 `work in → KAPAPI scopes / decomposes / routes / executes-or-orchestrates / monitors / recovers / checks → result out`
 
-At this stage the user should increasingly not care which internal mechanism produced the result.
+At this stage the user increasingly does not care which internal mechanism produced the result.
 
 ---
 
-## 7. Execution resources are not limited to PLAYERs
+## 7. Execution resources are not limited to human workers
 
-The marketplace begins with human PLAYERs because human transactions create supply and trust data.
+The marketplace begins with human workers because real transactions create supply and trust data.
 
-The mature Outcome Layer may execute work using:
+The mature execution layer may use:
 
-- human PLAYERs
+- human workers
 - AI agents/models
 - deterministic software automation
 - specialist partner organizations
 - AI + human hybrid workflows
-- multi-PLAYER decomposition and aggregation
+- multiple workers on decomposed tasks
 
 The user-facing unit remains the **result**, not the executor type.
 
-KAPAPI should use the cheapest, fastest, safest credible execution path for the task while respecting quality, security and legal constraints.
+KAPAPI should use the fastest, safest and economically credible execution path while respecting quality, security and legal constraints.
 
 ---
 
-## 8. SOW-first transaction design
+## 8. Scope-first transaction design
 
 Before KAPAPI can reduce human management, the order itself must be clear.
 
-The platform should progressively turn vague input into a structured QUEST/SOW containing, where applicable:
+The platform should progressively turn vague input into a structured work specification containing, where applicable:
 
 - source/input files
 - exact scope
@@ -299,48 +312,34 @@ KAPAPI structures:
 - Acceptance: all 6 files represented; 12 fields present or marked N/A
 ```
 
-Clear SOW reduces pricing ambiguity, clarification loops, revisions, disputes and future routing error.
+Clear scope reduces pricing ambiguity, clarification loops, revisions, disputes and future routing error.
 
 ---
 
 ## 9. Quality and recovery
 
-Initial quality architecture:
-
 ### Layer 1 — objective preflight
 
-Only check what software/AI can reliably verify:
+Only check what software/AI can reliably verify, such as required files, file type, required outputs and objective checklist items.
 
-- required files exist
-- expected file types
-- files open
-- required outputs included
-- objective checklist items where technically reliable
+### Layer 2 — client acceptance
 
-### Layer 2 — GM acceptance
+The paying client chooses:
 
-The paying GM chooses:
-
-- accept / QUEST COMPLETE
+- accept / complete
 - request revision within scope
 
 ### Layer 3 — recovery / dispute
 
-Distinguish:
+Distinguish normal revision, worker late/failure, replacement/reassignment, scope dispute and non-performance dispute.
 
-- normal revision
-- PLAYER late/failure
-- replacement/reassignment
-- scope dispute
-- non-performance dispute
-
-KAPAPI's long-term advantage is not merely choosing a good PLAYER once. It is recovering when execution fails without throwing the vendor-search problem back to the GM.
+KAPAPI's long-term advantage is not merely choosing a good worker once. It is recovering when execution fails without throwing the vendor-search problem back to the client.
 
 ---
 
 ## 10. Trust model
 
-PLAYER trust should become task-specific rather than a generic star score.
+Worker trust should be task-specific rather than a generic star score.
 
 Useful signals:
 
@@ -353,35 +352,22 @@ Useful signals:
 - failure/dispute history
 - availability
 - permitted portfolio
-- LEVEL / EXP as a secondary world layer
 
-Trust is two-sided. Future GM signals may include payment/transaction completion, approval speed, cancellation/dispute behavior and PLAYER feedback.
+Trust is two-sided. Future client signals may include payment completion, approval speed, cancellation/dispute behavior and worker feedback.
 
-A user may be GM in one QUEST and PLAYER in another. These are contextual transaction roles, not permanent account classes.
+A user may be a client in one transaction and a worker in another. These are contextual roles, not permanent account classes.
 
 ---
 
 ## 11. Existing partners and disintermediation
 
-Real GMs often already have trusted vendors. KAPAPI should not force them to discard those relationships.
-
-Future routing pool may include:
+Real clients often already have trusted vendors. Future routing may include:
 
 - existing trusted partners
-- open-market PLAYERs
+- open-market workers
 - specialist partner organizations
 
-KAPAPI can retain value through:
-
-- unified work history
-- contracts/NDA
-- safe/compliant payment
-- tax/admin evidence
-- availability visibility
-- backup supply
-- recommendation/routing
-- replacement/recovery
-- eventual outcome assurance
+KAPAPI can retain value through unified work history, contracts/NDA, compliant payment, tax/admin evidence, availability, backup supply, recommendation/routing, replacement/recovery and eventual outcome assurance.
 
 Matching alone will not prevent direct relationships. KAPAPI must earn repeated use by making the whole work-to-result process better.
 
@@ -393,17 +379,19 @@ KAPAPI is category-independent in vision but category-specific in execution.
 
 A broad member count is not liquidity.
 
-Each category should be treated as a micro-market and measured for:
+Measure each category for:
 
-- repeat GM demand
+- repeat client demand
 - qualified active supply
-- BID density
-- PRICE / DELIVERY distributions
+- proposal density
+- price / completion-time distributions
 - time to assignment
 - completion reliability
 - backup capacity
+- support/revision/recovery cost
+- contribution after transaction costs
 
-Open a new category only when KAPAPI can protect the transaction quality in that category.
+Open a new category only when KAPAPI can protect both transaction quality and economics.
 
 ---
 
@@ -412,10 +400,10 @@ Open a new category only when KAPAPI can protect the transaction quality in that
 Early AI should help with:
 
 - task classification
-- SOW generation
+- work-specification generation
 - missing-information detection
 - semantic task-fit assistance
-- reference price/delivery data
+- reference price/completion-time data
 - objective preflight
 - risk detection
 
@@ -424,27 +412,31 @@ Do not initially position AI as:
 - authoritative final price setter
 - subjective final quality judge
 - regulated professional decision-maker
-- magical sole selector of PLAYERs
+- magical sole selector of workers
 
-As the Outcome Layer matures, AI may itself become part of execution where the task is suitable.
+As the execution layer matures, AI may itself become part of execution where suitable.
 
 ---
 
-## 14. Business model
+## 14. Business model and economic guardrail
 
 Monetization remains open until transaction economics are observed.
 
 Candidates:
 
-- PLAYER take rate
-- GM transaction fee
+- worker-side transaction fee
+- client-side transaction fee
 - all-in price with embedded platform economics
-- subscription/admin plan for repeat GMs
+- subscription/admin plan for repeat clients
 - hybrid models
 
-Early mechanism tests may use fee = 0 and direct GM↔PLAYER payment where legally/operationally appropriate.
+Early mechanism tests may use fee = 0 and direct client↔worker payment where legally/operationally appropriate.
 
-The long-term economics may change materially as AI/automation handles part of execution, but price should continue to reflect the value and risk of delivering the result rather than raw human hours alone.
+KAPAPI should not optimize for the maximum number of tiny transactions if they cannot support payment, support, clarification, revision, dispute handling, recovery, acquisition and platform contribution.
+
+Measure the **minimum viable transaction value** by category and introduce floors, bundling or category exclusion when economics require it.
+
+The strategic goal is **clear work units**, not cheap labor units.
 
 ---
 
@@ -457,16 +449,16 @@ KAPAPI should not drift into:
 - storefront clone
 - long-project IT outsourcing board
 - controlled hourly staffing product
+- low-value microtask race
 - universal regulated-professional marketplace without category proof
-- fake universal Autopilot before routing/recovery evidence exists
+- fake universal automation before routing/recovery evidence exists
+- separate fictional/game terminology that users must learn
 
 Every major feature should answer at least one of:
 
-1. Does it make it easier for a PLAYER to find and complete suitable work?
-2. Does it make it easier for a GM to turn unresolved work into a result?
+1. Does it make it easier for a worker to find and complete suitable work?
+2. Does it make it easier for a client to turn unresolved work into a result?
 3. Does it improve trust, liquidity, recommendation, routing, execution or recovery enough to improve 1 or 2?
-
-If not, it is probably not core KAPAPI.
 
 ---
 
@@ -490,6 +482,14 @@ ROUTING + RECOVERY ENABLE REPEAT CAPACITY
 HUMAN + AI + AUTOMATION + PARTNERS ENABLE OUTCOMES
 ```
 
-Short form:
+Worker-side short form:
 
-> **KAPAPI starts by making it easier to pick up and complete work, and grows into a system where you submit work and get the result back.**
+> **할 수 있는 일을 골라서, 끝내고, 돈 번다.**
+
+Client-side short form:
+
+> **사람을 찾지 말고, 할 일을 올린다.**
+
+North Star:
+
+> **해야 할 일을 올리면, 결과로 돌아온다.**

@@ -7,402 +7,306 @@ Primary implementation target: `feat/prototype-v2`
 Authority:
 
 1. `docs/ORIGIN_AND_GROWTH_THESIS.md`
-2. `docs/DECISIONS.md` D-032
+2. `docs/DECISIONS.md` D-032 through D-034
 3. `docs/PRODUCT.md`
 4. `docs/ROADMAP.md`
 5. `docs/PROTOTYPE_SPEC.md`
-6. current v2 visual/content rules
+6. current visual/content rules
 
-Do not restore D-031's universal day-one auto-routing behavior.
+Do not restore premature universal auto-routing or the removed special/game terminology.
 
 ---
 
 # P0 — Canon alignment
 
 ## KAP-100 — Task-first canon
-
 **Status:** DONE
-
-Acceptance:
 
 - founder-origin problem preserved
-- task-first market is explicit
-- Architecture/CAD is testbed only
-- work category is broader than only professional work
-- PRICE + DELIVERY remains mandatory
-- Outcome Layer remains North Star
+- work-first market explicit
+- Architecture/CAD testbed only
+- market broader than professional-only work
+- price + completion time mandatory
+- execution layer remains North Star
 
-## KAP-101 — Supersede premature auto-routing
-
+## KAP-101 — Routing responsibility is earned
 **Status:** DONE
 
-Acceptance:
-
-- D-032 supersedes D-031
-- early default can be KAPAPI recommendation + GM confirmation
+- early default can be KAPAPI recommendation + client confirmation
 - routing responsibility grows with data
-- universal outcome/SLA promise is deferred
+- universal outcome/SLA promise deferred
 
-## KAP-102 — Resource-agnostic Outcome Layer
-
+## KAP-102 — Resource-agnostic execution layer
 **Status:** DONE
+
+Long-term execution permits human worker, AI, deterministic automation, specialist partner, hybrid execution and multi-worker decomposition.
+
+## KAP-103 — Standard terminology
+**Status:** DOCS DONE / IMPLEMENTATION OPEN
+
+Canonical/public terms:
+
+- 발주자
+- 작업자
+- 업무
+- 제안
+- 가격
+- 완료시간
+- 작업대금
+- 긴급 업무
+- 작업이력 / 정시완료율 / 수정률
+- 업무 완료
 
 Acceptance:
 
-Long-term execution explicitly permits:
-
-- human PLAYER
-- AI
-- deterministic automation
-- specialist partner
-- hybrid execution
-- multi-PLAYER decomposition
+- no special role glossary
+- no fictional/game terminology
+- no levels or experience points
+- no gamified completion labels
+- public prototype and media overlays match the same terminology
 
 ---
 
 # P0 — Prototype behavior realignment
 
-## KAP-110 — Replace automatic assignment with recommendation + confirmation
-
+## KAP-110 — Recommendation + confirmation
 **Status:** OPEN
 
-Change v2 transaction proof from:
+Change transaction proof to:
 
-`BIDs → KAPAPI auto-assigns`
-
-to:
-
-`BIDs → eligibility/ranking → KAPAPI recommendation → GM confirms → assigned`
+`제안 → 필수요건/정렬 → KAPAPI 추천 → 발주자 확정 → 배정`
 
 Required UI:
 
-- recommended PLAYER
-- PRICE
-- DELIVERY
-- relevant trust/history
-- short recommendation rationale
+- recommended worker
+- price
+- completion time
+- relevant work history
+- short rationale
 - primary `이 작업자로 진행`
 - secondary `다른 제안 보기`
 
-Acceptance:
-
-- no universal auto-routing claim
-- recommendation remains visibly useful
-- user can understand why the recommendation exists
-- alternatives remain accessible without a giant comparison wall
-
-## KAP-111 — Update state model
-
+## KAP-111 — User-facing state model
 **Status:** OPEN
 
-Add/rename states as needed:
+Use ordinary labels:
 
 ```text
-BIDDING
-RECOMMENDATION_READY
-CONFIRMED
-ASSIGNED
-IN_PROGRESS
-DELIVERED
-REVIEW
-COMPLETE
+모집 중
+제안 도착
+추천 준비
+발주자 확정
+작업자 배정
+작업 중
+결과 전달
+검토
+수정 요청
+업무 완료
 ```
 
-Remove copy that equates recommendation with already-proven routing automation.
+Internal code identifiers may remain technical, but no removed vocabulary may leak into public UI.
 
-## KAP-112 — Update deterministic fixture logic
-
+## KAP-112 — Deterministic fixture logic
 **Status:** OPEN
 
-Keep deterministic ranking for demo stability, but interpret the top candidate as **recommended**, not silently assigned before GM confirmation.
+Keep deterministic ranking for demo stability. Interpret top candidate as recommended, not silently assigned before client confirmation.
+
+---
+
+# P0 — Terminology / visible-copy sweep
+
+## KAP-115 — Remove removed terminology from v2 UI
+**Status:** OPEN
+
+Sweep current implementation for special role/state terminology and replace with the standard terminology in D-034.
 
 Acceptance:
 
-- existing route/rank evidence can be reused
-- confirmation creates assignment
-- tests distinguish recommendation from assignment
+- hero
+- board
+- work detail
+- proposal/recommendation
+- workroom
+- result
+- profile/history
+- navigation/footer
+- demo fixtures
+- hero media overlays
+
+contain no removed special/game vocabulary.
+
+## KAP-116 — Remove decorative progression UI
+**Status:** OPEN
+
+Remove level/experience metrics and replace them only where useful with real evidence such as:
+
+- similar-work completion count
+- on-time rate
+- revision rate
+- total completed work
+- relevant career
 
 ---
 
 # P0 — Landing/message alignment
 
 ## KAP-120 — Hero copy
-
 **Status:** OPEN
 
-Replace current implication:
+Preferred direction:
 
-> 전문가 배정부터 결과 전달까지 카파피가 진행합니다.
-
-with current-stage copy that does not overclaim.
-
-Preferred semantic direction:
-
-> **맡길 일을 적어주세요.**  
+> **사람을 찾지 말고, 할 일을 올리세요.**  
 > 카파피가 작업 조건을 정리하고 맞는 제안을 추천합니다.
 
-Keep:
+Keep category-neutral input, file attachment, strong primary CTA and visible `작업 찾기`.
 
-- category-neutral task input
-- file attachment
-- strong primary CTA
-- `작업 찾기` visible as PLAYER path
-
-## KAP-121 — Keep task-first examples broad
-
+## KAP-121 — Broad examples, narrow validation
 **Status:** OPEN
 
-Ensure hero/landing examples span multiple categories, such as:
+Public examples can span Data & Documents / Content & Production / Skilled Support. Actual validation opens one or two micro-markets at a time.
 
-- spreadsheet/data
-- PPT/document
-- image/e-commerce
-- CAD/skilled support
-
-Architecture/CAD may appear as one proof case, not the visual identity.
-
-## KAP-122 — Rewrite routing proof as recommendation proof
-
+## KAP-122 — Recommendation proof
 **Status:** OPEN
 
-Current wording like:
+Show filtering, price × completion time, actual work history, recommendation rationale and client confirmation.
 
-> 제안은 경쟁합니다. 비교는 하지 않으셔도 됩니다.
-
-must become a present-tense truthful story:
-
-- KAPAPI filters invalid/ineligible options
-- KAPAPI recommends the strongest fit
-- GM confirms
-- future routing can remove this decision as evidence grows
-
-## KAP-123 — Add explicit task-first distinction
-
+## KAP-123 — Task-first distinction
 **Status:** OPEN
 
-Landing should demonstrate rather than over-explain:
+Landing should demonstrate:
 
-> work exists first → PLAYER chooses suitable QUEST
+`work exists first → worker chooses suitable work`
 
-Use the real `작업 찾기` board as product proof where possible.
-
-## KAP-124 — Reframe future Outcome Layer
-
+## KAP-124 — Future execution layer
 **Status:** OPEN
 
-Add a concise future-evolution moment:
+Show concise future evolution:
 
-```text
-QUEST COMPLETE data
-→ trust
-→ better recommendation
-→ routing/recovery
-→ work in → result out
-```
+`completed work → trust → better recommendation → routing/recovery → work in → result out`
 
-Label as future/product evolution. Do not present universal work-in/result-out as already guaranteed.
+Label as future/product evolution.
 
 ---
 
-# P0 — GM creation/result flow
+# P0 — Client creation/result flow
 
-## KAP-130 — QUEST draft copy
-
+## KAP-130 — Work draft copy
 **Status:** OPEN
 
-Keep AI-assisted scope structure but change post-submit copy that says KAPAPI will automatically find/select and only return a result.
-
-Current-stage confirmation should say approximately:
-
-> 의뢰가 등록되었습니다. 제안이 모이면 카파피가 조건과 이력을 바탕으로 추천해드립니다.
+After posting, say proposals will arrive and KAPAPI will recommend based on conditions/history. Do not claim universal auto-assignment.
 
 ## KAP-131 — Recommendation confirmation
-
 **Status:** OPEN
 
-Create a GM confirmation interaction reachable from the demo path.
-
-Acceptance:
-
-- recommended candidate can be confirmed
-- alternatives can be inspected
-- confirmation changes state to assigned
+Recommended worker can be confirmed; alternatives can be inspected; confirmation creates assignment.
 
 ## KAP-132 — Result loop
-
 **Status:** VERIFY
 
-Preserve:
-
-- delivered files
-- deadline/timestamp
-- objective checks
-- accept
-- revision request
-
-Do not add unsupported AI quality claims.
+Preserve delivered files, deadline/timestamp, objective checks, accept and revision request.
 
 ---
 
-# P0 — PLAYER flow
+# P0 — Worker flow
 
-## KAP-140 — Preserve task board
-
+## KAP-140 — Preserve work board
 **Status:** VERIFY
 
-The current `/board` structure strongly supports task-first identity.
+- `작업 찾기` primary worker path
+- filters include suitable/urgent work
+- no storefront requirement
+- one account can issue and perform different work
 
-Verify:
-
-- `작업 찾기` remains primary PLAYER path
-- filters include suitable work / urgent work
-- no storefront requirement is introduced
-- one account can issue and perform different QUESTs
-
-## KAP-141 — BID form
-
+## KAP-141 — Proposal form
 **Status:** VERIFY
 
-Every BID must require:
-
-- PRICE
-- committed DELIVERY TIME
-
-Avoid long proposal theatre.
+Every proposal requires price + committed completion time. Avoid long proposal theatre.
 
 ## KAP-142 — Trust history
-
 **Status:** VERIFY
 
-Task-specific career/history, on-time and revision signals should outrank decorative LEVEL / EXP.
+Relevant career/history, on-time and revision signals are the visible trust system. No decorative levels/experience points.
 
 ---
 
 # P1 — Long-term concept proof
 
-## KAP-150 — Outcome execution resource diagram
-
+## KAP-150 — Execution-resource diagram
 **Status:** OPEN
-
-Future-direction proof may show:
 
 ```text
 KAPAPI
-├ human PLAYER
+├ human worker
 ├ AI
 ├ automation
 ├ specialist partner
-└ hybrid / multi-PLAYER
+└ hybrid / multi-worker
         ↓
       RESULT
 ```
 
-Keep this concise and product-like, not a pitch-deck diagram wall.
-
 ## KAP-151 — Data flywheel proof
-
 **Status:** OPEN
 
-Demonstrate that completed QUESTs produce useful product data:
-
-- PRICE
-- DELIVERY
-- task fit
-- on-time
-- revision
-- failure/recovery
-
-Then connect that to recommendation/routing.
+Completed work creates price, completion-time, task-fit, on-time, revision and failure/recovery data that improves recommendation/routing.
 
 ---
 
 # P0 — QA
 
 ## KAP-160 — Update automated invariants
-
 **Status:** OPEN
-
-Existing v2 scripts that assert no GM picker / automatic routing must be updated.
 
 New invariants:
 
-- no seller-storefront-first landing
-- PRICE + DELIVERY required
+- no storefront-first landing
+- price + completion time required
 - recommendation != assignment
-- GM confirmation exists
+- client confirmation exists
 - no universal auto-routing claim
 - Architecture/CAD not hero identity
 - task board remains functional
-- no permanent GM/PLAYER account split
-- future Outcome Layer clearly labeled as future
+- no permanent client/worker account split
+- future execution layer clearly labeled future
+- no special/game terminology in public copy
+- no level/experience UI
 
 ## KAP-161 — Build / lint / typecheck
-
 **Status:** OPEN
-
-Run all available repository checks after code changes.
 
 ## KAP-162 — Desktop/mobile visual QA
-
 **Status:** OPEN
 
-Verify at minimum:
-
-- desktop landing + transaction path
-- mobile landing + transaction path
-- board
-- QUEST detail / BID
-- recommendation / confirmation
-- result
-- reduced motion
-
-No horizontal overflow, broken touch targets, missing labels or unreadable hero sequence.
+Verify landing, board, work detail/proposal, recommendation/confirmation, result and reduced motion.
 
 ## KAP-163 — Preview QA
-
 **Status:** OPEN
 
-When Vercel preview access is available:
-
-- verify the actual deployed URL
-- inspect hero timing/compositing
-- verify copy/state matches D-032
-- record remaining weaknesses honestly
+Verify actual latest deployed branch head when Preview access exists.
 
 ---
 
 # P1 — Application proof
 
 ## KAP-170 — 60-second 1R demo path
-
 **Status:** OPEN
-
-Target:
 
 ```text
 Landing
-→ GM creates QUEST
-→ PLAYER finds work
-→ PRICE + DELIVERY BID
+→ 발주자 creates work
+→ 작업자 finds work
+→ price + completion-time proposal
 → KAPAPI recommendation
-→ GM confirmation
+→ 발주자 confirmation
 → execution/result
 → accept/revise
-→ future Outcome Layer
+→ future execution layer
 ```
 
-## KAP-171 — Preserve honest prototype boundaries
-
+## KAP-171 — Honest prototype boundaries
 **Status:** OPEN
 
-Do not imply production availability of:
-
-- escrow/payment custody
-- tax settlement
-- universal identity verification
-- universal auto-routing
-- universal SLA/outcome guarantee
-- subjective AI quality judgment
+Do not imply production availability of escrow/payment custody, tax settlement, universal identity verification, universal auto-routing, universal SLA/outcome guarantee or subjective AI quality judgment.
 
 ---
 
@@ -410,6 +314,6 @@ Do not imply production availability of:
 
 The alignment pass is complete when a new reviewer can describe KAPAPI as:
 
-> **“일이 먼저 올라오는 Task Market에서 시작해서, 거래 데이터를 쌓아 추천·배정·복구를 발전시키고 결국 일을 넣으면 결과가 돌아오는 시스템으로 가는 서비스.”**
+> **“일이 먼저 올라오는 업무시장에서 시작해서, 작업자들이 가격과 완료시간을 제안하고 카파피가 실제 이력과 조건으로 추천해준다. 거래가 쌓이면 배정과 복구를 고도화하고 결국 일을 넣으면 결과가 돌아오는 시스템으로 간다.”**
 
 and no canonical document or current v2 user-facing flow materially contradicts that description.

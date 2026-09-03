@@ -3,11 +3,9 @@
 Status: **canonical visual specification for the current prototype**  
 Updated: **2026-09-03**
 
-Product meaning comes from the latest product canon, especially D-032. This document defines how that meaning should look.
+KAPAPI should feel like serious, premium work-execution software.
 
-KAPAPI should feel like a serious work-execution product with a restrained game/state layer, not a game UI wearing business clothes.
-
-> **Outside: sharp, memorable, alive. Inside: calm, clear, trustworthy.**
+> **Outside: sharp and memorable. Inside: calm, clear and trustworthy.**
 
 ## 1. Product meaning before style
 
@@ -15,12 +13,12 @@ Current visual transaction:
 
 ```text
 WORK EXISTS
-→ GM creates a QUEST
-→ PLAYERs discover it
-→ PRICE × DELIVERY BIDs arrive
+→ 발주자 creates work
+→ 작업자들이 discover it
+→ 가격 × 완료시간 proposals arrive
 → KAPAPI filters/ranks
 → RECOMMENDATION
-→ GM CONFIRMS
+→ 발주자 CONFIRMS
 → ASSIGNED / WORK
 → RESULT
 ```
@@ -28,7 +26,7 @@ WORK EXISTS
 Future evolution:
 
 ```text
-QUEST COMPLETE data
+completed-work data
 → trust
 → recommendation
 → routing / recovery
@@ -36,281 +34,153 @@ QUEST COMPLETE data
 → WORK IN → RESULT OUT
 ```
 
-The design must not visually imply that universal auto-routing is already solved.
+The design must not imply universal auto-routing is already solved.
 
 ---
 
 ## 2. Core visual priorities
 
-Optimize for:
-
-1. **work-object clarity** — QUEST/file/result are concrete objects;
-2. **task-first discovery** — open work is visually primary on PLAYER surfaces;
-3. **PRICE × DELIVERY legibility** — the two dimensions are obvious together;
-4. **recommendation confidence** — one candidate can be understood quickly;
-5. **confirmation clarity** — recommended is distinct from assigned;
-6. **trust evidence** — relevant history beats decorative gamification;
-7. **delivery proof** — files, timestamps and checks dominate completion;
-8. **future evolution** — show data → trust → routing without overclaiming.
+1. **work-object clarity** — task/file/result are concrete objects
+2. **task-first discovery** — open work is primary on worker surfaces
+3. **price × completion-time legibility**
+4. **recommendation confidence**
+5. **confirmation clarity** — recommended is distinct from assigned
+6. **trust evidence** — relevant history beats decorative status
+7. **delivery proof** — files, timestamps and checks dominate completion
+8. **future evolution** — show data → trust → routing without overclaiming
 
 ---
 
 ## 3. Visual character
 
-KAPAPI should feel:
+KAPAPI should feel precise, editorial, operational, premium, slightly competitive, technically sophisticated, quiet at rest and alive when work state changes.
 
-- precise
-- editorial
-- operational
-- premium
-- slightly competitive
-- technically sophisticated
-- quiet at rest
-- alive when work changes state
-
-KAPAPI should not feel:
-
-- fantasy RPG
-- crypto/gamer RGB
-- generic AI startup
-- stock shadcn/Tailwind dashboard
-- black-card developer console
-- generic freelancer-directory beige
-- CAD/construction vertical SaaS
+It should not feel like fantasy/game UI, crypto RGB, generic AI startup, stock dashboard, generic freelancer directory or CAD vertical SaaS.
 
 ---
 
 ## 4. Reference synthesis
 
-Use references as principles, not layouts to clone.
+Use references as principles, not layouts to clone:
 
-### Linear
-
-Use precision, grid discipline, thin separators, compact information hierarchy.
-
-### Hyperstudio
-
-Use editorial confidence, art-directed composition and intentional whitespace.
-
-### Factory
-
-Use work-as-object/state thinking and operational clarity.
-
-### Vercel
-
-Use transaction/form restraint, obvious actions and quiet hierarchy.
-
-### Mercury
-
-Use trustworthy B2B calm and polished data modules.
-
-### Raycast
-
-Use tactile micro-interactions and restrained HUD energy.
-
-### Korean marketplaces
-
-Use familiar request/budget/deadline/delivery/revision language and mobile transaction expectations where they improve comprehension.
-
-Never copy exact brand geometry, layouts or assets.
+- Linear: precision, grids, hierarchy
+- Hyperstudio: editorial confidence
+- Factory: operational work-state clarity
+- Vercel: transaction/form restraint
+- Mercury: trustworthy B2B data presentation
+- Raycast: tactile micro-interactions
+- Korean marketplaces: familiar request/budget/deadline/delivery/revision language
 
 ---
 
 ## 5. Theme architecture
 
-### Public landing / QUEST creation
-
+### Public landing / work creation
 - white/off-white base
 - black/graphite typography
-- generous but disciplined whitespace
+- disciplined whitespace
 - restrained hairlines
 - one signal accent family
 
-### Open QUEST / PLAYER discovery
-
+### Open work / worker discovery
 - scannable light surface
-- compact category/deadline/eligibility metadata
-- task title and outcome above decorative identity
+- category/deadline/requirements metadata
+- work title and outcome above profile decoration
 
-### BID / recommendation
-
-- calm comparison surface
-- PRICE × DELIVERY prominent
+### Proposal / recommendation
+- price × completion time prominent
 - relevant history/on-time/revision immediately legible
-- recommended candidate visually clear without theatrical winner effects
+- recommended worker clear without theatrical winner effects
 - alternatives quieter but inspectable
 
-### Workroom / TIME ATTACK
-
-Dark contextual treatment may be used when it improves active operational state.
+### Active work / urgent work
+Dark contextual treatment may be used when it improves operational clarity.
 
 ### Completion
-
-Return to a bright/clean result surface. File/result proof dominates.
-
-### Outcome Layer direction
-
-Use progressively fewer visible objects to communicate complexity collapsing behind KAPAPI, but label it clearly as future evolution.
+Return to bright/clean result surface. File/result proof dominates.
 
 ---
 
-## 6. Color philosophy
+## 6. Typography
 
-Use a disciplined neutral system plus one signal accent family.
+Use a strong editorial role for major headlines, high-readability Korean sans for product/body and restrained mono for IDs, numeric comparisons, states and timing where useful.
 
-Reference neutral relationships:
-
-```text
-near black / ink / graphite
-white / off-white paper
-hairline light/dark borders
-muted text with sufficient contrast
-```
-
-Signal color should:
-
-- work on light and dark
-- feel technical, not playful
-- be used in small quantities
-- indicate action/state, not decorate empty space
-
-Semantic warning/success colors may exist where state requires them.
+No novelty game fonts or pseudo-terminal language.
 
 ---
 
-## 7. Typography
+## 7. Core object hierarchy
 
-Use:
-
-- strong editorial/display role for major public headlines
-- high-readability Korean sans for product/body
-- restrained mono/HUD role for IDs, PRICE/DELIVERY, states and timing
-
-Rules:
-
-- ordinary Korean stays readable at all relevant widths;
-- no novelty game font;
-- no tiny gray startup copy;
-- HUD typography is seasoning, not the whole product voice.
-
----
-
-## 8. Core object hierarchy
-
-### QUEST card
-
-Priority:
-
+### Work card
 1. work title/result
-2. deadline / TIME ATTACK
-3. reward/range
-4. eligibility/category
-5. BID count/state
+2. deadline / urgent state
+3. payment/range
+4. requirements/category
+5. proposal count/state
 
-Do not make issuer/avatar the visual protagonist.
-
-### BID
-
-Priority:
-
-1. PRICE
-2. DELIVERY
+### Proposal
+1. price
+2. completion time
 3. task-relevant history/career
 4. reliability
 5. short note if useful
 
 ### Recommendation
-
-Priority:
-
 1. `추천`
-2. recommended PLAYER identity
-3. PRICE + DELIVERY
+2. worker identity
+3. price + completion time
 4. why/relevant evidence
 5. `이 작업자로 진행`
 6. `다른 제안 보기`
 
-Before confirmation, do not use the visual language of final assignment.
-
 ### Assigned/work state
-
-Only after GM confirmation should the UI use `확정`, `ASSIGNED`, `WORK STARTED` semantics.
+Only after client confirmation should the UI use `확정`, `배정 완료`, `작업 시작` semantics.
 
 ### Result
-
-Priority:
-
 1. delivered file/result
 2. delivery timing
 3. objective checks performed
 4. `결과 확인` / `수정 요청`
-5. restrained history/EXP update
+5. work-history update only when it reflects real evidence
 
 ---
 
-## 9. Task-first PLAYER surfaces
-
-PLAYER discovery should visibly begin with open work.
-
-Preferred pattern:
+## 8. Worker discovery
 
 ```text
 지금 열려 있는 작업
 [전체] [내가 할 수 있는 작업] [오늘 마감]
-→ QUEST rows/cards
+→ 업무 rows/cards
 ```
 
-Do not require seller-storefront creation as the first visual step.
+Do not require seller-storefront creation first.
 
-One account may issue and perform different QUESTs. Avoid permanent buyer/seller mode-switch design.
+One account may issue and perform different work. Avoid permanent buyer/seller mode-switch design.
 
 ---
 
-## 10. World grammar
+## 9. Operational metadata grammar
 
 Allowed when real:
 
-- QUEST #...
-- BID
-- TIME ATTACK
-- LEVEL / EXP
-- REWARD
-- QUEST COMPLETE
+- 업무 번호 or short task ID
+- 제안 수
+- 가격
+- 완료시간
+- 긴급
+- 마감까지 남은 시간
+- 유사 업무 완료 건수
+- 정시완료율
+- 수정 요청률
+- 추천 / 확정 / 배정 / 수행 / 결과 / 완료
 
-Current state grammar may also include:
-
-- RECOMMENDATION READY
-- GM CONFIRMED
-- PLAYER ASSIGNED
-
-Never use:
-
-- fantasy art
-- coins/swords
-- rarity systems
-- fake network-online lore
-- arbitrary pseudo-terminal labels
-
-World energy should come from real work state and verified history.
+Do not use fictional role names, experience points, levels, rarity, coins, swords or pseudo-lore.
 
 ---
 
-## 11. Spacing / radii / borders
+## 10. Interaction hierarchy
 
-- disciplined grid and rhythm
-- restrained radii
-- subtle/rare shadows
-- hairlines before floating-card effects
-- avoid giant rounded-card walls
-- enough negative space for hierarchy, not emptiness
-
----
-
-## 12. Interaction hierarchy
-
-Current recommendation surface:
-
-Primary:
+Recommendation primary action:
 
 > **이 작업자로 진행**
 
@@ -320,54 +190,37 @@ Secondary:
 
 The primary should feel consequential but not celebratory.
 
-The GM should be able to understand the recommendation without reading every alternative.
-
 ---
 
-## 13. Hero design
+## 11. Hero design
 
-The task-entry surface is the protagonist.
+The work-entry surface is the protagonist.
 
-Current semantic copy direction:
+Copy direction:
 
-> **맡길 일을 적어주세요.**  
+> **사람을 찾지 말고, 할 일을 올리세요.**  
 > 카파피가 작업 조건을 정리하고 맞는 제안을 추천합니다.
 
 Product-movie states:
 
 ```text
-QUEST CREATED
-→ BIDS RECEIVED
-→ ELIGIBILITY CHECK
-→ RECOMMENDATION READY
-→ GM CONFIRMED
-→ RESULT READY
+업무 등록
+→ 제안 도착
+→ 조건 확인
+→ 추천 준비
+→ 발주자 확정
+→ 결과 도착
 ```
 
-The laptop/video treatment must remain subordinate to the action and truthful to this flow.
+---
+
+## 12. Category neutrality
+
+Use a balanced example set including PDF/spreadsheet/data, document/PPT, image/e-commerce, language/media, CAD/skilled production and small web/code tasks.
 
 ---
 
-## 14. Category neutrality
-
-The public first impression must not be dominated by Architecture/CAD.
-
-Use a balanced example set including ordinary office/support and skilled work:
-
-- PDF/spreadsheet/data
-- document/PPT
-- image/e-commerce
-- language/media
-- CAD/skilled production
-- small web/code tasks
-
-CAD may be the detailed founder-domain case lower on the page.
-
----
-
-## 15. Future Outcome Layer visual
-
-If shown, make the progression understandable:
+## 13. Future execution-layer visual
 
 ```text
 MARKET
@@ -377,15 +230,15 @@ MARKET
 → OUTCOME
 ```
 
-Potential mature execution resources:
+Potential mature resources:
 
-`HUMAN PLAYER · AI · AUTOMATION · SPECIALIST PARTNER · HYBRID`
+`HUMAN WORKER · AI · AUTOMATION · SPECIALIST PARTNER · HYBRID`
 
-This section must read as product evolution, not current universal capability.
+This must read as product evolution, not current universal capability.
 
 ---
 
-## 16. Accessibility / responsive
+## 14. Accessibility / responsive
 
 - semantic structure
 - visible keyboard focus
@@ -398,18 +251,6 @@ This section must read as product evolution, not current universal capability.
 
 ---
 
-## 17. Rejection gate
+## 15. Rejection gate
 
-Reject a screen if:
-
-- it looks like a generic dashboard/template;
-- task/work is less prominent than people/profile decoration;
-- recommendation and assignment are indistinguishable;
-- it implies universal day-one auto-routing;
-- CAD defines the product visually;
-- world decoration obscures professional trust;
-- the design needs paragraphs to explain what the UI should show.
-
-Desired visual reaction:
-
-> **“일이 먼저 있고, 카파피가 선택을 쉽게 만들어주며, 거래가 쌓일수록 더 많은 실행을 맡게 되는 제품.”**
+Reject a screen if it looks like a generic dashboard/template, makes work less prominent than profile decoration, makes recommendation and assignment indistinguishable, implies universal day-one auto-routing, lets CAD define the product, uses gamified decoration instead of real trust evidence, or needs paragraphs to explain what the UI should show.

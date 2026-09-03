@@ -3,78 +3,50 @@
 Status: **current v2 hero media authority**  
 Updated: **2026-09-03**
 
-The hero movie should visually support the current D-032 transaction without baking fake generated product UI into the film.
+The hero movie should visually support the current transaction without baking fake generated product UI into the film.
 
 ## 1. Narrative thesis
 
-The human story is simple:
-
 ```text
-SUBMIT WORK
-→ KAPAPI MARKET ACTIVITY APPEARS
-→ RECOMMENDATION
-→ GM CONFIRMS
-→ WORK / RESULT
-→ QUICK RESULT CHECK
-→ QUIET SATISFACTION
+업무 등록
+→ 제안 도착
+→ KAPAPI 추천
+→ 발주자 확정
+→ 수행 / 결과
+→ 결과 확인
 ```
 
-The current prototype does **not** claim that a GM can always disappear immediately after submission while KAPAPI universally auto-routes everything.
-
-The cinematic sequence may compress the GM confirmation into one clean product beat, but it must remain semantically present.
+The current prototype does not claim a client can always disappear immediately after submission while KAPAPI universally auto-routes everything.
 
 ---
 
 ## 2. Product behavior represented
 
-Current middle sequence:
-
 ```text
-BIDs arrive
-→ eligibility / PRICE × DELIVERY / trust evidence resolves
-→ KAPAPI recommendation
-→ GM confirmation
-→ assignment
-→ work progress
-→ result ready
+가격 + 완료시간 제안 도착
+→ 필수요건 / 작업이력 / 가격 × 완료시간 확인
+→ KAPAPI 추천
+→ 발주자 확정
+→ 작업자 배정
+→ 수행
+→ 결과 도착
 ```
 
 Ending:
 
 ```text
-result ready
-→ result view
-→ accept / revision path
+결과 도착
+→ 결과 보기
+→ 수락 / 수정 요청
 ```
 
-Long-term `work in → result out` may appear only as a clearly future-oriented product evolution message outside or after the current transaction proof.
+Long-term `work in → result out` appears only as clearly future-oriented product evolution.
 
 ---
 
-## 3. Current repository assets
+## 3. Generated UI is disposable
 
-The v2 branch currently contains:
-
-- `/public/media/kapapi-hero.mp4`
-- `/public/media/kapapi-hero-poster.jpg`
-
-The application references these through a media constant rather than temporary local filenames.
-
-Historical source-generation/rough-cut notes may remain in research files, but generated readable UI is never product truth.
-
----
-
-## 4. Generated UI is disposable
-
-If source footage contains:
-
-- fake product text
-- incorrect brand names
-- distorted buttons
-- generic dashboards
-- unreadable AI-generated UI
-
-replace, cover or cut away from it.
+If source footage contains fake product text, incorrect brand names, distorted buttons, generic dashboards or unreadable AI-generated UI, replace, cover or cut away from it.
 
 Preferred final structure:
 
@@ -82,131 +54,73 @@ Preferred final structure:
 LIVE ACTION
 → CAMERA APPROACHES LAPTOP
 → REAL KAPAPI HTML/CSS UI
-   BIDS → FILTER → RECOMMENDATION → GM CONFIRMED → RESULT
+   제안 → 조건 확인 → 추천 → 발주자 확정 → 결과
 → LIVE ACTION / RESULT PAYOFF
 ```
 
 ---
 
-## 5. Website integration
+## 4. Website integration
 
-The task-entry surface remains the strongest above-the-fold product object.
+The work-entry surface remains the strongest above-the-fold product object. Video is supporting proof.
 
-Video/product movie is supporting proof.
-
-Media component should support:
-
-- muted
-- playsInline
-- poster
-- reduced-motion/static fallback
-- responsive crop
-- mobile fallback
-- no layout shift
-- primary text/input before heavy media dependency
-
-Do not make autoplay media the primary interaction.
+Media must support muted, playsInline, poster, reduced-motion/static fallback, responsive crop, mobile fallback, no layout shift and primary text/input before heavy media dependency.
 
 ---
 
-## 6. Laptop screen replacement
-
-When the laptop screen is visible and sufficiently large, real KAPAPI UI should be integrated through one of:
-
-1. browser-layer perspective overlay;
-2. robust precomposited replacement;
-3. clean editorial cut into full-frame real UI.
-
-Do not build fragile browser CV tracking merely to show complexity.
-
-On mobile/narrow layouts where the laptop is cropped, direct full-frame product UI is acceptable and preferred.
-
----
-
-## 7. Current hero UI choreography
+## 5. Current hero UI choreography
 
 Canonical sequence:
 
 ```text
-QUEST CREATED
-→ BIDS 01 / 02 / 03 / 04
-→ ELIGIBILITY CHECK
-→ RECOMMENDATION READY
-→ GM CONFIRMED
-→ RESULT READY
+업무 등록
+→ 제안 1 / 2 / 3 / 4건 도착
+→ 조건 확인
+→ 추천 준비
+→ 발주자 확정
+→ 결과 도착
 ```
 
-Useful visible evidence:
+Useful evidence:
 
-- PRICE
-- DELIVERY
-- relevant completion history
-- on-time rate
-- revision rate
+- 가격
+- 완료시간
+- 유사 업무 완료 건수
+- 정시완료율
+- 수정 요청률
 
-Inside the cinematic UI, keep the explanation compact. The detailed interactive route may show full rationale and alternatives.
+Do not use special role/state vocabulary, progression levels or experience points.
 
-Do not use `PLAYER ASSIGNED` before `GM CONFIRMED` in the current product narrative.
-
----
-
-## 8. Category neutrality
-
-Hero task examples and product imagery must not make KAPAPI look like an Architecture/CAD service.
-
-The set should suggest multiple forms of bounded digital work, such as:
-
-- PDF/data/spreadsheet
-- image/e-commerce
-- document/PPT
-- CAD/skilled support
-
-A detailed CAD case may live below the hero.
+Do not show `작업자 배정` before `발주자 확정`.
 
 ---
 
-## 9. Human payoff
+## 6. Category neutrality
 
-The ending should be quiet and believable.
-
-Do not use:
-
-- `GOOD DONE`
-- `SUCCESS!`
-- exaggerated celebration
-- testimonial copy
-- confetti/trophy imagery
-
-The result object and subtle human reaction carry the payoff.
+Hero examples must not make KAPAPI look like an Architecture/CAD service. Suggest multiple forms of bounded digital work such as PDF/data/spreadsheet, image/e-commerce, document/PPT and skilled support.
 
 ---
 
-## 10. Responsive / reduced motion
+## 7. Human payoff
 
-Desktop may use the laptop compositing effect.
-
-Mobile may cut directly to product UI when device framing makes compositing meaningless.
-
-Reduced-motion path should show a strong static/poster state and preserve:
-
-- task-entry action
-- current product promise
-- result-oriented meaning
-
-No critical product fact should exist only inside autoplay motion.
+The ending should be quiet and believable. Do not use success slogans, exaggerated celebration, confetti/trophy imagery or gamified completion rewards. The result object and subtle human reaction carry the payoff.
 
 ---
 
-## 11. Verification
+## 8. Responsive / reduced motion
 
-Before current hero is considered visually verified:
+Desktop may use laptop compositing. Mobile may cut directly to product UI. Reduced-motion should show a strong static/poster state and preserve task-entry action, current product promise and result-oriented meaning.
 
-- capture desktop and mobile states;
-- inspect film/composite/full-frame timing;
-- verify recommendation occurs before confirmation/assignment;
-- verify no generated fake readable UI is authoritative;
-- verify first paint/task input does not depend on video download;
-- verify fallback/reduced-motion behavior;
-- verify actual deployed Preview when current Vercel access is available.
+---
 
-Historical `d003027` Preview QA does not prove the latest D-032-aligned branch head.
+## 9. Verification
+
+Before approval:
+
+- capture desktop and mobile states
+- verify recommendation occurs before confirmation/assignment
+- verify no generated fake readable UI is authoritative
+- verify no special/game terminology appears
+- verify first paint/task input does not depend on video download
+- verify fallback/reduced-motion behavior
+- verify the actual deployed Preview for the latest branch head when available
