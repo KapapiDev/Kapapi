@@ -1,374 +1,377 @@
-# KAPAPI Prototype v2 — FROM-SCRATCH REBUILD HANDOFF
+# KAPAPI Prototype v2 — REBUILD HANDOFF
 
-Status: **mandatory execution entry point for `feat/prototype-v2`**  
-Baseline: documentation-only commit `5d2ba56ee04e10fd86148243dbdd63e1d63e63bc`
+Status: **mandatory v2 visual/implementation entry point**  
+Updated: **2026-09-03**
 
-## 0. Why this rebuild exists
+Prototype v1 remains rejected as a visual implementation. The current v2 visual baseline may be evolved, but product behavior must follow the latest canon rather than old auto-routing screenshots or notes.
 
-Prototype v1 is rejected as a visual implementation. **Do not reuse its application code, components, CSS, layout, screenshots, or visual composition.** It may be inspected only as a negative example of what not to repeat.
+## 1. Product baseline before design
 
-The v2 branch intentionally starts from the last documentation-only canon state before app implementation.
+Read these first:
 
-Preserve the product canon. Rebuild the product implementation from zero.
+1. `docs/ORIGIN_AND_GROWTH_THESIS.md`
+2. `docs/DECISIONS.md` — D-032 is current selection/routing authority
+3. `docs/PRODUCT.md`
+4. `docs/ROADMAP.md`
+5. `docs/VALIDATION.md`
+6. `docs/PROTOTYPE_SPEC.md`
+7. `CLAUDE_HANDOFF.md`
+8. `TASK_QUEUE.md`
+
+Then read the v2 visual/content authorities.
+
+Current product loop:
+
+```text
+GM posts bounded work
+→ PLAYERs discover QUESTs
+→ PLAYERs BID PRICE + DELIVERY TIME
+→ KAPAPI filters/ranks and recommends
+→ GM confirms
+→ PLAYER executes
+→ result returns
+→ GM accepts/revises
+```
+
+Current preferred prototype selection model is **KAPAPI recommendation + GM confirmation**.
+
+Do not restore the superseded D-031 assumption that KAPAPI must universally auto-assign on day one.
+
+Long-term evolution:
+
+```text
+transaction data
+→ task-specific trust
+→ better recommendation
+→ default routing
+→ replacement/recovery
+→ repeat external capacity
+→ Outcome Layer
+```
+
+At maturity, execution may use human PLAYERs, AI, deterministic automation, specialist partners or hybrid workflows.
 
 ---
 
-# 1. Mandatory tool / skill inventory BEFORE design
+# 2. Founder-origin / task-first identity
 
-Before writing application code, inspect the actual Claude Code environment and enumerate every installed tool, skill, plugin, MCP, browser/computer-use capability, and design/frontend aid relevant to:
+KAPAPI begins from a specific behavior:
 
-- web design
-- UI/UX
-- frontend design
-- visual QA
-- browser automation
+> a person with spare time + useful skill wants to choose a bounded online task and earn without first creating a freelancer storefront or accepting a fixed shift.
+
+The mirrored GM problem is bounded unresolved work that does not justify hiring or heavyweight outsourcing.
+
+Therefore:
+
+- QUEST is the primary market object;
+- work exists before a PLAYER storefront;
+- `작업 찾기` is a real supply-side product path;
+- one universal account may issue one QUEST and perform another;
+- GM/PLAYER are contextual per-QUEST roles.
+
+Architecture/CAD is one founder-domain proof case. It must never define the hero, brand or total market.
+
+---
+
+# 3. Mandatory tool / skill posture
+
+Before claiming a relevant capability unavailable, actually attempt to discover/use connected tools for:
+
+- frontend/UI design
+- browser visual QA
 - screenshots
 - responsive testing
-- animation/motion
+- motion
+- media/video compositing
+- Korean UX writing
+- live reference research
 
-**Actually invoke relevant installed capabilities.** Do not merely mention them.
-
-If `ui-ux-pro-max` is installed, use it. Also use any installed equivalent such as frontend-design/web-design/UI critique/browser visual QA tools.
-
-Record in `docs/PROTOTYPE_V2_TOOL_AUDIT.md`:
-
-- capability name
-- whether available
-- how it was used
-- output/decision it influenced
-
-If a relevant expected capability is unavailable, record the concrete lookup/call attempted and the failure. Do not silently skip it.
+Do not use the user as a technical courier when a connected capability can do the work.
 
 ---
 
-# 2. Mandatory LIVE reference study
+# 4. Live reference study for major visual changes
 
-The repository's reference documents are not enough by themselves.
+When changing art direction materially, inspect live references rather than relying on old notes.
 
-Before designing, use a browser/computer-use capable tool to **open the current live sites** and visually inspect them at desktop width:
+Core reference set remains:
 
-1. https://www.upwork.com/
-2. https://linear.app/
-3. https://vercel.com/
-4. https://www.factory.ai/ (or the current canonical Factory site if redirected)
-5. https://www.raycast.com/
-6. https://hyperstudio.co/ (or the live Hyperstudio site referenced by canon if the domain redirects)
+- Upwork
+- Linear
+- Vercel
+- Factory
+- Raycast
+- Hyperstudio
+- Mercury
+- Kmong
+- Wishket
+- Soomgo
 
-Also read and follow `docs/PROTOTYPE_V2_REFERENCE_ADDENDUM.md` for all additional mandatory references, including Mercury and Korean marketplace references such as Kmong, Wishket, and Soomgo.
+Inspect more than the hero. Study trust, transaction language, density, CTA hierarchy, mobile behavior, product proof and motion.
 
-For each reachable site, capture or inspect the actual rendered homepage/landing experience. Do not rely on memory, text summaries, page source alone, or repository notes alone.
-
-Create `docs/PROTOTYPE_V2_LIVE_REFERENCE_AUDIT.md` with concrete observations of:
-
-- first viewport composition
-- hero scale
-- grid and alignment
-- whitespace rhythm
-- typography scale/weight/line breaks
-- navigation density
-- CTA hierarchy
-- image/video framing
-- border/radius/shadow treatment
-- use of light/dark contrast
-- motion/interaction behavior
-- what feels premium vs templated
-- what KAPAPI should borrow as a principle
-- what KAPAPI must not copy
-- **what the reference communicates visually that Prototype v1 tried to explain with prose**
-
-For Upwork specifically, compare against the current live first page, not just `UPWORK_FIRST_TOUCH_REFERENCE.md`.
-
-**No application implementation may start until this live-reference audit exists.**
+Use principles only. Do not clone layouts or brand assets.
 
 ---
 
-# 3. Canon read order
+# 5. Visual gate
 
-After tool inventory and live reference capture, read:
+Major redesigns require visually inspectable alternatives before heavy implementation when practical.
 
-1. `docs/README.md`
-2. `docs/DECISIONS.md`
-3. `docs/PRODUCT.md`
-4. `docs/IDENTITY_ROLE_MODEL.md`
-5. `docs/PROTOTYPE_SPEC.md`
-6. `docs/KAPAPI_ART_DIRECTION.md`
-7. `docs/KAPAPI_DESIGN.md`
-8. `docs/KAPAPI_MOTION.md`
-9. `docs/UPWORK_FIRST_TOUCH_REFERENCE.md`
-10. `docs/HERO_MEDIA.md`
-11. **`docs/PROTOTYPE_V2_VISUAL_COMMUNICATION_RULES.md`**
-12. `docs/QA_CHECKLIST.md`
-13. `TASK_QUEUE.md`
-14. `docs/LEGAL.md`
-15. `docs/VALIDATION.md`
-16. `docs/REFERENCE_BOARD.md`
+Evaluate against:
 
-Product behavior comes from the latest product canon. Identity roles are universal-user / per-QUEST roles. Public UX is light-first. Default GM flow uses KAPAPI auto-routing.
-
-`PROTOTYPE_V2_VISUAL_COMMUNICATION_RULES.md` is mandatory for all public landing surfaces.
-
----
-
-# 4. Do NOT reuse Prototype v1 implementation
-
-Forbidden sources for v2 implementation:
-
-- v1 React/Next application code
-- v1 CSS/tokens
-- v1 component hierarchy
-- v1 hero split composition
-- v1 black routing card composition
-- v1 visual QA score as evidence of quality
-- v1 screenshots as a layout template
-
-You may inspect v1 only after the live-reference audit, and only to document failures such as:
-
-- visually generic B2B/internal-tool appearance
-- weak hero/media integration
-- insufficient brand/world presence
-- overly safe typography/spacing
-- generic SaaS blue CTA feeling
-- public landing reading like logged-in product chrome
-- **explaining the product with headings, paragraphs and numbered columns instead of visually demonstrating it**
-
-Do not perform a cosmetic reskin. **Start over.**
-
----
-
-# 5. Visual exploration BEFORE code
-
-Do not repeat the v1 `text-only hero structures → immediately scaffold` workflow.
-
-Before application code, create **three genuinely different visual directions** for the landing experience using the strongest available design capability in the environment.
-
-Each direction must be visually inspectable, not only prose. Depending on available tools this may be:
-
-- rendered HTML prototype
-- disposable visual prototype route
-- high-fidelity design artifact
-- screenshot/mock composition produced with an appropriate design tool
-
-Do not use these as final code yet.
-
-All three must satisfy product truth but should explore materially different art direction/composition.
-
-Evaluate each beside live reference screenshots/observations on:
-
-- immediate visual impact
-- 3-second comprehension
-- KAPAPI distinctiveness
-- world-building potential
-- premium quality
+- three-second comprehension
 - task-entry dominance
-- video integration
-- universal-user coherence
+- task-first distinctiveness
+- premium quality
+- Korean transaction familiarity
+- PLAYER discovery clarity
+- recommendation/confirmation clarity
 - mobile viability
-- distance from generic SaaS/template output
-- **ability to communicate the product visually with minimal prose**
+- world-building restraint
+- distance from generic SaaS/dashboard aesthetics
 
-Choose the strongest only after visual comparison.
-
-Record this in `docs/PROTOTYPE_V2_VISUAL_GATE.md`.
-
-**If none looks clearly better than Prototype v1, do not proceed. Iterate the directions first.**
+Do not ship a direction that is merely technically correct.
 
 ---
 
-# 6. Visual-first communication is mandatory
-
-Follow `docs/PROTOTYPE_V2_VISUAL_COMMUNICATION_RULES.md`.
+# 6. Visual-first communication
 
 Core rule:
 
 > **If the product can show it, do not explain it in a paragraph.**
 
-The public landing page is not documentation, a strategy memo, or a pitch-deck text slide.
+Demonstrate the thesis through:
 
-The user must not have to read long copy to understand KAPAPI.
-
-Show the thesis through:
-
-- real product states
-- files and result artifacts
+- open QUESTs
+- files and bounded scope
 - BID arrival
 - PRICE × DELIVERY
-- routing
-- eligibility/trust evidence
-- PLAYER assignment
-- work state
-- notification/result arrival
-- motion and transitions
-- hero footage
+- eligibility filtering
+- task-specific trust
+- KAPAPI recommendation
+- GM confirmation
+- assignment/work state
+- delivered result
+- QUEST COMPLETE data
 
-Use text to label what the visual has already made understandable.
-
-For every public section:
-
-1. make one dominant visual object / interaction carry the idea,
-2. keep the headline short,
-3. use at most 0–2 short supporting sentences by default,
-4. avoid long body paragraphs,
-5. avoid four-column numbered explanation grids unless the content genuinely cannot be demonstrated visually,
-6. perform a copy-deletion pass after implementation.
-
-If deleting the paragraph makes the section unintelligible, improve the visual communication before restoring prose.
-
-The rejected Prototype v1 section pattern is:
-
-`large headline → paragraph → 01/02/03/04 columns → paragraphs → more explanatory text`.
-
-Do not repeat it.
+The landing is not a pitch deck or documentation page.
 
 ---
 
-# 7. Hero requirement
+# 7. Current hero contract
 
-The hero must no longer read as:
+The task-entry surface remains the protagonist.
 
-`left form | right black dashboard card`.
+Current semantic direction:
 
-That specific v1 composition is rejected.
+> **맡길 일을 적어주세요.**  
+> 카파피가 작업 조건을 정리하고 맞는 제안을 추천합니다.
 
-The target is a coherent premium first-view experience where:
+Hero product sequence:
 
-- task hand-off is immediately understandable
-- media feels art-directed rather than inserted as a widget
-- real KAPAPI UI can emerge from or connect to the film naturally
-- KAPAPI world/state becomes visible as work starts moving
-- the page is light-first
-- sapphire behaves as a signal, not generic SaaS blue decoration
-- the public header feels like a landing experience, not an authenticated internal app
+```text
+QUEST CREATED
+→ BIDS RECEIVED
+→ ELIGIBILITY CHECK
+→ RECOMMENDATION READY
+→ GM CONFIRMED
+→ RESULT READY
+```
 
-Use the user-provided approved hero footage as the human narrative source when available.
+Keep category examples broad enough that KAPAPI does not read as CAD/construction-specific.
 
-Generated/abstract device UI is not product truth. Replace/cover it with real KAPAPI UI where needed.
+The approved laptop footage may still be used. Real KAPAPI UI should be composited into the screen where technically sound, with a clean full-frame fallback on narrow/mobile layouts.
 
-Narrative:
-
-`user hands off work → user leaves / does something else → KAPAPI handles the messy middle → result reaches user → user checks it → subtle satisfaction`.
-
-No `GOOD DONE`, celebration copy, confetti, trophy, or exaggerated reaction.
+Do not show recommendation as autonomous assignment before GM confirmation.
 
 ---
 
-# 8. KAPAPI world / identity rules
+# 8. Current GM surfaces
 
-World-building is structural, not decorative.
+The current prototype should make this path coherent:
 
-Use gradual language/state grammar:
+```text
+LANDING
+→ rough request + files
+→ structured QUEST draft
+→ post
+→ BIDs arrive
+→ KAPAPI recommendation
+→ GM sees rationale + alternatives
+→ GM confirms
+→ assigned/work state
+→ result
+→ accept / revise
+```
 
-- normal Korean first
-- `QUEST #... CREATED`
-- `BIDS RECEIVED`
-- `ROUTING`
-- `PLAYER ASSIGNED`
-- `TIME ATTACK`
-- `QUEST COMPLETE`
-- LEVEL/EXP stronger on execution-side surfaces
+Recommendation must be inspectable and evidence-backed through fields such as:
 
-Never use fantasy/RPG art, coins, swords, rarity tiers, gamer RGB, game-launcher composition.
+- hard eligibility/security
+- deadline/budget feasibility
+- PRICE
+- DELIVERY
+- relevant career/history
+- on-time/revision indicators
 
-KAPAPI has **one universal user identity**.
+Primary action:
 
-GM and PLAYER are contextual roles per QUEST, never permanent account classes. No signup role fork, no separate GM/PLAYER account, no mode switch that changes identity.
+> **이 작업자로 진행**
 
----
+Secondary:
 
-# 9. Core product behavior
+> **다른 제안 보기**
 
-Default flow:
-
-`work request → scope confirmation → submit → GM routine sourcing ends → PRICE × DELIVERY BIDs → KAPAPI auto-routing → execution → result → accept/revision`.
-
-Do not restore routine GM manual PLAYER selection.
-
-Routing must look inspectable and evidence-based, not opaque AI magic.
-
-Architecture/CAD is a concrete proof case below the hero, not the brand/category identity.
-
----
-
-# 10. Implementation discipline
-
-After the visual gate passes:
-
-- scaffold a fresh application on `feat/prototype-v2`
-- use clean custom components and design tokens derived from the approved visual direction
-- do not copy v1 files
-- implement the deterministic prototype loop
-- implement desktop and mobile together
-- use motion only for state/continuity
-- keep public first paint independent from hero video download
-- preserve accessibility/reduced-motion paths
-
-Use the repository task queue as scope guidance, but when old task wording conflicts with this rebuild handoff or current canon, current canon/rebuild rules win.
+Do not force a giant Upwork-style comparison wall.
 
 ---
 
-# 11. Mandatory rendered comparison loop
+# 9. Current PLAYER surfaces
 
-After each major public surface, use browser/computer visual inspection against the **actual rendered app**.
+```text
+작업 찾기
+→ open QUEST board
+→ filter by fit/deadline
+→ inspect bounded scope
+→ BID PRICE + DELIVERY
+→ wait for selection/assignment
+→ execute
+→ submit result
+→ earn + verified history
+```
 
-For the landing in particular:
+PLAYERs should not be required to create a service storefront or long cover letter first.
 
-1. capture desktop screenshot
-2. capture mobile screenshot
-3. compare to live reference audit
-4. compare to approved v2 visual direction
-5. explicitly ask: `Does this still look like a generic B2B/SaaS template?`
-6. explicitly ask: `Am I explaining something in prose that should be shown visually?`
-7. remove unnecessary copy and check whether the visual still communicates the idea
-8. if either answer reveals a weakness, redesign before continuing
+LEVEL / EXP remain secondary to task-specific evidence.
+
+---
+
+# 10. World / identity grammar
+
+Use ordinary Korean first.
+
+World language may appear after the action is clear:
+
+- QUEST
+- BID
+- TIME ATTACK
+- LEVEL / EXP
+- QUEST COMPLETE
+
+Avoid fantasy/RPG art, coins, swords, rarity systems, gamer RGB and game-launcher aesthetics.
+
+KAPAPI has one universal user identity. No permanent GM/PLAYER signup fork or identity mode switch.
+
+---
+
+# 11. Current landing narrative
+
+Preferred sequence:
+
+1. task-entry hero
+2. task-first / `작업 찾기` proof
+3. PRICE × DELIVERY market proof
+4. KAPAPI recommendation + GM confirmation
+5. completed QUEST case
+6. TIME ATTACK
+7. result loop
+8. transaction data → trust
+9. future recommendation → routing/recovery → Outcome Layer
+10. universal identity / PLAYER entry
+
+The future Outcome Layer must be clearly future evolution, not a fake current guarantee.
+
+---
+
+# 12. Outcome Layer direction
+
+Long-term user experience:
+
+```text
+work in
+→ KAPAPI scopes / decomposes / routes / executes-or-orchestrates / monitors / recovers / checks
+→ result out
+```
+
+Execution resources may include:
+
+- human PLAYERs
+- AI agents/models
+- deterministic automation
+- specialist partners
+- AI + human hybrids
+- multiple PLAYERs on decomposed sub-QUESTs
+
+Strong guarantees must be earned category by category through supply/automation reliability, QA, recovery and unit economics.
+
+---
+
+# 13. Content/claim hygiene
+
+Do not claim current availability of:
+
+- universal automatic PLAYER routing
+- universal SLA/outcome guarantee
+- production escrow/payment custody if absent
+- tax settlement if absent
+- subjective AI final quality judgment
+- regulated professional judgment without appropriate qualification
+
+Current prototype footer/metadata should accurately describe recommendation + GM confirmation.
+
+Historical Preview QA that validated no-picker auto-routing is pre-D-032 evidence only.
+
+---
+
+# 14. Mandatory rendered comparison loop
+
+After major public changes:
+
+1. render the actual app
+2. inspect desktop
+3. inspect mobile
+4. inspect reduced motion where relevant
+5. capture screenshots/evidence
+6. compare to strong references and prior baseline
+7. inspect overflow, touch targets, labels and focus
+8. check hero timing/compositing
+9. check whether copy is doing the work of the interface
+10. reject and redesign if generic or confusing
 
 Compilation is not visual QA.
 
-Do not self-award a 9/10 visual score without screenshots and comparative evidence.
+---
+
+# 15. Current behavioral QA
+
+`scripts/loop.mjs` is the current behavioral harness.
+
+It should verify:
+
+- task-first open-work discovery
+- PRICE + DELIVERY required
+- recommendation appears before assignment
+- GM confirmation creates assignment
+- alternatives exist
+- one account can have multiple contextual roles
+- result/revision loop remains intact
+- no universal auto-routing claim
+- future Outcome Layer is labeled honestly
+
+Old `no picker anywhere` assertions are superseded.
 
 ---
 
-# 12. Preview deployment
+# 16. Preview / stop condition
 
-When local implementation passes:
+When deployment access is available:
 
-- push `feat/prototype-v2`
-- deploy to Vercel Preview
-- do not merge main
-- do not promote Production intentionally
-- inspect the actual deployed Preview on desktop/mobile
-- verify hero video, fonts, animation, responsive behavior and core loop
+- deploy or use the current `feat/prototype-v2` Preview
+- inspect the actual deployed branch head on desktop/mobile
+- verify hero media, fonts, animation, responsive behavior and the core transaction
+- record the current commit/deployment identifiers
 
-Stop at founder visual review.
+Do not merge `main` or intentionally promote Production without explicit instruction.
 
----
+The desired founder reaction is:
 
-# 13. Final rejection gate
-
-Do NOT call v2 ready if the first screen or any major public section primarily reads as any of:
-
-- generic B2B internal tool
-- generic SaaS
-- stock Next.js/Tailwind/shadcn demo
-- Upwork clone
-- Kmong clone
-- developer console
-- black-card dashboard composition
-- purple AI startup
-- game launcher
-- CAD-only service
-- documentation page
-- strategy memo
-- pitch-deck text slide
-- numbered explanatory grid with paragraph walls
-
-Reject a section if more than half of its meaning is carried by prose instead of interface, media, motion, or product artifacts.
-
-The founder should be able to look at the first viewport and feel both:
-
-1. `여기에 일을 맡기면 되는구나.`
-2. `이건 KAPAPI라는 자기 세계가 있는 제품이다.`
-
-And for subsequent sections:
-
-> **The eye should understand first. The text should only confirm what the eye already understood.**
-
-The target is not merely correct. It must be visually compelling enough to survive side-by-side comparison with the reference sites.
+> **“일이 먼저 올라오는 시장에서 시작해서, 거래 데이터를 쌓아 추천·배정·복구를 발전시키고 결국 일을 넣으면 결과가 돌아오는 시스템으로 가는구나.”**
