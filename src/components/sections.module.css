@@ -1,3 +1,7 @@
+/* Mono is kept only where the content is purely numeric. These carry a Korean
+   unit next to the number (6시간, 18분 일찍), and the mono face with tracking
+   splits Hangul into detached glyphs — so they are sans with tabular figures,
+   which keeps the column alignment that mono was there for. */
 /* D-034 turned these machine labels into Korean. The mono face with tracking
    was designed for latin state labels and renders Hangul as detached glyphs,
    so anything that now carries Korean is set in the sans face without it. */
@@ -32,7 +36,7 @@
 .career { display: block; font-size: var(--meta); color: var(--dark-muted); margin-top: 2px; }
 .out { display: block; font-size: var(--meta); color: var(--dark-faint); margin-top: 2px; }
 .price { font-family: var(--mono); font-size: 1.02rem; font-weight: 650; font-variant-numeric: tabular-nums; text-align: right; }
-.hours { font-family: var(--mono); font-size: 1.02rem; color: var(--dark-muted); min-width: 4.6em; text-align: right; }
+.hours { font-size: 1.02rem; color: var(--dark-muted); min-width: 4.6em; text-align: right; font-variant-numeric: tabular-nums; }
 .pickTag { font-size: var(--meta); font-weight: 500; text-transform: uppercase; color: var(--sapphire-bright); }
 
 .why { padding: var(--s5) var(--s6) var(--s6); border-top: 1px solid var(--dark-line); }
@@ -69,7 +73,7 @@
 .delivery { display: flex; flex-wrap: wrap; gap: var(--s2) var(--s5); padding: var(--s4) var(--s5); border-bottom: 1px solid var(--line); }
 .dItem { display: grid; gap: 2px; }
 .dk { font-size: var(--meta); color: var(--faint); }
-.dv { font-family: var(--mono); font-size: var(--body-sm); font-weight: 600; font-variant-numeric: tabular-nums; }
+.dv { font-size: var(--body-sm); font-weight: 600; font-variant-numeric: tabular-nums; }
 .checks { display: grid; gap: 3px; padding: var(--s4) var(--s5); }
 .check { display: flex; align-items: center; gap: 9px; font-size: var(--body-sm); color: var(--muted); animation: rise var(--t-state) var(--ease-out) both; animation-delay: calc(var(--i,0) * 80ms); }
 .tickMark { color: var(--ok); font-family: var(--mono); font-size: var(--meta); }
