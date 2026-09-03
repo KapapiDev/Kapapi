@@ -246,3 +246,6 @@ Prototype v1 PASSES when a reviewer can naturally understand:
 ## 10. One-sentence rule
 
 > **One user identity. 발주자 and 작업자 are roles created by each 업무.**
+
+발주자가 승인하는 것은 **실행 계약** — 결과물 + 가격 + 완료시간 + 수정 경계 + 복구 경계
+— 이지 작업자가 아닙니다 (D-033.1).

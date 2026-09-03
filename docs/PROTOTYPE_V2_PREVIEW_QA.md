@@ -18,13 +18,16 @@ across redeploys.
 
 ## What the build demonstrates
 
-D-035. The 발주자's model is three nodes:
+D-035 as amended by D-033.1. The 발주자's model is three nodes:
 
 ```text
-발주자  →  카파피  →  결과
+발주자  →  실행 계약 승인  →  카파피  →  결과
 ```
 
-입찰 and 선정 happen inside the middle node. The 작업자 surface (`/board`) carries
+The 발주자 acts once — they describe the work and approve the **실행 계약**
+(결과물 + 가격 + 완료시간 + 수정 경계 + 복구 경계). The price is derived from the
+proposals that category is actually receiving and the basis is shown on screen
+(D-033.6). 입찰 and 선정 happen inside the middle node. The 작업자 surface (`/board`) carries
 the market, because proposing 가격 + 완료시간 is what that person is there to do,
 and `이용 방법` opens the box to explain the mechanism.
 

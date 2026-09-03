@@ -197,8 +197,8 @@ The work-entry surface is the protagonist.
 
 Copy direction:
 
-> **사람을 찾지 말고, 할 일을 올리세요.**  
-> 카파피가 작업 조건을 정리하고 맞는 제안을 추천합니다.
+> **오늘은 어떤 일을 끝낼까요?**  
+> 파일을 업로드하고 간단하게 설명해 주세요.
 
 Product-movie states:
 
@@ -250,3 +250,20 @@ This must read as product evolution, not current universal capability.
 ## 15. Rejection gate
 
 Reject a screen if it looks like a generic dashboard/template, makes work less prominent than profile decoration, makes recommendation and assignment indistinguishable, implies universal day-one auto-routing, lets CAD define the product, uses gamified decoration instead of real trust evidence, or needs paragraphs to explain what the UI should show.
+
+
+## 실행 계약 (D-033.1)
+
+발주자가 승인하는 것은 작업자가 아니라 **실행 계약**입니다.
+
+```text
+업무 요청 (파일 + 한 줄)
+→ 카파피가 작업 조건(SOW) 정리
+→ 실행 계약: 결과물 + 가격 + 완료시간 + 수정 경계 + 복구 경계
+→ 발주자 승인
+→ (카파피: 제안 · 필수요건 확인 · 선정 · 배정 · 수행)
+→ 결과 → 수락 / 수정 요청
+```
+
+발주자 기준으로는 세 노드입니다 — **발주자 → 카파피 → 결과**. 가격은 해당 유형에 실제로
+들어온 제안에서 산출하고 그 근거를 함께 표시합니다(D-033.6: instant quote is earned).

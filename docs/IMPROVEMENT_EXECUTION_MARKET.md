@@ -1,10 +1,10 @@
 # KAPAPI 개선안 — 실시간 업무 실행 시장
 
 Status: **PROMOTED / integrated into current canon**  
-Branch: `개선안`  
+Branch: imported to `feat/prototype-v2` on 2026-09-03  
 Updated: 2026-09-03
 
-This file was the original alternative proposal that challenged the previous recommendation-first KAPAPI flow.
+This file was the original alternative proposal that challenged the previous recommendation-first KAPAPI flow. Restated in D-034 vocabulary on import; the substance is unchanged.
 
 The proposal has now been **accepted as the stronger product direction** and incorporated into the canonical documents on this branch.
 
@@ -25,28 +25,28 @@ The complete original 728-line proposal remains available in Git history at comm
 
 ## Promoted thesis
 
-> **PLAYER에게는 일이 먼저 보이는 시장, GM에게는 사람을 고르지 않아도 되는 실행 서비스.**
+> **작업자에게는 일이 먼저 보이는 시장, 발주자에게는 사람을 고르지 않아도 되는 실행 서비스.**
 
-GM-facing North Star:
+발주자 대상 North Star:
 
 > **해야 할 일을 넣으면, 결과가 나온다.**
 
 Canonical product split:
 
 ```text
-GM
+발주자
 work request
 → structured SOW
-→ RESULT + PRICE + COMPLETION TIME
+→ 실행 계약 (Execution Contract): RESULT + PRICE + COMPLETION TIME
 → approve
 → KAPAPI orchestrates
 → result
 
-PLAYER
-QUEST
-→ PRICE + DELIVERY BID / Offer
+작업자
+업무
+→ PRICE + DELIVERY 제안 / Offer
 → execute
-→ REWARD
+→ 작업대금
 
 KAPAPI INTERNAL
 human / AI / automation / partner procurement

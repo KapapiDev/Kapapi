@@ -19,14 +19,27 @@ Instead of asking workers to create storefronts and wait to be discovered, real 
 The initial loop is:
 
 ```text
-발주자가 업무 등록
-→ 작업자들이 업무 탐색
-→ 가격 + 완료시간 제안
-→ KAPAPI가 조건과 이력을 바탕으로 추천
-→ 발주자 확정
-→ 수행
+발주자가 파일과 한 줄 설명을 올림
+→ 카파피가 작업 조건(SOW) 정리
+→ 실행 계약: 결과물 + 가격 + 완료시간 + 수정 경계 + 복구 경계
+→ 발주자 승인
+→ 카파피가 내부적으로 조달·배정·수행
 → 결과 전달
 → 수락 또는 수정 요청
+```
+
+발주자 기준으로는 세 노드입니다 — **발주자 → 카파피 → 결과**. 제안과 선정은 발주자가
+지나가는 단계가 아니라 가운데 노드 안에서 일어납니다 (D-033.1, D-035).
+
+작업자 쪽에서 같은 거래는 이렇게 보입니다:
+
+```text
+열린 업무 탐색
+→ 가격 + 완료시간 제안
+→ 배정
+→ 수행
+→ 결과 제출
+→ 작업대금 + 작업이력
 ```
 
 The long-term loop becomes simpler:
@@ -155,9 +168,12 @@ Preferred early posture:
 제안 도착
 → 필수요건 확인
 → 작업이력 / 적합도 / 가격 × 완료시간 정렬
-→ KAPAPI 추천
-→ 발주자 확정
+→ KAPAPI 선정
+→ 작업자 배정
 ```
+
+이 전 과정은 발주자 화면에 나타나지 않습니다. 발주자는 실행 계약을 승인했고, 다음에 보는
+것은 결과입니다.
 
 As transaction history becomes reliable, KAPAPI can progressively move toward default routing, backup/replacement and recovery.
 

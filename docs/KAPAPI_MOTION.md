@@ -248,3 +248,20 @@ Reject motion if it implies the 발주자 has a decision to make, uses celebrati
 Desired feeling:
 
 > **the work is moving, and the interface is calmly showing what changed.**
+
+
+## 실행 계약 (D-033.1)
+
+발주자가 승인하는 것은 작업자가 아니라 **실행 계약**입니다.
+
+```text
+업무 요청 (파일 + 한 줄)
+→ 카파피가 작업 조건(SOW) 정리
+→ 실행 계약: 결과물 + 가격 + 완료시간 + 수정 경계 + 복구 경계
+→ 발주자 승인
+→ (카파피: 제안 · 필수요건 확인 · 선정 · 배정 · 수행)
+→ 결과 → 수락 / 수정 요청
+```
+
+발주자 기준으로는 세 노드입니다 — **발주자 → 카파피 → 결과**. 가격은 해당 유형에 실제로
+들어온 제안에서 산출하고 그 근거를 함께 표시합니다(D-033.6: instant quote is earned).

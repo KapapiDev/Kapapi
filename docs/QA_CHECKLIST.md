@@ -104,8 +104,8 @@ The work-entry surface dominates above the fold.
 
 Hero semantics match the current stage, e.g.:
 
-> **사람을 찾지 말고, 할 일을 올리세요.**  
-> 카파피가 작업 조건을 정리하고 맞는 제안을 추천합니다.
+> **오늘은 어떤 일을 끝낼까요?**  
+> 파일을 업로드하고 간단하게 설명해 주세요.
 
 Under D-035 the hero may state result return. Fail if it claims escrow,
 completion guarantee, or AI quality judgement, or shows a fabricated progress
@@ -299,3 +299,20 @@ Run build/lint/typecheck/tests and screenshot desktop/mobile/reduced-motion stat
 A reviewer should naturally say:
 
 > **“카파피는 일이 먼저 올라오는 시장에서 시작하고, 작업자들이 가격과 완료시간을 제안하면 카파피가 실제 작업이력과 조건을 보고 추천해줘서 발주자가 쉽게 확정할 수 있다. 이 거래 데이터를 쌓아 나중에는 배정과 복구를 더 많이 맡고 결국 일을 넣으면 결과가 돌아오는 시스템으로 가려는 거구나.”**
+
+
+## 실행 계약 (D-033.1)
+
+발주자가 승인하는 것은 작업자가 아니라 **실행 계약**입니다.
+
+```text
+업무 요청 (파일 + 한 줄)
+→ 카파피가 작업 조건(SOW) 정리
+→ 실행 계약: 결과물 + 가격 + 완료시간 + 수정 경계 + 복구 경계
+→ 발주자 승인
+→ (카파피: 제안 · 필수요건 확인 · 선정 · 배정 · 수행)
+→ 결과 → 수락 / 수정 요청
+```
+
+발주자 기준으로는 세 노드입니다 — **발주자 → 카파피 → 결과**. 가격은 해당 유형에 실제로
+들어온 제안에서 산출하고 그 근거를 함께 표시합니다(D-033.6: instant quote is earned).

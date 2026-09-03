@@ -45,19 +45,24 @@ The North Star `해야 할 일을 올리면, 결과로 돌아온다.` is a strat
 The current prototype must communicate this honestly:
 
 ```text
-의뢰 등록
-→ 제안 도착
-→ 카파피 추천
-→ 의뢰자 확인/확정
-→ 작업
+업무 요청 (파일 + 한 줄)
+→ 작업 조건 정리
+→ 실행 계약: 결과물 + 가격 + 완료시간 + 수정 경계 + 복구 경계
+→ 발주자 승인
+→ (카파피: 제안 · 조건 확인 · 선정 · 배정 · 수행)
 → 결과 확인 / 수정 요청
 ```
 
-Do not write copy implying that KAPAPI universally auto-assigns a worker immediately after posting.
+발주자 기준 세 노드: **발주자 → 카파피 → 결과**.
+
+Do not write copy implying the price or completion time is guaranteed beyond the
+contract's own terms, and do not imply universal instant pricing — D-033.6 says an
+instant quote is earned. Say what the quote was derived from.
 
 Preferred current semantic language includes:
 
-- `의뢰 등록`
+- `맡기기`
+- `이 조건으로 맡기기`
 - `작업 찾기`
 - `제안 보내기`
 - `제안이 도착했습니다`
@@ -134,7 +139,7 @@ Prefer:
 
 Avoid calling DELIVERY TIME “예상 작업시간” when it is actually the committed elapsed time to submission.
 
-A BID should read naturally as:
+제안은 이렇게 읽혀야 합니다:
 
 > `₩120,000 / 8시간`
 
@@ -278,7 +283,7 @@ Before founder review, inspect every visible Korean string across:
 - submit confirmation
 - 업무 목록
 - 업무 상세
-- BID form
+- 제안 폼
 - recommendation/confirmation
 - profile/trust
 - workroom

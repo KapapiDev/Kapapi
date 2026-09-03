@@ -83,7 +83,7 @@ client's screen.
 | Element | Justification |
 |---|---|
 | Wordmark and one-line description | 3 BRAND-WORLD |
-| `이용하기` column (의뢰 등록 / 작업 찾기 / 내 의뢰 / 이용 방법) | 1 PRODUCT REQUIRED. Every route the prototype has. |
+| ~~`이용하기` / `사례` columns~~ | **Removed** by founder direction. The header carries navigation; repeating it here was a sitemap the page did not need. `/my` is reached from the account section and `/how` from the flow section's closing control. |
 | `사례` column | 1 PRODUCT REQUIRED. Direct links to the two demonstrated quests. |
 | Claim disclaimer | 1 PRODUCT REQUIRED. States that escrow and completion guarantee are not provided and that final acceptance is the issuer's. Asserted by `scripts/loop.mjs`. |
 | `PROTOTYPE V2 · 2026` | 3 BRAND-WORLD. Machine metadata in the `.hud` treatment, which is documented as never carrying Korean prose. |

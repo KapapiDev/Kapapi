@@ -1,7 +1,7 @@
 # KAPAPI — Implementation Handoff
 
 Status: **current implementation handoff**  
-Authority branch: `docs/initial-product-design`  
+Authority: `docs/DECISIONS.md` D-033.1–.12 (imported from `개선안`), D-034, D-035  
 Current visual implementation branch: `feat/prototype-v2`
 
 ## Mission
@@ -13,15 +13,27 @@ The product is **not** a freelancer directory, a gamified work service, a CAD ma
 Current product story:
 
 ```text
-TASK FIRST
-발주자가 bounded work 등록
-→ 작업자가 open work 탐색
-→ 가격 + 완료시간 제안
-→ KAPAPI 필수요건 확인 / 정렬 / 추천
-→ 발주자 확정
-→ 작업자 수행
+발주자가 파일과 한 줄 설명을 올림
+→ 카파피가 작업 조건(SOW) 정리
+→ 실행 계약: 결과물 + 가격 + 완료시간 + 수정 경계 + 복구 경계
+→ 발주자 승인
+→ 카파피가 내부적으로 조달·배정·수행
 → 결과 전달
-→ 발주자 수락/수정
+→ 수락 또는 수정 요청
+```
+
+발주자 기준으로는 세 노드입니다 — **발주자 → 카파피 → 결과**. 제안과 선정은 발주자가
+지나가는 단계가 아니라 가운데 노드 안에서 일어납니다 (D-033.1, D-035).
+
+작업자 쪽에서 같은 거래는 이렇게 보입니다:
+
+```text
+열린 업무 탐색
+→ 가격 + 완료시간 제안
+→ 배정
+→ 수행
+→ 결과 제출
+→ 작업대금 + 작업이력
 ```
 
 Growth story:
@@ -60,8 +72,8 @@ Older copy or behavior that conflicts with current canon must be replaced.
 3. Workers need a clear `작업 찾기` path to real open work.
 4. Workers do not need a storefront before earning.
 5. Every proposal requires **price + committed completion time**.
-6. Preferred early default is **KAPAPI recommendation + client confirmation**.
-7. Alternatives may be visible through `다른 제안 보기`; do not force a giant comparison wall.
+6. What the client approves is the **실행 계약** — 결과물 + 가격 + 완료시간 + 수정 경계 + 복구 경계 (D-033.1).
+7. The client never sees a proposal list, a ranked comparison or a worker-selection control.
 8. Universal automatic routing is later, earned from transaction/trust/liquidity/recovery data.
 9. Client remains final result judge through accept/revise.
 10. Architecture/CAD is one founder-domain proof case, not the hero category.
@@ -80,21 +92,24 @@ Older copy or behavior that conflicts with current canon must be replaced.
 ```text
 LANDING
 → task input / files
-→ KAPAPI structures work
-→ client confirms posting
-→ proposals arrive
-→ KAPAPI recommendation appears
-→ client confirms recommended worker
+→ KAPAPI structures work (SOW)
+→ 실행 계약: 결과물 + 가격 + 완료시간 + 수정 경계 + 복구 경계
+→ client approves the contract
+→ (KAPAPI: proposals, eligibility, selection, assignment)
 → execution status
 → delivered result
 → accept / revise
 ```
 
-Recommendation surface should show deadline/budget feasibility, relevant history/career, on-time/revision signals, price + completion-time trade-off and short rationale.
+The contract surface shows the deliverables, the price, the committed completion
+time, the revision boundary, what happens if the work is not completed, and the
+basis the price was derived from (D-033.6: a market-informed quote shows its
+working). It shows no workers.
 
-Primary action: **이 작업자로 진행**
+Primary action: **이 조건으로 맡기기**
 
-Secondary: **다른 제안 보기**
+There is no secondary action. Approving a price and a completion time is not
+choosing a worker — the 발주자's model stays 발주자 → 카파피 → 결과.
 
 ---
 
@@ -121,14 +136,17 @@ The first viewport remains category-neutral and action-led.
 Approved semantic direction:
 
 ```text
-사람을 찾지 말고, 할 일을 올리세요.
-카파피가 작업 조건을 정리하고 맞는 제안을 추천합니다.
+[발주자 | 작업자]                        내 업무   이용 방법   회원가입
 
-[ 어떤 작업이 필요하신가요?                         ]
-[ 파일 첨부 ]                              [ 의뢰 등록 → ]
+오늘은 어떤 일을 끝낼까요?               [ the founder's film, whole ]
 
-작업을 찾고 있나요? → 작업 찾기
+[ + | 파일을 업로드하고 간단하게 설명해 주세요. ]
+
+[ 맡기기 ]
 ```
+
+`작업 찾기` is not a CTA here. 작업자 is a route (`/board`) reached by the header
+toggle, so this surface carries one action.
 
 The long-term `work in → result out` story belongs below current transaction proof or in a clearly future-oriented beat.
 

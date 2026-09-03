@@ -1,5 +1,14 @@
 # Prototype v2 — Visual Direction Gate
 
+Status: **HISTORICAL record of the direction gate**
+
+> The chosen direction's hero — real KAPAPI UI composited onto the laptop screen
+> inside the footage — is superseded. The founder supplied the hero film and
+> directed that it be used exactly as delivered, so nothing is composited into it
+> now. See `HERO_MEDIA.md` for the current rule and `PROTOTYPE_V2_HERO_COMPOSITING.md`
+> for the superseded technique. This file is kept as the record of how the
+> direction was chosen, which still stands.
+
 Three directions were **built and rendered**, not described. Sources in `research/proto/`,
 captures in `research/directions/`. Each was judged beside the live-reference evidence in
 `PROTOTYPE_V2_LIVE_REFERENCE_AUDIT.md`, at 1440×900 and 390×844, with the real hero footage

@@ -7,13 +7,16 @@ Primary implementation target: `feat/prototype-v2`
 Authority:
 
 1. `docs/ORIGIN_AND_GROWTH_THESIS.md`
-2. `docs/DECISIONS.md` D-032 through D-034
+2. `docs/DECISIONS.md` D-032 through D-035, including the D-033.1–.12 execution-market series
 3. `docs/PRODUCT.md`
 4. `docs/ROADMAP.md`
 5. `docs/PROTOTYPE_SPEC.md`
 6. current visual/content rules
 
-Do not restore premature universal auto-routing or the removed special/game terminology.
+Do not restore the removed special/game terminology, and do not put a proposal
+list, a ranked comparison or a worker-selection control back on the 발주자 surface.
+What the 발주자 approves is the **실행 계약** — 결과물 + 가격 + 완료시간 + 수정 경계 +
+복구 경계 — not a worker (D-033.1).
 
 ---
 
@@ -74,17 +77,17 @@ Acceptance:
 
 Change transaction proof to:
 
-`제안 → 필수요건/정렬 → KAPAPI 추천 → 발주자 확정 → 배정`
+`업무 요청 → SOW 정리 → 실행 계약 → 발주자 승인 → (카파피: 제안·선정·배정) → 결과`
 
-Required UI:
+Required UI on the 발주자 surface:
 
-- recommended worker
-- price
-- completion time
-- relevant work history
-- short rationale
-- primary `이 작업자로 진행`
-- secondary `다른 제안 보기`
+- 실행 계약: 결과물, 가격, 완료시간, 수정 경계, 완료되지 않을 때의 처리
+- the basis the price was derived from
+- primary `이 조건으로 맡기기`
+- after assignment: 배정된 작업자 + 왜 이 작업자인가요, as a record with no action
+
+Explicitly **not** on the 발주자 surface: proposal list, ranked comparison,
+`이 작업자로 진행`, `다른 제안 보기`.
 
 ## KAP-111 — User-facing state model
 **Status:** OPEN
@@ -92,10 +95,7 @@ Required UI:
 Use ordinary labels:
 
 ```text
-모집 중
-제안 도착
-추천 준비
-발주자 확정
+접수됨
 작업자 배정
 작업 중
 결과 전달
@@ -155,10 +155,11 @@ Remove level/experience metrics and replace them only where useful with real evi
 
 Preferred direction:
 
-> **사람을 찾지 말고, 할 일을 올리세요.**  
-> 카파피가 작업 조건을 정리하고 맞는 제안을 추천합니다.
+> **오늘은 어떤 일을 끝낼까요?**  
+> 파일을 업로드하고 간단하게 설명해 주세요.
 
-Keep category-neutral input, file attachment, strong primary CTA and visible `작업 찾기`.
+Keep category-neutral input, file attachment and one strong primary CTA (`맡기기`).
+`작업 찾기` is reached by the 발주자 / 작업자 header toggle, not by a second CTA.
 
 ## KAP-121 — Broad examples, narrow validation
 **Status:** OPEN

@@ -59,10 +59,10 @@ A first-time visitor must understand within roughly three seconds:
 Fail the design if the visitor must first decode:
 
 - 업무,
-- BID,
+- 제안,
 - 작업자,
-- LEVEL / EXP,
-- TIME ATTACK,
+- (삭제됨: LEVEL / EXP — D-034)
+- 긴급 업무,
 - dashboard navigation,
 - Autopilot architecture.
 
@@ -83,7 +83,7 @@ Public default:
 
 Dark surfaces are secondary and contextual, for example:
 
-- TIME ATTACK,
+- 긴급 업무,
 - active Workroom / operational state,
 - selected narrative section,
 - brand contrast moment.
@@ -99,14 +99,14 @@ Principle:
 Default OFF:
 
 - mini dashboard wall,
-- multiple BID cards competing with the input,
+- multiple 제안 cards competing with the input,
 - trust charts,
 - category rainbow,
 - animated network globe,
 - enterprise logo wall above the main action,
 - dense navigation,
-- TIME ATTACK countdown,
-- LEVEL / EXP,
+- 긴급 업무 countdown,
+- (삭제됨: LEVEL / EXP — D-034)
 - Autopilot diagram,
 - gaming terminology that must be learned before action.
 

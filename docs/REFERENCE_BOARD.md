@@ -22,10 +22,10 @@ Canonical authorities remain:
 
 | Reference | Extract | Best KAPAPI use | Do not copy |
 | --- | --- | --- | --- |
-| **Linear** | precision, compact information hierarchy, hairlines, product-tool density | 업무 목록, BID comparison, Workroom, trust modules | exact dark palette, lime accent, recognizable app layout |
+| **Linear** | precision, compact information hierarchy, hairlines, product-tool density | 업무 목록, 제안 비교, Workroom, trust modules | exact dark palette, lime accent, recognizable app layout |
 | **Hyperstudio** | editorial black/off-white contrast, art direction, oversized regular typography, print-like composition | landing, brand statements, major narrative sections | agency-portfolio experimentation, decorative composition over product clarity |
 | **Factory** | operational dark surfaces, live work objects, terse status, terminal-war-room discipline | active 업무, 긴급 업무, Workroom | developer-tool cosplay, code-terminal aesthetic everywhere |
-| **Vercel** | white-paper restraint, type hierarchy, neutral hairlines, transaction/settings clarity | forms, BID selection, file/result, contracts/review concepts | sterile sameness, literal Vercel geometry |
+| **Vercel** | white-paper restraint, type hierarchy, neutral hairlines, transaction/settings clarity | forms, 제안 선정, file/result, contracts/review concepts | sterile sameness, literal Vercel geometry |
 | **Mercury** | premium B2B trust, restrained data surfaces, calm confidence | 작업자 프로필, reliability, future payment/admin | banking metaphors, finance-dashboard styling |
 | **Raycast** | tactile power-tool feeling, micro HUD, compact affordances, polished interaction | small controls, state indicators, micro-interactions | colorful utility grid, glass-heavy macOS mimicry |
 
@@ -146,9 +146,9 @@ Desired result:
 
 | Reference | KAPAPI decision | Extract | KAPAPI use |
 | --- | --- | --- | --- |
-| Number Flow / Maxwell Barvian | **ADOPT / P0** | live numeric interpolation | PRICE, DELIVERY, BIDS, EXP, trust changes |
-| Magic UI Animated List | **REMIX / P0** | insertion + `AnimatePresence` + layout reflow | BID arrival / live event insertion |
-| Motion official Layout/Reordering | **ADOPT PATTERN / P0** | spatial continuity during reorder | BID set reflow / ranking changes |
+| Number Flow / Maxwell Barvian | **ADOPT / P0** | live numeric interpolation | 가격, 완료시간, 제안 수, 작업이력 |
+| Magic UI Animated List | **REMIX / P0** | insertion + `AnimatePresence` + layout reflow | 제안 도착 / live event insertion |
+| Motion official Layout/Reordering | **ADOPT PATTERN / P0** | spatial continuity during reorder | 제안 목록 reflow / 순위 변화 |
 | Animated Feature Carousel / Le Thanh | **REMIX / P0** | stable shell + sequential narrative states | hero transaction story |
 | Motion Primitives Morphing Dialog | **ADOPT PATTERN / P1** | shared object continuity, accessibility behavior | 업무 상세, 작업자 프로필 |
 | Magic UI Animated Beam | **REMIX / P1** | meaningful routing between DOM objects | Autopilot orchestration story |
@@ -156,7 +156,7 @@ Desired result:
 | Blur Fade | **REMIX / P2** | sparse editorial reveal | rare supporting copy only |
 | Animated Card Chart / badtz | **TBD / low priority** | only if historical pattern matters | 작업자 작업이력, if justified |
 | Animated Card Diagram / badtz | **TBD / low priority** | possible concept diagram pattern | future evolution story only if source merits it |
-| Jessi Animate Card Animation | **REJECT AS PRIMARY** | limited entry/stagger implementation ideas | not BID card styling |
+| Jessi Animate Card Animation | **REJECT AS PRIMARY** | limited entry/stagger implementation ideas | not 제안 카드 styling |
 | Spotlight Card / cursor glow | **DEFAULT REJECT** | possible tiny experimental spotlight only | no normal product use |
 
 ---
@@ -264,7 +264,7 @@ References help solve individual problems, but the final product language comes 
 
 ```text
 업무
-→ BID
+→ 제안
 → PRICE × DELIVERY
 → 작업자 배정
 → WORK MOVING

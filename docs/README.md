@@ -87,8 +87,12 @@ There is no separate fictional/game vocabulary layer. Do not reintroduce special
 What the 발주자 sees is three nodes:
 
 ```text
-발주자  →  카파피  →  결과  →  수락 / 수정 요청
+발주자  →  실행 계약 승인  →  카파피  →  결과  →  수락 / 수정 요청
 ```
+
+The 발주자 acts once: they describe the work and approve the **실행 계약** —
+결과물 + 가격 + 완료시간 + 수정 경계 + 복구 경계 (D-033.1). Approving a price and a
+completion time is not choosing a worker, so the model stays three nodes.
 
 What happens inside the middle node, visible on the 작업자 surface and `이용 방법`:
 

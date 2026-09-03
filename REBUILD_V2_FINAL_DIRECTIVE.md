@@ -1,5 +1,17 @@
 # KAPAPI Prototype v2 — FINAL EXECUTION DIRECTIVE
 
+Status: **SUPERSEDED — historical directive**
+
+> **SUPERSEDED — 2026-09-03.** This file records the directive as it was given at
+> the time. The product has since moved: D-034 replaced the GM / PLAYER / QUEST /
+> BID vocabulary with 발주자 / 작업자 / 업무 / 제안, and D-033.1 (imported from the
+> `개선안` canon) made the client approve an **실행 계약** — 결과물 + 가격 + 완료시간 +
+> 수정 경계 + 복구 경계 — instead of comparing proposals and confirming a worker.
+>
+> Current authority: `docs/DECISIONS.md` D-033.1–.12, D-034, D-035.
+> Kept unedited as a record of what was asked, not as an instruction to follow.
+
+
 Status: **highest-priority visual/execution directive for `feat/prototype-v2`**  
 Updated: **2026-09-03**
 

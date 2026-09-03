@@ -146,3 +146,6 @@ Before approval:
 - verify first paint/task input does not depend on video download
 - verify fallback/reduced-motion behavior
 - verify the actual deployed Preview for the latest branch head when available
+
+발주자가 승인하는 것은 **실행 계약** — 결과물 + 가격 + 완료시간 + 수정 경계 + 복구 경계
+— 이지 작업자가 아닙니다 (D-033.1).
