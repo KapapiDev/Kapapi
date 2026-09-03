@@ -1,160 +1,299 @@
 # KAPAPI Prototype v2 — Korean UX Writing Authority
 
 Status: **mandatory copy authority for `feat/prototype-v2`**  
-Updated: **2026-09-02**
+Updated: **2026-09-03**
 
-This document overrides public-facing Korean copy examples in older KAPAPI documents when they conflict.
+Public Korean copy must follow current D-032 product behavior. Older wording that assumes universal auto-routing is superseded.
 
-## 0. Reset rule
+## 0. Core writing rule
 
-**Rewrite all public-facing Korean copy from zero for Prototype v2.**
+Write natural Korean product language from the user's immediate action outward.
 
-Older phrases were useful as internal product shorthand, but several are not appropriate as polished Korean web-service copy. Do not preserve wording merely because it appears in `PRODUCT.md`, `KAPAPI_ART_DIRECTION.md`, `UPWORK_FIRST_TOUCH_REFERENCE.md`, `HERO_MEDIA.md`, old prompts, or Prototype v1.
+The product idea is canon. Old slogans and example sentences are not.
 
-The product idea is canon. The old Korean phrasing is not.
+Target tone:
 
-## 1. Internal language that must NOT be used as public hero copy
+- concise
+- professional but not stiff
+- familiar to Korean web/marketplace users
+- action-first
+- low explanation burden
+- confident without overclaiming
+- no startup jargon
+- no artificial game exposition
 
-Do not ship these as public-facing headline/CTA copy:
+---
+
+## 1. Internal language not approved as public hero copy
+
+Do not automatically ship:
 
 - `할 일을 던져주세요.`
 - `일 던져놔. 결과만 받아.`
 - literal Korean variants of `DROP WORK. GET RESULTS.`
 - `맡겼습니다. 이제 하시던 일 하세요.`
-- `일하러 오셨나요?` when it sounds like a role/class split
-- `Good. Done.` / `GOOD DONE` or any translated equivalent
+- `Good. Done.` / `GOOD DONE`
 
-These may remain as **internal strategic shorthand only** if useful to the team.
+These may remain internal strategic shorthand.
 
-Do not turn KAPAPI world terms into unnatural Korean sentences just to show the world-building.
+The North Star `해야 할 일을 올리면, 결과로 돌아온다.` is a strategy/product-direction sentence, not mandatory hero copy.
 
-## 2. Mandatory Korean-language research before writing
+---
 
-Before finalizing public copy:
+## 2. Current public product semantics
 
-1. inspect the actual live Korean wording used by **Kmong, Wishket, and Soomgo** across homepage, request creation, search/category, detail, profile/trust, quote/budget/deadline, delivery/revision, and empty/onboarding states where reachable;
-2. inspect at least several high-quality Korean SaaS/product sites beyond marketplaces for contemporary Korean product-writing tone;
-3. inventory every installed Korean-language, Korean copywriting, UX-writing, localization, writing, editing, or product-copy skill/plugin/tool in the Claude Code environment;
-4. **actually invoke the relevant Korean-language capability if available** and record how it changed the copy;
-5. do not rely on English-first copy translated literally into Korean.
+The current prototype must communicate this honestly:
 
-If a Korean writing skill is installed, using it is mandatory.
+```text
+의뢰 등록
+→ 제안 도착
+→ 카파피 추천
+→ 의뢰자 확인/확정
+→ 작업
+→ 결과 확인 / 수정 요청
+```
 
-## 3. Public Korean tone
+Do not write copy implying that KAPAPI universally auto-assigns a worker immediately after posting.
 
-Target tone:
+Preferred current semantic language includes:
 
-- natural Korean web-service language,
-- concise,
-- professional but not stiff,
-- familiar to Korean marketplace users,
-- confident without overclaiming,
-- action-first,
-- low explanation burden,
-- no startup jargon,
-- no internal-team slang,
-- no awkward game-language exposition.
-
-Prefer familiar verbs such as:
-
-- `의뢰하기`
-- `업무 맡기기`
 - `의뢰 등록`
 - `작업 찾기`
+- `제안 보내기`
+- `제안이 도착했습니다`
+- `조건을 확인합니다`
+- `카파피 추천`
+- `왜 추천하나요?`
+- `이 작업자로 진행`
+- `다른 제안 보기`
+- `작업을 시작했습니다`
+- `결과가 도착했습니다`
 - `결과 확인`
 - `수정 요청`
 
-Choose the final wording only after live Korean-market inspection. These are examples, not mandatory labels.
+These are product-language directions, not immutable exact strings.
 
-## 4. Hero copy direction
+---
 
-The first view should communicate, in ordinary Korean:
+## 3. Hero copy direction
 
-1. **what the user can do here**,
-2. **what KAPAPI handles after submission**,
-3. **what the user receives**.
+The first view should communicate one immediate action:
 
-Good semantic directions include:
+> **the user can enter the work they need done here.**
 
-- `필요한 업무를 맡겨보세요.`
-- `의뢰를 등록하면, 카파피가 적합한 전문가를 배정합니다.`
-- `업무를 등록하고 결과를 받아보세요.`
-- `필요한 작업을 등록하면 전문가 배정부터 결과 전달까지 카파피가 진행합니다.`
+Current approved semantic direction:
 
-These are **directional examples only**. Do not blindly ship them. Compare real Korean marketplace language and choose the shortest natural version that fits the final visual composition.
+> **맡길 일을 적어주세요.**  
+> 카파피가 작업 조건을 정리하고 맞는 제안을 추천합니다.
 
-The headline must not sound like a slogan invented in a brainstorming chat.
+Input:
 
-## 5. Copy density rule
+> `어떤 작업이 필요하신가요?`
 
-Public landing copy must support the visual system, not replace it.
+Primary CTA:
 
-For each section:
+> `의뢰 등록`
 
-- one headline,
-- at most one short supporting sentence when genuinely needed,
-- labels/status/data for the rest.
+PLAYER entry:
 
-Avoid explanatory paragraph walls.
+> `작업 찾기`
 
-If a concept can be shown through product UI, motion, object transformation, media, timeline, state change, numbers, or direct manipulation, **show it instead of explaining it in prose**.
+Do not use hero copy such as:
 
-Perform a copy-deletion pass: remove supporting paragraphs and verify the visual still communicates the idea. If meaning collapses, improve the visual composition first.
+> `의뢰를 등록하면 카파피가 적합한 전문가를 자동 배정합니다.`
 
-## 6. World terminology rule
+because universal auto-routing is a later earned capability.
 
-KAPAPI world terms remain important, but they should appear as concise state language and metadata after ordinary Korean makes the action clear.
+---
+
+## 4. Task-first PLAYER language
+
+KAPAPI should feel like a place where real work exists before a seller storefront.
+
+Useful labels:
+
+- `지금 열려 있는 작업`
+- `내가 할 수 있는 작업`
+- `오늘 마감`
+- `참여 가능`
+- `조건 미충족`
+- `제안 보내기`
+- `보수`
+- `완료`
+- `마감`
+
+Avoid copy that suggests a PLAYER must first become a “seller,” create a shop or permanently switch account roles.
+
+---
+
+## 5. PRICE × DELIVERY language
+
+Keep the distinction concrete.
+
+Prefer:
+
+- `금액`
+- `완료 시간`
+- `작업자로 확정된 시점부터 납품까지`
+
+Avoid calling DELIVERY TIME “예상 작업시간” when it is actually the committed elapsed time to submission.
+
+A BID should read naturally as:
+
+> `₩120,000 / 8시간`
+
+No long proposal-letter language is required by default.
+
+---
+
+## 6. Recommendation language
+
+Recommendation must be clearly different from assignment.
+
+Before GM confirmation:
+
+- `추천`
+- `카파피 추천`
+- `추천이 준비되었습니다`
+- `왜 이 작업자를 추천하나요?`
+
+After GM confirmation:
+
+- `확정`
+- `이 작업자로 진행합니다`
+- `확정된 작업자`
+- `작업을 시작했습니다`
+
+Do not use `배정 완료`, `PLAYER ASSIGNED` or equivalent before confirmation in the current prototype.
+
+Alternatives should remain understandable through simple language such as:
+
+> `다른 제안 보기`
+
+---
+
+## 7. Result / revision language
+
+The result surface should be sober and transactional.
+
+Prefer:
+
+- `결과가 도착했습니다`
+- `결과 파일`
+- `납품`
+- `마감 대비`
+- `결과 확인`
+- `수정 요청`
+- `수정을 요청했습니다`
+- `수정본이 도착했습니다`
+- `작업이 완료되었습니다`
+
+World layer may accompany ordinary Korean:
+
+- `RESULT READY`
+- `QUEST COMPLETE`
+
+No confetti, trophy or congratulatory copy is needed for professional transaction completion.
+
+---
+
+## 8. Future Outcome Layer language
+
+Current public product may explain the long-term direction, but it must be framed as evolution.
+
+Good semantic direction:
+
+> 완료된 QUEST가 쌓일수록 추천이 좋아지고, 검증된 업무부터 카파피가 배정과 복구를 더 많이 맡습니다.
+
+Long-term concept:
+
+> `work in → result out`
+
+Do not write as if current users already receive universal autonomous execution or guaranteed SLA outcomes.
+
+When mentioning future execution, KAPAPI may combine:
+
+- human PLAYERs
+- AI
+- automation
+- specialist partners
+- hybrid workflows
+
+The public message should still focus on the result, not technical orchestration jargon.
+
+---
+
+## 9. World terminology
+
+KAPAPI world terms are concise state grammar after ordinary Korean makes the action clear.
 
 Good:
 
 `의뢰가 등록되었습니다`  
-`QUEST #0182 CREATED`
+`QUEST CREATED`
 
-`전문가 배정 완료`  
-`PLAYER ASSIGNED`
+`추천이 준비되었습니다`  
+`RECOMMENDATION READY`
 
-`작업 완료`  
+`작업이 완료되었습니다`  
 `QUEST COMPLETE`
 
-Bad:
+Avoid paragraphs explaining QUEST/BID/PLAYER/LEVEL/EXP on transactional screens.
 
-long Korean paragraphs that explain what QUEST, BID, GM, PLAYER, LEVEL or EXP mean.
+---
 
-## 7. Whole-product rewrite pass
+## 10. Copy density
 
-Before founder review, audit and rewrite **every visible Korean string** across:
+For public landing sections:
 
-- navigation,
-- hero,
-- task input and placeholder,
-- upload/file controls,
-- scope confirmation,
-- submit confirmation,
-- QUEST board,
-- BID entry,
-- routing proof,
-- profile/trust,
-- workroom,
-- result/delivery,
-- revision/acceptance,
-- empty states,
-- validation/error messages,
-- mobile labels,
-- final CTA,
-- accessibility labels where Korean is exposed.
+- one short headline
+- at most one short supporting sentence by default
+- let UI, motion, files, numbers and states carry the rest
 
-Do not limit the rewrite to the hero.
+If a paragraph is necessary to explain what a product UI is supposed to demonstrate, first improve the UI.
 
-## 8. Final copy acceptance
+---
 
-Reject copy if it feels like:
+## 11. Korean market research
 
-- internal team slang,
-- literal translation from English SaaS copy,
-- pitch-deck prose,
-- AI-generated Korean,
-- game exposition,
-- legalistic bureaucracy where ordinary Korean would work,
-- unnecessarily cute language for professional transactions.
+Before a major copy rewrite, inspect current Korean wording used by relevant marketplaces and contemporary Korean product sites where reachable.
 
-A Korean user should read it and think **“이 서비스에서 원래 쓰는 말 같다”**, not **“AI가 카피를 썼다.”**
+Especially review:
+
+- request/commission wording
+- budget/deadline terminology
+- quote/proposal language
+- trust/profile labels
+- delivery/revision states
+- mobile CTA density
+
+Use familiar conventions where they improve comprehension. Do not copy exact branded language or layouts.
+
+---
+
+## 12. Whole-product audit
+
+Before founder review, inspect every visible Korean string across:
+
+- navigation
+- hero
+- task input/examples
+- upload controls
+- scope confirmation
+- submit confirmation
+- QUEST board
+- QUEST detail
+- BID form
+- recommendation/confirmation
+- profile/trust
+- workroom
+- result/revision
+- empty/error states
+- footer/disclaimer
+- accessibility labels
+
+Reject copy if it feels like internal slang, literal English translation, pitch-deck prose, AI-generated Korean, game exposition or unsupported product claims.
+
+A Korean user should think:
+
+> **“이 서비스에서 원래 쓰는 말 같다.”**
