@@ -1,9 +1,20 @@
-# KAPAPI Prototype v2 — Vercel Preview and its live QA
+# KAPAPI Prototype v2 — Historical Preview QA
 
-Status: **record of the deployed preview**
+Status: **historical pre-D-032 deployment record**  
 Updated: **2026-09-03**
 
-## Deployment
+> This file records the live Preview QA performed **before** the product decision changed from day-one automatic routing to the D-032 task-first / recommendation-first model. It is useful evidence about the v2 visual implementation and hero compositing, but its old `no picker anywhere` and universal auto-routing assertions are **not current product requirements**.
+
+Current product behavior is governed by:
+
+1. `ORIGIN_AND_GROWTH_THESIS.md`
+2. `DECISIONS.md` D-032
+3. `PRODUCT.md`
+4. `ROADMAP.md`
+5. `PROTOTYPE_SPEC.md`
+6. current `scripts/loop.mjs`
+
+## Historical deployment
 
 | | |
 |---|---|
@@ -11,68 +22,65 @@ Updated: **2026-09-03**
 | Branch | `feat/prototype-v2` |
 | Deployed commit | `d003027` |
 | Deployment | `dpl_HgXvmC8stwQDbGazfy2ySsCvKpFb` |
-| Project | `prj_OE2VU0XUNFCnjGebuJLeVkKhEy5s` (`kapapi`, team `team_cuJFcIPj1zvkSmGeDk3hckZd`) |
-| Target | `null` — **preview, not production** |
+| Project recorded at the time | `prj_OE2VU0XUNFCnjGebuJLeVkKhEy5s` |
+| Target | preview, not production |
 
-`main` is untouched at `4cd13ab`. Nothing was merged and nothing was promoted. The
-production deployment on the project is still the v1-era one the founder chose to
-leave in place; this work did not alter it.
+`main` was not changed by this historical preview work.
 
-The branch alias always points at the newest v2 preview, so the URL above stays
-current across redeploys.
+## Historical QA results worth retaining
 
-## What was run against the deployed URL, not localhost
+The deployed preview was checked with:
 
-| Harness | Result |
-|---|---|
-| `scripts/loop.mjs` | **14/14** canon invariants: no picker anywhere, no second account, PRICE and DELIVERY both required and validated against the deadline, one account holding issued and executed work at once, no fake progress percentage, no celebration, claim disclaimer present, no v1 copy leakage |
-| `scripts/shots.mjs` | 6 routes × desktop 1440×900 and mobile 390×844. No horizontal overflow, no touch target under 44px, no unnamed control. Landing measures **210 chars / 0 cards** desktop, 202 / 1 mobile |
-| `scripts/hero-qa.mjs` | The four beats of the hero timeline captured at both viewports — film, hand-over, eligibility filter, delivered result |
-| Media | `/media/kapapi-hero.mp4` served 200 with `Accept-Ranges: bytes`, 836 KB; poster 200 |
+- `scripts/loop.mjs`
+- `scripts/shots.mjs`
+- `scripts/hero-qa.mjs`
+- direct media requests
 
-## Hero timeline, measured on the preview
+Useful visual/technical findings that remain relevant:
 
-The phase timeline is driven by wall-clock timers while the film is decoded from the
-CDN, so the first question was whether the two stay together over the network. They do:
+- the hero video and real-UI compositing timeline stayed synchronized over the deployed CDN path;
+- desktop composited the real product surface into the laptop display and then cut full-frame;
+- narrow/mobile layouts used a direct full-frame product cut because the laptop screen was cropped out;
+- desktop/mobile route captures found no horizontal overflow in the tested viewports;
+- the dedicated hero-timeline capture was necessary because ordinary route screenshots could be green while defects existed several seconds into the animation;
+- reduced-motion/mobile behavior requires separate visual verification rather than inference from desktop.
 
+## Superseded behavior
+
+The historical harness treated the following as required:
+
+> **no GM worker-selection control anywhere; KAPAPI automatically assigns the PLAYER**
+
+That requirement is superseded by D-032.
+
+Current preferred prototype flow is:
+
+```text
+QUEST posted
+→ PLAYERs BID PRICE + DELIVERY
+→ KAPAPI filters/ranks and recommends
+→ GM confirms recommended PLAYER
+→ ASSIGNED
+→ execution
+→ result
+→ accept / revise
 ```
-ms      video.currentTime   paused   composite transform
-3401    3.96                false    none
-3609    4.16                false    matrix3d(0.459999, …)   ← composite in
-4802    5.36                false    matrix3d(0.673349, …)
-5001    5.42                true     …                        ← cut, film pauses
-10204   5.72                false    …                        ← payoff resumes
-12603   7.98                true
-14002   0.12                false                             ← loop
-```
 
-The composited UI appears and disappears exactly on the tracked window (4.1s–5.45s),
-the cut lands on the pause, and the cycle repeats on time.
+Universal automatic routing is now a later capability that must be earned from transaction, trust, liquidity and recovery data.
 
-## Behaviour that differs by viewport, deliberately
+## Current QA authority
 
-Desktop keeps the compositing treatment: the real product surface is placed on the
-laptop screen with a solved homography while the camera pushes in, then the shot cuts
-to the same surface full-frame.
+Use the current `scripts/loop.mjs` for behavioral invariants. It now checks that:
 
-Below 900px the stage turns 4:5 and `object-fit: cover` crops the laptop out of the
-shot, so compositing onto its screen is meaningless. Phones cut straight from the film
-to the full-frame product at the same beat. Both paths show the same routing sequence
-from the same `route()` output; only the framing differs.
+- task-first discovery exists;
+- PRICE + DELIVERY are mandatory;
+- recommendation appears before assignment;
+- GM confirmation creates assignment;
+- alternatives remain accessible;
+- one universal account can occupy different QUEST roles;
+- the product does not claim universal automatic routing or completion guarantees;
+- the long-term Outcome Layer is framed as future evolution.
 
-## What the preview caught that local QA did not
+## Current live-QA status
 
-Every automated harness was green while four separate defects sat in the hero. They
-are recorded in `PROTOTYPE_V2_TOOL_AUDIT.md` §4 — the short version is that the route
-harness samples the page at load, and the product demonstration happens four seconds
-later. `scripts/hero-qa.mjs` now covers that window.
-
-## Known remaining weaknesses
-
-- The panel's variable region is optically centred, so the delivered-result step still
-  carries generous space above and below its file row. It reads as air rather than as
-  a gap now that the acceptance checks are shown, but it is the least dense beat.
-- Below ~360px the panel is legible but tight; there is roughly 40px of vertical slack
-  at 320px, which is enough but not comfortable.
-- The replay control is desktop only. On a phone the composer takes the full width and
-  there is no free corner; the sequence loops on its own.
+The code and canon were realigned on 2026-09-03 after the historical preview above. A fresh live Vercel Preview verification is still required for the new recommendation/confirmation flow. The previously recorded project/deployment identifiers could not be resolved through the currently connected Vercel access during this alignment pass, so this file must not be read as proof that the latest branch head has been deployed or visually verified.
