@@ -4,368 +4,416 @@ Updated: 2026-09-03
 
 KAPAPI is **not market-validated yet**.
 
-This document separates observed evidence, working hypotheses and experiments. Do not convert founder intuition, interviews, prototype behavior or subsidized usage into market proof.
+This document separates evidence, hypotheses and experiments. Founder intuition, prototypes, interviews, concierge behavior and subsidized usage are not market proof by themselves.
 
 ---
 
-## 1. Primary validation question
+## 1. Primary validation thesis
 
-The early problem is two-sided:
+The new canonical question is not merely whether a task-first marketplace can transact.
 
-### Supply
+It is:
 
-> **Will people with spare time + useful skills actually choose bounded online QUESTs, commit PRICE + DELIVERY TIME, complete them and return for more work?**
+> **Can a GM submit bounded digital work, accept one RESULT + PRICE + COMPLETION TIME offer, avoid choosing the executor, and still receive a satisfactory result at viable completed-outcome economics?**
+
+That question contains four linked markets.
 
 ### Demand
 
-> **Will GMs actually externalize bounded work, pay for accepted results and return with more QUESTs?**
+Will GMs pay to remove:
 
-### Market
+- freelancer search;
+- profile/BID comparison;
+- repeated coordination;
+- executor replacement after failure?
 
-> **Can those two behaviors meet with enough category-specific liquidity, trust and economics to create repeat transactions?**
+### Supply
 
-The strongest proof is not signup count.
+Will people with spare time + useful skills accept bounded QUESTs, commit PRICE + DELIVERY and complete reliably without needing a storefront or fixed-shift job?
 
-> **real GM + real QUEST + real PLAYER + real completion + accepted result + real payment**
+### Execution
 
-Stronger still:
+Can KAPAPI scope, quote, route, monitor, check and recover the task reliably enough?
 
-> **both sides return without subsidy.**
+### Economics
+
+Can the GM price cover:
+
+`execution + payment + QA/support + expected revision/recovery + margin`?
+
+The strongest early proof is:
+
+> **external GM + own money + no PLAYER shopping + accepted result + positive completed-outcome contribution + repeat.**
 
 ---
 
 ## 2. Founder-origin supply hypothesis
 
-KAPAPI began from this unmet behavior:
+KAPAPI began from:
 
 > “퇴근 후 남는 시간에 내가 할 수 있는 작은 온라인 업무를 골라 끝내고 돈 벌고 싶다. 프리랜서 상점을 만들거나 고정 알바를 잡고 싶은 건 아니다.”
 
-This creates explicit PLAYER hypotheses:
+PLAYER hypotheses:
 
-- P-01: people want task-level side income without creating a storefront
-- P-02: bounded digital work is easier to evaluate than open-ended freelance projects
-- P-03: PRICE + DELIVERY lets people monetize fragmented availability
-- P-04: visible real work is a stronger activation trigger than “create your seller profile”
-- P-05: task-specific history can compound into better future opportunities
-- P-06: repeat PLAYER participation depends on effective earnings, clear scope and fair GM behavior
+- P-01: visible real work activates supply better than “create a seller storefront”;
+- P-02: bounded QUESTs are easier to judge than open-ended freelance projects;
+- P-03: PRICE + DELIVERY makes fragmented availability economically legible;
+- P-04: qualified PLAYERs will accept targeted Offers as well as browse open QUESTs;
+- P-05: task-specific completion history improves future routing/trust;
+- P-06: repeat participation depends on effective earnings, scope clarity and fair recovery rules.
 
-These are not proven yet.
+These remain unproven until real repeated behavior appears.
 
 ---
 
 ## 3. GM hypotheses
 
-KAPAPI's mirrored demand problem is:
-
-> “누군가 끝내야 하지만, 채용이나 복잡한 외주 절차를 밟기에는 애매한 일이 있다.”
-
 Working hypotheses:
 
-- GM-01: capacity/deadline/skill/employment gaps create bounded external-work demand
-- GM-02: self-completion/overtime is a major competitor
-- GM-03: posting/explanation/selection friction suppresses outsourcing
-- GM-04: PRICE + DELIVERY creates meaningful trade-offs, especially under urgency
-- GM-05: relevant career/task history lowers delegation anxiety
-- GM-06: existing vendor relationships do not remove all need for new/backup supply
-- GM-07: repeat QUESTs can move KAPAPI from discovery into external capacity
-- GM-08: recommendation/routing can eventually reduce decision burden
-- GM-09: each work category has separate liquidity
-- GM-10: there is a viable band between “do it myself/AI” and “large project procurement”
+- GM-01: there is meaningful demand between `do it myself / use AI` and `hire/search/manage a freelancer or vendor`;
+- GM-02: selection and coordination friction suppress delegation for bounded work;
+- GM-03: some GMs prefer one execution offer over multiple worker choices;
+- GM-04: GMs will pay a premium for reduced search, management and failure risk;
+- GM-05: completion time is part of value, especially under deadline pressure;
+- GM-06: clear SOW + recovery can unlock work that would otherwise remain internal/delayed;
+- GM-07: repeat behavior can make KAPAPI external execution capacity rather than one-off discovery;
+- GM-08: existing trusted vendors do not eliminate demand for overflow/backup/new capacity;
+- GM-09: willingness to delegate differs sharply by category and task shape;
+- GM-10: low-value tasks fully solved by AI may not support viable KAPAPI economics.
 
 ---
 
-## 4. Observed founder-domain evidence
+## 4. Initial category hypothesis
 
-The initial architecture/CAD interview remains useful as **hypothesis formation**, not market proof.
+Do not test KAPAPI only on the cheapest mechanical work.
 
-Observed themes:
+Preferred category shape:
 
-- overlapping projects created temporary capacity pressure
-- straightforward work was still completed personally because delegation felt bothersome
-- under real deadline pressure, willingness to pay rose materially
-- relevant career signaled lower explanation burden
-- confidentiality/NDA materially affected willingness to send files
-- trusted vendors may be reused directly, creating disintermediation risk
-- existing vendors are often contacted first, but new supply remains useful when availability/quality/specialty changes
-- the strongest desired GM outcome was ultimately “put the work in and inspect the finished result”
+> **AI만 맡기기엔 불안하고, 사람을 직접 찾기엔 작은, 범위와 검수가 가능한 디지털 업무.**
 
-Do not generalize one founder-domain interview to all SMEs or all categories.
+Test categories should have:
+
+- clear digital input/output;
+- repeatable scope patterns;
+- enough value to pay for accountability;
+- measurable completion criteria;
+- revisable failures;
+- several plausible executors/resources;
+- low irreversible liability;
+- some AI/automation leverage without making the human/accountability layer worthless.
+
+Reject categories where the typical transaction is either:
+
+- already near-free and safely automated; or
+- fundamentally bespoke, relationship-heavy, regulated or judgment-heavy.
 
 ---
 
-## 5. PRICE × DELIVERY validation
+## 5. Experiment 1 — GM worker-selection removal
 
-Test whether PRICE + committed DELIVERY TIME changes real choices rather than merely looking differentiated in a prototype.
+Compare, on the **same or closely matched task type**:
+
+### Mode A — marketplace choice
+
+`GM receives multiple PLAYER/BID choices → chooses executor`
+
+### Mode B — KAPAPI execution offer
+
+`GM receives one RESULT + PRICE + COMPLETION TIME → accepts/rejects`
+
+Where ethically and operationally practical, randomize or alternate comparable users/tasks.
 
 Measure:
 
-- distribution of PRICE bids
-- distribution of DELIVERY commitments
-- relationship between urgency and willingness to pay
-- whether faster bids win a premium
-- whether lowest price actually wins
-- whether task-specific trust outweighs small price differences
-- whether players make different bids depending on their available time
+- request → commitment conversion;
+- time spent before execution begins;
+- abandonment;
+- confidence/anxiety;
+- GM management minutes;
+- completion/acceptance;
+- repeat rate;
+- willingness to pay / accepted premium;
+- requests to inspect or choose the executor.
 
-Kill/rethink this mechanism if real transactions show DELIVERY adds little information or increases confusion without improving allocation.
+Continue signal:
+
+> GM convenience and conversion improve without a large trust penalty.
+
+Redesign signal:
+
+> users want limited disclosure/control for specific categories but still prefer KAPAPI to narrow and route.
+
+Kill signal for the default Outcome UX:
+
+> most target GMs insist on personally choosing the executor and will not pay for KAPAPI's selection/recovery layer.
 
 ---
 
-## 6. Task-first discovery experiment
+## 6. Experiment 2 — External paid outcome transaction
 
-Compare PLAYER activation between:
+Target real GMs with real bounded work.
 
-### A. Task-first
+Required event chain:
 
-`open QUESTs → choose suitable work → BID`
+```text
+GM sends real work
+→ valid SOW
+→ KAPAPI offers price + completion time
+→ GM spends own money
+→ KAPAPI procures execution
+→ result delivered
+→ GM accepts or uses bounded revision
+```
 
-### B. Storefront/profile-first control where practical
+Stronger proof:
 
-`create seller/service profile → wait/search for leads`
+> the same GM returns with another self-funded task without needing to be re-sold on the concept.
+
+Founder-funded tasks may validate supply/execution mechanics but **must not count as independent GM-demand proof**.
+
+---
+
+## 7. Experiment 3 — PRICE × DELIVERY internal market
+
+PRICE × DELIVERY remains load-bearing even though the GM normally does not compare bids.
 
 Measure:
 
-- browse → BID conversion
-- time to first BID
-- abandonment before earning opportunity
-- willingness to return
-- effective hourly earnings after clarification/revision time
-- PLAYER preference
+- bid/offer PRICE distribution;
+- DELIVERY distribution;
+- acceptance speed;
+- urgent-task premium;
+- relationship between price/time and completion reliability;
+- whether targeted offers outperform open bidding for standardized work;
+- backup supply availability;
+- PLAYER effective earnings.
 
-The product thesis requires task-first behavior to create materially lower activation friction.
+Rethink if DELIVERY adds little useful allocation information or if supply requires excessive negotiation.
 
 ---
 
-## 7. GM posting / SOW experiment
+## 8. Experiment 4 — Assisted quote accuracy
 
-Compare:
+For each early category, record before accepting the GM contract:
 
-### A. Conventional manual posting
+- offered GM price;
+- offered completion time;
+- internal expected execution cost;
+- assumed QA/revision/recovery reserve.
 
-GM manually writes scope.
+After completion record:
 
-### B. KAPAPI-assisted posting
+- actual executor/resource cost;
+- actual completion time;
+- revision cost/time;
+- QA/support minutes;
+- recovery cost;
+- final accepted outcome.
 
-GM uploads files + rough instruction; KAPAPI structures the QUEST and asks only missing questions.
+Track error distributions rather than only averages.
+
+Important metrics:
+
+- quote price error;
+- completion-time error;
+- percentage requiring operator override;
+- margin variance;
+- frequency of catastrophic underquote.
+
+Near-instant quoting is earned only when a category's error distribution becomes predictable enough.
+
+---
+
+## 9. Experiment 5 — Completed-outcome unit economics
+
+Canonical transaction metric:
+
+```text
+GM revenue
+- executor / model / automation variable cost
+- payment cost
+- QA/support variable cost
+- revision/rework cost
+- recovery/replacement cost
+= completed-outcome contribution margin
+```
+
+Measure both:
+
+- contribution KRW per accepted outcome;
+- contribution margin %;
+- operator minutes per accepted outcome.
+
+A category is dangerous when apparent gross margin disappears after failures, clarification, support and QA.
+
+Kill or redesign a category if repeated real transactions show no credible path to positive contribution without underpaying supply or removing the user promise.
+
+---
+
+## 10. Experiment 6 — SOW standardization
+
+Compare rough user input with the finalized executable SOW.
 
 Measure:
 
-- minutes to valid QUEST
-- follow-up questions
-- corrections before posting
-- PLAYER clarification requests
-- revisions caused by scope ambiguity
-- GM preference
+- minutes to valid SOW;
+- number of missing-information questions;
+- operator intervention;
+- executor clarification requests;
+- revisions caused by scope ambiguity;
+- percentage of fields/rules reusable from templates;
+- repeat-task reuse.
 
-This may be more important early than sophisticated AI price prediction.
+A good category should become easier to specify as data accumulates.
+
+If every task requires bespoke discovery calls, it risks becoming an agency rather than scalable execution infrastructure.
 
 ---
 
-## 8. Selection experiment: recommendation before auto-routing
+## 11. Experiment 7 — Recovery responsibility
 
-D-032 makes universal auto-routing a later earned capability.
+KAPAPI's differentiation must survive failure.
 
-Early comparison:
+For natural failures or controlled non-harmful simulations, measure:
 
-### Mode A — lightweight GM choice
+```text
+first execution path fails / is late
+→ KAPAPI detects
+→ alternate route/reassignment
+→ GM does not restart supplier search
+→ final result / refund path
+```
 
-GM sees a compact set of eligible BIDs.
+Metrics:
 
-### Mode B — KAPAPI recommendation + GM confirmation
+- failure detection lead time;
+- backup availability;
+- recovery success rate;
+- final on-time rate;
+- recovery cost;
+- GM management minutes during failure;
+- GM satisfaction/repeat after recovered failure.
 
-KAPAPI highlights one recommendation with visible rationale; alternatives remain available.
+Kill/redesign signal:
 
-### Mode C — concierge/manual routing
+> recovery routinely consumes the entire category margin or requires heavy manual case management.
 
-Used only in controlled experiments where helpful.
+---
+
+## 12. Experiment 8 — AI / automation leverage
+
+For suitable categories compare:
+
+- human only;
+- AI/automation only;
+- AI first pass + human verification;
+- human execution + automated preflight;
+- hybrid exception handling.
 
 Measure:
 
-- decision time
-- recommendation acceptance rate
-- override rate
-- GM confidence/regret
-- completion/on-time/revision outcomes
-- GM management minutes
-- whether users ask to see more/less detail
+- variable cost;
+- turnaround;
+- objective error rate;
+- revision rate;
+- GM acceptance;
+- human review minutes;
+- failure/recovery cost.
 
-Preferred prototype default is **Mode B** because it reduces burden without pretending routing intelligence is already proven.
+Do not celebrate automation rate itself. The goal is **lower accepted-outcome cost without weaker trust**.
 
 ---
 
-## 9. Founder-funded supply experiment
+## 13. Trust and disclosure experiment
 
-Founder-originated real QUESTs may seed early supply and exercise the transaction engine.
+Outcome UX does not mean hiding information users legally or practically need.
 
-Architecture/CAD is useful because the founder can originate realistic tasks and inspect results.
+Test how much executor information GMs need for different categories:
+
+- no executor identity before work;
+- credential/security summary only;
+- named executor/partner disclosure;
+- optional detailed profile.
 
 Measure:
 
-- qualified PLAYER acquisition
-- valid BID density
-- PRICE / DELIVERY distributions
-- completion/on-time/revision
-- willingness to BID again
-- PLAYER effective earnings
+- conversion;
+- trust objections;
+- security objections;
+- category differences;
+- requests for manual selection.
 
-Rule:
-
-> **Founder-funded QUESTs validate supply and transaction mechanics, not external GM demand.**
-
-Do not mix them into demand KPIs.
+Default to the least shopping-like UX that preserves legal, security and trust requirements.
 
 ---
 
-## 10. External paid GM experiment
-
-Target real GMs with real bounded tasks.
-
-Strong evidence:
-
-> external GM spends own money on an accepted result.
-
-Stronger:
-
-> same GM returns with another self-funded QUEST.
-
-If first-QUEST subsidies are used, measure the self-funded second transaction rather than celebrating subsidized usage.
-
----
-
-## 11. Category strategy experiment
-
-KAPAPI is category-independent in vision but category-specific in execution.
+## 14. Category scorecard
 
 For each category track:
 
-- external paid demand
-- qualified active supply
-- eligible BIDs per QUEST
-- time to first valid BID
-- PRICE / DELIVERY distributions
-- completion and on-time rates
-- revision/dispute rates
-- backup supply
-- repeat GM / repeat PLAYER behavior
-- transaction contribution after support/recovery costs
+### Demand
 
-Do not open a category merely because users are registered globally.
-
----
-
-## 12. Quality / recovery experiment
-
-Initial quality architecture:
-
-1. objective automated preflight where reliable
-2. GM acceptance/revision
-3. platform dispute/recovery only where needed
-
-Measure:
-
-- percentage of checks objectively automatable
-- GM inspection time
-- revision rate
-- dispute rate
-- staff minutes per failure/dispute
-- replacement success
-- recovery cost
-
-A low-value category may be unattractive if support/recovery costs repeatedly consume the transaction economics.
-
----
-
-## 13. AI / automation execution experiments
-
-The long-term Outcome Layer is resource-agnostic, but do not force AI into work where it is unreliable.
-
-For suitable categories test:
-
-- human PLAYER only
-- AI/automation only
-- AI first pass + human verification
-- human execution + automated preflight
-
-Measure:
-
-- cost to completion
-- turnaround
-- revision/error rate
-- GM acceptance
-- human review minutes
-- failure/recovery cost
-
-This determines where KAPAPI can improve margin and speed without weakening trust.
-
----
-
-## 14. Disintermediation / retention
-
-Matching alone may leak repeat work off-platform.
-
-Test whether users stay for:
-
-- contracts/NDA
-- payment/admin evidence
-- vendor/task history
-- recommendation
-- availability
-- backup supply
-- replacement/recovery
-- reusable templates
-- organization workflow
-- eventual outcome assurance
-
-Do not assume hiding contact details solves retention.
-
----
-
-## 15. Metrics that matter
+- external self-funded requests;
+- quote acceptance;
+- transaction value;
+- repeat GM frequency;
+- willingness to pay for no-search/no-reselection convenience.
 
 ### Supply
 
-- qualified active PLAYERs per category
-- browse → valid BID conversion
-- time to first valid BID
-- repeat PLAYER rate
-- effective PLAYER earnings
+- qualified active PLAYERs/resources;
+- time to execution acceptance;
+- PRICE × DELIVERY distributions;
+- backup capacity;
+- repeat PLAYER rate;
+- effective earnings.
 
-### Demand
+### Specification
 
-- external paid QUEST count
-- self-funded repeat GM rate
-- GM repeat frequency
-- actual transaction value
-- GM management time
-
-### Marketplace
-
-- eligible BIDs per QUEST
-- assignment/selection rate
-- PRICE / DELIVERY distributions
-- category liquidity
+- time to valid SOW;
+- clarification count;
+- template reuse;
+- ambiguity-caused revision.
 
 ### Execution
 
-- completion rate
-- on-time rate
-- acceptance rate
-- revision/rework rate
-- failure/dispute rate
-- replacement/recovery rate and cost
+- completion;
+- on-time;
+- acceptance;
+- revision/rework;
+- failure/recovery;
+- objective QA coverage.
 
-### Friction/trust
+### Economics
 
-- time to valid SOW
-- clarification count
-- security objection rate
-- recommendation acceptance/override
+- completed-outcome contribution;
+- operator minutes;
+- QA/support cost;
+- recovery cost;
+- automation leverage.
 
-Vanity when isolated:
+### Retention
 
-- total signups
-- pageviews
-- total PLAYER count across unrelated categories
+- repeat GM;
+- repeat PLAYER;
+- direct-trade leakage;
+- more tasks/volume routed through KAPAPI.
+
+Total signup count is not a substitute for any of these.
+
+---
+
+## 15. Current research-load-bearing unknowns
+
+These must not be waved away as “we'll test after launch.”
+
+1. **GM premium/WTP:** is reduced search/selection/recovery valuable enough to pay for?
+2. **Category economics:** can an early category support positive completed-outcome margin after QA/recovery?
+3. **Operational scalability:** can operator minutes decline with standardization, or is KAPAPI structurally a manual agency?
+4. **Supply liquidity:** can KAPAPI repeatedly secure credible execution inside promised windows?
+5. **Legal/commercial structure:** what contracting/intermediary/service-provider structure is viable as KAPAPI controls routing and recovery?
+
+These are the biggest score-limiting uncertainties in the current ScoutForge-style assessment.
 
 ---
 
@@ -375,34 +423,38 @@ Vanity when isolated:
 
 Evidence repeatedly shows:
 
-- useful PLAYERs choose and complete bounded work
-- GMs externalize and pay for it
-- PRICE × DELIVERY creates useful allocation information
-- task definitions are manageable
-- trust/security are sufficient
-- transaction economics survive revisions/recovery
-- both sides repeat
+- GMs prefer/pay for one execution offer over worker shopping;
+- useful supply accepts bounded work;
+- PRICE × DELIVERY provides actionable procurement information;
+- SOWs become increasingly repeatable;
+- completion/recovery can be managed;
+- completed-outcome contribution is positive or clearly improving toward positive;
+- operator minutes fall with category repetition;
+- self-funded repeat occurs.
 
 ### PIVOT
 
-Demand exists but one mechanism fails, for example:
+Examples:
 
-- only certain categories work
-- GM wants more/less selection control
-- existing-partner management beats open-market discovery
-- AI/automation handles some categories better than human-only execution
-- only certain price bands support viable economics
+- only some categories support Outcome UX;
+- GM needs limited executor visibility;
+- targeted Offers beat open BIDs;
+- AI/automation becomes the primary resource for some categories;
+- KAPAPI should focus on higher-value work bands;
+- recovery terms need to be narrower;
+- category-specific pricing replaces broad marketplace pricing.
 
 ### KILL / major rethink
 
 Repeated real tests show:
 
-- useful PLAYER supply does not participate at viable economics
-- GMs still prefer self-completion despite reduced friction
-- scope/coordination cost erases value
-- quality/recovery cost is structurally too high
-- PRICE × DELIVERY adds little value
-- most target tasks are either trivially automated or too complex for bounded transactions
-- repeat value leaks off-platform and platform services do not justify retention
+- GMs will not pay to remove worker selection/coordination;
+- task scope is rarely definable before execution;
+- supply cannot be secured predictably;
+- quote/time error is structurally high;
+- QA/support/recovery scale linearly and erase margin;
+- target tasks are mostly either safely automated at near-zero price or too bespoke for bounded execution;
+- legal/commercial responsibility makes the intended model non-viable;
+- repeat value does not emerge.
 
 Do not protect the idea from negative evidence.
