@@ -69,10 +69,7 @@ export default function BoardDetail() {
               {q.inputs.map((f) => (
                 <div key={f.name} className={s.file}>
                   <span className={s.kind} aria-hidden="true">{f.kind}</span>
-                  <span style={{ minWidth: 0 }}>
-                    <span className={s.fname}>{f.name}</span>
-                    <span className={s.fmeta}>{f.kind} · {f.size}</span>
-                  </span>
+                  <span style={{ minWidth: 0 }}><span className={s.fname}>{f.name}</span><span className={s.fmeta}>{f.kind} · {f.size}</span></span>
                 </div>
               ))}
             </div>
@@ -80,15 +77,13 @@ export default function BoardDetail() {
 
           <section>
             <div className={s.panelHead}><h2 className={s.panelTitle}>작업 범위</h2></div>
-            <div className={s.list}>
-              {q.scope.map((l) => (<p key={l} className={s.item}><span className={s.mark} aria-hidden="true">·</span>{l}</p>))}
-            </div>
+            <div className={s.list}>{q.scope.map((l) => <p key={l} className={s.item}><span className={s.mark} aria-hidden="true">·</span>{l}</p>)}</div>
           </section>
 
           <section>
             <div className={s.panelHead}><h2 className={s.panelTitle}>확인 기준</h2></div>
             <div className={s.list}>
-              {q.accept.map((l) => (<p key={l} className={s.item}><span className={s.mark} aria-hidden="true">·</span>{l}</p>))}
+              {q.accept.map((l) => <p key={l} className={s.item}><span className={s.mark} aria-hidden="true">·</span>{l}</p>)}
               <p className={s.item}><span className={s.mark} aria-hidden="true">·</span>제출 형식 {q.outputs.join(", ")}</p>
               <p className={s.item}><span className={s.mark} aria-hidden="true">·</span>{q.revisionRule}</p>
             </div>
@@ -96,10 +91,7 @@ export default function BoardDetail() {
 
           <section>
             <div className={s.panelHead}><h2 className={s.panelTitle}>맡긴 사람</h2></div>
-            <div className={s.trust}>
-              <p className={s.trustName}>{issuer.name}</p>
-              <p className={s.trustCareer}>{issuer.career}</p>
-            </div>
+            <div className={s.trust}><p className={s.trustName}>{issuer.name}</p><p className={s.trustCareer}>{issuer.career}</p></div>
           </section>
         </div>
 
@@ -112,29 +104,22 @@ export default function BoardDetail() {
           {isOwn ? (
             <div className={s.blocked}>
               <p style={{ fontWeight: 650 }}>내가 맡긴 의뢰입니다</p>
-              <p className={s.hint}>이 의뢰에서 나는 맡긴 쪽입니다. 진행 상황은 내 의뢰에서 확인할 수 있습니다.</p>
-              <Link href={`/quest/${q.id}`} className={`${s.btn} ${s.btnLine}`}>진행 상황 보기</Link>
+              <p className={s.hint}>이 의뢰에서 나는 맡긴 쪽입니다. 제안과 추천은 의뢰 화면에서 확인할 수 있습니다.</p>
+              <Link href={`/quest/${q.id}`} className={`${s.btn} ${s.btnLine}`}>의뢰 화면 보기</Link>
             </div>
           ) : mine ? (
             <div className={s.blocked}>
               <p style={{ fontWeight: 650 }}>제안을 보냈습니다</p>
-              <div className={s.preview}>
-                <span className={s.pk}>내 제안</span>
-                <span className={s.pv}>{won(mine.price)} / {mine.hours}시간</span>
-              </div>
-              <p className={s.hint}>
-                이제 카파피가 조건을 확인하고, 관련 이력과 납품 기록을 함께 비교해 배정합니다.
-              </p>
-              <span className={`${s.chip} ${s.chipAccent}`}>이 의뢰에서 나는 수행하는 쪽</span>
+              <div className={s.preview}><span className={s.pk}>내 제안</span><span className={s.pv}>{won(mine.price)} / {mine.hours}시간</span></div>
+              <p className={s.hint}>카파피가 자격, 마감, 가격, 완료시간과 관련 이력을 함께 보고 추천 후보를 정리합니다. 최종 확정 전까지는 아직 배정된 것이 아닙니다.</p>
+              <span className={`${s.chip} ${s.chipAccent}`}>이 의뢰에 제안 참여 중</span>
               <Link href="/my" className={`${s.btn} ${s.btnLine}`}>내 의뢰에서 보기</Link>
             </div>
           ) : !e.ok ? (
             <div className={s.blocked}>
               <p style={{ fontWeight: 650, color: "var(--warn)" }}>이 의뢰에는 참여할 수 없습니다</p>
-              {e.why.map((w) => (<p key={w} className={s.item}>· {w}</p>))}
-              <p className={s.hint}>
-                계정 종류의 문제가 아닙니다. 조건을 갖추면 같은 계정으로 바로 제안할 수 있습니다.
-              </p>
+              {e.why.map((w) => <p key={w} className={s.item}>· {w}</p>)}
+              <p className={s.hint}>계정 종류의 문제가 아닙니다. 조건을 갖추면 같은 계정으로 바로 제안할 수 있습니다.</p>
               <Link href="/board" className={`${s.btn} ${s.btnLine}`}>참여 가능한 작업 보기</Link>
             </div>
           ) : (
@@ -144,36 +129,25 @@ export default function BoardDetail() {
                   <label className={s.flabel} htmlFor="price">금액</label>
                   <div className={s.inputBox}>
                     <span className={s.unit} aria-hidden="true">₩</span>
-                    <input id="price" className={s.numInput} inputMode="numeric" placeholder="120000"
-                      value={price} onChange={(ev) => { setPrice(ev.target.value.replace(/[^0-9]/g, "")); setErr(null); }} />
+                    <input id="price" className={s.numInput} inputMode="numeric" placeholder="120000" value={price} onChange={(ev) => { setPrice(ev.target.value.replace(/[^0-9]/g, "")); setErr(null); }} />
                   </div>
                 </div>
                 <span className={s.times} aria-hidden="true">×</span>
                 <div className={s.field}>
                   <label className={s.flabel} htmlFor="hours">완료 시간</label>
                   <div className={s.inputBox}>
-                    <input id="hours" className={s.numInput} inputMode="numeric" placeholder="8"
-                      value={hours} onChange={(ev) => { setHours(ev.target.value.replace(/[^0-9]/g, "")); setErr(null); }} />
+                    <input id="hours" className={s.numInput} inputMode="numeric" placeholder="8" value={hours} onChange={(ev) => { setHours(ev.target.value.replace(/[^0-9]/g, "")); setErr(null); }} />
                     <span className={s.unit} aria-hidden="true">시간</span>
                   </div>
                 </div>
               </div>
 
-              <p className={s.hint}>완료 시간은 배정된 시점부터 납품까지 걸리는 시간입니다.</p>
-
-              {price && hours ? (
-                <div className={s.preview}>
-                  <span className={s.pk}>보낼 제안</span>
-                  <span className={s.pv}>{won(Number(price))} / {hours}시간</span>
-                </div>
-              ) : null}
-
+              <p className={s.hint}>완료 시간은 작업자로 확정된 시점부터 납품까지 걸리는 시간입니다.</p>
+              {price && hours ? <div className={s.preview}><span className={s.pk}>보낼 제안</span><span className={s.pv}>{won(Number(price))} / {hours}시간</span></div> : null}
               {err ? <p className={s.err} role="alert">{err}</p> : null}
 
               <button type="button" className={`${s.btn} ${s.btnAccent}`} onClick={send}>제안 보내기</button>
-              <p className={s.hint}>
-                제안 후 배정은 카파피가 합니다. 금액이 가장 낮거나 시간이 가장 짧다고 자동으로 배정되지는 않습니다.
-              </p>
+              <p className={s.hint}>카파피가 조건과 이력을 바탕으로 추천하고, 현재 단계에서는 의뢰자가 추천을 확인해 작업자를 확정합니다. 가장 싸거나 가장 빠른 제안이 자동으로 선정되지는 않습니다.</p>
             </div>
           )}
         </div>
