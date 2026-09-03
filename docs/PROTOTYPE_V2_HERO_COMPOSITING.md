@@ -1,9 +1,22 @@
 # KAPAPI Prototype v2 — Hero Screen Compositing Authority
 
-Status: **mandatory hero-media implementation rule for `feat/prototype-v2`**  
+Status: **SUPERSEDED — 2026-09-03, by founder direction**  
 Updated: **2026-09-03**
 
-This document governs the visual integration of real KAPAPI UI into the approved live-action hero footage. Product behavior follows D-032.
+> **This document no longer governs the hero.** The founder supplied the hero film
+> directly and instructed that it be used exactly as delivered: the file is served
+> byte-for-byte, and it is never cropped, filtered, or drawn over. Compositing the
+> product surface onto the laptop screen inside the footage — the technique this
+> document made mandatory — is therefore prohibited, along with `object-fit: cover`,
+> the legibility veil, and the headline overlay.
+>
+> The hero is now a two-column composition: the action on the left, the whole film
+> on the right at its own 16:9 ratio. `scripts/hero-qa.mjs` holds the current rules
+> and asserts them against the rendered page.
+>
+> Product behavior still follows D-032; nothing here changes the recommendation and
+> confirmation flow. Only the hero's media treatment is superseded. The homography
+> work described below is kept as a record of what was built, not as an instruction.
 
 ## 0. Intended hero effect
 

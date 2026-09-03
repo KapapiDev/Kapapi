@@ -1,194 +1,146 @@
-.wrap { padding: 0 var(--gutter) var(--s5); }
+/*
+  Hero: the action on the left, the founder's film on the right.
 
-.stage {
-  position: relative;
-  border-radius: var(--r-xl);
-  overflow: hidden;
-  background: #0d0e0c;
-  aspect-ratio: 16 / 9;
-  max-height: calc(100vh - 190px);
-  min-height: 460px;
+  The film is the second half of the composition, not a backdrop, so nothing is
+  drawn over it and nothing crops it — no object-fit: cover, no veil, no
+  headline on top, no product surface composited into the frame. The element is
+  given the file's own 16:9 ratio and a width, and the height follows.
+*/
+
+.hero { padding: clamp(24px, 3vw, 52px) var(--gutter) clamp(40px, 5vw, 88px); }
+
+.grid {
+  width: 100%;
+  /* Much wider than the 1240 text frame. The sections below are reading width;
+     the hero is a composition, and at 1920 a 1240-wide hero both shrinks the film
+     under the 50% band and leaves the screen empty down both sides. */
+  max-width: 1780px;
+  margin-inline: auto;
+  display: grid;
+  /* The brief asks for the film at 50-55% of the screen. The gutters and the
+     column gap take ~10% before the columns are split, so a 53/47 split of the
+     remainder lands the film at ~48% of the viewport — under the band. Splitting
+     58/42 of the remainder puts it at 52-53%, which is what the band means. */
+  grid-template-columns: minmax(0, 42fr) minmax(0, 58fr);
+  align-items: center;
+  gap: clamp(28px, 3.2vw, 56px);
 }
 
-.film {
-  position: absolute; inset: 0; width: 100%; height: 100%;
-  object-fit: cover;
-  transition: opacity 420ms var(--ease);
-}
-.filmOut { opacity: 0; }
+/* ---------- left: what you actually do here ---------- */
 
-/* Legibility veil, weighted to the top where the headline sits. */
-.veil {
-  position: absolute; inset: 0; pointer-events: none;
-  background:
-    linear-gradient(to bottom, rgba(9,10,9,.66) 0%, rgba(9,10,9,.24) 38%, rgba(9,10,9,0) 60%),
-    linear-gradient(to top, rgba(9,10,9,.38) 0%, rgba(9,10,9,0) 26%);
-  transition: opacity var(--t-major) var(--ease);
-}
-.veilOut { opacity: 0; }
-
-.copy {
-  position: absolute; top: clamp(28px, 4vw, 52px); left: clamp(24px, 3.4vw, 48px);
-  right: clamp(24px, 3.4vw, 48px); color: #fff;
-  transition: opacity var(--t-major) var(--ease), transform var(--t-major) var(--ease);
-}
-.copyOut { opacity: 0; transform: translateY(-6px); }
+.side { min-width: 0; container-type: inline-size; }
 
 .headline {
-  font-size: var(--d1); line-height: 1.13; letter-spacing: var(--tighter);
-  font-weight: 700; max-width: 15ch;
-  text-shadow: 0 2px 34px rgba(0,0,0,.30);
-}
-.sub {
-  margin-top: var(--s4); font-size: clamp(1rem, .93rem + .3vw, 1.15rem);
-  color: rgba(255,255,255,.9); max-width: 34ch;
-  text-shadow: 0 1px 18px rgba(0,0,0,.34);
-}
-
-/* ---------- composited laptop screen ---------- */
-
-.screenLayer {
-  position: absolute; inset: 0; pointer-events: none;
-  opacity: 0; transition: opacity 300ms var(--ease);
-  /* Clip the 1280x720 UI so nothing can spill outside the laptop screen. */
-  overflow: hidden;
-}
-.screenOn { opacity: 1; }
-.screenUI {
-  position: absolute; top: 0; left: 0; transform-origin: 0 0;
-  /* The panel is laid out on the fixed 1280x720 canvas, so its scale is fixed too. */
-  font-size: 22px;
-  background: #fff; overflow: hidden; will-change: transform;
-  /* Graded so it reads as an emitting panel rather than a pasted element. */
-  filter: saturate(.92) brightness(1.02) contrast(.96);
-  box-shadow: inset 0 0 90px rgba(150,170,190,.28);
-}
-.screenUI::after {
-  content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: linear-gradient(118deg, rgba(255,255,255,.30) 0%, rgba(255,255,255,0) 38%);
+  /* One line at every width. The headline is ~12.7em wide in this face, so the
+     size is taken from the column rather than the viewport: the left column is
+     what it has to fit inside, and that is not a fixed fraction of the screen. */
+  font-size: min(7.4cqw, 3.6rem);
+  line-height: 1.15;
+  letter-spacing: var(--tighter);
+  font-weight: 700;
+  color: var(--ink);
+  white-space: nowrap;
 }
 
-/* ---------- full-frame product cut ---------- */
+/* A real field, not a rule under a sentence: the placeholder has to read as
+   something you can type into, and it clears the moment you do. */
+.field { margin-top: clamp(24px, 2.4vw, 40px); }
 
-/* The composer overlaps the stage's lower edge by 38px, so the full-frame panel
-   is inset by that much: its own footer and progress track must not run behind it. */
-.full {
-  position: absolute; inset: 0; background: var(--white);
-  padding-bottom: 46px;
-  /* Full-frame the panel is laid out at the stage's real width, which runs from
-     ~1310px on a desktop down to ~350px on a phone. One font-size scales it all.
-     Held just under the fixed canvas's 22px: the panel has 46px less height here
-     than inside the laptop, and at 22px the assigned step clipped its last row. */
-  font-size: clamp(12px, 1.45vw, 21px);
-  opacity: 0; pointer-events: none;
-  transition: opacity 420ms var(--ease);
-  display: flex; flex-direction: column;
-}
-.fullOn { opacity: 1; }
-
-/* ---------- action, overlapping the stage's lower edge ---------- */
-
-.actionWrap {
-  position: relative; z-index: 3;
-  margin: -38px auto 0; max-width: 880px;
-  padding: 0 clamp(6px, 2vw, 24px);
-}
-.action {
-  display: flex; align-items: center; gap: var(--s2);
+.box {
+  display: flex; align-items: center; gap: var(--s3);
+  padding: 12px 14px;
+  border: 1.5px solid var(--line-2); border-radius: var(--r-lg);
   background: var(--white);
-  border: 1px solid var(--line);
-  border-radius: var(--r-lg);
-  padding: 9px 9px 9px 20px;
-  box-shadow: var(--shadow-float);
   transition: border-color var(--t-state) var(--ease), box-shadow var(--t-state) var(--ease);
 }
-.action:focus-within { border-color: var(--sapphire); box-shadow: var(--shadow-float), 0 0 0 3px var(--sapphire-wash); }
+.box:hover { border-color: var(--line-2); }
+.field:focus-within .box { border-color: var(--sapphire); box-shadow: 0 0 0 3px var(--sapphire-wash); }
+
+.fileInput { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+
+.plus {
+  flex: none; display: grid; place-items: center;
+  width: 42px; height: 42px;
+  border: 1px solid var(--line-2); border-radius: var(--r-md);
+  font-size: 1.35rem; line-height: 1; color: var(--graphite);
+  background: var(--white); cursor: pointer;
+  transition: border-color var(--t-micro) var(--ease), color var(--t-micro) var(--ease);
+}
+.plus:hover { border-color: var(--ink); color: var(--ink); }
+.fileInput:focus-visible + .plus { outline: 2px solid var(--sapphire); outline-offset: 2px; }
 
 .input {
-  flex: 1; min-width: 0; border: 0; outline: 0; background: transparent;
-  height: 52px; font-size: clamp(1rem, .95rem + .25vw, 1.08rem);
+  flex: 1; min-width: 0;
+  border: 0; outline: 0; background: transparent;
+  padding: 6px 0;
+  text-overflow: ellipsis;
+  font-size: clamp(1.05rem, .98rem + .35vw, 1.3rem);
+  line-height: 1.55;
+  color: var(--ink);
 }
-.input::placeholder { color: #8d9086; }
+.input::placeholder { color: var(--faint); }
+/* The placeholder is the longest string in the field, so it decides whether the
+   field can stay on one line. It is allowed to ellipsize rather than wrap. */
 
-.attach {
-  display: inline-flex; align-items: center; gap: 7px; flex: none;
-  height: 46px; padding: 0 15px;
-  border: 1px solid var(--line-2); border-radius: var(--r-md);
-  background: var(--white); color: var(--graphite);
-  font-size: var(--body-sm); font-weight: 500;
-  transition: border-color var(--t-micro) var(--ease), color var(--t-micro) var(--ease);
-}
-.attach:hover { border-color: var(--ink); color: var(--ink); }
-.fileInput { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
-.fileInput:focus-visible + .attach { outline: 2px solid var(--sapphire); outline-offset: 2px; }
-
-.submit {
-  flex: none; height: 46px; padding: 0 22px; border-radius: var(--r-md);
-  background: var(--sapphire); color: #fff; font-weight: 600; font-size: var(--body-sm);
-  display: inline-flex; align-items: center; gap: 7px;
-  transition: background var(--t-micro) var(--ease);
-}
-.submit:hover { background: var(--sapphire-press); }
-.submit:disabled { opacity: .5; cursor: not-allowed; }
-
-.files { display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 12px 0; }
+.files { display: flex; flex-wrap: wrap; gap: var(--s2); margin-top: var(--s2); }
 .file {
-  display: inline-flex; align-items: center; gap: 7px; padding: 5px 8px 5px 11px;
-  border: 1px solid var(--line); border-radius: var(--r-sm); background: var(--paper-2);
-  font-size: var(--meta); color: var(--graphite); max-width: 100%;
+  display: inline-flex; align-items: center; gap: var(--s2);
+  padding: 6px 6px 6px 11px;
+  border: 1px solid var(--line); border-radius: var(--r-sm);
+  background: var(--paper-2); font-size: var(--meta); color: var(--graphite);
+  max-width: 100%;
 }
-.fileName { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 24ch; }
-.fileX { display: grid; place-items: center; width: 18px; height: 18px; border-radius: 4px; color: var(--muted); }
+.fileName { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 22ch; }
+.fileSize { color: var(--faint); font-family: var(--mono); font-size: 0.78rem; }
+.fileX {
+  display: grid; place-items: center; width: 22px; height: 22px;
+  border-radius: 5px; color: var(--muted); font-size: 1rem; line-height: 1;
+}
 .fileX:hover { background: var(--line); color: var(--ink); }
 
-.err { margin: 10px auto 0; max-width: 880px; padding-inline: 24px; font-size: var(--meta); color: var(--risk); }
+.err { margin-top: var(--s3); font-size: var(--body-sm); color: var(--risk); }
 
-/* Chips carry no heading — Kmong evidence. */
-.chips {
-  display: flex; flex-wrap: wrap; gap: 7px; justify-content: center;
-  margin: var(--s4) auto 0; max-width: 880px; padding-inline: 24px;
+.submit {
+  margin-top: clamp(20px, 2vw, 30px);
+  display: inline-flex; align-items: center; justify-content: center;
+  height: 54px; padding: 0 40px; border-radius: var(--r-md);
+  background: var(--ink); color: #fff;
+  font-size: 1.0625rem; font-weight: 600;
+  transition: background var(--t-micro) var(--ease);
 }
-.chip {
-  border: 1px solid var(--line-2); border-radius: 999px;
-  padding: 8px 14px; font-size: var(--meta); color: var(--graphite); background: var(--white);
-  transition: border-color var(--t-micro) var(--ease), color var(--t-micro) var(--ease);
-}
-.chip:hover { border-color: var(--ink); color: var(--ink); }
+.submit:hover { background: #000; }
+.submit:focus-visible { outline: 2px solid var(--sapphire); outline-offset: 3px; }
 
-/* Bottom right, inside the 46px strip the full-frame panel leaves free. Top right
-   is the panel's own deadline meta, and the pill sat on top of it. */
-.replay {
-  position: absolute; right: clamp(16px, 2.2vw, 24px); bottom: 7px;
-  z-index: 4; display: inline-flex; align-items: center; gap: 6px;
-  height: 32px; padding: 0 12px; border-radius: 999px;
-  background: rgba(16,17,16,.5); color: rgba(255,255,255,.9);
-  border: 1px solid rgba(255,255,255,.22);
-  font-size: var(--meta); font-weight: 500;
-  backdrop-filter: blur(8px);
-}
-.replay:hover { background: rgba(16,17,16,.72); color: #fff; }
-/* Over the full-frame product cut the film is gone; a dark scrim pill on white
-   reads as a smudge, so the control takes the paper surface instead. */
-.replayLight {
-  background: var(--white); color: var(--graphite);
-  border-color: var(--line-2); backdrop-filter: none;
-}
-.replayLight:hover { background: var(--paper-2); color: var(--ink); }
+/* ---------- right: the film, whole ---------- */
 
-@media (max-width: 900px) {
-  .stage { aspect-ratio: 4 / 5; max-height: none; min-height: 0; }
+.media { min-width: 0; }
+
+.film {
+  display: block;
+  width: 100%;
+  height: auto;              /* the file's own ratio decides the height */
+  aspect-ratio: 16 / 9;      /* reserves the box before metadata loads, so no CLS */
+  border-radius: var(--r-xl);
+  background: var(--paper-2);
+  /* Keep the whole hero on one screen on a laptop: at 1280x800 an unbounded
+     58% column would push the action's button below the fold. */
+  max-height: calc(100vh - 220px);
+  margin-left: auto;
+}
+
+/* ---------- narrower ---------- */
+
+@media (max-width: 1080px) {
+  .grid { grid-template-columns: minmax(0, 43fr) minmax(0, 57fr); gap: clamp(22px, 2.6vw, 36px); }
   .headline { max-width: 12ch; }
-  .actionWrap { margin-top: -30px; }
-  .action { flex-wrap: wrap; padding: 12px; }
-  .input { flex: 1 1 100%; height: 46px; padding-inline: 8px; }
-  .attach { flex: 1 1 auto; justify-content: center; }
-  .submit { flex: 1 1 auto; justify-content: center; }
-  .chips { justify-content: flex-start; }
-  /* The composer goes full width on a phone, so the stage has no free corner for
-     the replay pill. The sequence loops on its own, so the control is dropped
-     rather than parked on top of the input. */
-  .replay { display: none; }
-  /* The stage is 4:5 here, not 16:9, so the panel's height no longer tracks the
-     viewport width the same way and needs its own scale. */
-  .full { font-size: clamp(10px, 2.9vw, 14px); }
+}
+
+/* One column. The action comes first and the film follows it, so a phone reads
+   the same order as a desktop does left to right. */
+@media (max-width: 860px) {
+  .hero { padding-top: var(--s5); }
+  .grid { grid-template-columns: 1fr; gap: clamp(28px, 6vw, 44px); max-width: 720px; }
+  .headline { max-width: 16ch; }
+  .submit { width: 100%; }
+  .film { border-radius: var(--r-lg); }
 }

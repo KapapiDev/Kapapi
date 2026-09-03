@@ -16,24 +16,39 @@ one applies. Anything that could not be classified is listed in §3 as deleted.
 | Element | Class | Justification |
 |---|---|---|
 | `KAPAPI` wordmark | 3 BRAND-WORLD | The product's own name, linking home. |
-| `작업 찾기` | 1 PRODUCT REQUIRED | The supply entry. D-032 gives one account both roles, so the supply side must be reachable without a second identity. |
-| `이용 방법` | 2 REFERENCE-SUPPORTED | Wishket and Kmong both carry an explanatory entry in primary nav; a marketplace with a non-obvious routing model needs one more than they do. |
-| `로그인` | 1 PRODUCT REQUIRED | The only account affordance. There is deliberately no signup split — see §2. |
-| `의뢰 등록` (button) | 1 PRODUCT REQUIRED | The primary demand action, repeated from the hero because the nav persists past it. |
+| `로그인` | 1 PRODUCT REQUIRED | Account entry. |
+| `회원가입` (button) | 1 PRODUCT REQUIRED | One door, not two. D-032: the role comes from each QUEST, so there is no 의뢰인/전문가 split — the thing Kmong, Wishket and Soomgo all do and this must not. |
+
+`작업 찾기` and `이용 방법` are **not** in the landing header. The first screen has to
+read as "put a file here and describe the job", and a row of section links is what
+makes a visitor start reading instead. Both stay in the header on every inner route,
+and both are in the footer and in the account section's CTA pair, so the supply side
+D-032 requires is still reachable — one scroll lower than before. This is the one
+place where the first-screen brief and the supply-entry requirement pull against each
+other, and it is recorded here rather than resolved silently.
 
 No avatar, no name, no level, no organisation. The landing renders as a first visit.
 
 ### Hero
 
+The hero is the founder's film on the right and the action on the left. Nothing is
+composited into the footage and nothing covers it — that rule is enforced per commit
+by `scripts/hero-qa.mjs`, which measures the rendered element rather than trusting
+the CSS.
+
 | Element | Justification |
 |---|---|
-| Film | 3 BRAND-WORLD. Approved hero media; carries the human payoff the product surface cannot. |
-| `맡길 업무만 등록하세요` | 1 PRODUCT REQUIRED. States the one thing the user does. |
-| `전문가 배정부터 결과 전달까지 카파피가 진행합니다.` | 1 PRODUCT REQUIRED. States D-031 auto-routing in the only place a first-time visitor will read it. |
-| Product panel inside the laptop, then full-frame | 1 PRODUCT REQUIRED. Every row, exclusion and rationale is `route()` output on fixture `#0182`, not written copy. This is the "show, don't explain" obligation discharged. |
-| `다시 보기` | 2 REFERENCE-SUPPORTED. Replay control for a sequence that carries argument, not decoration. Desktop only; on a phone the composer takes the full width, and the sequence loops on its own. |
-| Composer: input, `파일 첨부`, `의뢰 등록` | 1 PRODUCT REQUIRED. Work description plus source files is the whole input to routing; the file affordance is not optional, since `nda` and the scope draft both key off attachments. |
-| Four example chips | 2 REFERENCE-SUPPORTED, and **not** the v1 pattern. Kmong sets unlabelled chips under its input; these are four because the routing model has exactly four categories (`cad`, `image`, `data`, `doc` in `src/lib/kapapi.ts`), one example each. They fill the composer when clicked. A fifth would have no category behind it. |
+| Film (`/media/KAPAPI.mp4`) | 3 BRAND-WORLD. The founder's file, served byte-for-byte at 1920×1080 with no re-encode, shown whole at its own 16:9 ratio. |
+| `오늘은 어떤 일을 끝낼까요?` | 1 PRODUCT REQUIRED. The only sentence on the first screen, and it asks for the one input the product takes. Set on one line at every width. |
+| Field: `+` upload, `파일을 업로드하고 간단하게 설명해 주세요.` | 1 PRODUCT REQUIRED. Work description plus source files is the entire input to routing; `nda` and the scope draft both key off attachments. The sentence is the field's placeholder, so it clears the moment anyone types. |
+| `맡기기` | 1 PRODUCT REQUIRED. The primary action. |
+
+Removed from the previous build, and why: the headline overlay and legibility veil
+(text on the film), the product surface composited into the laptop screen, the
+full-frame product cut, and the `다시 보기` replay control — all of them either
+covered the film or modified how it reads, which the founder's direction forbids.
+The example chips went with them: they belonged to a composer that no longer exists,
+and the field asks for one sentence rather than offering four.
 
 ### Sections
 
@@ -69,19 +84,19 @@ rather than waiting for a reviewer.
 | `RESET` or any public debug control | No | `loop.mjs` landing assertion |
 | `이런 일들이 올라옵니다` | No | `loop.mjs` landing assertion |
 | Arbitrary avatar / fake logged-in state | No | Nav renders `로그인` only; no avatar element exists |
-| Meaningless ONLINE / system-status decoration | No | The only machine metadata is the step label inside the product panel (`4 BIDS RECEIVED`), which changes with real state |
-| Unjustified fixed 4-chip row | No | Four chips, one per routing category — see §1 |
+| Meaningless ONLINE / system-status decoration | No | The only machine metadata is the routing section's state label, which changes with real `route()` output |
+| Unjustified fixed 4-chip row | No | There are no chips. The hero asks for one sentence instead of offering four |
 | `할 일을 던져주세요.` | No | `loop.mjs` landing assertion |
 | `일 던져놔. 결과만 받아.` / `Good. Done.` / `GOOD DONE` | No | Absent from the tree; all Korean copy rewritten in `research/copy-final.md` |
-| Paragraph-wall or 01-02-03-04 numbered-column landing | No | Landing measures 210 characters and 0 cards in the first viewport |
-| Detached black dashboard card beside the video | No | The product surface is composited into the laptop screen, then cuts full-frame; it never sits beside the film |
+| Paragraph-wall or 01-02-03-04 numbered-column landing | No | Landing measures **109 characters and 0 cards** in the first viewport, below Notion's 124 and near Toss's 42 |
+| Detached black dashboard card beside the video | No | Nothing sits beside or on the film. The one dark surface on the page is the routing proof, a full section lower |
 
 ## 3. Considered and deleted
 
 Recorded so the reasoning is not re-litigated.
 
 - **A statistics band** (`거래 12,400건`, `평균 배정 4분`). Would have been invented numbers with no fixture behind them. Kmong and Soomgo both carry counted trust evidence, so it is reference-supported in form — but only when the count is real. Deleted until there is one.
-- **Category tiles for the four routing categories.** The chips already carry them, and a tile grid is the templated-marketplace pattern the first-viewport measurement was adopted to avoid.
+- **Category tiles for the four routing categories.** A tile grid is the templated-marketplace pattern the first-viewport measurement was adopted to avoid, and the field takes free text precisely so the visitor does not have to pick a category first.
 - **A testimonial row.** No real customers exist. Fabricated ones fail all three tests.
 - **`전문가 등록` / `고수 가입` as a second CTA.** This is exactly the buyer/seller signup split that Kmong, Wishket and Soomgo all use and that D-032 forbids. `loop.mjs` asserts no such control exists on `/board`.
 - **A progress percentage on running work.** Not observable, so it would be fiction. `loop.mjs` asserts no `n% 완료 / 진행` string appears.

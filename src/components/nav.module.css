@@ -19,6 +19,7 @@
   .links { gap: 0; margin-left: 0; overflow-x: auto; scrollbar-width: none; }
   .links::-webkit-scrollbar { display: none; }
   .link { padding: 8px 9px; font-size: var(--meta); }
-  .signin { display: none; }
+  /* The landing nav is brand + account only, so both entries fit on a phone. */
+  .signin { padding: 8px 8px; font-size: var(--meta); }
   .cta { height: 38px; padding: 0 14px; font-size: var(--meta); }
 }

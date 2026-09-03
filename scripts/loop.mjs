@@ -34,7 +34,7 @@ try {
   await p.goto(BASE, { waitUntil: "networkidle2" });
   await sleep(1200);
   const home = await text(p);
-  assert.match(home, /맡길 일을 적어주세요/, "hero headline missing");
+  assert.match(home, /오늘은 어떤 일을 끝낼까요/, "hero headline missing");
   assert.match(home, /맞는 제안을 추천합니다/, "recommendation promise missing");
   assert.match(home, /의뢰 등록/, "primary action missing");
   assert.match(home, /작업 찾기/, "task-first supply entry missing");
@@ -47,7 +47,7 @@ try {
 
   // 2 — describe work and verify structured QUEST/SOW
   await p.type("#work", "대외비 손그림 도면 3장을 현황도로 오늘 저녁 7시까지 정리해 주세요. DWG와 PDF 모두 필요합니다.");
-  await click(p, "의뢰 등록");
+  await click(p, "맡기기");
   await p.waitForFunction(() => location.pathname === "/new", { timeout: 6000 });
   await sleep(500);
 
