@@ -1,322 +1,335 @@
 # KAPAPI Origin and Growth Thesis
 
-Status: **canonical product/business thesis**  
+Status: **canonical product/business thesis on `개선안`**  
 Updated: 2026-09-03
 
 ## 1. Founder-origin problem
 
-KAPAPI did not begin from the abstract goal of building another professional-talent marketplace.
+KAPAPI did not begin from the abstract goal of creating another freelancer marketplace.
 
-The original founder problem was simpler:
+The original founder problem was concrete:
 
-> **I have spare time after work and useful office skills. I want to pick a small piece of work I can actually finish, complete it, and earn money without becoming a full-time freelancer, building a storefront, or taking a fixed-shift part-time job.**
+> **퇴근 후 남는 시간에 내가 할 수 있는 작은 온라인 업무를 골라 끝내고 돈 벌고 싶다. 프리랜서 상점을 만들거나 고정 알바를 잡고 싶은 건 아니다.**
 
-This origin matters because it defines the product from the PLAYER side before later enterprise language is applied.
+This defines the supply-side insight:
+
+- people have fragmented spare time;
+- they already possess useful office/professional skills;
+- many do not want to become full-time freelancers;
+- seeing real work is more actionable than inventing a service listing and waiting for demand.
 
 The mirrored GM problem is:
 
-> **I have a small piece of work that needs to be finished, but it is too small, irregular, or urgent to justify hiring another employee or starting a heavyweight vendor-selection process.**
+> **끝내야 하는 일이 있지만, 사람을 찾고 비교하고 설명하고 관리하기에는 일이 너무 작거나 불규칙하다.**
 
-KAPAPI connects these two forms of unused capacity:
+KAPAPI connects:
 
-- a person's available time + usable skill
-- an organization's unresolved task + insufficient current capacity
-
-The initial market thesis is therefore **task-first**, not profile-first or service-listing-first.
-
----
-
-## 2. Core product principle: task first
-
-Canonical principle:
-
-> **KAPAPI is not where a freelancer primarily creates a service storefront and waits to be discovered. It starts as a place where work already exists, a PLAYER can choose work they can finish, complete it, and earn.**
-
-PLAYER mental model:
-
-`see real work → judge fit → commit price + delivery → get routed/selected → finish → earn → build verified history`
-
-GM mental model:
-
-`define work → submit → KAPAPI finds capacity → result arrives → accept/revise`
-
-This is the reason the core object is a **QUEST**, not a freelancer listing.
-
-This principle is a design guardrail. Features that push KAPAPI toward storefront-building, follower-building, self-promotion, proposal-writing theatre, or generic expert directories require an explicit reason.
+- unused time + usable skill;
+- unresolved work + insufficient capacity;
+- with KAPAPI absorbing more of the search/selection/recovery burden between them.
 
 ---
 
-## 3. The initial job-to-be-done
+## 2. The key reconciliation: market for PLAYER, execution product for GM
+
+The founder-origin insight and the Outcome UX are not competing ideas.
+
+They are two sides of the same system.
+
+### PLAYER mental model
+
+```text
+real work exists
+→ find / receive suitable QUEST
+→ commit PRICE + DELIVERY TIME
+→ execute
+→ earn
+→ build verified task history
+```
+
+### GM mental model
+
+```text
+submit work
+→ KAPAPI structures the result
+→ see RESULT + PRICE + COMPLETION TIME
+→ approve
+→ result arrives
+→ accept / revise
+```
+
+Therefore:
+
+> **PLAYER에게는 일이 먼저 보이는 시장, GM에게는 사람을 고르지 않아도 되는 실행 서비스.**
+
+This is the canonical product shape.
+
+---
+
+## 3. Why task-first remains essential
+
+KAPAPI is still task-first even though the GM does not normally browse PLAYERs.
+
+The work unit exists before the worker selection.
+
+The core internal/PLAYER-side object is the **QUEST**, not a freelancer storefront.
+
+Task-first matters because it:
+
+- activates people who want to pick up real work rather than build a seller brand;
+- makes fragmented availability visible;
+- creates live PRICE × DELIVERY signals;
+- produces category/task-specific execution history;
+- supplies the internal market that lets KAPAPI hide freelancer-shopping complexity from the GM.
+
+Task-first is therefore the **supply architecture**, not necessarily the GM interface.
+
+---
+
+## 4. PRICE × DELIVERY remains central
+
+PLAYERs have different free-time windows and urgency preferences. GMs have different deadlines and willingness to pay.
+
+Every BID or equivalent internal market commitment should preserve:
+
+- PRICE;
+- committed DELIVERY TIME.
+
+This allows KAPAPI to compare current execution capacity economically.
+
+In the new model PRICE × DELIVERY is primarily:
+
+> **internal procurement and routing data**, not a requirement that the GM compare several offers.
+
+TIME ATTACK remains useful when urgent capacity has real economic value.
+
+---
+
+## 5. Initial job-to-be-done
 
 ### PLAYER
 
-The PLAYER is not required to think:
-
-> “I want to become a freelancer.”
-
-A valid early motivation is simply:
-
-> “I have one or two free hours. Is there a piece of work here that matches what I can do?”
+> “지금 한두 시간 비었는데, 내가 끝낼 수 있는 일이 있나?”
 
 Early PLAYER value:
 
-- no fixed shift
-- no need to invent a product/service listing first
-- no need to build an audience
-- no requirement to commit to a long project
-- work has a visible result and deadline
-- price and delivery commitment are explicit
-- verified completions compound into future trust
+- no fixed shift;
+- no need to create a storefront;
+- no need to build an audience;
+- bounded work and visible reward;
+- explicit price/time commitment;
+- repeatable task-specific history.
 
 ### GM
 
-The GM does not necessarily need a new professional relationship. The GM needs a result.
+> “이건 누군가는 끝내야 하는데, 사람을 새로 찾고 비교하고 관리하기에는 너무 애매하다.”
 
-Typical trigger:
+Early GM value:
 
-> “Someone needs to finish this, but hiring, searching, explaining and managing a vendor feels disproportionate to the task.”
-
-This remains compatible with the existing Capacity Gap / Skill Gap / Deadline Gap / Employment Gap model. Those are **demand mechanisms**, not the founder-origin story itself.
-
----
-
-## 4. Early QUEST shape
-
-The broad category is not “simple work” and not “expert consulting.”
-
-The strongest initial QUEST is a digitally transferable, bounded unit of work with a visible deliverable.
-
-Examples include:
-
-- spreadsheet cleanup / comparison tables
-- document formatting and structured data entry
-- research/data organization
-- PPT cleanup
-- image cleanup/editing
-- product listing work
-- translation/proofreading
-- subtitle/cut editing
-- defined CAD/drawing support
-- rendering
-- small web/code fixes
-- other bounded office/professional support tasks
-
-Good early QUEST properties:
-
-- clear input
-- clear output
-- hours to roughly two days
-- remote/digital delivery
-- mistakes are revisable
-- low irreversible liability
-- GM can inspect the result
-- enough comparable supply can exist
-
-The market can begin with ordinary office/support work and progressively include more skilled professional work as trust and routing data accumulate.
+- fewer steps before delegation;
+- no default worker-shopping workflow;
+- clearer result/price/time commitment;
+- KAPAPI handles procurement and defined recovery;
+- one place for acceptance/revision/history.
 
 ---
 
-## 5. Why PRICE × DELIVERY TIME belongs at the center
+## 6. The initial market is not simply ‘easy work’
 
-The founder-origin problem implies fragmented availability. PLAYERs have different amounts of spare time and different urgency preferences. GMs have different deadlines and willingness to pay.
+The strongest starting wedge is:
 
-Therefore a one-dimensional lowest-price market throws away important information.
+> **AI에게 그대로 맡기기엔 불안하고, 사람을 직접 찾아 계약하기엔 작은, 범위와 검수가 가능한 디지털 업무.**
 
-Every BID carries:
+Good properties:
 
-- PRICE
-- committed DELIVERY TIME
+- clear digital inputs/outputs;
+- bounded scope;
+- visible result;
+- mistakes are revisable;
+- objective/semi-objective checks;
+- multiple plausible executors;
+- low irreversible liability;
+- enough WTP to survive execution + QA/recovery;
+- AI/automation can reduce cost/time without eliminating accountability value.
 
-This allows spare capacity to become economically legible.
+Examples should be framed as outcomes:
 
-A PLAYER with a free evening can compete on speed. Another can compete on price with a longer commitment. A TIME ATTACK QUEST makes urgent capacity especially valuable.
+- documents → specified fields → checked spreadsheet;
+- messy data → defined normalization rules → verified workbook;
+- source material → predefined evidence table → source-linked result;
+- presentation/document → specified formatting rules → finished output;
+- defined CAD/production support under proper responsibility;
+- reproducible small web/code fix.
 
-PRICE × DELIVERY is therefore not decorative differentiation. It is the market mechanism connecting **available human capacity** to **time-sensitive unresolved work**.
-
----
-
-## 6. Relationship to auto-routing
-
-Task-first does not require the GM to manually study PLAYER profiles or BID cards.
-
-The two-sided architecture is:
-
-```text
-PLAYER side
-QUEST discovery → PRICE × DELIVERY BID → execution → verified history
-
-GM side
-work request → KAPAPI routing → result → accept/revise
-```
-
-The underlying market can remain visible and competitive to PLAYERs while KAPAPI progressively removes selection and coordination work from the GM.
-
-This reconciles the original side-job insight with the later outcome-orchestration thesis.
-
-The original insight is the **supply/market bootstrap**.
-The long-term outcome layer is the **GM convenience and retention destination**.
-
-They are not competing product definitions.
+Architecture/CAD remains a founder-domain testbed, not the company boundary.
 
 ---
 
-## 7. Growth ladder
+## 7. Why the GM should not shop the market
 
-KAPAPI should grow by increasing the value and reliability of work that can flow through the same task-first engine.
+A conventional marketplace improves how people are compared.
 
-### Phase A — Small online work market
+KAPAPI's stronger thesis is to remove most of that comparison from the GM experience.
 
-Goal: prove that people will pick bounded online work and that GMs will submit it.
+The GM usually does not care whether the result came from:
 
-`small office/support QUESTs → PRICE × DELIVERY → completion → REWARD`
+- PLAYER A;
+- PLAYER B;
+- AI + PLAYER verification;
+- deterministic automation;
+- a specialist partner;
+- a decomposed multi-resource pipeline.
 
-Learn:
+The GM cares about:
 
-- what work gets posted
-- what work attracts supply quickly
-- price/delivery distributions
-- completion and revision rates
-- where task definitions fail
+- what will be delivered;
+- how much it costs;
+- when it will be ready;
+- what happens if it fails;
+- whether the result can be accepted/revised safely.
 
-### Phase B — Skilled and professional QUESTs
+KAPAPI therefore sells an **Execution Contract** while preserving the market underneath.
 
-Expand into work where relevant career and domain context materially improve execution.
+---
 
-Examples: CAD support, defined design/production work, specialized spreadsheet/document work, technical content operations, small code tasks.
+## 8. Growth ladder
 
-Add stronger task-specific trust, career verification and category liquidity measurement.
+### Phase A — Outcome UX + concierge execution
 
-### Phase C — Repeat business capacity
+Prove:
 
-Once GMs repeatedly submit work, KAPAPI becomes more than a place to find side jobs.
+`GM request → price/time offer → KAPAPI procures → result`
 
-Add:
+Allow manual back-office work to learn the category, but measure operator minutes and margin so this does not silently become a permanent agency.
 
-- repeat QUEST templates
-- preferred/verified PLAYER pools
-- existing vendor import
-- organization history
-- reusable SOW patterns
-- routing intelligence
-- backup/replacement capacity
+### Phase B — Structured task-first supply market
 
-The GM begins to use KAPAPI as external capacity rather than as a freelancer search site.
+Build repeatable:
 
-### Phase D — On-demand workforce / outcome orchestration
+- QUEST/SOW structure;
+- open BIDs and/or targeted Offers;
+- PRICE × DELIVERY;
+- task-specific trust;
+- execution event data;
+- backup capacity.
+
+### Phase C — Market-informed quote/routing
+
+Use real transaction distributions to reduce operator decisions and quote error.
+
+### Phase D — Recovery + QA automation
+
+Internalize failure handling and objective checks so the GM does not restart supplier search.
+
+### Phase E — AI/automation execution leverage
+
+Use technology where it lowers accepted-outcome cost and turnaround without weakening trust.
+
+### Phase F — Repeat business capacity
+
+GMs increasingly think:
+
+> **“누구한테 맡기지?”가 아니라 “카파피로 보내.”**
+
+### Phase G — Work Execution Infrastructure
 
 Target:
 
-`work in → KAPAPI scopes/routes/recovers/checks → result out`
-
-At maturity, the GM should not care which marketplace mechanics were required behind the scenes. KAPAPI owns the reliability of converting unresolved work into completed work.
-
-The long-term destination remains outcome orchestration, but it is earned from transaction data and liquidity rather than declared on day one.
+```text
+work in
+→ scope / quote / procure / execute / check / recover
+→ result out
+```
 
 ---
 
-## 8. Strategic narrative
-
-The durable growth story is:
+## 9. Strategic narrative
 
 ```text
-Founder cannot find the kind of side work he wants
+Founder cannot find the small online work he wants
 ↓
-Build a market where the task exists first
+Build a task-first PLAYER market
 ↓
-People turn spare time + skill into completed QUESTs
+Businesses have small unresolved work but hate supplier-shopping overhead
 ↓
-Businesses turn irregular unresolved work into external capacity
+Do not make GM shop the market
 ↓
-KAPAPI accumulates price, delivery, fit and performance data
+Sell RESULT + PRICE + COMPLETION TIME
 ↓
-Routing becomes increasingly reliable
+Use PRICE × DELIVERY + human/AI/automation internally
 ↓
-Repeat business uses KAPAPI as an external workforce layer
+Completed work creates real cost/time/failure/recovery data
 ↓
-KAPAPI becomes outcome orchestration infrastructure
+Quotes, routing and recovery improve
+↓
+Repeat organizations route more work through KAPAPI
+↓
+WORK EXECUTION INFRASTRUCTURE
 ```
 
 Short form:
 
-> **Start with a better way to pick up work. Grow into a better way for organizations to get work done.**
-
-Korean product-language candidate:
-
-> **할 수 있는 일을 골라서, 끝내고, 돈 번다.**
-
-GM-side counterpart:
-
-> **해야 할 일을 올리면, 누군가 끝내준다.**
-
-These are explanatory lines, not mandatory final marketing copy.
+> **Start with a better way to pick up work. Use that market to create a better way to get work done.**
 
 ---
 
-## 9. Founder-problem fit for 2026 모두의 창업
+## 10. Founder-problem fit for 2026 모두의 창업
 
-The founder story should remain concrete rather than retrofitted into an enterprise thesis:
+Keep the story concrete:
 
-1. The founder personally searched for after-work side income.
-2. Existing options did not match the desired behavior: choose a small online office/professional task, finish it, get paid.
-3. That observation leads to a task-first market rather than a service-storefront-first market.
-4. The opposite side of the same market is organizations with bounded work that does not justify permanent staffing or heavyweight outsourcing.
-5. The prototype tests this transaction directly.
-6. Architecture/CAD provides a founder-domain testbed for higher-skill QUESTs, but KAPAPI is not limited to construction/architecture.
+1. The founder personally looked for after-work side income.
+2. Existing choices did not match the desired behavior: pick a small real online task, finish it, get paid.
+3. That creates a task-first supply market.
+4. The opposite side is people/organizations with bounded unresolved work whose delegation overhead is disproportionate.
+5. The product leap is to **hide most worker selection from the GM**, while keeping the market underneath.
+6. The prototype demonstrates Outcome UX honestly even if early execution is concierge/manual.
+7. Architecture/CAD provides a credible founder-domain testbed for skilled work but does not define KAPAPI.
 
-Do not inflate this story into a claim that all Korean SMEs have the same problem. Validate the GM side with real interviews and transactions.
+Do not claim every SME has this problem. Validate category by category with real paid outcomes.
 
 ---
 
-## 10. Validation implications
-
-Before broad platform claims, validate the bridge between the two sides.
+## 11. Validation implications
 
 PLAYER questions:
 
-- Will people actually choose bounded online tasks for side income?
-- Which task sizes and rewards create fast response?
-- Does PRICE × DELIVERY produce meaningful trade-offs?
-- Can KAPAPI attract useful supply without requiring storefront-building?
+- Will people choose real bounded QUESTs for side income?
+- Does PRICE × DELIVERY reflect availability and urgency?
+- Do targeted Offers improve response in standardized categories?
+- Can qualified supply repeat at fair effective earnings?
 
 GM questions:
 
-- Will GMs submit tasks that are currently done personally, delayed, assigned internally, or sent to known vendors?
-- Which task shapes are small enough to outsource through KAPAPI but valuable enough to pay for?
-- Does removing freelancer search/comparison increase willingness to delegate?
-- Do repeat QUESTs emerge?
+- Will GMs buy one result/price/time offer instead of comparing workers?
+- Will they pay a premium for reduced search/management/recovery burden?
+- Which task shapes support this behavior?
+- Does self-funded repeat emerge?
 
-Marketplace questions:
+Execution/economic questions:
 
-- time to first valid BID
-- eligible BIDs per QUEST
-- assignment rate
-- completion rate
-- on-time rate
-- revision rate
-- GM acceptance
-- PLAYER effective earnings
-- repeat GM rate
-- repeat PLAYER rate
+- Can SOWs become reusable and increasingly standardized?
+- Can KAPAPI quote safely enough?
+- Can recovery succeed without destroying margin?
+- Can operator/QA minutes fall with repetition?
+- Can AI/automation reduce cost while preserving accepted quality?
 
-The strongest proof is not registration count. It is **real work moving from unresolved to completed through KAPAPI**.
+The strongest proof remains **real work moving from unresolved to accepted**, but the new canonical proof includes the economics of KAPAPI taking responsibility for that movement.
 
 ---
 
-## 11. Product guardrails
+## 12. Product guardrails
 
 KAPAPI should not drift into:
 
-- a generic expert directory
-- a portfolio-first social network
-- a storefront clone where PLAYERs mainly wait for inbound leads
-- a long-project IT outsourcing board
-- a staffing agency that requires heavy offline operation
-- a universal regulated-professional marketplace before category evidence exists
+- generic expert directory;
+- storefront/portfolio social network;
+- long-project outsourcing board;
+- employee-like hourly staffing;
+- low-margin manual agency with no automation path;
+- universal regulated-professional execution;
+- fully commoditized near-zero-value tasks as the entire market;
+- unsupported instant-quote/autopilot claims.
 
-Every major feature should answer at least one of these:
+North Star:
 
-1. Does it make it easier for a PLAYER to find and complete suitable work?
-2. Does it make it easier for a GM to turn unresolved work into a result?
-3. Does it improve trust, liquidity, routing or recovery enough to make 1 or 2 work better?
-
-If not, it is probably not core KAPAPI.
+> **해야 할 일을 넣으면, 결과가 나온다.**
