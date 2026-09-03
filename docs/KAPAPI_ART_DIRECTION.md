@@ -3,7 +3,7 @@
 Status: **current canonical art-direction layer**  
 Updated: **2026-09-03**
 
-Product behavior follows the current canon, especially D-032 through D-034.
+Product behavior follows D-033.1–.12, D-034 and D-035, with D-033.1 governing execution-contract approval.
 
 ## 1. Visual thesis
 
@@ -27,23 +27,27 @@ Product identity should come from real work moving through real states, not from
 
 ```text
 업무 등록
+→ 작업 조건 정리
+→ 실행 계약 승인 (결과물 · 가격 · 완료시간 · 수정 경계 · 복구 경계)
 → 작업자들이 가격 + 완료시간 제안
 → 필수요건 확인
 → KAPAPI 선정
 → 작업자 배정
 → 수행
 → 결과
-→ 업무 완료
+→ 발주자 수락 / 수정 요청
+→ 수락 후 업무 완료
 ```
 
-On the 발주자 surface this is three nodes — 발주자 → 카파피 → 결과. The lines between
-업무 등록 and 결과 are the middle node, visible on the 작업자 surface and `이용 방법`.
+The 발주자 sees 업무 입력 → 실행 계약 승인 → KAPAPI 진행 상황 → 결과 → 수락 / 수정 요청.
+Proposal competition, selection, assignment, QA and recovery occur inside KAPAPI;
+the 작업자 surface and `이용 방법` may explain that execution mechanism.
 
 On the 작업자 surface, do not visually imply assignment before it has happened.
-On the 발주자 surface, D-035 removes the confirmation step: assignment is shown
-as something KAPAPI did, with its rationale available as information.
+On the 발주자 surface, approval applies to the execution contract. Assignment is
+shown as something KAPAPI did, with its rationale available as information.
 
-Future direction:
+Future internal capability behind the same execution-contract flow:
 
 ```text
 completed transactions
@@ -149,8 +153,8 @@ Avoid relying on effects to create identity.
 
 계약면에 작업자는 등장하지 않습니다. 가격과 완료시간이 그 화면에서 가장 큰 값이어야
 하고, 근거 문장은 그보다 작게 붙습니다 — 금액을 크게 쓰되 어디서 나왔는지 숨기지 않는
-것이 이 화면의 신뢰를 만듭니다. 강조색은 계약면 하나에만 씁니다. 발주자가 한 번
-행동하는 지점이기 때문입니다.
+것이 이 화면의 신뢰를 만듭니다. 계약 승인 단계의 강조색은 계약면 하나에만 씁니다.
+발주자가 실행 조건을 승인하는 지점이기 때문입니다.
 
 선정 시퀀스는 발주자 화면이 아니라 `이용 방법`과 작업자 화면에 속합니다:
 
@@ -162,8 +166,8 @@ Avoid relying on effects to create identity.
 → 배정
 ```
 
-발주자 화면에는 그 결과만 나타납니다 — 배정된 작업자와 왜 이 작업자인가요. `추천`,
-`확정`, `이 작업자로 진행`, `다른 제안 보기` 라벨은 어디에도 쓰지 않습니다. 승자 축하나
+발주자 화면의 배정 기록에는 배정된 작업자와 선정 근거를 정보로 제공합니다.
+작업자를 고르거나 다른 제안을 비교하는 조작은 제공하지 않습니다. 승자 축하나
 잠금 연출도 쓰지 않습니다.
 
 불투명한 “AI BEST MATCH” 류를 설명으로 쓰지 않습니다. 선정은 근거를 보여주는 방식으로만
@@ -224,6 +228,7 @@ Current real-UI sequence:
 
 ```text
 업무 등록
+→ 실행 계약 승인 (결과물 · 가격 · 완료시간 · 수정 경계 · 복구 경계)
 → (카파피: 제안 도착 · 조건 확인 · 선정 · 배정)
 → 결과 도착
 ```
@@ -259,11 +264,12 @@ MARKET
 → OUTCOME
 ```
 
-Potential execution resources:
+Potential internal execution resources, used where validated:
 
 `HUMAN WORKER · AI · AUTOMATION · SPECIALIST PARTNER · HYBRID`
 
-Make it visually obvious this is earned evolution, not today's universal guarantee.
+Make it visually obvious that category coverage and automated reliability are
+earned. The client contract/result experience already applies.
 
 ---
 
@@ -272,17 +278,16 @@ Make it visually obvious this is earned evolution, not today's universal guarant
 발주자 surface (`/`):
 
 1. task-entry hero — one question, one field, `맡기기`
-2. 업무 입력 → 카파피 → 결과 as three beats of one real work item
+2. 업무 입력 → 실행 계약 승인 → 카파피 → 결과 as one real work item, with final acceptance/revision
 3. one account, both roles
 
 작업자 surface (`/board`):
 
 1. open work with 보수, 완료시간, 마감, 제안 count, eligibility
-2. price × completion time bidding
+2. price × completion time proposals
 
-`이용 방법` carries the full mechanism, including the excluded 제안.
-9. data → routing/recovery → execution layer
-10. worker entry
+`이용 방법` carries the full internal mechanism, including the excluded 제안,
+QA/recovery, and the evidence needed to expand execution responsibility.
 
 ---
 
@@ -290,8 +295,8 @@ Make it visually obvious this is earned evolution, not today's universal guarant
 
 Reject implementation if it reads primarily as a freelancer directory, generic AI SaaS/dashboard, developer console, gamified work app, CAD-only service or pitch-deck page.
 
-Reject if the 발주자 surface shows a ranked comparison or any control that picks a worker, the assignment arrives with no visible criteria, price × completion time is visually weak on the surfaces that carry it, decorative progression outranks real work evidence, or future execution capability is presented as current magic.
+Reject if execution-contract approval is missing, the 발주자 surface shows a ranked comparison or any control that picks a worker, the assignment arrives with no visible criteria, price × completion time is visually weak on the surfaces that carry it, decorative progression outranks real work evidence, or future execution capability is presented as current magic.
 
 Desired reaction:
 
-> **“일이 먼저 올라오고, 카파피가 가격·완료시간과 실제 작업이력으로 선택을 쉽게 만들며, 거래가 쌓일수록 더 많은 실행을 맡게 되는 제품.”**
+> **“발주자는 결과물·가격·완료시간·수정·복구 조건을 승인하고, 카파피가 내부에서 실행을 맡아 결과를 돌려주는 제품.”**

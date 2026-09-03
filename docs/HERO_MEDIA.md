@@ -14,10 +14,10 @@ viewports, so the rule is enforced rather than remembered.
 What the client experiences is three nodes:
 
 ```text
-발주자  →  카파피  →  결과
+업무 입력  →  실행 계약 승인  →  카파피  →  결과  →  수락 / 수정 요청
 ```
 
-입찰 and 선정 happen inside the middle node, so the film's job is not to narrate
+Proposal competition and selection happen inside KAPAPI, so the film's job is not to narrate
 a marketplace. It carries the human half of the composition while the action —
 upload, describe, 맡기기 — sits beside it in real UI, not in the footage.
 
@@ -29,15 +29,19 @@ is guaranteed once submitted.
 ## 2. Product behavior represented
 
 ```text
-가격 + 완료시간 제안 도착
+업무 요청 / 파일 → 작업 조건 정리
+→ 실행 계약 승인 (결과물 · 가격 · 완료시간 · 수정 경계 · 복구 경계)
+→ [KAPAPI 내부] 가격 + 완료시간 제안 도착
 → 필수요건 / 작업이력 / 가격 × 완료시간 확인
 → KAPAPI 선정
 → 작업자 배정
 → 수행
+→ QA / 필요 시 계약 경계에 따른 복구
 → 결과 도착
 ```
 
-The client sees none of the first four lines as steps. They are the middle node.
+The client approves the execution contract, then sees progress and the result.
+Proposal comparison, selection, assignment, QA and recovery remain KAPAPI's execution mechanism.
 
 Ending:
 
@@ -47,7 +51,8 @@ Ending:
 → 수락 / 수정 요청
 ```
 
-Long-term `work in → result out` appears only as clearly future-oriented product evolution.
+The current outcome UX follows the contract. Universal instant quotes, autonomous
+execution and broad completion guarantees remain earned future capabilities.
 
 ---
 
@@ -91,11 +96,11 @@ to fit beside it. Decoding stops when the hero scrolls out of view.
 
 The hero no longer animates a sequence — the film plays and the action sits beside
 it. The transaction is shown one section down, as three static beats built from
-real `route()` output:
+real request, contract and result objects:
 
 ```text
-01 업무를 올립니다     파일 · 마감 · 원하는 가격
-02 카파피가 배정합니다  선정된 작업자 · 선정 근거      ← the step the client does not do
+01 업무와 조건을 확인합니다  파일 · 실행 계약 · 승인
+02 카파피가 실행합니다    진행 상황 · 배정 근거
 03 결과가 도착합니다    결과 파일 · 검수 항목 · 도착 시각
 ```
 
@@ -112,8 +117,8 @@ Useful evidence:
 
 Do not use special role/state vocabulary, progression levels or experience points.
 
-There is no `발주자 확정` step (D-035). On the 발주자 surface, `작업자 배정` is shown
-as something KAPAPI did, together with the criteria that produced it.
+The 발주자 approves the execution contract before KAPAPI procures execution.
+`작업자 배정` is then shown as something KAPAPI did, together with its criteria.
 
 ---
 
@@ -131,7 +136,9 @@ The ending should be quiet and believable. Do not use success slogans, exaggerat
 
 ## 8. Responsive / reduced motion
 
-Desktop may use laptop compositing. Mobile may cut directly to product UI. Reduced-motion should show a strong static/poster state and preserve task-entry action, current product promise and result-oriented meaning.
+Desktop keeps the complete film beside the action; mobile stacks the complete film
+below it. Reduced-motion uses a static first frame and preserves task entry, contract
+approval and result-oriented meaning. No viewport uses compositing or a product-UI cut into the film.
 
 ---
 
@@ -140,7 +147,8 @@ Desktop may use laptop compositing. Mobile may cut directly to product UI. Reduc
 Before approval:
 
 - capture desktop and mobile states
-- verify recommendation occurs before confirmation/assignment
+- verify execution-contract approval precedes internal procurement and assignment
+- verify the client is never asked to compare proposals or select an executor
 - verify no generated fake readable UI is authoritative
 - verify no special/game terminology appears
 - verify first paint/task input does not depend on video download

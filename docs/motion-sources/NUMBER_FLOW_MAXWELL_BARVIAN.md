@@ -57,24 +57,24 @@ Therefore KAPAPI should treat this as a **specialized numeric-state component**,
 
 ## KAPAPI adaptation candidates
 
-High-confidence uses:
+High-confidence uses, only where the underlying state is actually shown on that surface:
 
-- BID count: `6 → 7`
-- BID price when a focal proposal changes
-- PLAYER completed-QUEST count
+- internal-mechanism demo 제안 count: `6 → 7`
+- internal-mechanism demo price when a focal proposal changes
+- 작업자 completed-업무 count
 - on-time percentage when animated as part of a staged demo
-- LEVEL / EXP increments
 - delivery performance metrics
 
 Conditional use:
 
-- TIME ATTACK countdown, only after checking whether Number Flow behaves cleanly at one-second cadence and does not create distracting digit churn
+- 긴급 업무 countdown, only after checking whether Number Flow behaves cleanly at one-second cadence and does not create distracting digit churn
 
 Do not use for:
 
 - static currency values that never change
 - every metric on initial render
 - decorative rolling numbers
+- decorative progression scores
 - slot-machine-like repeated looping
 
 ## Implementation decision
@@ -87,7 +87,7 @@ Claude Code should first test `@number-flow/react` in an isolated KAPAPI metric 
 2. Stable width/layout while digits change.
 3. Decimal and negative-value behavior.
 4. Reduced-motion behavior.
-5. One-second countdown performance before using it in TIME ATTACK.
+5. One-second countdown performance before using it in 긴급 업무.
 6. No conflict with KAPAPI numeric typography or tabular-number requirements.
 
 ## Design principle

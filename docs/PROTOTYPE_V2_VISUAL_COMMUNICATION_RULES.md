@@ -41,7 +41,8 @@ If a section needs that structure, redesign the visual.
 
 ## 3. Show the current KAPAPI transaction truthfully
 
-Current prototype behavior under D-035. What the 발주자 sees is three nodes:
+Current prototype behavior under D-033.1–.12, D-034 and D-035. The simple
+업무 입력 → KAPAPI → 결과 model includes explicit contract approval and result review:
 
 ```text
 [발주자: 파일 + 한 줄 설명]
@@ -58,7 +59,7 @@ Current prototype behavior under D-035. What the 발주자 sees is three nodes:
 Inside the middle node, and visible on the 작업자 surface and `이용 방법`:
 
 ```text
-[업무 등록] → [작업자들이 PRICE × DELIVERY 입찰]
+[업무 등록] → [작업자들이 가격 × 완료시간 제안]
            → [자격·마감·예산·보안 미충족 제외]
            → [KAPAPI 선정] → [작업자 배정] → [수행]
 ```
@@ -66,9 +67,9 @@ Inside the middle node, and visible on the 작업자 surface and `이용 방법`
 Use product UI, files, timing, states and motion so this can be understood without
 a long explanation.
 
-Do **not** put the bid list, a ranked comparison, or a selection control on the
-발주자 surface. There is no confirmation bridge to visualize — 선정 and 배정 are one
-state, and the client is shown the result of it with its criteria attached.
+Keep proposal lists, ranked comparisons and worker-selection controls inside
+KAPAPI's procurement process or the mechanism explainer. The client approves the
+execution contract, then sees assignment information and its criteria.
 
 ---
 
@@ -84,17 +85,19 @@ Show:
 - KAPAPI removes invalid/ineligible options and says which condition each missed;
 - task-specific trust and work history decide, not the lowest price;
 - KAPAPI selects, and the criteria stay on the record;
-- the 발주자 does nothing between uploading and receiving;
+- the 발주자 approves the execution contract after uploading, then follows progress until the result arrives;
 - acceptance and the revision request remain the client's;
 - the result closes the 업무 and creates better future data.
 
-The selection surface should carry no decision burden at all on the client side.
+The client's decisions concern the execution contract and delivered result.
+Selection, assignment, QA and recovery belong to KAPAPI.
 
 ---
 
 ## 5. Demonstrate the evolution visually
 
-The long-term Outcome Layer is important, but it is future evolution.
+The contract-and-result client experience already applies. Future evolution
+improves the reliability, economics and category coverage of KAPAPI's internal execution.
 
 Preferred visual progression:
 
@@ -106,10 +109,10 @@ Preferred visual progression:
 → default routing
 → replacement/recovery
 → repeat capacity
-→ WORK IN → RESULT OUT
+→ reliable execution across more proven categories
 ```
 
-If execution resources are shown, the mature layer may include:
+If execution resources are shown, KAPAPI may use validated combinations of:
 
 - HUMAN WORKER
 - AI
@@ -121,7 +124,7 @@ Do not depict universal autonomous routing or SLA guarantees as current producti
 
 ---
 
-## 6. World-building is visual grammar
+## 6. Product identity uses real work states
 
 Use real state objects:
 
@@ -137,7 +140,7 @@ Use real state objects:
 Korean labels are set in the sans face without letter-spacing. The mono treatment
 was designed for latin small-caps and splits Hangul into detached glyphs.
 
-Do not write essays explaining the world.
+Do not create a vocabulary layer that needs an explanation.
 
 Do not invent pseudo-lore that has no product meaning.
 
@@ -153,7 +156,7 @@ Prefer:
 - deadline timestamps
 - task-specific history
 - on-time/revision evidence
-- recommendation rationale
+- assignment rationale
 - status transitions
 - result checks
 - video footage
@@ -216,7 +219,7 @@ Reject a public section if:
 - the product UI is secondary to explanation;
 - it looks like documentation or a pitch-deck slide;
 - it needs a numbered paragraph grid to feel complete;
-- recommendation and assignment are visually indistinguishable;
+- execution-contract approval is omitted or confused with worker selection;
 - it implies day-one universal auto-routing;
 - CAD/construction dominates category perception;
 - the 작업자 supply path is reduced to generic seller/profile marketing.

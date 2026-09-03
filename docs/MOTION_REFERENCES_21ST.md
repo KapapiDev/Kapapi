@@ -1,6 +1,6 @@
 # KAPAPI Motion References — 21st.dev
 
-Status: **prototype motion reference board**  
+Status: **current prototype motion reference board; product behavior follows D-033.1–.12, D-034 and D-035**
 Purpose: Give Claude Code concrete 21st.dev MCP search targets and adaptation rules before implementation.  
 Rule: **These are motion references, not a component shopping list. Do not paste visual styles wholesale. KAPAPI_DESIGN remains the visual authority.**
 
@@ -44,7 +44,7 @@ Numbers are core product objects:
 - 제안 count
 - completed 업무 count
 - on-time rate
-- ~~LEVEL / EXP~~ (removed by D-034; trust is 작업이력 / 정시완료율 / 수정률)
+- task-specific revision rate
 - delivery performance
 
 Static number replacement makes the interface feel mocked. Smooth numeric transitions can make state changes feel real without adding decorative animation.
@@ -140,7 +140,9 @@ A first-time viewer should understand that a new professional has submitted a pr
 
 ### Why KAPAPI needs it
 
-The hero should not be a static screenshot. It should demonstrate one transaction loop in roughly 10–15 seconds.
+The product narrative should demonstrate one transaction loop while preserving
+the founder's unmodified hero film. The film and adjacent action follow `HERO_MEDIA.md`;
+use transaction sequencing only in real UI outside the footage.
 
 This reference is useful for studying:
 
@@ -153,13 +155,14 @@ This reference is useful for studying:
 
 Do **not** implement a literal feature carousel.
 
-Use the sequencing pattern to build a hero transaction narrative:
+Use the sequencing pattern to build a transaction narrative outside the hero film:
 
 ```text
 업무 요청
-→ 실행 계약 승인
+→ 실행 계약 승인 (결과물 · 가격 · 완료시간 · 수정 경계 · 복구 경계)
 → 작업자 배정
 → 결과 도착
+→ 발주자 수락 / 수정 요청
 → 업무 완료
 ```
 
@@ -181,7 +184,8 @@ The viewer should perceive one product state evolving, not six separate slides.
 
 ### Acceptance test
 
-Without scrolling, the hero alone should explain that KAPAPI receives work, attracts proposals, selects execution, and returns a result.
+The narrative should show work entry, execution-contract approval, KAPAPI's
+execution and result acceptance/revision without asking the client to compare proposals.
 
 ---
 
@@ -197,12 +201,14 @@ Without scrolling, the hero alone should explain that KAPAPI receives work, attr
 KAPAPI has a difficult strategic story to explain:
 
 ```text
-Marketplace
-→ Assist
-→ Autopilot
+Assisted Quote
+→ Market-informed Quote
+→ Near-instant Quote in proven standardized categories
 ```
 
-A static three-column feature section can make this look like ordinary feature expansion. The actual idea is that 발주자-facing complexity progressively disappears.
+A static three-column feature section can make this look like ordinary feature
+expansion. The actual idea is that internal quoting, routing, QA and recovery
+improve while the client already uses execution-contract approval and result review.
 
 ### KAPAPI adaptation
 
@@ -211,24 +217,23 @@ Use the diagram/card relationship pattern to explain product evolution.
 Desired visual logic:
 
 ```text
-MARKETPLACE
-이용 방법 shows 업무 + 제안 + 작업자 선정
+ASSISTED EXECUTION
+발주자 submits work → approves execution contract → receives/reviews result
+KAPAPI uses manual/concierge scoping, procurement, QA and recovery
 
-        ↓ complexity removed
+        ↓ real completed-outcome data
 
-ASSIST
-발주자 gives file + short instruction
-KAPAPI structures and recommends
+MARKET-INFORMED EXECUTION
+KAPAPI improves scope, quote, routing and recovery
 
-        ↓ complexity removed
+        ↓ standardized categories meet evidence and economics gates
 
-AUTOPILOT
-FILE + DEADLINE
-→ KAPAPI
-→ RESULT
+MORE AUTOMATED EXECUTION
+The same client contract/result flow, with less operator effort
 ```
 
-The animation should progressively remove steps from the 발주자 side — D-035 has already removed the comparison and the confirmation.
+The animation may reduce KAPAPI's manual work as capability is earned. Execution-contract
+approval and final result acceptance/revision remain visible throughout (D-033.1, D-033.5–.6).
 
 ### Do not copy
 
@@ -239,7 +244,9 @@ The animation should progressively remove steps from the 발주자 side — D-03
 
 ### Acceptance test
 
-A reviewer should understand that this is not 'more features'. It is **fewer 발주자 decisions** — D-035 has already removed the comparison and the confirmation, leaving 발주자 → 카파피 → 결과.
+A reviewer should understand that the client already approves an execution contract
+instead of shopping for workers. Later automation improves KAPAPI's internal execution,
+with category-specific evidence and economics governing expansion.
 
 ---
 
@@ -256,11 +263,11 @@ A reviewer should understand that this is not 'more features'. It is **fewer 발
 
 Useful data includes:
 
-- 156 relevant QUESTS completed
+- 156 relevant tasks completed
 - 99% on-time
 - revision rate
 - recent completion history
-- task/category LEVEL
+- task/category-specific completion history
 
 ### KAPAPI adaptation
 
@@ -269,7 +276,7 @@ Study how compact cards reveal changing metrics and micro-visual data.
 Potential applications:
 
 - 작업자 profile trust module
-- 제안 comparison trust detail
+- internal proposal-comparison trust detail
 - recent delivery reliability
 - tiny history graph or completion trend
 
@@ -307,7 +314,7 @@ Allowed only for:
 
 - one or two major editorial statements
 - selected hero/supporting copy
-- an Autopilot transition where complexity visually disappears
+- a future automation transition where internal manual work is reduced
 
 ### Do not use it for
 
@@ -354,7 +361,7 @@ Default decision: **do not implement unless visual QA proves it adds product val
 
 The references above should be transformed into the following KAPAPI-native motions.
 
-## MOTION-A — `BID_ARRIVAL`
+## MOTION-A — `PROPOSAL_ARRIVAL`
 
 Primary reference: REF-21-002 + REF-21-001
 
@@ -371,7 +378,7 @@ Target feel: precise, live, operational.
 
 ---
 
-## MOTION-B — `BID_DECISION`
+## MOTION-B — `INTERNAL_SELECTION`
 
 No component should be copied literally. Build from KAPAPI state logic.
 
@@ -380,7 +387,7 @@ When KAPAPI selects 작업자 C:
 ```text
 A / B reduce emphasis
 C receives selected border/state
-selection control locks
+KAPAPI records the selection rationale
 DELIVERY commitment becomes primary
 작업자 배정 state appears
 ```
@@ -389,7 +396,7 @@ Avoid cards flying away, confetti, or exaggerated scaling.
 
 ---
 
-## MOTION-C — `TIME_ATTACK`
+## MOTION-C — `URGENT_DEADLINE`
 
 Primary reference: REF-21-001 for numeric change.
 
@@ -404,7 +411,7 @@ Elements:
 
 ---
 
-## MOTION-D — `QUEST_PROGRESS`
+## MOTION-D — `WORK_PROGRESS`
 
 A calm state machine:
 
@@ -420,7 +427,7 @@ Transitions should feel like system state changes, not marketing animation.
 
 ---
 
-## MOTION-E — `QUEST_COMPLETE`
+## MOTION-E — `WORK_COMPLETE`
 
 Primary references: REF-21-001 plus Factory motion philosophy from KAPAPI design references.
 
@@ -446,43 +453,49 @@ No fireworks. No coins. No cartoon reward burst.
 
 ---
 
-## MOTION-F — `AUTOPILOT_COLLAPSE`
+## MOTION-F — `EXECUTION_BOUNDARY`
 
 Primary reference: REF-21-004.
 
 This is one of the highest-value storytelling motions.
 
-Start with visible marketplace complexity:
+On `이용 방법`, explain KAPAPI's internal execution resources and state:
 
 ```text
 업무
 제안 A / B / C
 작업자
 NDA
-CONTRACT
+PROCUREMENT
 STATUS
 FILES
 ```
 
-Then progressively move those items behind KAPAPI until the 발주자 sees only:
+Keep those items inside KAPAPI while the 발주자 flow stays visible:
 
 ```text
-FILE + DEADLINE
+WORK REQUEST
+      ↓
+EXECUTION CONTRACT APPROVAL
+result + price + completion time + revision + recovery
       ↓
     KAPAPI
       ↓
     RESULT
+      ↓
+ACCEPT / REVISE
 ```
 
 The animation visually explains the product thesis:
 
-> **KAPAPI improves by removing decisions from the 발주자 workflow.**
+> **KAPAPI handles execution choices; the 발주자 approves the contract and reviews the result.**
 
 ---
 
 # 5. Global motion constraints
 
-Until `KAPAPI_MOTION.md` defines final tokens, use these provisional limits during exploration only.
+`KAPAPI_MOTION.md` defines the canonical tokens. The ranges below are reference
+exploration bounds only and must not override that motion system.
 
 | Motion class | Target range | Purpose |
 | --- | ---: | --- |
@@ -535,8 +548,8 @@ Do not install five animation libraries because five reference components use di
 | --- | --- | --- | --- |
 | REF-21-001 | Number Flow | 가격 / 완료시간 / live metrics | **P0** |
 | REF-21-002 | Animate Card Animation | 제안 arrival / insertion | **P0** |
-| REF-21-003 | Animated Feature Carousel | hero transaction sequence | **P0** |
-| REF-21-004 | Animated Card Diagram | Marketplace → Assist → Autopilot | **P1** |
+| REF-21-003 | Animated Feature Carousel | transaction sequence outside the hero film | **P0** |
+| REF-21-004 | Animated Card Diagram | assisted → market-informed → proven-category automation | **P1** |
 | REF-21-005 | Animated Card Chart | 작업자 trust history | **P1** |
 | REF-21-006 | Blur Fade | rare editorial reveal | **P2** |
 | REF-21-X01 | Spotlight Cursor | possible hero experiment | **Default reject** |

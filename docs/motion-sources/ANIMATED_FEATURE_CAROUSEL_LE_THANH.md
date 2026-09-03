@@ -2,7 +2,7 @@
 
 Source type: 21st.dev component + demo
 Status: **REMIX / P0 narrative-motion reference**
-Primary KAPAPI use: **Hero transaction sequence**
+Primary KAPAPI use: **Client transaction explanation within a stable product frame**
 
 ## Source-backed assessment
 
@@ -21,12 +21,12 @@ The strongest transferable pattern is a **stable shell with synchronized state p
 For KAPAPI, this maps naturally to:
 
 ```text
-QUEST CREATED
-→ BID RECEIVED
-→ BID COMPARISON
-→ PLAYER SELECTED
-→ DELIVERED
-→ QUEST COMPLETE
+업무 요청 / 파일
+→ 실행 계약: 결과물 + 가격 + 완료시간 + 수정 경계 + 복구 경계
+→ 발주자 계약 승인
+→ KAPAPI 수행·검수·필요 시 복구
+→ 결과 전달
+→ 발주자 수락 / 수정 요청
 ```
 
 The important idea is that the **product frame stays stable while the transaction state evolves inside it**. This is much stronger than presenting six unrelated marketing slides.
@@ -45,12 +45,12 @@ opacity: 1 - Math.abs(wrappedDistance) * 0.25
 This can become a restrained KAPAPI transaction rail such as:
 
 ```text
-01 QUEST
-02 BIDS
-03 SELECTED
-04 WORKING
-05 DELIVERED
-06 COMPLETE
+01 업무 접수
+02 실행 계약
+03 계약 승인
+04 수행·검수
+05 결과 확인
+06 수락 / 수정 요청
 ```
 
 Do not copy the large pill styling.
@@ -115,35 +115,29 @@ The carousel pauses on hover. KAPAPI's hero narrative should similarly yield con
 
 ## KAPAPI adaptation
 
-Recommended hero structure:
+Possible transaction-demo structure, without replacing the approved hero composition:
 
 ```text
-┌─────────────────────────────────────────────┐
-│ QUEST #0182                    TIME ATTACK   │
-│ 기존 건물 현황도 CAD 작성                  │
-│                                             │
-│   [stable product frame]                    │
-│                                             │
-│ 01 QUEST                                    │
-│ 02 BIDS          ← active state rail        │
-│ 03 SELECTED                                 │
-│ 04 WORKING                                  │
-│ 05 DELIVERED                                │
-│ 06 COMPLETE                                 │
-└─────────────────────────────────────────────┘
+업무 #0182 — 문서 서식 통일
+[stable product frame]
+01 업무 접수
+02 실행 계약
+03 계약 승인
+04 수행·검수
+05 결과 확인
+06 수락 / 수정 요청
 ```
 
 Inside the stable product frame, the actual product state changes:
 
-- QUEST specification appears
-- BID A arrives
-- BID B / C appear
-- GM selection locks
-- work state progresses
-- file arrives
-- QUEST COMPLETE resolves
+- the request and files appear
+- the execution contract displays all five terms
+- the client's contract approval is recorded
+- KAPAPI execution and QA status progresses; recovery appears if needed
+- the result file arrives
+- the client accepts or requests revision; only acceptance completes the work
 
-The sequence should feel like **one transaction happening live**, not a feature slideshow.
+The sequence should feel like **one transaction happening live**. Proposal arrival and ranking belong in a separate explanation of KAPAPI's internal mechanism, outside the client's action sequence.
 
 ## Remove / reject from the reference
 
@@ -166,11 +160,13 @@ The source changes states every 3000ms. That is useful evidence, but KAPAPI shou
 
 Suggested exploration:
 
-- QUEST established: 1.8–2.4s
-- each BID arrival: 1.4–2.0s
-- comparison pause: 2.0–3.0s
-- PLAYER SELECTED: 1.5–2.0s
-- delivery / complete: 2.0–3.0s
+- request established: 1.8–2.4s
+- contract terms shown: readable pause of at least 3s in an illustrative replay
+- recorded contract approval: 1.5–2.0s
+- execution / QA status: 2.0–3.0s
+- result and acceptance/revision: 2.0–3.0s
+
+Autoplay is only a clearly labeled illustrative replay. In the actual client flow, contract approval and result acceptance require the client's action and never advance on a timer.
 
 The full hero loop should remain understandable rather than fast merely to look dynamic.
 

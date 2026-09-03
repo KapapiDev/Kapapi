@@ -1,8 +1,14 @@
 # KAPAPI Prototype v2 — Tool Audit
 
-Status: **record of what was actually run**
+Status: **SUPERSEDED — historical tool-use and verification snapshot**
 Branch: `feat/prototype-v2`
 Updated: **2026-09-03**
+
+> This file preserves the earlier session's reported tool attempts and checks.
+> It does not verify the latest branch HEAD, tool availability or deployed preview.
+> Earlier hero implementation and product-state references are historical;
+> current requirements follow D-033.1–.12, D-034, D-035, `HERO_MEDIA.md` and
+> `QA_CHECKLIST.md`. Current validation must be reported from an actual new run.
 
 The v2 directive required that every available capability be genuinely attempted, and
 that "unavailable" be a finding rather than an assumption. This file records the

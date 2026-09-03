@@ -1,7 +1,7 @@
 # Prototype v2 — Live Reference Addendum
 
 Status: **mandatory for `feat/prototype-v2` rebuild**  
-Updated: 2026-09-02
+Updated: 2026-09-03
 
 This addendum extends `REBUILD_V2_HANDOFF.md`.
 
@@ -91,7 +91,7 @@ But do not blindly copy:
 - exact copy,
 - recognizable illustrations,
 - proprietary assets,
-- manual freelancer-selection mechanics that conflict with KAPAPI auto-routing,
+- client-side freelancer-selection mechanics that conflict with execution-contract approval and KAPAPI's internal procurement,
 - permanent buyer/seller account assumptions that conflict with universal identity.
 
 The target is **familiar transaction grammar + unmistakably KAPAPI execution**.
@@ -129,7 +129,7 @@ It must explicitly compare Kmong, Wishket and Soomgo and record:
 
 1. proven patterns KAPAPI should preserve,
 2. friction KAPAPI should remove,
-3. patterns superseded by KAPAPI auto-routing,
+3. patterns superseded by execution-contract approval and KAPAPI's internal procurement,
 4. patterns superseded by universal-user identity,
 5. Korean-language and trust conventions worth carrying into KAPAPI.
 
@@ -148,6 +148,6 @@ A direction should also fail if it looks familiar beside Kmong/Wishket/Soomgo bu
 
 The desired balance is:
 
-> **Korean marketplace familiarity at the transaction layer + premium global product quality at the visual layer + KAPAPI world/state grammar as the differentiator.**
+> **Korean marketplace familiarity at the transaction layer + premium global product quality at the visual layer + KAPAPI's execution-contract and result experience.**
 
 The final design should feel like a Korean user immediately knows how to use it, while also feeling materially more premium, simpler and more alive than incumbent local marketplaces.

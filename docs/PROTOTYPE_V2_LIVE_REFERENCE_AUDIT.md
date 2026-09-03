@@ -1,5 +1,14 @@
 # Prototype v2 — Live Reference Audit
 
+Status: **SUPERSEDED as implementation guidance — historical reference observations**
+
+> The measurements and choices below record the earlier visual-research pass.
+> They are not a current site inspection or a product requirement. Earlier hero,
+> routing and vocabulary recommendations are superseded by D-033.1–.12, D-034,
+> D-035, `HERO_MEDIA.md`, `KAPAPI_DESIGN.md` and `QA_CHECKLIST.md`.
+> `PROTOTYPE_V2_VISUAL_RESEARCH_PROTOCOL.md` and `PROTOTYPE_V2_REFERENCE_ADDENDUM.md`
+> remain the operative research rules.
+
 Method: each site was opened in a real headless Chrome at 1440×900 and 390×844, scrolled
 through its full length, screenshotted at the hero, through mid-page and at the footer, and
 **measured in the DOM** — heading scale, font stacks, container width, nav height, section

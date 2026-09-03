@@ -1,16 +1,16 @@
 # Upwork First-Touch Reference for KAPAPI
 
 Status: **first-touch UX reference**  
-Branch: `docs/initial-product-design`  
-Updated: 2026-09-02
+Product authority: D-033.1–.12, D-034 and D-035
+Updated: 2026-09-03
 
-Upwork is the strongest current reference for KAPAPI's public entry experience because it presents a broad professional-work marketplace through a very simple first action.
+The Upwork reference observation recorded on 2026-09-02 informs KAPAPI's entry simplicity: a broad professional-work marketplace presented through a simple first action.
 
 This is not a directive to copy Upwork's visual design. It is a behavioral and information-hierarchy reference.
 
 ## 1. What KAPAPI should learn from Upwork
 
-Upwork's current homepage first makes the user's intent obvious with:
+The observed Upwork homepage made the user's intent obvious with:
 
 - a large, plain-language headline,
 - a clear `I want to hire / I want to work` role split,
@@ -35,19 +35,21 @@ Recommended conceptual structure:
 ```text
 KAPAPI
 
-할 일을 던져주세요.
-전문가들이 가격과 완료시간을 제안합니다.
+오늘은 어떤 일을 끝낼까요?
+파일을 업로드하고 간단하게 설명해 주세요.
 
-[ 손그림 도면을 CAD로 정리해주세요...                  ]
-[ 파일 첨부 ]                                  [ 일 맡기기 → ]
+[ 파일을 업로드하고 간단하게 설명해 주세요.             ]
+[ 파일 첨부 ]                                  [ 맡기기 → ]
 
-일 등록 → 가격·완료시간 제안 → 선택 → 결과 받기
+업무 입력 → 실행 계약 승인 → KAPAPI 실행 → 결과 → 수락 / 수정 요청
 ```
 
-작업자 entry should remain available but secondary:
+The execution contract contains the deliverable, price, completion time, revision
+boundary and recovery boundary. KAPAPI handles proposal comparison and worker
+selection internally. 작업자 entry remains available through the header view toggle:
 
 ```text
-일하러 오셨나요? → 일 찾기
+발주자 / 작업자
 ```
 
 ## 3. Three-second test
@@ -61,7 +63,6 @@ Fail the design if the visitor must first decode:
 - 업무,
 - 제안,
 - 작업자,
-- (삭제됨: LEVEL / EXP — D-034)
 - 긴급 업무,
 - dashboard navigation,
 - Autopilot architecture.
@@ -106,7 +107,6 @@ Default OFF:
 - enterprise logo wall above the main action,
 - dense navigation,
 - 긴급 업무 countdown,
-- (삭제됨: LEVEL / EXP — D-034)
 - Autopilot diagram,
 - gaming terminology that must be learned before action.
 
@@ -123,7 +123,9 @@ Upwork: describe what you need to hire for
 KAPAPI: describe the work you want completed
 ```
 
-KAPAPI's long-term UX should increasingly reduce the importance of choosing a person and increase the importance of specifying the result.
+KAPAPI's current client UX centers on approving the execution contract and reviewing
+the result. Worker selection, AI, automation, QA and recovery belong to the internal
+execution mechanism; capability expands with evidence.
 
 This is consistent with the product north star:
 
@@ -139,7 +141,7 @@ Before approving the public hero:
 4. The page is light-first by default.
 5. A new user can explain the service after one glance in ordinary language.
 6. 작업자 entry is available but does not compete with the 발주자 action. In the shipped build it is the header toggle.
-7. Dashboard or transaction mechanics appear only after the visitor understands what to do.
+7. Internal transaction mechanics appear in the worker surface and mechanism explainer; the client flow shows the execution contract, progress and result.
 8. The design remains premium through typography, spacing, responsiveness and motion, not through visual complexity.
 
 ## 8. Reference authority

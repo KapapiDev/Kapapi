@@ -1,13 +1,16 @@
 # Prototype v2 — Visual Direction Gate
 
-Status: **HISTORICAL record of the direction gate**
+Status: **SUPERSEDED — historical record of the completed direction review**
 
+> This is a frozen comparison of three past prototypes, not the current visual gate.
+> Current implementation and review follow `HERO_MEDIA.md`, `KAPAPI_DESIGN.md`,
+> `KAPAPI_MOTION.md`, `PROTOTYPE_V2_VISUAL_RESEARCH_PROTOCOL.md` and `QA_CHECKLIST.md`.
 > The chosen direction's hero — real KAPAPI UI composited onto the laptop screen
 > inside the footage — is superseded. The founder supplied the hero film and
 > directed that it be used exactly as delivered, so nothing is composited into it
 > now. See `HERO_MEDIA.md` for the current rule and `PROTOTYPE_V2_HERO_COMPOSITING.md`
-> for the superseded technique. This file is kept as the record of how the
-> direction was chosen, which still stands.
+> for the superseded technique. The findings below preserve how that earlier
+> direction was chosen; they do not override D-033.1–.12, D-034 or D-035.
 
 Three directions were **built and rendered**, not described. Sources in `research/proto/`,
 captures in `research/directions/`. Each was judged beside the live-reference evidence in

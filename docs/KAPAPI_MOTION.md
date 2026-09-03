@@ -13,7 +13,7 @@ Every meaningful animation should do at least one of:
 
 1. explain a real product state change
 2. make market activity legible
-3. clarify recommendation/confirmation
+3. clarify execution-contract approval and KAPAPI's internal assignment
 4. preserve object continuity
 5. communicate work moving toward a result
 6. add tactile quality without competing with the work
@@ -38,12 +38,13 @@ Animate because something happened:
 - 결과 수락/수정
 - 업무 완료
 
-The 발주자 sees 업무 등록, 작업자 배정, 결과 전달 and the two acceptance states. The
-rest are the middle node.
+The 발주자 sees 업무 요청, 실행 계약 승인, 진행 상황, 결과 전달 and 수락 / 수정 요청.
+Proposal competition, selection, assignment, QA and recovery happen inside KAPAPI;
+assignment details may be disclosed as information.
 
 ### Object continuity
 
-Preserve continuity for work card → detail, proposal row → recommendation row, recommendation → confirmed/assigned state and result object → result detail.
+Preserve continuity for request → execution contract → progress, internal proposal row → selection → assignment, and result object → result detail.
 
 ### Small amplitude
 
@@ -96,25 +97,26 @@ No pop/bounce/glow burst.
 
 Filtering should feel inspectable, not magical.
 
-### MOTION-C — Recommendation ready
+### MOTION-C — Internal selection
 
 ```text
 eligible proposals
 → evidence resolves
-→ one row gains 추천 state
+→ one row gains KAPAPI 선정 state
 → rationale appears
-→ confirmation action becomes available
+→ assignment is recorded
 ```
 
-Do not show assigned state yet.
+Show this sequence only in internal procurement or the mechanism explainer. The
+client has already approved the execution contract; no worker-selection action appears.
 
 ### MOTION-D — Assignment
 
-D-035 removed the client-confirmation beat. The transition is KAPAPI's, and the
+After execution-contract approval, KAPAPI selects and assigns execution. The
 발주자 is told it happened.
 
 ```text
-접수됨
+실행 계약 승인됨
 → (카파피: 제안 · 조건 확인 · 선정)
 → 배정된 작업자 + 왜 이 작업자인가요
 → 작업 시작
@@ -179,11 +181,12 @@ Use when spatial continuity helps: work card → work detail, worker row → pro
 → 결과 도착
 ```
 
-선정 and 배정 are one state. There is no confirmation beat between them (D-035).
+The selection-to-assignment transition is internal. Execution-contract approval
+precedes procurement; result acceptance/revision follows delivery (D-033.1, D-035).
 
 ### MOTION-J — Outcome evolution
 
-Future-direction narrative:
+Future internal-capability narrative:
 
 ```text
 업무 완료
@@ -195,7 +198,8 @@ Future-direction narrative:
 → RESULT
 ```
 
-Keep it restrained and clearly future-oriented.
+Keep capability improvements clearly future-oriented. The client continues to
+approve the execution contract and accept or request revision of the result.
 
 ---
 
@@ -226,7 +230,7 @@ With `prefers-reduced-motion`:
 - show settled final states
 - do not hide necessary comprehension inside cinematic sequences
 - preserve all labels/actions
-- preserve recommendation evidence
+- preserve contract terms and assignment evidence
 - use poster/static hero fallback where appropriate
 
 ---
@@ -245,7 +249,7 @@ Favor transform/opacity/layout techniques that do not damage first interaction. 
 
 ## 10. Rejection conditions
 
-Reject motion if it implies the 발주자 has a decision to make, uses celebration to fake satisfaction, creates fake progress certainty, distracts from price × completion time or result proof, looks excessively gamified, or moves merely because a section entered the viewport.
+Reject motion if it asks the 발주자 to select a worker, skips execution-contract approval or result acceptance, uses celebration to fake satisfaction, creates fake progress certainty, distracts from price × completion time or result proof, looks excessively gamified, or moves merely because a section entered the viewport.
 
 Desired feeling:
 

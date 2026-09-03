@@ -8,7 +8,7 @@ Updated: 2026-09-03
 
 KAPAPI's final destination is not a freelancer directory, a side-job board, a construction service or a marketplace limited to one class of professional work.
 
-KAPAPI should become a **work-to-result execution layer** where a user can submit bounded work, from ordinary office/support work to skilled professional work, and receive a completed result with progressively less need to search, compare, coordinate, recover or manage execution.
+KAPAPI already presents **업무 입력 → KAPAPI → 결과 반환**, with execution-contract approval before execution and result acceptance/revision after delivery. Growth expands the categories, reliability and economics of the internal execution layer and reduces operator effort in quoting, coordination, QA and recovery.
 
 “Bounded” means finishable and inspectable as a transaction. It does not mean permanently cheap, trivial or low-value.
 
@@ -39,7 +39,7 @@ Outcome / Execution Layer
 work in → KAPAPI scopes/decomposes/executes-or-orchestrates/recovers/checks → result out
 ```
 
-> **Early KAPAPI helps people pick up work. Mature KAPAPI helps anyone get work done.**
+> **Clients approve the contract and receive the result from the start. KAPAPI earns broader execution capability through real completed work.**
 
 ---
 
@@ -78,7 +78,7 @@ No special glossary should be introduced.
 - the 실행 계약 on the 발주자 surface, with the price's basis disclosed
 - genuine urgent-work state
 - task-relevant career/history and reliability
-- KAPAPI selection with visible rationale and the excluded 제안
+- KAPAPI's internal selection in `이용 방법`, including criteria and excluded 제안; the client receives informational rationale, without comparing proposals
 - execution and result acceptance/revision
 - architecture/CAD only as one founder-domain proof case
 - future path from transaction data to routing and execution layer
@@ -110,9 +110,9 @@ Actual transaction validation should start with **one or two category micro-mark
 
 ### Goal
 
-Prove real work can move through KAPAPI:
+Prove real work can move through the client flow and KAPAPI's internal execution engine:
 
-`unresolved → contract approved → proposals → selected/assigned → completed → accepted → paid`
+`unresolved → execution contract approved → KAPAPI internal procurement/assignment/execution/QA/recovery → result → accepted → paid`
 
 ### Supply hypothesis
 
@@ -156,7 +156,7 @@ Founder-originated Architecture/CAD work can test supply and the transaction eng
 
 ### Core metrics
 
-- work-posting completion
+- work-request completion and execution-contract approval
 - time to first valid proposal
 - eligible proposals per task
 - price / completion-time distributions
@@ -237,8 +237,8 @@ concierge/manual procurement behind the contract
 D-033.5 is explicit that a manual back office is validation scaffolding, not the
 permanent model, and D-033.6 that a near-instant quote is earned per category. So
 the rungs here are about KAPAPI's own capability and margin, not about giving the
-client more to decide. Client decision burden is already zero and does not
-increase again.
+client a provider-shopping step. The client continues to approve the execution
+contract and accept or request revision of the result.
 
 Routing can consider:
 
@@ -292,9 +292,9 @@ Add:
 - backup/replacement capacity
 - consolidated contract/payment/work history
 
-Desired mental shift:
+Desired repeat-use behavior:
 
-> **“누구한테 맡기지?”** less, **“카파피로 보내.”** more.
+> **“이번 업무도 카파피로 보내.”**
 
 ---
 
@@ -302,11 +302,11 @@ Desired mental shift:
 
 ### Goal
 
-Prove category by category that KAPAPI can credibly support:
+Scale the existing client promise category by category with measured execution, QA and recovery capability:
 
 > **work in → result out**
 
-The mature user should not need to care which marketplace mechanics or executor types were required behind the scenes.
+The client continues to approve the execution contract and receive the result. This phase expands the range and reliability of execution behind that same interface.
 
 Depending on work type, KAPAPI may execute or orchestrate through:
 
@@ -359,7 +359,7 @@ Can real clients and workers repeatedly turn unresolved work into accepted paid 
 Does transaction history reliably distinguish who/what can complete which work?
 
 ### Gate C — Recommendation / Routing
-Can KAPAPI reduce client decision burden without unacceptable regret or failure?
+Can KAPAPI improve internal selection and recovery reliability while reducing operator effort and preserving completed-outcome economics?
 
 ### Gate D — Repeat Capacity
 Do organizations route recurring work through KAPAPI rather than using it only for one-off discovery?
@@ -369,7 +369,7 @@ Can KAPAPI credibly take responsibility for turning work requests into usable re
 
 ---
 
-## Strategic summary
+## Internal capability growth
 
 ```text
 PEOPLE PICK WORK
@@ -389,4 +389,4 @@ ROUTING + RECOVERY ENABLE REPEAT CAPACITY
 HUMAN + AI + AUTOMATION + PARTNERS ENABLE OUTCOMES
 ```
 
-> **Start with bounded work people can pick up and finish. Grow into an execution layer where users submit work and get the result back.**
+> **Start with bounded work and an execution contract. Expand the internal execution layer as quote, routing, QA and recovery evidence supports it.**

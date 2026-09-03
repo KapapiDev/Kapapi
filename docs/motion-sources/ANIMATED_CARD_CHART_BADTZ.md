@@ -65,12 +65,12 @@ Therefore do not treat this file as implementation guidance yet.
 
 Potential use is limited to **historical trust/reliability visualization**, such as:
 
-- recent QUEST completion history
+- recent 업무 completion history
 - on-time performance over time
 - revision/rework trend
-- category-specific PLAYER reliability
+- category-specific 작업자 reliability
 
-Do not use charts merely to decorate PLAYER profiles. If a single number communicates the decision better, prefer Number Flow or static typography.
+Do not use charts merely to decorate 작업자 profiles. If a single number communicates the decision better, prefer Number Flow or static typography.
 
 ## Visual adaptation rules
 
@@ -84,8 +84,8 @@ If later adopted:
 
 ## Acceptance question
 
-Any final chart should help GM answer:
+Any client-facing chart should provide concise execution evidence, without becoming a worker-comparison surface. Internal operations may use worker reliability trends for routing. The client-facing question is:
 
-> Can I hand this work over with little explanation and still expect a usable result on time?
+> Do the proposed result, price, completion time and revision/recovery boundaries fit this work?
 
 Until the full component source is inspected, final classification remains **TBD**.

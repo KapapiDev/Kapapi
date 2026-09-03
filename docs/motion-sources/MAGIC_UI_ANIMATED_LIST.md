@@ -2,7 +2,7 @@
 
 Status: **full demo + internal component captured**  
 Decision: **REMIX / P0**  
-Primary KAPAPI use: **BID ARRIVAL / live activity insertion**
+Primary KAPAPI use: **Internal proposal arrival explanation / worker activity insertion**
 
 ---
 
@@ -207,7 +207,7 @@ The internal source confirms the useful part of this reference:
 6. the transition uses a spring with `stiffness: 350` and `damping: 40`,
 7. default reveal delay is `1000ms`.
 
-This makes it a stronger structural reference for **BID ARRIVAL** than the earlier 3D-card reference.
+This makes it a stronger structural reference for **제안 도착** than the earlier 3D-card reference.
 
 ---
 
@@ -215,24 +215,24 @@ This makes it a stronger structural reference for **BID ARRIVAL** than the earli
 
 ### Keep / adopt as a pattern
 
-- `AnimatePresence` for entering/exiting BID rows/cards
-- `layout` for natural reflow of existing BIDs
+- `AnimatePresence` for entering/exiting 제안 rows/cards
+- `layout` for natural reflow of existing 제안
 - newest-event-first ordering where appropriate
 - stable surrounding frame while market state changes
 - discrete event-based insertion rather than decorative continuous movement
 
 ### Remix
 
-The reference's `scale: 0 → 1` is too theatrical for KAPAPI if used literally on professional BID cards.
+The reference's `scale: 0 → 1` is too theatrical for KAPAPI if used literally on professional 제안 cards.
 
 Preferred KAPAPI direction:
 
 ```text
-NEW BID RECEIVED
-→ new BID appears with low-amplitude y/opacity transition
-→ existing BID rows move via layout animation
+NEW 제안 도착
+→ new 제안 appears with low-amplitude y/opacity transition
+→ existing 제안 rows move via layout animation
 → PRICE / DELIVERY / TRUST settle immediately
-→ whole comparison set becomes static again
+→ internal comparison set becomes static again
 ```
 
 Likely final motion should use something closer to:
@@ -259,11 +259,11 @@ The exact final values belong in `KAPAPI_MOTION.md`, not here.
 
 ## KAPAPI applications
 
-### Primary: BID ARRIVAL
+### Primary: 제안 도착
 
 ```text
-BID RECEIVED
-→ PLAYER C enters comparison set
+제안 도착
+→ 작업자 C enters KAPAPI's internal comparison set
 → A/B shift smoothly to accommodate C
 → C's ₩ PRICE and DELIVERY TIME become legible
 → trust metadata resolves
@@ -272,20 +272,20 @@ BID RECEIVED
 
 ### Secondary
 
-- QUEST activity feed
+- 업무 activity feed
 - workroom event log
 - delivery/check events
-- landing-page live-market demonstration
+- `이용 방법` explanation of the internal market
 
 ---
 
 ## Important implementation distinction
 
-The **prototype hero/demo** may use timed insertion to demonstrate market activity.
+The **internal-mechanism explanation in `이용 방법`** may use timed insertion to demonstrate market activity. The client transaction shows request, execution-contract approval, progress and result; it does not show the proposal feed.
 
 The **real product screen** should insert only when an actual state/event occurs. Do not preserve the `setTimeout` reveal mechanism as product behavior.
 
-Similarly, `reverse()` is useful for event feeds but may not be the correct ordering rule for the GM BID comparison screen. BID ranking should follow KAPAPI's decision logic rather than recency alone.
+Similarly, `reverse()` is useful for event feeds but may not be the correct ordering rule for KAPAPI's internal proposal evaluation. Internal ranking follows eligibility, price, completion time and task evidence; it is not a client sorting or selection control.
 
 ---
 
@@ -293,7 +293,7 @@ Similarly, `reverse()` is useful for event feeds but may not be the correct orde
 
 **REMIX / P0**
 
-This is now a fully captured implementation reference for `BID_ARRIVAL`.
+This is now a fully captured implementation reference for `PROPOSAL_ARRIVAL`.
 
 Best primitive to retain:
 
@@ -303,4 +303,4 @@ Best primitive to discard:
 
 > **scale-from-zero notification pop**
 
-KAPAPI should make a new BID feel like it was inserted into an operating market, not popped onto the screen.
+KAPAPI should make a new 제안 feel like it was inserted into an operating market, not popped onto the screen.

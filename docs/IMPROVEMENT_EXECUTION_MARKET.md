@@ -10,7 +10,7 @@ The proposal has now been **accepted as the stronger product direction** and inc
 
 Current authority:
 
-1. `docs/DECISIONS.md` — D-033
+1. `docs/DECISIONS.md` — D-033.1–.12, D-034, D-035
 2. `docs/PRODUCT.md`
 3. `docs/ROADMAP.md`
 4. `docs/VALIDATION.md`
@@ -37,10 +37,11 @@ Canonical product split:
 발주자
 work request
 → structured SOW
-→ 실행 계약 (Execution Contract): RESULT + PRICE + COMPLETION TIME
+→ 실행 계약: 결과물 + 가격 + 완료시간 + 수정 경계 + 복구 경계
 → approve
 → KAPAPI orchestrates
 → result
+→ accept / revise
 
 작업자
 업무

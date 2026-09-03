@@ -1,8 +1,15 @@
 # KAPAPI Prototype v2 — Content Necessity Audit
 
-Status: **evidence for `PROTOTYPE_V2_CONTENT_GOVERNANCE.md` §0**
+Status: **SUPERSEDED — historical rendered-content audit**
 Branch: `feat/prototype-v2`
 Updated: **2026-09-03**
+
+> The tables and checks below describe an earlier rendered build and preserve its
+> audit evidence. They do not specify current navigation, contract flow, terminology
+> or passing tests. Current content rules remain in `PROTOTYPE_V2_CONTENT_GOVERNANCE.md`;
+> D-033.1–.12, D-034, D-035, `PROTOTYPE_SPEC.md` and `QA_CHECKLIST.md` govern the
+> execution-contract flow and current review. Recheck the current build before reusing
+> any assertion or measurement below.
 
 Governance §0 says a visible element ships only if it is **(1) PRODUCT REQUIRED**,
 **(2) REFERENCE-SUPPORTED UX**, or **(3) APPROVED BRAND-WORLD** — otherwise it is

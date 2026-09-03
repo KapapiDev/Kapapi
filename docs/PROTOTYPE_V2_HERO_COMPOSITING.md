@@ -14,9 +14,11 @@ Updated: **2026-09-03**
 > on the right at its own 16:9 ratio. `scripts/hero-qa.mjs` holds the current rules
 > and asserts them against the rendered page.
 >
-> Product behavior still follows D-032; nothing here changes the recommendation and
-> confirmation flow. Only the hero's media treatment is superseded. The homography
-> work described below is kept as a record of what was built, not as an instruction.
+> **SUPERSEDED in full:** the old product choreography and vocabulary below are
+> historical too. Current behavior follows D-033.1–.12, D-034 and D-035: execution-contract
+> approval, internal procurement/assignment, then result acceptance/revision.
+> `HERO_MEDIA.md`, `KAPAPI_MOTION.md` and `QA_CHECKLIST.md` govern current work.
+> The homography work and prior acceptance criteria are preserved only as a record.
 
 ## 0. Intended hero effect
 

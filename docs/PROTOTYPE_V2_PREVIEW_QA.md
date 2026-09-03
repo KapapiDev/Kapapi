@@ -1,8 +1,14 @@
 # KAPAPI Prototype v2 — Preview and live QA
 
-Status: **current deployment record**
+Status: **SUPERSEDED — historical preview and QA snapshot**
 Branch: `feat/prototype-v2`
 Updated: **2026-09-03**
+
+> This records a previous preview session, not verification of the latest branch
+> HEAD or the current destination of the preview alias. The build and test claims
+> below are historical, including any flow that omits contract approval.
+> Current requirements follow D-033.1–.12, D-034, D-035, `PROTOTYPE_SPEC.md` and
+> `QA_CHECKLIST.md`; a current preview report requires a fresh deployment/QA check.
 
 ## Deployment
 

@@ -16,7 +16,9 @@ This document separates observed evidence, working hypotheses and experiments. D
 
 ### Demand
 
-> **Will clients externalize bounded work, pay for accepted results and return with more work?**
+> **Will clients approve an execution contract for bounded work, pay for accepted results and return with more work?**
+
+The contract states **deliverable + price + completion time + revision boundary + recovery boundary**. The client does not choose a worker or compare proposals. KAPAPI handles procurement, assignment, execution, QA and recovery internally (D-033.1–.12, D-035).
 
 ### Market
 
@@ -66,11 +68,11 @@ Hypotheses:
 - D-01: capacity/deadline/skill/employment gaps create bounded external-work demand
 - D-02: self-completion/overtime is a major competitor
 - D-03: posting/explanation/selection friction suppresses outsourcing
-- D-04: price + completion time creates meaningful trade-offs, especially under urgency
-- D-05: relevant career/task history lowers delegation anxiety
+- D-04: the quoted price + completion time supports contract decisions, especially under urgency
+- D-05: clear scope, credible execution information and recovery boundaries lower delegation anxiety
 - D-06: existing vendor relationships do not remove all need for new/backup supply
 - D-07: repeat work can move KAPAPI from discovery into external capacity
-- D-08: recommendation/routing can eventually reduce decision burden
+- D-08: approving an execution contract without shopping for workers reduces client management time from the initial product
 - D-09: each work category has separate liquidity
 - D-10: a viable band exists between “do it myself/AI” and “large project procurement”
 
@@ -97,7 +99,7 @@ Do not generalize one founder-domain interview to all SMEs or categories.
 
 ## 5. Price × completion-time validation
 
-Test whether price + committed completion time changes real choices rather than merely looking differentiated in a prototype.
+Test whether worker price + committed completion-time proposals improve KAPAPI's internal procurement and quote construction. Separately test whether clients understand and approve the resulting contract price and completion time.
 
 Measure:
 
@@ -108,7 +110,7 @@ Measure:
 - whether lowest price actually wins
 - whether task-specific trust outweighs small price differences
 - whether workers change proposals according to their available time
-- whether clients remember and understand the mechanism after a short demo
+- whether clients understand the quoted result, price, time and revision/recovery boundaries after a short demo
 
 Kill/rethink the mechanism if completion time adds little information or increases confusion without improving allocation.
 
@@ -126,7 +128,7 @@ For each candidate category observe:
 - revision/rework minutes
 - dispute/recovery allowance
 - KAPAPI staff/AI operating cost
-- contribution after direct transaction costs
+- completed-outcome contribution after execution resources, payment, QA/support, revision/rework and recovery/replacement costs
 
 Test whether categories need:
 
@@ -173,27 +175,29 @@ Measure:
 
 ---
 
-## 9. Selection experiment: recommendation before auto-routing
+## 9. Execution-contract and internal procurement experiment
 
-Compare:
+Keep the client journey constant:
 
-### Mode A — lightweight client choice
+`request / files → structured SOW → execution contract → client approval → KAPAPI execution / QA / recovery → result → accept/revise`
 
-Client sees a compact set of eligible proposals.
+Compare internal operating methods:
 
-### Mode B — KAPAPI selection (the shipped prototype, D-035)
+### Mode A — concierge-assisted quote and procurement
 
-KAPAPI selects and shows the criteria plus the excluded 제안. The client is not
-asked to confirm. Modes A and C remain available as back-office experiments; only
-Mode B is what the prototype surface demonstrates.
+Operators clarify scope, construct the quote, check eligible supply, assign execution and handle QA/recovery.
 
-### Mode C — concierge/manual routing
+### Mode B — market-informed quote and routing
 
-Used only in controlled experiments where helpful.
+KAPAPI uses observed price × completion-time offers, history, eligibility and availability to support internal routing. Operators review decisions while reliability is unproven.
 
-Measure time from upload to contract, contract approval rate, re-quote requests, client confidence/regret, completion/on-time/revision outcomes and client management minutes. There is no override rate to measure — the client does not select a 작업자 (D-033.1).
+### Mode C — near-instant quote in proven categories
 
-Preferred prototype default is **Mode B**.
+Test only after repeatable scope, predictable price/time distributions and recovery economics support it (D-033.6).
+
+In every mode, the client approves deliverable + price + completion time + revision/recovery boundaries. Assignment rationale and required executor information are explanatory; proposal lists, rankings and selection controls remain outside the client flow.
+
+Measure upload-to-contract time, contract approval, re-quote requests, client comprehension/confidence, completion/on-time/revision outcomes, operator minutes, client management time and completed-outcome contribution. A failed path should trigger KAPAPI recovery within the contract rather than a new supplier search by the client.
 
 ---
 
@@ -233,7 +237,7 @@ The public prototype may show:
 
 Actual transaction experiments should normally open **one or two micro-markets at a time**.
 
-For each category track paid demand, qualified active supply, eligible proposals, response time, price/completion distributions, completion/on-time/revision/dispute rates, backup supply, repeat behavior, support/recovery cost and transaction contribution.
+For each category track paid demand, qualified active supply, eligible proposals, response time, repeatable SOW, price/completion distributions, completion/on-time/revision/dispute rates, backup supply, repeat behavior, support/recovery cost and completed-outcome contribution. Expand only when recovery capacity, legal/security clarity and acceptable operator burden support it (D-033.10).
 
 ---
 
@@ -243,7 +247,8 @@ Initial quality architecture:
 
 1. objective automated preflight where reliable
 2. client acceptance/revision
-3. platform dispute/recovery only where needed
+3. KAPAPI monitoring and recovery within the contract when late/failure risk appears
+4. dispute process when needed
 
 Measure automatable checks, client inspection time, revision/dispute rate, staff minutes per failure, replacement success and recovery cost.
 
@@ -285,6 +290,7 @@ Do not assume hiding contact details solves retention.
 - client repeat frequency
 - transaction value
 - client management time
+- execution-contract approval and re-quote rate
 
 ### Marketplace
 - eligible proposals per task
@@ -303,6 +309,7 @@ Do not assume hiding contact details solves retention.
 ### Economics
 - payment cost / transaction value
 - support minutes per task
+- operator minutes per completed outcome
 - revision/recovery cost per task
 - acquisition cost where measurable
 - worker effective earnings
@@ -326,7 +333,7 @@ Evidence repeatedly shows useful workers choose and complete bounded work, clien
 
 ### PIVOT
 
-Demand exists but only certain categories or price bands work, low-value work needs bundling/floors, clients want different selection control, existing-partner management is stronger than open-market discovery, or AI/automation handles some categories better.
+Demand exists but only certain categories or price bands work, low-value work needs bundling/floors, contract conditions or recovery boundaries need revision, existing-partner procurement is stronger than open-market supply, or AI/automation handles some categories better.
 
 ### KILL / major rethink
 

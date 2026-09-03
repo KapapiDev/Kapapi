@@ -88,13 +88,13 @@ Do not assume repeat work stays on-platform because KAPAPI made the first match.
 
 ---
 
-## D-011 — Long-term product shifts from finding a person to getting a result
+## D-011 — Result-return UX now; execution capability grows with evidence
 
 North Star:
 
 > **해야 할 일을 올리면, 결과로 돌아온다.**
 
-The mature product should minimize the user's need to search, compare, coordinate and recover execution.
+The client-facing product already centers on the execution contract and result. The capability to quote, coordinate and recover execution with less operator effort grows with evidence; provider shopping is not an earlier required client stage.
 
 ---
 
@@ -122,17 +122,17 @@ Confidentiality, file handling, NDA, access control and auditability are product
 
 Before the 모두의 창업 1R application, demonstrate only the essential loop:
 
+**Amended by D-033.1 and D-035:**
+
 ```text
-업무 등록
-→ 작업자들이 가격 + 완료시간 제안
-→ KAPAPI 추천
-→ 발주자 확정
-→ 수행
+업무 요청 / 파일
+→ 작업 조건(SOW) 정리
+→ 실행 계약: 결과물 + 가격 + 완료시간 + 수정 경계 + 복구 경계
+→ 발주자 실행 계약 승인
+→ KAPAPI 내부 조달·배정·수행·QA·복구
 → 결과 전달
 → 수락 / 수정 요청
 ```
-
-*(Superseded by D-035: the 발주자 확정 step is removed from the client surface.)*
 
 Show real task history and urgent-work behavior where useful. Do not spend pre-1R effort on production payment custody, tax automation, deep dispute tooling or universal outcome guarantees.
 
@@ -240,15 +240,14 @@ Do not use decorative progression levels, experience points or fictional state l
 
 ## D-030 — Product language is ordinary work language
 
-External explanation, product UI and submission materials should lead with the actual behavior:
+External explanation, product UI and submission materials use ordinary work language for each surface:
 
-- work exists first
-- workers propose price + completion time
-- KAPAPI selects based on conditions and history
-- the result is delivered
-- transaction data enables later routing and recovery
+- client: work input → execution contract approval → KAPAPI → result → accept/revise
+- worker: existing work → price + completion-time proposal → assignment → execution → delivery
+- KAPAPI internally procures, selects, assigns, checks and recovers execution using conditions and history
+- transaction data improves quote, routing and recovery capability
 
-*(Amended by D-035; the client-confirmation line is removed.)*
+**Amended by D-033.1 and D-035.**
 
 There is no separate vocabulary layer users must learn.
 
@@ -262,7 +261,7 @@ The earlier idea that KAPAPI should automatically select every worker immediatel
 
 ## D-032 — Task-first market first; routing responsibility is earned
 
-Canonical growth path:
+Internal capability growth path (amended by D-033.1 and D-035):
 
 ```text
 Task Marketplace
@@ -272,21 +271,19 @@ Task Marketplace
 → Outcome / Execution Layer
 ```
 
-Preferred early flow:
+The client approves the execution contract from the first phase. Early procurement behind that contract may follow:
 
 ```text
-업무 등록
+KAPAPI 내부 조달
 → 제안 도착
 → 필수요건 확인
-→ KAPAPI 추천
-→ 발주자 확정
+→ KAPAPI 선정·배정
 → 수행
-→ 결과
+→ QA / 복구
+→ 결과 반환
 ```
 
-*(Superseded by D-035 for the prototype surface: KAPAPI 선정 replaces 추천 + 발주자 확정.)*
-
-Early transactions may use concierge/manual routing behind the contract for controlled experiments. *(Superseded in part: D-033.1 and D-035 remove client confirmation and client choice from the product surface. What remains available is back-office procurement, which the client does not see.)*
+Early transactions may use concierge/manual procurement and routing behind the contract for controlled experiments. The client approves the contract and accepts or requests revision of the result; KAPAPI handles provider selection internally.
 
 Reliable routing must be earned from real completion, on-time, revision, failure, availability, category-liquidity and recovery evidence.
 
@@ -315,13 +312,12 @@ The user-facing unit remains the result.
 
 ## D-033 execution-market series — imported from the `개선안` canon
 
-The founder's canonical decisions from the `개선안` redesign workspace (D-018: that
-branch is the current redesign workspace), brought onto this branch on 2026-09-03
-and restated in D-034 vocabulary — GM / PLAYER / QUEST / BID became 발주자 / 작업자 /
-업무 / 제안. Nothing else is changed.
+The founder's canonical decisions from the `개선안` redesign workspace were brought
+onto this branch on 2026-09-03 and restated using D-034's ordinary work terms:
+발주자 / 작업자 / 업무 / 제안. D-018 governs eventual convergence on main.
 
-**D-035 was derived independently on this branch and says less than D-033.1 does.**
-See the amendment recorded under D-035.
+**D-035's initial version preceded this import.** Its current amendment below
+includes the execution-contract step required by D-033.1.
 
 ## D-033.1 — Default 발주자 product is an Execution Contract
 
@@ -502,7 +498,7 @@ Preserve the real founder problem, then explain the product leap:
 2. this creates task-first 작업자 supply;
 3. 발주자s have bounded work but delegation/search overhead is disproportionate;
 4. KAPAPI does not make the 발주자 shop that market;
-5. 발주자 buys result + price + completion time;
+5. 발주자 approves an execution contract containing result + price + completion time + revision and recovery boundaries;
 6. KAPAPI uses 작업자/AI/automation underneath;
 7. real executions create data that improves quote/routing/recovery;
 8. long-term destination is work execution infrastructure.
@@ -551,41 +547,43 @@ Use **발주자 / 작업자 / 업무 / 제안 / 작업대금 / 긴급 업무 / �
 
 ## D-035 — The prototype demonstrates the result-return flow; the market runs behind it
 
-**Amended 2026-09-03 against the `개선안` canon (정본 우선).** D-035 was derived on
-this branch before D-033.1 was read, and it said less than the canon does. D-033.1
-is authoritative: the 발주자 does not merely upload and wait — they approve an
-**Execution Contract** first.
+**Amended 2026-09-03 against D-033.1 (정본 우선).** The client-facing model is
+**업무 입력 → KAPAPI → 결과 반환** from the first prototype. Within that model,
+the client approves an **Execution Contract** before execution begins.
 
 ```text
 업무 요청 / 파일
 → 카파피가 작업 조건(SOW)을 정리
 → 실행 계약: 결과물 + 가격 + 완료시간 + 검수/수정 경계 + 복구 경계
-→ 발주자 승인
-→ 카파피가 내부적으로 조달·배정·수행
+→ 발주자 실행 계약 승인
+→ 카파피가 내부적으로 조달·선정·배정·수행·QA·복구
 → 결과
 → 수락 / 수정 요청
 ```
 
-What D-035 got right and D-033.1 agrees with: the 발주자 never compares 작업자,
-profiles or 제안. What D-035 missed: the thing they *do* approve. Approving a price
-and a completion time is not choosing a worker.
+The 발주자 approves the result, price, completion time and revision/recovery
+boundaries in the contract. They never compare 작업자, profiles or 제안 as part
+of placing the work.
 
-**The client's model, corrected:**
+**Client decisions:**
 
 ```text
-발주자  →  실행 계약 승인  →  카파피  →  결과
+업무 조건 확인 → 실행 계약 승인 → 카파피 → 결과 수락 / 수정 요청
 ```
 
-입찰 and 선정 are not steps the client walks through. They happen *inside* the
-middle node. This is the distinction every surface decision follows from: the
-explainer page may open that box, the 발주자 product surface may not.
+작업자 제안, 가격 × 완료시간 경쟁, AI, 자동화, 선정·배정·QA·복구 are KAPAPI's
+internal execution mechanisms. The explainer may show how those mechanisms work;
+the client product presents the contract, progress and result.
 
-**Decision:** The 발주자 surface shows **업무 입력 → KAPAPI → 결과**. The client uploads files and describes the work in one line, and the next thing they are shown is progress and then the result. Proposal lists, ranked comparison and a worker-selection step are **removed from the client surface**.
+**Decision:** After uploading files and describing the work, the client reviews
+the structured scope and execution contract. Only after contract approval does
+the service proceed to execution progress and result delivery. Proposal lists,
+ranked comparisons and worker-selection controls are absent from the client surface.
 
 The market did not disappear. It moved behind the boundary:
 
 ```text
-발주자 화면:   업무 입력 → (KAPAPI) → 진행 상황 → 결과 → 수락 / 수정 요청
+발주자 화면:   업무 입력 → 실행 계약 승인 → (KAPAPI) → 진행 상황 → 결과 → 수락 / 수정 요청
 작업자 화면:   업무 목록 → 범위·마감 확인 → 가격 + 완료시간 제안 → 배정 → 수행 → 제출
 ```
 
@@ -593,23 +591,26 @@ The market did not disappear. It moved behind the boundary:
 
 **Honesty requirements that do not change.** KAPAPI must still be inspectable and must not overclaim:
 
-- the assignment rationale (why this 작업자) stays available to the client as **information**, never as a decision they must make;
+- assignment rationale stays available as **information**; executor details may be disclosed where law, credentials, security or trust requires them;
 - no fabricated progress percentage;
 - no claim of escrow, completion guarantee or AI quality judgement;
 - the client keeps the final acceptance and the revision request — the result is not auto-accepted.
 
 **Reason:** The founder's product goal is that a client uploads a file, describes the work briefly, and receives a result. A surface that requires the client to read proposals and pick a worker is the thing that goal removes. Showing the comparison to the client made the prototype demonstrate a marketplace when the product being validated is a work-to-result service.
 
-**Relationship to the imported canon:** D-033.1 supersedes this decision wherever
-the two differ. D-035 remains useful only as the record of why the comparison step
-was removed from the client surface; the contract step it omitted comes from
-D-033.1, and D-033.6 governs how firm the quoted price may be — assisted quote
-first, near-instant only in proven standardized categories.
+**Relationship to the imported canon:** D-033.1 governs the contract and client
+flow. D-033.5 permits a concierge/manual back office for validation. D-033.6
+governs quoting: assisted quote first, market-informed quote as evidence grows,
+near-instant only in proven standardized categories. These are changes in internal
+capability, while the contract-and-result client experience stays consistent.
 
-**Supersedes:** D-031's day-one rejection and D-032's staged confirmation flow **as applied to the client-facing prototype surface**. D-032's growth path (marketplace → trust → routing → repeat capacity → execution layer) still describes how the capability is earned in the real business; D-035 governs what the prototype shows.
+**Supersedes:** earlier interpretations of D-031/D-032 that made the client shop
+the worker market before receiving Outcome UX. KAPAPI may select manually from
+day one; universal automatic selection remains an unearned claim. D-032's growth
+path still describes how business capability is earned.
 
 **Consequently amended:**
 
-- `PROTOTYPE_SPEC.md` §4.2 and §5 — S05 제안 비교/추천 is no longer a client screen;
-- `KAPAPI_ART_DIRECTION.md` — the ban on implying assignment before client confirmation applies to the 작업자 surface only;
+- `PROTOTYPE_SPEC.md` §4.2 and §5 — S05 selection is internal; S02 requires execution-contract approval before execution;
+- `KAPAPI_ART_DIRECTION.md` — client motion includes contract approval; proposal competition and selection appear on worker/internal explanation surfaces;
 - `QA_CHECKLIST.md` — the hero may state result return, and must still not claim escrow or completion guarantee.

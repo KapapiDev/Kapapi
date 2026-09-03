@@ -1,9 +1,9 @@
 # Motion/UI Source Pools
 
 Status: **reference registry**  
-Branch: `docs/initial-product-design`
+Applies to: current `feat/prototype-v2` reference research
 
-These are source pools for implementation research. They are not visual style authorities and must not override `docs/KAPAPI_DESIGN.md` or the final `docs/KAPAPI_MOTION.md`.
+These are source pools for implementation research. They must not override `docs/DECISIONS.md` D-033.1–.12, D-034 and D-035, `docs/KAPAPI_DESIGN.md` or `docs/KAPAPI_MOTION.md`.
 
 ## 1. ReUI
 
@@ -55,8 +55,8 @@ Source: https://magicui.design/docs/components
 Role: **motion primitive / marketing interaction source**
 
 Already captured KAPAPI references include:
-- Animated List → `BID_ARRIVAL`
-- Animated Beam → `AUTOPILOT` explanation
+- Animated List → `PROPOSAL_ARRIVAL`
+- Animated Beam → `EXECUTION_BOUNDARY` internal execution explanation
 - Blur Fade → sparse supporting reveal
 
 Potential utility-only references:
@@ -109,6 +109,6 @@ This ordering is about **behavioral authority**, not aesthetics.
 
 # Stop rule
 
-The motion reference collection is already sufficient for Prototype v1. Do not continue collecting components by default.
+The motion reference collection is sufficient for the current prototype. Do not continue collecting components by default.
 
 Only return to these pools when implementation exposes a concrete missing interaction, state, accessibility issue, or performance problem. New references must answer a named product problem rather than expand the collection for its own sake.

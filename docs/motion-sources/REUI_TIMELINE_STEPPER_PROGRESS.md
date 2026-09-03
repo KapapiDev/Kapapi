@@ -1,8 +1,8 @@
 # ReUI Timeline / Stepper / Progress — KAPAPI motion reference
 
 Status: **captured**  
-Decision: **ADOPT STATE MODEL / P0 for QUEST_PROGRESS, REMIX visuals**  
-Primary KAPAPI use: **QUEST_PROGRESS / workroom status / delivery lifecycle**
+Decision: **ADOPT STATE MODEL / P0 for WORK_PROGRESS, REMIX visuals**
+Primary KAPAPI use: **WORK_PROGRESS / workroom status / delivery lifecycle**
 
 ---
 
@@ -80,28 +80,29 @@ This is much more useful to KAPAPI than a generic chronological timeline because
 
 Use the state model, not the CI/CD visual styling.
 
-Recommended QUEST lifecycle:
+Recommended client lifecycle after the five-term execution contract is displayed:
 
 ```text
-PLAYER SELECTED
-→ WORK STARTED
-→ IN PROGRESS
-→ FILE DELIVERED
-→ GM REVIEW
-→ QUEST COMPLETE
+실행 계약 승인
+→ 작업 중
+→ KAPAPI 검수
+→ 결과 전달
+→ 발주자 결과 확인
+→ 수락 / 수정 요청
+→ 업무 완료 (수락 시)
 ```
 
 Possible exception states:
 
 ```text
-REVISION REQUESTED
-BLOCKED: INPUT NEEDED
-PLAYER REPLACED
-DELIVERY LATE
-DISPUTE / SUPPORT
+수정 요청
+추가 자료 필요
+복구 진행
+완료 지연
+분쟁 / 지원
 ```
 
-For the first prototype, exception states should remain visually possible but not dominate the main happy-path demo.
+The execution contract states deliverable, price, completion time, revision boundary and recovery boundary before approval. KAPAPI handles selection and any replacement internally. The first prototype keeps exception states available without dominating the main happy-path demo; a failure does not require the client to restart supplier search.
 
 ---
 
@@ -174,20 +175,20 @@ The active step may use a precise spinner or restrained pulse. Everything else s
 ### Vertical timeline
 Best for:
 - Workroom
-- detailed QUEST progress
+- detailed 업무 progress
 - timestamps / notes / files / revision events
 - mobile
 
 ### Horizontal stepper
 Best for:
-- compact QUEST summary
+- compact 업무 summary
 - desktop header/status strip
 - prototype demo where the entire lifecycle needs to be understood instantly
 
 Recommended prototype approach:
 
 ```text
-QUEST detail header: compact horizontal lifecycle
+업무 detail header: compact horizontal lifecycle
 Workroom: richer vertical event history
 ```
 
@@ -216,7 +217,7 @@ pending
 failed/blocked
 ```
 
-That distinction matters because the GM's question is not “what happened historically?” but:
+That distinction matters because the 발주자's question is not “what happened historically?” but:
 
 > Where is my work right now, and will I get a usable result on time?
 
@@ -247,7 +248,7 @@ Finalizing...
 Complete
 ```
 
-but KAPAPI should map this only to machine-verifiable sub-processes, not pretend a PLAYER's design/CAD work is 72% complete.
+but KAPAPI should map this only to machine-verifiable sub-processes, not pretend a 작업자's design/CAD work is 72% complete.
 
 ---
 
@@ -257,7 +258,7 @@ The collapsible pipeline card is useful for keeping the main timeline compact wh
 
 Potential KAPAPI detail contents:
 
-- PLAYER status note
+- 작업자 status note
 - delivered file
 - requested input
 - revision message
@@ -293,24 +294,24 @@ KAPAPI treatment should use neutral surfaces, hairlines, restrained state accent
 
 ---
 
-## Signature QUEST_PROGRESS concept
+## Signature WORK_PROGRESS concept
 
 The final KAPAPI motion should not literally copy ReUI's timeline.
 
 A recommended sequence:
 
 ```text
-PLAYER SELECTED       14:06   ✓
+실행 계약 승인      14:06   ✓
         │
-WORK STARTED          14:12   ✓
+작업 시작           14:12   ✓
         │
-IN PROGRESS           NOW     ●
+작업 중             현재     ●
         │
-FILE DELIVERED        —       ○
+KAPAPI 검수          —       ○
         │
-GM REVIEW             —       ○
+결과 확인            —       ○
         │
-QUEST COMPLETE        —       ○
+수락 / 수정 요청      —       ○
 ```
 
 When progress advances:
@@ -321,13 +322,13 @@ When progress advances:
 4. next state becomes current
 5. metadata/timestamp updates
 
-For the flagship prototype, the final transition should land in the separately defined `QUEST_COMPLETE` signature rather than ending with a generic green check.
+For the flagship prototype, `WORK_COMPLETE` occurs only after the client accepts the result. Result delivery or a timed animation must not auto-accept the work.
 
 ---
 
 ## Decision
 
-**ADOPT STATE MODEL / P0 for QUEST_PROGRESS**
+**ADOPT STATE MODEL / P0 for WORK_PROGRESS**
 
 This closes the main missing motion/system slot in the KAPAPI reference set.
 

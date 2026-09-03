@@ -2,7 +2,7 @@
 
 > **해야 할 일을 올리면, 결과로 돌아온다.**
 
-KAPAPI is a **task-first online work execution platform**.
+KAPAPI is a **work execution platform**: the client submits work, approves an execution contract, and receives a result. The contract defines deliverables, price, completion time, revision boundary and recovery boundary. A task-first worker market, AI, automation and partners supply KAPAPI's internal execution engine.
 
 It starts from a simple behavior:
 
@@ -42,7 +42,7 @@ The initial loop is:
 → 작업대금 + 작업이력
 ```
 
-The long-term loop becomes simpler:
+The client-facing summary applies from the first prototype:
 
 ```text
 업무 입력
@@ -91,7 +91,7 @@ Task Marketplace
 → Outcome / Execution Layer
 ```
 
-The marketplace is the supply and data engine for the final work-to-result product.
+This ladder describes KAPAPI's internal capability. The marketplace is the supply and data engine behind the current contract-and-result product; quote speed, routing reliability and recovery capacity improve with evidence.
 
 ## Founder-origin problem
 
@@ -150,7 +150,7 @@ Architecture/CAD is a founder-domain testbed, not the market identity.
 
 ## Signature market mechanism
 
-The memorable KAPAPI market moment is the trade-off between **가격 × 완료시간**.
+The memorable KAPAPI market moment is the trade-off between **가격 × 완료시간**, explained on the worker surface and in `이용 방법`. The following table illustrates internal procurement; the client approves one execution contract.
 
 | 작업자 | 가격 | 완료시간 |
 | --- | ---: | ---: |
@@ -173,7 +173,7 @@ Preferred early posture:
 ```
 
 이 전 과정은 발주자 화면에 나타나지 않습니다. 발주자는 실행 계약을 승인했고, 다음에 보는
-것은 결과입니다.
+것은 진행 상황과 결과입니다. 선정 근거와 필요한 실행자 정보는 설명용 기록으로 제공하며 선택을 요구하지 않습니다.
 
 As transaction history becomes reliable, KAPAPI can progressively move toward default routing, backup/replacement and recovery.
 
@@ -187,7 +187,7 @@ Worker-side principle:
 
 ## Outcome / Execution Layer
 
-At maturity, KAPAPI should care more about completing the work than exposing the internal executor.
+KAPAPI's client-facing unit is already the completed result. The breadth and reliability of the internal execution pool grow category by category.
 
 Depending on the task, execution may use:
 
@@ -227,7 +227,7 @@ Do not hard-code a universal minimum payment before real data exists. Learn the 
 
 ## Current North Star
 
-> **Early KAPAPI helps people pick up work. Mature KAPAPI helps anyone get work done.**
+> **Clients approve the contract and receive the result from the start. Real executions improve KAPAPI's quoting, routing and recovery capability.**
 
 Or, in the shortest form:
 

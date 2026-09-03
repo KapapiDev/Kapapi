@@ -31,7 +31,7 @@ Default decision: **reject for production prototype unless isolated visual QA pr
 Why:
 
 - cursor-following glow is easy to make portfolio-like
-- can compete with QUEST/BID information for attention
+- can compete with 업무/제안 information for attention
 - may add continuous GPU work
 - the demo itself adds `custom-cursor`, which is a warning sign for product usability if overused
 - KAPAPI should feel like a live professional-work system, not an effects showcase

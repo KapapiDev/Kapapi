@@ -1,7 +1,7 @@
 # KAPAPI Prototype v2 — Content & Surface Governance
 
 Status: **mandatory authority for `feat/prototype-v2`**  
-Updated: **2026-09-02**
+Updated: **2026-09-03**
 
 This document exists to prevent Prototype v1's content mistakes from returning through new implementation choices.
 
@@ -15,7 +15,7 @@ A visible element is allowed only when at least one of the following is true:
 
 1. it is required by current product behavior or an explicit canonical decision;
 2. it is supported by observed reference / Korean-market convention and materially improves usability or trust;
-3. it was explicitly approved as a KAPAPI brand/world element for the relevant surface.
+3. it was explicitly approved as a KAPAPI brand element for the relevant surface and follows D-034's ordinary work terminology.
 
 If none applies, do not ship it.
 
@@ -28,8 +28,8 @@ Do not promote an example into public UI merely because it appears in a canon do
 In particular, the following Prototype v1 artifacts must not be copied into v2 unless separately justified by a new design decision:
 
 - `김도현` or any other arbitrary current-user persona in the public landing header;
-- `QUEST NETWORK` as a KAPAPI sub-brand or persistent logo suffix;
-- `QUEST NETWORK · ONLINE` as decorative hero eyebrow text;
+- an invented work-network sub-brand or persistent logo suffix;
+- a fictional network-status hero eyebrow;
 - `RESET` or any other demo/debug control in public navigation;
 - `이런 일들이 올라옵니다` as an assumed landing-section label;
 - a fixed row of arbitrary example chips merely because Upwork uses examples;
@@ -47,7 +47,7 @@ Do not show an arbitrary person's:
 - name,
 - initials/avatar,
 - organization,
-- level,
+- decorative progression status,
 - profile,
 - transaction history,
 
@@ -74,24 +74,24 @@ If such controls are needed, keep them in a hidden/dev-only mechanism, query par
 
 KAPAPI terms are not decoration.
 
-**Superseded by D-034:** `QUEST`, `BID`, `PLAYER`, `TIME ATTACK`, `LEVEL`, `EXP` and
-`QUEST COMPLETE` are no longer permitted anywhere a user can see. Use 업무 / 제안 /
-작업자 / 발주자 / 긴급 업무 / 작업이력 / 업무 완료.
+**D-034:** Use 업무 / 제안 / 작업자 / 발주자 / 작업대금 / 긴급 업무 /
+작업이력·신뢰지표 / 업무 완료. Fictional roles, game states and progression terminology
+are not current product vocabulary.
 
 A label is allowed only when the object or state it names actually exists in the
 current data — 제안 4건 when there are four, 마감 6시간 when that is the deadline.
 
 Do not invent adjacent lore such as:
 
-- `QUEST NETWORK`,
-- `MISSION CONTROL`,
-- `NETWORK ONLINE`,
+- an invented work-network sub-brand,
+- fictional command-center labels,
+- decorative online-network labels,
 - pseudo-terminal metadata,
 - fake system-health language,
 
-unless a future explicit decision gives the term a real product meaning.
+under the current product canon.
 
-World-building should emerge from real work states, not from logo-adjacent flavor text.
+Product identity should emerge from real work states, not from logo-adjacent flavor text.
 
 ## 5. New-element necessity test
 
@@ -164,14 +164,14 @@ Before declaring v2 ready, inspect every visible first-page element and record o
 
 - `PRODUCT REQUIRED`
 - `REFERENCE-SUPPORTED UX`
-- `APPROVED BRAND/WORLD`
+- `APPROVED BRAND`
 
 Anything that cannot receive one of those tags should be removed before founder review.
 
 Also run a dedicated negative audit for Prototype v1 leakage:
 
 - no arbitrary current-user identity in landing chrome;
-- no `QUEST NETWORK` pseudo-sub-brand;
+- no invented work-network pseudo-sub-brand;
 - no `RESET` in public navigation;
 - no arbitrary example-section heading inherited from v1;
 - no copy copied only because it existed in v1 fixtures/components;

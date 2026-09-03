@@ -20,7 +20,7 @@ KAPAPI connects:
 - a person's available time + usable skill
 - an organization's unresolved work + insufficient current capacity
 
-The initial market thesis is therefore **task-first**, not profile-first or service-listing-first.
+The supply mechanism is therefore **task-first**, not profile-first or service-listing-first. The client buys an execution contract from the start: **deliverable + price + completion time + revision boundary + recovery boundary**. KAPAPI handles the market, assignment, QA and recovery internally, then returns a result for client acceptance or revision (D-033.1–.12, D-035).
 
 ### Boundary clarification
 
@@ -44,7 +44,7 @@ Worker mental model:
 
 Client mental model:
 
-`define work → approve the Execution Contract → receive result → accept/revise`
+`work request / files → KAPAPI structures SOW → approve the Execution Contract → KAPAPI executes / checks / recovers → receive result → accept/revise`
 
 Preferred client-side line:
 
@@ -142,23 +142,23 @@ This allows spare capacity to become economically legible.
 
 A worker with a free evening can compete on speed. Another can compete on price with a longer commitment. Urgent work makes completion time especially valuable.
 
-This mechanism connects **available human capacity** to **time-sensitive unresolved work** and should remain one of KAPAPI's most visible product moments.
+This mechanism connects **available human capacity** to **time-sensitive unresolved work**. It is visible on the worker surface and may be explained in `이용 방법`. KAPAPI uses the price × completion-time signal internally to build quotes, allocate execution and arrange backup capacity; the client approves the resulting contract.
 
 ---
 
 ## 6. Relationship to recommendation and routing
 
-Task-first does not require clients to manually study worker profiles or proposals forever.
+Task-first describes the worker market. The default client flow never requires studying or comparing worker profiles or proposals.
 
 ```text
 Worker side
 work discovery → price + completion-time proposal → execution → verified history
 
 Client side
-work request → 실행 계약 승인 → KAPAPI routing → result → accept/revise
+work request → structured SOW → 실행 계약 승인 → KAPAPI internal execution / QA / recovery → result → accept/revise
 ```
 
-The original side-job insight is the **supply/market bootstrap**. The long-term execution layer is the **client convenience and retention destination**.
+The original side-job insight is the **supply/market bootstrap**. Result-oriented UX is the initial client experience. What develops over time is KAPAPI's ability to deliver it with more accurate quotes, reliable routing, lower operating effort and effective recovery.
 
 ---
 
@@ -166,9 +166,9 @@ The original side-job insight is the **supply/market bootstrap**. The long-term 
 
 ### Phase A — Bounded online work market
 
-Prove that people will pick finishable online work and clients will submit it.
+Prove that people will pick finishable online work and clients will approve execution contracts for it. Early KAPAPI may use a concierge back office for scoping, assisted quotes, procurement, assignment, QA and recovery.
 
-Learn what gets posted, what attracts supply, price/completion-time distributions, completion/revision behavior, where specifications fail and which transaction-value bands can support viable economics.
+Learn what gets posted, what attracts supply, price/completion-time distributions, contract approval, completion/revision behavior, operator minutes, where specifications fail and which transaction-value bands support completed-outcome contribution after execution, payment, QA/support, revision and recovery costs.
 
 ### Phase B — Skilled and professional work
 
@@ -184,9 +184,9 @@ Add repeat-work templates, preferred/verified worker pools, existing vendor impo
 
 Target:
 
-`work in → KAPAPI scopes/routes/executes-or-orchestrates/recovers/checks → result out`
+`work in → scoped execution contract approval → KAPAPI executes / checks / recovers → result out → accept/revise`
 
-At maturity, the client should not care which marketplace mechanics or executor types were required behind the scenes. Depending on the work, execution may involve human workers, AI, deterministic automation, specialist partners or hybrid/multi-worker workflows.
+The client already receives this result-oriented flow in Phase A. Phase D expands its reliability, range and economics. Depending on category evidence, internal execution may involve human workers, AI, deterministic automation, specialist partners or hybrid/multi-worker workflows. Near-instant quotes and stronger outcome commitments require repeatable scopes, predictable costs and recovery capacity.
 
 ---
 
@@ -199,11 +199,11 @@ Build a market where work exists first
 ↓
 People turn spare time + skill into completed work
 ↓
-Organizations turn irregular unresolved work into external capacity
+Organizations approve result + price + completion time + revision/recovery boundaries
 ↓
-KAPAPI accumulates price, completion-time, fit and performance data
+KAPAPI executes internally and accumulates scope, quote, price, time, QA and recovery data
 ↓
-Recommendation and routing become increasingly reliable
+Internal quoting, routing and recovery become increasingly reliable
 ↓
 Repeat businesses use KAPAPI as external capacity
 ↓
@@ -232,7 +232,7 @@ North Star:
 2. Existing options did not match the desired behavior: choose bounded online office/professional work, finish it, get paid.
 3. That observation leads to a task-first market rather than service-storefront-first discovery.
 4. The opposite side is organizations with bounded work that does not justify permanent staffing or heavyweight outsourcing.
-5. The prototype tests this transaction directly.
+5. The prototype shows clients approving an execution contract, KAPAPI handling execution internally and returning a result for acceptance/revision; the worker side shows task discovery and price + completion-time proposals.
 6. Architecture/CAD provides a founder-domain testbed for higher-skill work, but KAPAPI is not limited to construction/architecture.
 7. The “small task” origin is an entry point, not a low-value microtask market definition.
 
@@ -251,7 +251,8 @@ North Star:
 
 - Will clients submit work currently done personally, delayed, assigned internally or sent to known vendors?
 - Which work is bounded enough to delegate but valuable enough to pay for?
-- Does reducing freelancer search/comparison increase willingness to delegate?
+- Will clients approve a defined execution contract without shopping for workers?
+- Do clients understand the deliverable, price, completion time and revision/recovery boundaries?
 - Does repeat work emerge?
 
 ### Market/economics questions
@@ -264,7 +265,9 @@ North Star:
 - revision rate
 - client acceptance
 - worker effective earnings
+- operator minutes per completed result
 - support/recovery cost
+- completed-outcome contribution margin
 - minimum viable transaction-value band by category
 - repeat client rate
 - repeat worker rate

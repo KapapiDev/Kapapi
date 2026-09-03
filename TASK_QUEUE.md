@@ -6,8 +6,8 @@ Primary implementation target: `feat/prototype-v2`
 
 Authority:
 
-1. `docs/ORIGIN_AND_GROWTH_THESIS.md`
-2. `docs/DECISIONS.md` D-032 through D-035, including the D-033.1–.12 execution-market series
+1. `docs/DECISIONS.md` D-033.1–.12, D-034, D-035
+2. `docs/ORIGIN_AND_GROWTH_THESIS.md`
 3. `docs/PRODUCT.md`
 4. `docs/ROADMAP.md`
 5. `docs/PROTOTYPE_SPEC.md`
@@ -30,7 +30,7 @@ What the 발주자 approves is the **실행 계약** — 결과물 + 가격 + �
 - Architecture/CAD testbed only
 - market broader than professional-only work
 - price + completion time mandatory
-- execution layer remains North Star
+- execution-contract approval and result return are the initial client UX; execution infrastructure is the long-term capability goal
 
 ## KAP-101 — Routing responsibility is earned
 **Status:** DONE
@@ -42,7 +42,7 @@ What the 발주자 approves is the **실행 계약** — 결과물 + 가격 + �
 ## KAP-102 — Resource-agnostic execution layer
 **Status:** DONE
 
-Long-term execution permits human worker, AI, deterministic automation, specialist partner, hybrid execution and multi-worker decomposition.
+Internal execution permits human worker, AI, deterministic automation, specialist partner, hybrid execution and multi-worker decomposition where category evidence supports them.
 
 ## KAP-103 — Standard terminology
 **Status:** DOCS DONE / IMPLEMENTATION OPEN
@@ -72,12 +72,12 @@ Acceptance:
 
 # P0 — Prototype behavior realignment
 
-## KAP-110 — Recommendation + confirmation
+## KAP-110 — Execution contract approval
 **Status:** OPEN
 
 Change transaction proof to:
 
-`업무 요청 → SOW 정리 → 실행 계약 → 발주자 승인 → (카파피: 제안·선정·배정) → 결과`
+`업무 요청 → SOW 정리 → 실행 계약 → 발주자 승인 → (카파피: 조달·배정·수행·QA·복구) → 결과 → 수락 / 수정 요청`
 
 Required UI on the 발주자 surface:
 
@@ -95,11 +95,14 @@ Explicitly **not** on the 발주자 surface: proposal list, ranked comparison,
 Use ordinary labels:
 
 ```text
-접수됨
-작업자 배정
+업무 접수
+실행 계약 확인
+계약 승인
 작업 중
+검수 중
+복구 진행 (필요 시)
 결과 전달
-검토
+결과 확인
 수정 요청
 업무 완료
 ```
@@ -109,7 +112,7 @@ Internal code identifiers may remain technical, but no removed vocabulary may le
 ## KAP-112 — Deterministic fixture logic
 **Status:** OPEN
 
-Keep deterministic ranking for demo stability. The top eligible candidate is the assigned 작업자, and the ranking's criteria plus the excluded 제안 are what make that inspectable.
+Keep deterministic internal ranking for demo stability. The top eligible candidate is the assigned 작업자. Retain criteria and exclusions in the internal record and explanatory demo; the client sees a concise assignment rationale as information. Contract approval must precede execution.
 
 ---
 
@@ -125,7 +128,7 @@ Acceptance:
 - hero
 - board
 - work detail
-- proposal/recommendation
+- execution contract / worker proposal
 - workroom
 - result
 - profile/history
@@ -169,9 +172,9 @@ Public examples can span Data & Documents / Content & Production / Skilled Suppo
 ## KAP-122 — Selection proof
 **Status:** DONE
 
-`이용 방법` shows the arriving 제안, the filtering with each excluded bid's reason,
-the selected 작업자 with 가격 · 완료시간 · 유사 업무 · 정시완료율, and the delivered
-result. The 발주자 surface shows only the outcome and its criteria.
+`이용 방법` explains KAPAPI's internal procurement through proposals, eligibility,
+selection evidence, QA/recovery and delivery. The 발주자 surface shows the execution
+contract, progress and result, with assignment rationale available as information.
 
 ## KAP-123 — Task-first distinction
 **Status:** OPEN
@@ -185,9 +188,9 @@ Landing should demonstrate:
 
 Show concise future evolution:
 
-`completed work → trust → better recommendation → routing/recovery → work in → result out`
+`completed work → scope/quote/QA/recovery data → better internal routing and recovery → broader execution capacity`
 
-Label as future/product evolution.
+Label capability growth as future evolution. Execution-contract approval and result return are already the current client flow.
 
 ---
 
@@ -196,12 +199,12 @@ Label as future/product evolution.
 ## KAP-130 — Work draft copy
 **Status:** OPEN
 
-After posting, say proposals will arrive and KAPAPI will recommend based on conditions/history. Do not claim universal auto-assignment.
+After input, explain that KAPAPI is organizing the scope and preparing an execution contract. Show deliverable, price, completion time, revision boundary and recovery boundary for approval. Use assisted-quote wording until category evidence supports near-instant pricing.
 
-## KAP-131 — Recommendation confirmation
+## KAP-131 — Contract approval and internal execution
 **Status:** OPEN
 
-Recommended worker can be confirmed; alternatives can be inspected; confirmation creates assignment.
+The client approves the execution contract with `이 조건으로 맡기기` or requests changes to its conditions. KAPAPI handles procurement, assignment, QA and recovery internally. The client surface contains no proposal comparisons or worker-selection actions.
 
 ## KAP-132 — Result loop
 **Status:** VERIFY
@@ -232,7 +235,7 @@ Relevant career/history, on-time and revision signals are the visible trust syst
 
 ---
 
-# P1 — Long-term concept proof
+# P1 — Execution mechanism and capability proof
 
 ## KAP-150 — Execution-resource diagram
 **Status:** OPEN
@@ -251,7 +254,7 @@ KAPAPI
 ## KAP-151 — Data flywheel proof
 **Status:** OPEN
 
-Completed work creates price, completion-time, task-fit, on-time, revision and failure/recovery data that improves recommendation/routing.
+Requests become structured SOWs, quotes and approved contracts, followed by internal procurement, execution, QA/recovery and acceptance. Those records improve scope, quotes, routing and recovery; track operator minutes and completed-outcome contribution.
 
 ---
 
@@ -270,7 +273,7 @@ New invariants:
 - Architecture/CAD not hero identity
 - task board remains functional
 - no permanent client/worker account split
-- future execution layer clearly labeled future
+- current result-oriented UX distinct from future automation and stronger guarantees
 - no special/game terminology in public copy
 - no level/experience UI
 
@@ -280,7 +283,7 @@ New invariants:
 ## KAP-162 — Desktop/mobile visual QA
 **Status:** OPEN
 
-Verify landing, board, work detail/proposal, recommendation/confirmation, result and reduced motion.
+Verify landing, board, work detail/proposal, execution-contract approval, progress, result/revision and reduced motion.
 
 ## KAP-163 — Preview QA
 **Status:** OPEN
@@ -296,14 +299,15 @@ Verify actual latest deployed branch head when Preview access exists.
 
 ```text
 Landing
-→ 발주자 creates work
-→ 작업자 finds work
-→ price + completion-time proposal
-→ KAPAPI recommendation
-→ 발주자 confirmation
-→ execution/result
+→ 발주자 requests work / files
+→ KAPAPI structures SOW
+→ 실행 계약: 결과물 + 가격 + 완료시간 + 수정 경계 + 복구 경계
+→ 발주자 approves contract
+→ KAPAPI internally procures / assigns / executes / checks / recovers
+→ result
 → accept/revise
-→ future execution layer
+→ 이용 방법: worker task discovery and price + completion-time proposals inside KAPAPI
+→ future quote/routing/recovery capability
 ```
 
 ## KAP-171 — Honest prototype boundaries
@@ -317,6 +321,6 @@ Do not imply production availability of escrow/payment custody, tax settlement, 
 
 The alignment pass is complete when a new reviewer can describe KAPAPI as:
 
-> **“일이 먼저 올라오는 업무시장에서 시작해서, 작업자들이 가격과 완료시간을 제안하고 카파피가 실제 이력과 조건으로 추천해준다. 거래가 쌓이면 배정과 복구를 고도화하고 결국 일을 넣으면 결과가 돌아오는 시스템으로 간다.”**
+> **“발주자는 업무를 입력하고 결과물·가격·완료시간·수정·복구 조건이 담긴 실행 계약을 승인한다. 카파피는 내부 작업자 시장과 AI·자동화를 활용해 수행·검수·복구하고 결과를 돌려준다. 실행 데이터가 쌓일수록 견적·배정·복구가 정교해진다.”**
 
 and no canonical document or current v2 user-facing flow materially contradicts that description.

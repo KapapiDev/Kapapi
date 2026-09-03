@@ -22,7 +22,7 @@ Canonical authorities remain:
 
 | Reference | Extract | Best KAPAPI use | Do not copy |
 | --- | --- | --- | --- |
-| **Linear** | precision, compact information hierarchy, hairlines, product-tool density | 업무 목록, 제안 비교, Workroom, trust modules | exact dark palette, lime accent, recognizable app layout |
+| **Linear** | precision, compact information hierarchy, hairlines, product-tool density | 작업자 업무 목록, KAPAPI 내부 제안 비교, Workroom, trust modules | exact dark palette, lime accent, recognizable app layout |
 | **Hyperstudio** | editorial black/off-white contrast, art direction, oversized regular typography, print-like composition | landing, brand statements, major narrative sections | agency-portfolio experimentation, decorative composition over product clarity |
 | **Factory** | operational dark surfaces, live work objects, terse status, terminal-war-room discipline | active 업무, 긴급 업무, Workroom | developer-tool cosplay, code-terminal aesthetic everywhere |
 | **Vercel** | white-paper restraint, type hierarchy, neutral hairlines, transaction/settings clarity | forms, 제안 선정, file/result, contracts/review concepts | sterile sameness, literal Vercel geometry |
@@ -73,7 +73,7 @@ Desired result:
 
 > dense enough to scan real work, quiet enough to make urgency meaningful.
 
-### 업무 상세 / 제안
+### 작업자 업무 상세 / 제안 · KAPAPI 내부 조달
 
 Primary:
 
@@ -86,7 +86,7 @@ Secondary:
 
 Desired result:
 
-> serious decision surface where PRICE × DELIVERY TIME is instantly comparable.
+> a worker proposal and internal procurement surface where PRICE × DELIVERY TIME is legible; clients approve an execution contract containing the result, price, completion time, revision and recovery boundaries.
 
 ### 작업자 프로필
 
@@ -138,7 +138,7 @@ Motion support:
 
 Desired result:
 
-> visible complexity disappears until only input, KAPAPI and result remain.
+> procurement and execution complexity stays inside KAPAPI while client contract approval and result acceptance/revision remain visible.
 
 ---
 
@@ -149,7 +149,7 @@ Desired result:
 | Number Flow / Maxwell Barvian | **ADOPT / P0** | live numeric interpolation | 가격, 완료시간, 제안 수, 작업이력 |
 | Magic UI Animated List | **REMIX / P0** | insertion + `AnimatePresence` + layout reflow | 제안 도착 / live event insertion |
 | Motion official Layout/Reordering | **ADOPT PATTERN / P0** | spatial continuity during reorder | 제안 목록 reflow / 순위 변화 |
-| Animated Feature Carousel / Le Thanh | **REMIX / P0** | stable shell + sequential narrative states | hero transaction story |
+| Animated Feature Carousel / Le Thanh | **REMIX / P0** | stable shell + sequential narrative states | transaction story outside the unmodified hero film |
 | Motion Primitives Morphing Dialog | **ADOPT PATTERN / P1** | shared object continuity, accessibility behavior | 업무 상세, 작업자 프로필 |
 | Magic UI Animated Beam | **REMIX / P1** | meaningful routing between DOM objects | Autopilot orchestration story |
 | ReUI Timeline / Stepper | **ADOPT SEMANTICS / P0** | completed/active/pending/failure states | 업무 진행 |
@@ -263,12 +263,8 @@ KAPAPI is not designed **from** references.
 References help solve individual problems, but the final product language comes from the transaction itself:
 
 ```text
-업무
-→ 제안
-→ PRICE × DELIVERY
-→ 작업자 배정
-→ WORK MOVING
-→ RESULT
+CLIENT: 업무 입력 → 실행 계약 승인 → KAPAPI 진행 상황 → 결과 → 수락 / 수정 요청
+KAPAPI INTERNAL: 제안 → PRICE × DELIVERY / trust → procurement / assignment → execution → QA / recovery
 ```
 
 That sequence is the real design system.

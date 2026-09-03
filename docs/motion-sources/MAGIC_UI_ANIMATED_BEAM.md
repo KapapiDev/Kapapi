@@ -2,7 +2,7 @@
 
 Status: **captured**  
 Decision: **REMIX / P1**  
-Primary KAPAPI use: **AUTOPILOT workflow / work-routing explanation**
+Primary KAPAPI use: **KAPAPI internal execution-boundary explanation**
 
 ---
 
@@ -87,32 +87,27 @@ The source demos show several refs feeding a central node and the central node f
 
 This is not a good primitive for ordinary product UI. It is useful because KAPAPI has one hard story to communicate visually:
 
-> A GM should not have to manually coordinate every professional, document, contract, status, and delivery step. KAPAPI should absorb that orchestration and return a result.
+> The 발주자 approves an execution contract containing deliverable, price, completion time, revision boundary and recovery boundary. KAPAPI handles procurement, assignment, execution, QA and recovery internally and returns a result for acceptance or revision.
 
-The beam topology can help explain that orchestration before `AUTOPILOT_COLLAPSE` removes visible complexity.
+The beam topology can help explain that orchestration before `EXECUTION_BOUNDARY` removes visible complexity.
 
-Potential narrative:
+Potential `이용 방법` narrative, opening the KAPAPI node to explain its internal work:
 
 ```text
-FILE
-DEADLINE
-QUALITY TARGET
+업무 요청 / 파일
+        ↓
+실행 계약 승인 (결과물 + 가격 + 완료시간 + 수정 경계 + 복구 경계)
         ↓
       KAPAPI
-   ↙    ↓    ↘
-PLAYER  NDA  QA
-   ↘    ↓    ↙
-      RESULT
+  [내부: 작업자 / AI / 자동화 / 파트너 → 수행 → QA / 복구]
+        ↓
+      결과 → 수락 / 수정 요청
 ```
 
-Then, as the section progresses, PLAYER / NDA / QA / routing details disappear behind KAPAPI until the GM-facing view becomes:
+Then the internal resource and routing details collapse behind KAPAPI. The execution contract and result decision remain visible:
 
 ```text
-FILE + DEADLINE
-      ↓
-    KAPAPI
-      ↓
-    RESULT
+업무 요청 → 실행 계약 승인 → KAPAPI → 결과 → 수락 / 수정 요청
 ```
 
 That final collapse is KAPAPI-native. Animated Beam is only a visual primitive for the earlier orchestration state.
@@ -146,7 +141,7 @@ Reject or redesign:
 - decorative two-way traffic
 - generic “AI in the middle” visual language
 
-KAPAPI is not an automation-integration SaaS. The section must communicate professional-work orchestration and result delivery, not app integrations.
+The section communicates bounded-work orchestration and result delivery. It does not represent app integrations or a claim that all internal work is already automated.
 
 ---
 
@@ -160,7 +155,8 @@ Use KAPAPI design tokens rather than Magic UI defaults:
 - low-opacity graphite/neutral routes
 - one restrained signal color only when the moving unit needs emphasis
 - compact rectangular work objects instead of logo circles
-- labels such as `QUEST`, `PLAYER`, `NDA`, `QA`, `DELIVERY`, `RESULT`
+- client labels such as `업무 요청`, `실행 계약 승인`, `KAPAPI`, `결과`, `수락 / 수정 요청`
+- internal explanatory labels such as `작업자`, `AI`, `자동화`, `파트너`, `QA`, `복구`
 - no vendor logos unless a real integration is being explained
 
 ### Motion behavior
@@ -170,11 +166,11 @@ Prefer **event-driven traversal**, not endless ambient flow.
 Example:
 
 ```text
-1. FILE enters KAPAPI
-2. scope resolves
-3. route lights toward PLAYER
-4. QA route resolves
-5. RESULT exits
+1. 업무 요청 / 파일 enters
+2. SOW and five-term execution contract appear
+3. recorded client contract approval remains visible
+4. KAPAPI's internal resource and QA/recovery routes resolve
+5. result exits for client acceptance/revision
 6. all paths settle to static
 ```
 
@@ -203,20 +199,20 @@ Rules:
 - do not run on hidden/inactive sections if avoidable
 - pause or simplify under reduced motion
 - prefer static connectors on mobile if motion adds clutter
-- no beam animations in QUEST lists, BID tables, forms, or routine workroom UI
+- no beam animations in 업무 lists, 제안 tables, forms, or routine workroom UI
 
 ---
 
 ## Relationship to KAPAPI signature motion
 
-### `AUTOPILOT_COLLAPSE`
+### `EXECUTION_BOUNDARY`
 
 Animated Beam is a **supporting primitive**, not the final motion.
 
 Phase 1:
 
 ```text
-GM INPUTS → KAPAPI → visible orchestration nodes → RESULT
+업무 요청 → 실행 계약 승인 → KAPAPI [내부 조달·수행·QA·복구] → 결과 → 수락 / 수정 요청
 ```
 
 Phase 2:
@@ -228,12 +224,12 @@ orchestration nodes contract / fade / move behind KAPAPI
 Phase 3:
 
 ```text
-FILE + DEADLINE → KAPAPI → RESULT
+업무 요청 → 실행 계약 승인 → KAPAPI → 결과 → 수락 / 수정 요청
 ```
 
 The visual message must be:
 
-> **KAPAPI gets better by removing GM-visible coordination.**
+> **KAPAPI handles execution internally while the client approves the contract and judges the result. This client boundary exists from the first prototype.**
 
 Not:
 
@@ -247,4 +243,4 @@ Not:
 
 High value for one strategic storytelling section. Low value for day-to-day application UI.
 
-Use the geometry/path engine, discard the integration-SaaS styling, and combine it with the KAPAPI-native `AUTOPILOT_COLLAPSE` narrative.
+Use the geometry/path engine, discard the integration-SaaS styling, and combine it with the KAPAPI-native `EXECUTION_BOUNDARY` narrative.

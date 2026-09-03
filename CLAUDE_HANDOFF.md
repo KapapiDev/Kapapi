@@ -6,7 +6,7 @@ Current visual implementation branch: `feat/prototype-v2`
 
 ## Mission
 
-Build and maintain a high-polish KAPAPI prototype that makes the present transaction understandable in seconds and the long-term execution layer credible without pretending it already exists.
+Build and maintain a high-polish KAPAPI prototype that makes execution-contract approval and result return understandable in seconds. Early operations may be concierge-assisted; automation, category coverage and stronger guarantees grow with evidence.
 
 The product is **not** a freelancer directory, a gamified work service, a CAD marketplace or a magical auto-outsourcing demo.
 
@@ -17,7 +17,7 @@ Current product story:
 → 카파피가 작업 조건(SOW) 정리
 → 실행 계약: 결과물 + 가격 + 완료시간 + 수정 경계 + 복구 경계
 → 발주자 승인
-→ 카파피가 내부적으로 조달·배정·수행
+→ 카파피가 내부적으로 조달·배정·수행·QA·복구
 → 결과 전달
 → 수락 또는 수정 요청
 ```
@@ -50,8 +50,8 @@ North Star:
 
 ## Mandatory reading order
 
-1. `docs/ORIGIN_AND_GROWTH_THESIS.md`
-2. `docs/DECISIONS.md` — D-032 through D-034 are current authority
+1. `docs/DECISIONS.md` — D-033.1–.12, D-034 and D-035 are current authority
+2. `docs/ORIGIN_AND_GROWTH_THESIS.md`
 3. `docs/PRODUCT.md`
 4. `docs/ROADMAP.md`
 5. `docs/VALIDATION.md`
@@ -82,7 +82,7 @@ Older copy or behavior that conflicts with current canon must be replaced.
 13. Do not use fictional roles, special glossary, levels, experience points or gamified completion labels.
 14. One universal account; client/worker are contextual transaction roles.
 15. AI initially helps scope, missing information, fit and objective checks. It is not an infallible selector or subjective quality judge.
-16. Long-term execution may use human workers, AI, automation, specialist partners or hybrid workflows.
+16. Internal execution may use human workers, AI, automation, specialist partners or hybrid workflows where supported by category evidence.
 17. Strong SLA/outcome guarantees are earned category by category.
 
 ---
@@ -95,7 +95,7 @@ LANDING
 → KAPAPI structures work (SOW)
 → 실행 계약: 결과물 + 가격 + 완료시간 + 수정 경계 + 복구 경계
 → client approves the contract
-→ (KAPAPI: proposals, eligibility, selection, assignment)
+→ (KAPAPI: procurement, eligibility, assignment, execution, QA, recovery)
 → execution status
 → delivered result
 → accept / revise
@@ -104,12 +104,11 @@ LANDING
 The contract surface shows the deliverables, the price, the committed completion
 time, the revision boundary, what happens if the work is not completed, and the
 basis the price was derived from (D-033.6: a market-informed quote shows its
-working). It shows no workers.
+working). Required executor information and assignment rationale may be disclosed as information, without proposal comparisons or selection controls.
 
 Primary action: **이 조건으로 맡기기**
 
-There is no secondary action. Approving a price and a completion time is not
-choosing a worker — the 발주자's model stays 발주자 → 카파피 → 결과.
+The client may request changes to the contract conditions before approval. That action concerns scope, price, time and revision/recovery boundaries; it does not select a worker.
 
 ---
 
@@ -148,7 +147,7 @@ Approved semantic direction:
 `작업 찾기` is not a CTA here. 작업자 is a route (`/board`) reached by the header
 toggle, so this surface carries one action.
 
-The long-term `work in → result out` story belongs below current transaction proof or in a clearly future-oriented beat.
+`work in → execution contract approval → result out` is the current transaction story. Future-oriented explanation concerns improved quote/routing automation, broader execution capacity and stronger recovery commitments.
 
 ---
 
@@ -163,12 +162,12 @@ The long-term `work in → result out` story belongs below current transaction p
 
 작업자 surface and `이용 방법`:
 
-5. task-first open work, 가격 × 완료시간 bidding
-6. the selection with its criteria and the excluded 제안
-7. completed-work case, urgent work
-7. result / accept-revise
-8. worker trust/history
-9. future progression: transactions → trust → routing → execution layer
+5. task-first open work and 가격 × 완료시간 proposals on the worker surface
+6. `이용 방법`: a clearly labeled example of KAPAPI's internal procurement, selection criteria, QA and recovery
+7. completed-work case and urgent work
+8. result / accept-revise
+9. worker trust/history
+10. capability progression: execution data → better scope/quote/routing/recovery → broader execution infrastructure
 
 ---
 
@@ -207,7 +206,7 @@ The prototype is ready for review when:
 - the 발주자 surface offers no control that picks a worker
 - no page claims universal automatic routing is solved
 - result/revision loop is visible
-- future routing/execution layer is clearly framed as earned evolution
+- future automation and stronger guarantees are clearly framed as earned evolution
 - no special/game terminology appears in user-facing copy
 - no decorative level/experience system remains
 - architecture/CAD is example only
@@ -217,7 +216,7 @@ The prototype is ready for review when:
 
 Desired reaction:
 
-> **“카파피는 일이 먼저 올라오는 시장에서 시작해서, 거래 데이터를 쌓아 결국 일을 넣으면 결과가 나오는 시스템으로 가는구나.”**
+> **“발주자는 결과물·가격·완료시간·수정·복구 조건을 승인하고 결과를 받는다. 카파피는 내부 작업자 시장과 AI·자동화를 활용하고, 실행 데이터를 쌓아 견적·배정·복구를 개선하는구나.”**
 
 ---
 

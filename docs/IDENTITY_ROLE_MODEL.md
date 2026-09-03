@@ -9,7 +9,7 @@ KAPAPI has **one universal user identity**.
 
 > **A person is a KAPAPI user first. They are 발주자 on work they posted and 작업자 on work they proposed for or are performing.**
 
-Historical note: this file previously used GM / PLAYER / QUEST. D-034 replaced that vocabulary with 발주자 / 작업자 / 업무 throughout. The architecture is unchanged; only the nouns are.
+Terminology follows D-034: 발주자 / 작업자 / 업무.
 
 The same user may be 발주자 and 작업자 at the same time across different work items.
 
@@ -22,7 +22,7 @@ USER A
 └─ 업무 #0201 → 제안 대기 중 → 작업자
 ```
 
-This is a core product/world rule, not an implementation detail.
+This is a core product rule, not an implementation detail.
 
 ---
 
@@ -61,11 +61,11 @@ The role is derived from the person's relationship to the work item in front of 
 
 작업자 means:
 
-> the user bidding on or performing this work item.
+> the user proposing for or performing this work item.
 
 Therefore these terms describe **what the user is doing in a transaction**, not who the person permanently is.
 
-World-building implication:
+Transaction-role implication:
 
 > 오늘은 내가 업무를 올리고, 다른 업무에서는 작업자로 참여할 수 있다.
 
@@ -88,8 +88,8 @@ Hero hierarchy remains:
 ```
 
 승인 화면은 **실행 계약** 하나입니다 — 결과물 · 가격 · 완료시간 · 수정 경계 · 복구
-경계. 발주자는 작업자를 고르지 않으므로, 이 화면에도 작업자는 등장하지 않습니다
-(D-033.1).
+경계. 발주자는 작업자를 고르지 않습니다. 법률·자격·보안·신뢰상 필요한 수행자 정보는
+설명으로 제공할 수 있으며 선택이나 승인 대상으로 만들지 않습니다 (D-033.1, D-035).
 
 The supply-side entry should be framed as another action available to the same user, for example:
 
@@ -123,7 +123,7 @@ or an equivalent structure.
 ```text
 맡긴 업무
 수행 중인 업무
-입찰한 업무
+제안한 업무
 완료한 업무
 ```
 
@@ -151,7 +151,6 @@ Examples:
 - revision rate
 - dispute/failure history
 - availability
-- ~~LEVEL / EXP~~ (removed by D-034; trust is 작업이력 / 정시완료율 / 수정률)
 
 ### Issuer / 발주자 reputation
 
@@ -165,7 +164,7 @@ Examples:
 
 Do not collapse these into one meaningless universal score.
 
-D-034 removes `LEVEL / EXP` from the product entirely; trust is 작업이력 / 정시완료율 / 수정률, not a score.
+Use task-specific work history, on-time performance and revision rates as trust evidence, without decorative progression scores.
 
 ---
 
@@ -201,12 +200,12 @@ The account remains universal even when an 업무 is unavailable to that user.
 The prototype uses deterministic fixtures to demonstrate 발주자 and 작업자 actions,
 but the UI must not imply those are two separate account species.
 
-The shipped demonstration shows:
+The demonstration must show:
 
-1. 업무 being posted (발주자 surface),
-2. the 작업자 surface with open work and 가격 + 완료시간 bidding,
-3. KAPAPI selecting,
-4. the result arriving back on the 발주자 surface.
+1. 업무 request and execution-contract approval on the 발주자 surface,
+2. the 작업자 surface with open work and 가격 + 완료시간 proposals,
+3. KAPAPI handling selection, execution, QA and recovery internally,
+4. the result returning to the 발주자 for acceptance or revision.
 
 The 발주자 / 작업자 header toggle is what moves between 1 and 2. It is a view switch
 on one account — `scripts/loop.mjs` asserts that the toggle exists and that no
@@ -232,16 +231,16 @@ D-034 removed the separate role/state vocabulary. Use 발주자 / 작업자 / �
 
 ## 9. Mandatory implementation QA
 
-Prototype v1 FAILS this model if any of the following is true:
+The current prototype fails this model if any of the following is true:
 
 - signup requires `발주자` or `작업자` as a permanent choice,
 - a user needs two accounts to issue and execute work,
 - navigation suggests mutually exclusive user classes,
 - profile architecture cannot represent both issuer and execution history,
-- the same user cannot conceptually post one 업무 and bid on another,
+- the same user cannot conceptually post one 업무 and propose for another,
 - `일 찾기` is treated as entry into a separate product/account rather than another available action.
 
-Prototype v1 PASSES when a reviewer can naturally understand:
+The current prototype passes when a reviewer can naturally understand:
 
 > **“카파피에서는 누구나 일을 맡길 수도 있고, 자기가 할 수 있는 다른 일을 받아서 수행할 수도 있구나.”**
 

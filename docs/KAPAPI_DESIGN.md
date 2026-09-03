@@ -11,11 +11,12 @@ KAPAPI should feel like serious, premium work-execution software.
 
 Current visual transaction:
 
-발주자 surface — three nodes:
+발주자 surface — 업무 입력 → KAPAPI → 결과, with an explicit execution contract:
 
 ```text
 발주자 describes the work + attaches files
 → 실행 계약: 결과물 · 가격 · 완료시간 · 수정 경계 · 복구 경계 → 승인
+→ KAPAPI procures, assigns, checks and recovers execution internally
 → RESULT
 → ACCEPT / REVISE
 ```
@@ -31,9 +32,9 @@ WORK EXISTS
 → ASSIGNED / WORK
 ```
 
-There is no RECOMMENDATION state and no 발주자 CONFIRMS step (D-033.1).
+The 발주자 approves the execution contract and later accepts or requests revision of the result. Worker selection and proposal comparison belong to KAPAPI's internal execution process (D-033.1–.5, D-035).
 
-Future evolution:
+Future internal capability, behind the same client contract-and-result flow:
 
 ```text
 completed-work data
@@ -42,7 +43,7 @@ completed-work data
 → instant quoting in proven categories
 → recovery
 → repeat capacity
-→ WORK IN → RESULT OUT
+→ more reliable execution across proven categories
 ```
 
 The design must not imply universal auto-routing is already solved.
@@ -53,9 +54,9 @@ The design must not imply universal auto-routing is already solved.
 
 1. **work-object clarity** — task/file/result are concrete objects
 2. **task-first discovery** — open work is primary on worker surfaces
-3. **price × completion-time legibility**
-4. **recommendation confidence**
-5. **confirmation clarity** — recommended is distinct from assigned
+3. **price × completion-time legibility** — contract terms for clients; proposals for workers and internal procurement
+4. **execution-contract clarity** — result, price, completion time, revision and recovery boundaries
+5. **assignment evidence** — KAPAPI's selection is recorded after contract approval
 6. **trust evidence** — relevant history beats decorative status
 7. **delivery proof** — files, timestamps and checks dominate completion
 8. **future evolution** — show data → trust → routing without overclaiming
@@ -98,11 +99,16 @@ Use references as principles, not layouts to clone:
 - category/deadline/requirements metadata
 - work title and outcome above profile decoration
 
-### Proposal / recommendation
+### Proposal / internal procurement
 - price × completion time prominent
 - relevant history/on-time/revision immediately legible
-- recommended worker clear without theatrical winner effects
-- alternatives quieter but inspectable
+- KAPAPI's selected execution path clear without theatrical winner effects
+- candidate comparison belongs to internal procurement and the mechanism explainer
+
+### Client execution contract
+- deliverable, price and completion time prominent
+- acceptance/revision and recovery boundaries visible before approval
+- quote basis legible; assisted quotes must not look universally instant
 
 ### Active work / urgent work
 Dark contextual treatment may be used when it improves operational clarity.
@@ -144,8 +150,8 @@ No novelty game fonts or pseudo-terminal language.
 5. — no action. D-035: the client is not asked to choose.
 
 ### Assigned/work state
-`배정`, `작업 시작` and the timeline follow KAPAPI's selection directly. There is no
-confirmation step to gate them behind.
+After the execution contract is approved, `배정`, `작업 시작` and the timeline follow
+KAPAPI's internal selection. The client is informed of assignment without being asked to select an executor.
 
 ### Result
 1. delivered file/result
@@ -191,10 +197,11 @@ Do not use fictional role names, experience points, levels, rarity, coins, sword
 
 ## 10. Interaction hierarchy
 
-The assignment record has no action. The 발주자's only actions in the whole flow are
-at the two ends:
+The assignment record is informational. The 발주자's actions are:
 
 > **맡기기** — at the start
+
+> **이 조건으로 맡기기** — approve the execution contract before procurement and execution
 
 > **결과 확인** / **수정 요청** — at the end
 
@@ -242,7 +249,8 @@ Potential mature resources:
 
 `HUMAN WORKER · AI · AUTOMATION · SPECIALIST PARTNER · HYBRID`
 
-This must read as product evolution, not current universal capability.
+This represents increasing internal reliability and category coverage. The client
+contract-and-result flow already applies; universal automation is not a current claim.
 
 ---
 
@@ -255,10 +263,10 @@ This must read as product evolution, not current universal capability.
 - status never color-only
 - reduced-motion path
 - no horizontal overflow
-- recommendation/confirmation remains understandable on mobile
+- execution-contract approval and result acceptance remain understandable on mobile
 
 ---
 
 ## 15. Rejection gate
 
-Reject a screen if it looks like a generic dashboard/template, makes work less prominent than profile decoration, makes recommendation and assignment indistinguishable, implies universal day-one auto-routing, lets CAD define the product, uses gamified decoration instead of real trust evidence, or needs paragraphs to explain what the UI should show.
+Reject a screen if it looks like a generic dashboard/template, makes work less prominent than profile decoration, omits execution-contract approval, turns internal selection into a client action, implies universal day-one auto-routing, lets CAD define the product, uses gamified decoration instead of real trust evidence, or needs paragraphs to explain what the UI should show.

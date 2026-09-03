@@ -3,7 +3,9 @@
 Status: **mandatory copy authority for `feat/prototype-v2`**  
 Updated: **2026-09-03**
 
-Public Korean copy must follow current D-032 product behavior. Older wording that assumes universal auto-routing is superseded.
+Public Korean copy follows D-033.1–.12, D-034 and D-035. The 발주자 approves an
+execution contract; KAPAPI handles procurement, selection, assignment, QA and
+recovery internally without claiming unsupported universal automation.
 
 ## 0. Core writing rule
 
@@ -86,12 +88,12 @@ The first view should communicate one immediate action:
 
 Current approved semantic direction:
 
-> **맡길 일을 적어주세요.**  
-> 카파피가 작업 조건을 정리하고 맞는 제안을 추천합니다.
+> **오늘은 어떤 일을 끝낼까요?**
+> 파일을 업로드하고 간단하게 설명해 주세요.
 
 Input:
 
-> `어떤 작업이 필요하신가요?`
+> `파일을 업로드하고 간단하게 설명해 주세요.`
 
 Primary CTA:
 
@@ -135,7 +137,7 @@ Prefer:
 
 - `금액`
 - `완료 시간`
-- `작업자로 확정된 시점부터 납품까지`
+- `배정 시점부터 납품까지`
 
 Avoid calling DELIVERY TIME “예상 작업시간” when it is actually the committed elapsed time to submission.
 
@@ -149,8 +151,9 @@ No long proposal-letter language is required by default.
 
 ## 6. Selection language
 
-D-035 removed the confirmation step, so there is no "before / after" pair any more.
-KAPAPI selects, and the 발주자 is told what happened.
+The 발주자 approves the execution contract before KAPAPI procures and assigns
+execution. Approval copy describes the result, price, completion time and
+revision/recovery boundaries. Assignment copy reports KAPAPI's action and rationale.
 
 On the 발주자 surface:
 
@@ -159,9 +162,9 @@ On the 발주자 surface:
 - `왜 이 작업자인가요?`
 - `작업을 시작했습니다`
 
-Do **not** write `추천`, `확정`, `이 작업자로 진행` or `다른 제안 보기` on the 발주자
-surface. They describe a decision the client is no longer asked to make, and the
-words invite them to look for a control that is not there.
+Keep worker-selection and proposal-comparison controls off the 발주자 surface.
+Use `이 조건으로 맡기기` for execution-contract approval and `결과 확인` / `수정 요청`
+for the delivered result so the object of each action is clear.
 
 `이용 방법` may say `선정` and show the criteria and the excluded 제안, because
 explaining the mechanism is that page's job.
@@ -284,7 +287,7 @@ Before founder review, inspect every visible Korean string across:
 - 업무 목록
 - 업무 상세
 - 제안 폼
-- recommendation/confirmation
+- execution-contract approval / assignment information
 - profile/trust
 - workroom
 - result/revision

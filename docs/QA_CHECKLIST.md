@@ -46,23 +46,28 @@ Fail if the UI introduces fictional role names, a special glossary, levels, expe
 
 Every proposal requires price + committed completion time. Completion time means elapsed time from assignment to submission, not estimated labor hours.
 
-## A5. Recommendation before assignment — BLOCKER
+## A5. Contract approval before internal execution — BLOCKER
 
 ```text
-제안
+실행 계약 승인
+→ [KAPAPI 내부] 제안
 → 필수요건/정렬
 → KAPAPI 선정
 → 배정
 ```
 
-Under D-035 KAPAPI assigns without client confirmation, so that is not a failure. Fail if the assignment arrives with no visible criteria, if the 발주자 surface offers any control that picks a worker, or if escrow / completion guarantee is claimed.
+The 발주자 approves the execution contract: deliverable + price + completion time +
+acceptance/revision boundary + recovery boundary. KAPAPI then procures and assigns
+execution internally. Fail if that approval is omitted, assignment has no available
+rationale, a client control picks a worker, or absent escrow/completion guarantees are claimed.
 
-## A6. Decision burden is zero on the client side — BLOCKER
+## A6. Worker selection stays inside KAPAPI — BLOCKER
 
-The 발주자 surface shows the assigned worker and the criteria that produced the
-assignment, and offers no action on it. Fail if any ranked comparison, alternatives
-list or selection control appears there. `scripts/loop.mjs` queries the DOM for
-worker-selection controls and requires zero matches.
+The 발주자 surface offers execution-contract approval and result acceptance/revision.
+Assignment information and its criteria do not become a worker-selection action.
+Fail if a ranked comparison, alternatives list or selection control appears there.
+Automated UI checks must require zero worker-selection controls while preserving
+the contract and result actions.
 
 ## A7. Result loop — BLOCKER
 
@@ -140,9 +145,12 @@ Video, if enabled, must not block primary input, must have poster/fallback, must
 
 A rough request can become structured work with inputs/files, scope, deliverables, output format, deadline, acceptance criteria, revision boundary, budget/commercial boundary, confidentiality/security and missing information where appropriate.
 
-## D2. Honest submit confirmation — BLOCKER
+## D2. Honest request and execution-contract approval — BLOCKER
 
-After posting, copy says proposals will arrive and KAPAPI will recommend based on conditions/history.
+After the request, copy explains that KAPAPI structures the work and presents an
+execution contract for approval. Show deliverable, price, completion time,
+acceptance/revision and recovery boundaries with the quote basis. Progress follows
+approval. Do not turn the request into a promise of universal instant pricing.
 
 ## D3. AI claim hygiene
 
@@ -150,27 +158,32 @@ AI may assist scoping/fit/objective checks. Do not claim authoritative price set
 
 ---
 
-# E. Recommendation / confirmation
+# E. Internal procurement / assignment
 
 ## E1. Eligibility filtering
 
-Ineligible candidates can be excluded for real reasons such as skill/credential mismatch, security requirement, availability, deadline or budget.
+Within KAPAPI's procurement process, ineligible candidates can be excluded for real reasons such as skill/credential mismatch, security requirement, availability, deadline or budget.
 
-## E2. Recommendation evidence — BLOCKER
+## E2. Assignment evidence — BLOCKER
 
-Recommendation can be supported by price, completion time, relevant completion history/career, on-time rate, revision rate and availability.
+KAPAPI's selection can be supported by price, completion time, relevant completion
+history/career, on-time rate, revision rate and availability. The client may inspect
+the rationale as information.
 
-## E3. Alternatives
+## E3. Backup execution
 
-Client can inspect alternatives without being forced to compare every proposal by default.
+Alternative resources belong to KAPAPI's internal procurement and recovery process.
+The client is not sent back to proposal comparison or supplier search after a failure.
 
-## E4. Confirmation creates assignment — BLOCKER
+## E4. Approval and assignment have distinct owners — BLOCKER
 
-Before confirmation: recommended, not assigned. After confirmation: assigned/work state begins.
+Before execution-contract approval, the client reviews result, price, completion
+time and revision/recovery boundaries. After approval, KAPAPI procures and assigns
+execution. A client approval must never identify the worker to be selected.
 
 ## E5. No fake scientific certainty
 
-Recommendation scores are prototype decision aids, not objective truth.
+Internal routing scores are prototype decision aids, not objective truth.
 
 ---
 
@@ -214,7 +227,9 @@ completed work
 
 ## G2. Resource-agnostic execution
 
-Future execution may include human worker, AI, deterministic automation, specialist partner and hybrid / multi-worker flows.
+KAPAPI may internally use human workers, AI, deterministic automation, specialist
+partners and hybrid / multi-worker flows where supported. The client-facing unit
+remains the contracted result; unsupported automation is not presented as live capability.
 
 ## G3. Current vs future boundary — BLOCKER
 
@@ -285,6 +300,7 @@ Update automated invariants so current build fails if:
 - special/game terminology appears in user-facing copy
 - decorative level/experience systems appear
 - price + completion time is absent
+- execution-contract approval or any of its five required terms is absent
 - the assignment arrives with no visible criteria
 - the 발주자 surface offers a control that picks a worker
 - CAD becomes hero identity
@@ -299,4 +315,4 @@ Run build/lint/typecheck/tests and screenshot desktop/mobile/reduced-motion stat
 
 A reviewer should naturally say:
 
-> **“카파피는 일이 먼저 올라오는 시장에서 시작하고, 작업자들이 가격과 완료시간을 제안하면 카파피가 실제 작업이력과 조건을 보고 작업자를 정한다. 발주자는 결과물·가격·완료시간이 적힌 계약만 승인하고 결과를 받는다. 이 거래 데이터를 쌓아 나중에는 복구까지 맡고 결국 일을 넣으면 결과가 돌아오는 시스템으로 가려는 거구나.”**
+> **“발주자는 업무를 입력하고 결과물·가격·완료시간·수정·복구 조건이 적힌 실행 계약을 승인한다. 카파피가 내부에서 작업자·AI·자동화를 조합해 수행과 검수·복구를 맡고, 발주자는 도착한 결과를 수락하거나 수정을 요청한다. 실제 완료 데이터를 쌓아 더 정확한 견적과 실행으로 확장하는 제품이구나.”**

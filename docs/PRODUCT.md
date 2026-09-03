@@ -19,7 +19,7 @@ Initial client-facing form:
 
 > **사람을 찾지 말고, 할 일을 올린다.** A client uploads the files and describes the work in one line. KAPAPI structures the scope and returns an **Execution Contract** — deliverables, price, completion time, revision boundary, recovery boundary — which the client approves. KAPAPI then procures and assigns the worker from the market using conditions and work history, and returns the result. The client never compares proposals or picks a worker; the selection's criteria stay visible to them as a record (D-033.1).
 
-Long-term form:
+Client-facing promise from the first prototype:
 
 > **해야 할 일을 올리면, 결과로 돌아온다.**
 
@@ -167,9 +167,10 @@ What the client approves is the contract, not the worker:
 → 발주자 승인
 ```
 
-The price is market-informed, derived from the proposals the category is actually
-receiving, and its basis is disclosed on screen. D-033.6: an instant quote is
-earned, so do not present it as universal instant pricing.
+Quoting starts assisted and becomes market-informed as category evidence grows.
+Disclose the quote's basis; prototype fixture prices must be labeled as examples,
+not live-market evidence. Near-instant quoting is earned in proven standardized
+categories (D-033.6).
 
 Selection then runs without the client:
 
@@ -181,11 +182,11 @@ Selection then runs without the client:
 → 수행
 ```
 
-Per D-035 the selection is KAPAPI's and there is no client confirmation step. The
-criteria and the excluded bids stay visible as a record of what was decided, which
-is what keeps the selection inspectable rather than magical — `PRODUCT.md` §13
-rules out positioning AI as a sole and unexplained selector, not the selection
-itself.
+KAPAPI owns selection. The client approves the execution contract and later
+accepts or requests revision of the result. Assignment rationale is available to
+the client as information; the full proposal comparison and excluded proposals
+belong to internal records or the mechanism explainer. §13 rules out positioning
+AI as a sole and unexplained selector.
 
 Early experiments may use concierge/manual procurement **behind** the contract
 (D-033.5). They must not put the choice back on the 발주자 surface: the client's
@@ -267,7 +268,7 @@ Add:
 
 ### Stage D — Repeat Business Capacity
 
-Repeated clients stop thinking “which freelancer should I search for?” and increasingly think:
+Repeated clients use the same contract-and-result flow for more of their recurring work:
 
 > **“카파피로 보내.”**
 
@@ -289,7 +290,7 @@ Target:
 
 `work in → KAPAPI scopes / decomposes / routes / executes-or-orchestrates / monitors / recovers / checks → result out`
 
-At this stage the user increasingly does not care which internal mechanism produced the result.
+At this stage KAPAPI supports the same client flow across more proven categories, with more reliable and economical internal execution.
 
 ---
 
@@ -297,7 +298,7 @@ At this stage the user increasingly does not care which internal mechanism produ
 
 The marketplace begins with human workers because real transactions create supply and trust data.
 
-The mature execution layer may use:
+KAPAPI's internal execution pool may use suitable, validated resources:
 
 - human workers
 - AI agents/models
@@ -453,7 +454,7 @@ Do not initially position AI as:
 - regulated professional decision-maker
 - magical sole selector of workers
 
-As the execution layer matures, AI may itself become part of execution where suitable.
+AI may itself execute suitable work inside KAPAPI, with category-appropriate QA and recovery. Its role and limits must reflect what has actually been validated.
 
 ---
 
@@ -473,7 +474,7 @@ Early mechanism tests may use fee = 0 and direct client↔worker payment where l
 
 KAPAPI should not optimize for the maximum number of tiny transactions if they cannot support payment, support, clarification, revision, dispute handling, recovery, acquisition and platform contribution.
 
-Measure the **minimum viable transaction value** by category and introduce floors, bundling or category exclusion when economics require it.
+Measure **completed-outcome contribution**: client revenue minus execution resources, payment, QA/support, revision/rework and recovery/replacement costs. Track operator minutes so concierge validation does not hide an uneconomic service model. Use this evidence to find the **minimum viable transaction value** by category and introduce floors, bundling or category exclusion when economics require it.
 
 The strategic goal is **clear work units**, not cheap labor units.
 
@@ -501,7 +502,7 @@ Every major feature should answer at least one of:
 
 ---
 
-## 16. Strategic summary
+## 16. Internal capability growth
 
 ```text
 PEOPLE PICK WORK

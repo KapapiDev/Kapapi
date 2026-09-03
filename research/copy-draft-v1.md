@@ -1,5 +1,9 @@
 # KAPAPI v2 공개 한국어 카피 초안 (검수 전)
 
+Status: **SUPERSEDED — historical copy-review input**
+
+> **SUPERSEDED — 2026-09-03.** This is the original draft used for a past copy review, preserved as evidence rather than current UI requirements. Current authority is `docs/DECISIONS.md` D-033.1–.12, D-034 and D-035: the client approves an execution contract containing deliverable, price, completion time, revision and recovery boundaries, then receives the result for acceptance/revision. Procurement and selection are internal to KAPAPI. Use the current prototype and Korean UX specifications for implementation.
+
 ## 내비게이션
 작업 찾기
 이용 방법

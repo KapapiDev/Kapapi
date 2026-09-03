@@ -72,7 +72,7 @@ Useful primitive:
 Potential use:
 - tiny selection indicator
 - active filter / segmented state
-- compact GM decision control
+- compact execution-contract or result decision control
 
 Do not use the pill-toggle visual itself as KAPAPI identity.
 
@@ -151,12 +151,12 @@ const item: React.CSSProperties = {
 
 Decision: **ADOPT PATTERN / P0**
 
-This is the cleanest technical reference so far for the missing half of `BID_ARRIVAL`:
+This is the cleanest technical reference so far for the missing half of `PROPOSAL_ARRIVAL`:
 
 ```text
-new BID enters
+new 제안 enters
 → ranking/comparison order changes
-→ existing BID cards move to new positions
+→ existing 제안 cards move to new positions
 → no card teleports
 ```
 
@@ -167,15 +167,15 @@ Keep:
 - spring only as a physical solver, not a decorative bounce
 
 KAPAPI adaptation:
-- ranking may change by GM sort mode such as recommended / delivery / price
-- insertion can place the new BID into the correct sorted location
+- internal ranking may change when eligibility, price, completion time or execution evidence changes
+- insertion can place the new 제안 into the correct sorted location
 - nearby cards should shift just enough to make space
 - target motion should be tighter and more mechanical than the demo if the spring visibly overshoots
 
 Provisional tuning target for KAPAPI:
 - start testing around `stiffness 300 / damping 20`
 - increase damping if any bounce is visible
-- pair with short opacity + low-amplitude Y entry for the new BID only
+- pair with short opacity + low-amplitude Y entry for the new 제안 only
 
 This should be combined with Magic UI Animated List's `AnimatePresence + layout` pattern.
 
@@ -334,12 +334,12 @@ Important primitives:
 - compact `200ms` state-content transition
 
 Potential KAPAPI uses:
-- selected BID indicator moving between PLAYER proposals
+- internal selection indicator in the `이용 방법` explanation, outside the client transaction
 - filter/sort selection state
 - workroom status tab
-- GM / PLAYER contextual navigation
+- 발주자 / 작업자 contextual navigation
 
-For `BID_DECISION`, a shared selected-state marker could move from one BID to another without redrawing the entire UI.
+For `INTERNAL_SELECTION`, a shared marker may show KAPAPI's internal decision without redrawing the whole explanation. It never asks the client to compare or choose workers.
 
 Do not copy emoji/tab visual language.
 
@@ -423,8 +423,8 @@ Interesting primitive:
 - preserving a specific visual anchor during expansion
 
 Potential use:
-- QUEST card expanding toward a detail panel without the meaningful origin point drifting
-- PLAYER summary expanding into trust details
+- 업무 card expanding toward a detail panel without the meaningful origin point drifting
+- 작업자 summary expanding into trust details
 
 The 0.8s + delayed 0.8s demo timings are far too slow for KAPAPI operational UI and should not be copied.
 
@@ -492,14 +492,14 @@ const initialItems = Array.from({ length: 16 }, (_, index) => index + 1)
 
 Decision: **REJECT AS PRODUCT INTERACTION / KEEP AS TECHNICAL REFERENCE**
 
-KAPAPI does not currently need GM to drag BID cards into arbitrary order. Ranking should be data/sort driven.
+Client screens have no proposal comparison, ranking or drag-to-select controls. Internal ranking is driven by task requirements and execution evidence.
 
 Useful only as a reference for:
 - robust reorder physics
 - `Reorder.Group` / `Reorder.Item`
 - spring settings around `350 / 30`
 
-Do not implement drag-to-rank BIDs in the prototype.
+Do not implement drag-to-rank 제안 in the prototype.
 
 ---
 
@@ -528,7 +528,7 @@ Do not add React Native solely for animation behavior.
 
 These examples materially strengthen the motion design evidence.
 
-## BID ARRIVAL should now be based on
+## 제안 도착 should now be based on
 
 ```text
 Magic UI AnimatedList
@@ -540,21 +540,24 @@ Motion official Reordering
     + layout-driven position changes
 
 KAPAPI adaptation
-    new BID enters with low-amplitude opacity/Y
-    + surrounding BIDs reflow
+    new 제안 enters with low-amplitude opacity/Y
+    + surrounding 제안 reflow
     + Number Flow resolves PRICE / DELIVERY / live metrics
 ```
 
 This is a much stronger basis than the earlier Jessi 3D-card reference.
 
-## BID DECISION should consider
+## 내부 선정 explanation should consider
 
 ```text
-shared layoutId selection marker
-→ selected PLAYER state moves coherently
+KAPAPI internal evidence evaluation
+→ shared layoutId selection marker
+→ selected 작업자 state moves coherently
 → nonselected proposals reduce emphasis
-→ committed delivery becomes primary
+→ assignment record settles within KAPAPI
 ```
+
+The client independently approves the execution contract before execution and later accepts or requests revision of the result.
 
 ## Motion principles confirmed by these examples
 
@@ -570,9 +573,9 @@ shared layoutId selection marker
 
 | Reference | Decision | KAPAPI role |
 | --- | --- | --- |
-| Motion Reordering | **P0 ADOPT PATTERN** | BID insertion/re-ranking |
-| Magic UI AnimatedList | **P0 REMIX** | BID arrival + list insertion |
-| Shared Layout / layoutId | **P1 ADOPT PATTERN** | BID selection / active state |
+| Motion Reordering | **P0 ADOPT PATTERN** | 제안 insertion/re-ranking |
+| Magic UI AnimatedList | **P0 REMIX** | 제안 arrival + list insertion |
+| Shared Layout / layoutId | **P1 ADOPT PATTERN** | 제안 selection / active state |
 | Layout toggle | P2 | micro state indicator |
 | LayoutAnchor | P2 | expandable card/detail research |
 | Reorder Grid | Technical only | reorder physics reference |

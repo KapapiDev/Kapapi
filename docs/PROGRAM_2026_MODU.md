@@ -42,13 +42,13 @@ Do not sell the idea as “the same marketplace, reversed.”
 Explain the differentiation as a sequence:
 
 1. **Task-first instead of storefront-first** — work is the primary object.
-2. **가격 × 완료시간** — fragmented worker availability and client urgency become visible market information.
+2. **가격 × 완료시간** — worker availability and client urgency inform KAPAPI's internal procurement, quoting and routing.
 3. **업무별 신뢰 데이터** — completed work creates evidence about who reliably finishes which kind of work.
-4. **실행 계약** — 발주자는 작업자를 비교하지 않습니다. 결과물·가격·완료시간·수정 경계가 적힌 계약을 승인하고 결과를 받습니다. 비교 부담을 줄이는 것이 아니라 없애는 것입니다.
+4. **실행 계약** — 발주자는 결과물·가격·완료시간·수정 경계·복구 경계가 적힌 계약을 승인하고 결과를 받습니다. 제안 비교와 작업자 선정은 KAPAPI 내부에서 처리합니다.
 5. **복구 고도화** — with enough evidence, KAPAPI increasingly handles failure recovery as well as selection.
-6. **업무 실행 레이어** — eventually the user increasingly submits work and receives a result without caring which execution resources were used.
+6. **업무 실행 레이어** — the same contract-and-result UX is supported by increasingly reliable quoting, execution, QA and recovery across proven categories.
 
-Long-term execution may combine human workers, AI, deterministic automation, specialist partners and hybrid workflows.
+Internal execution may combine human workers, AI, deterministic automation, specialist partners and hybrid workflows where supported. The long-term change is their proven range, reliability and economics.
 
 ---
 
@@ -56,11 +56,11 @@ Long-term execution may combine human workers, AI, deterministic automation, spe
 
 Recommended short description:
 
-> **카파피는 해야 할 일이 먼저 올라오고, 작업자가 자신이 할 수 있는 업무를 골라 가격과 완료시간을 제안하는 온라인 업무 플랫폼입니다. 발주자는 파일과 한 줄 설명을 올리고, 카파피가 제시한 결과물·가격·완료시간을 승인하면 결과를 받습니다. 작업자를 비교하거나 고르지 않습니다. 거래가 쌓일수록 배정과 복구를 고도화하고, 장기적으로는 사람·AI·자동화를 조합해 업무를 넣으면 결과가 돌아오는 업무 실행 레이어로 발전합니다.**
+> **카파피는 해야 할 일을 맡기면 결과로 돌려주는 업무 실행 플랫폼입니다. 발주자는 파일과 설명을 올리고, 결과물·가격·완료시간·수정 경계·복구 경계가 담긴 실행 계약을 승인합니다. 카파피는 내부에서 작업자의 가격·완료시간 제안과 사람·AI·자동화 등 적합한 실행수단을 활용해 업무를 수행하고 결과를 반환합니다. 실제 수행 데이터가 쌓일수록 견적·배정·QA·복구를 고도화합니다.**
 
 Shorter:
 
-> **할 수 있는 일을 골라 수행하는 업무시장에서 시작해, 장기적으로는 일을 맡기면 결과가 돌아오는 실행 레이어로 성장합니다.**
+> **업무를 입력하고 실행 계약을 승인하면 결과가 돌아옵니다. 카파피가 내부의 작업시장·AI·자동화를 활용해 수행과 복구를 맡습니다.**
 
 North Star:
 
@@ -96,7 +96,7 @@ Recommended order:
 1. **Founder problem** — wanted bounded online side work, not a storefront or fixed shift
 2. **Mirrored client problem** — unresolved work that does not justify hiring or heavy procurement
 3. **Why existing behavior is awkward** — profile/service-first discovery and delegation friction
-4. **KAPAPI mechanism** — work exists first + mandatory price and completion-time proposal
+4. **KAPAPI product and mechanism** — client approves the execution contract and receives a result; KAPAPI internally uses task-first supply, price × completion-time proposals, AI and automation
 5. **Transaction proof** — real work moves from unresolved to completed
 6. **Data flywheel** — transactions create task-specific trust and liquidity data
 7. **Growth path** — selection quality → recovery → repeat capacity → execution layer
@@ -116,12 +116,12 @@ The prototype should visibly demonstrate:
 - worker **가격 + 완료시간 제안**
 - task-specific career/history signals
 - 실행 계약: 결과물 · 가격 · 완료시간 · 수정 경계 · 복구 경계, with the price's basis disclosed
-- KAPAPI selection with disclosed criteria and the excluded 제안 (D-033.1)
+- internal KAPAPI selection with disclosed criteria and excluded 제안 in `이용 방법`; the client sees an informational rationale, with no proposal comparison step
 - genuine urgent-work state
 - result delivery + accept/revise
 - future path from transaction data → selection quality → recovery → execution layer
 
-The prototype shows KAPAPI selecting. What it must not claim is that selection is
+The worker surface and `이용 방법` show KAPAPI's internal selection. What they must not claim is that selection is
 already automated at scale, or that a quote is instant in every category — D-033.5
 allows a concierge back office as scaffolding and D-033.6 says an instant quote is
 earned per category.
@@ -163,6 +163,8 @@ Track:
 - contract approval rate and re-quote requests
 - worker effective earnings
 - client management time
+- operator minutes for scoping, quoting, procurement, QA and recovery
+- completed-outcome contribution after execution, payment, support, revision and recovery costs
 - repeat worker / repeat client
 
 Strongest proof:
@@ -197,7 +199,7 @@ Human + AI + automation + partners expand execution capacity
 WORK IN → RESULT OUT
 ```
 
-Each stage creates evidence required for the next.
+Each stage creates evidence required for the next internal capability. The client-facing contract-and-result flow applies throughout.
 
 ---
 
@@ -220,4 +222,4 @@ Optimize the final application for:
 
 ## 10. Final application thesis
 
-> **카파피는 ‘프리랜서를 먼저 찾는 곳’을 하나 더 만드는 것이 아니라, 해야 할 일이 먼저 존재하는 시장을 만듭니다. 작업자는 자신의 시간과 기술에 맞는 업무를 골라 가격과 완료시간을 제안합니다. 발주자는 그 시장을 들여다보지 않고, 결과물·가격·완료시간이 적힌 실행 계약을 승인하고 결과를 받습니다. 이 거래가 쌓이면 카파피는 어떤 실행 방식이 어떤 업무를 안정적으로 끝내는지 데이터로 학습할 수 있습니다. 그 결과 배정과 복구를 점차 고도화하고, 장기적으로는 사람·AI·자동화를 조합해 ‘해야 할 일을 올리면 결과로 돌아오는’ 업무 실행 레이어로 발전합니다.**
+> **카파피의 전면 경험은 업무 입력 → KAPAPI → 결과 반환입니다. 발주자는 결과물·가격·완료시간·수정 경계·복구 경계를 담은 실행 계약을 승인합니다. 내부에서는 작업자가 이미 존재하는 업무에 가격과 완료시간을 제안하고, 카파피가 사람·AI·자동화·전문 파트너 중 적합한 실행수단을 활용해 조달·선정·배정·수행·QA·복구를 처리합니다. 실제 수행 데이터와 완료 건별 수익성을 검증하며 견적과 실행 능력을 높여, 더 많은 업무를 안정적으로 끝내는 실행 인프라로 성장합니다.**

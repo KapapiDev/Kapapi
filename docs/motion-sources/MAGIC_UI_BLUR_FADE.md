@@ -84,17 +84,17 @@ The demos do confirm the intended API/usage pattern:
 
 - one or two major editorial statements on the landing page
 - supporting copy after a major product-state sequence
-- restrained Autopilot narrative copy
+- restrained internal-execution explanation copy
 - occasional visual asset reveal where sequencing materially improves comprehension
 
 ### Avoid
 
 - site-wide section fade-up
-- QUEST list items
-- BID cards
+- 업무 list items
+- 제안 cards
 - PRICE × DELIVERY values
-- TIME ATTACK
-- PLAYER trust metrics
+- 긴급 업무
+- 작업자 trust metrics
 - form controls
 - repeated card grids
 - core transaction states

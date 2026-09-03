@@ -1,5 +1,9 @@
 # KAPAPI v2 공개 한국어 카피 (검수 후 확정)
 
+Status: **SUPERSEDED — historical copy-review output**
+
+> **SUPERSEDED — 2026-09-03.** “확정” records the result of the past copy review below, not current approval. This snapshot is preserved as review evidence. Current authority is `docs/DECISIONS.md` D-033.1–.12, D-034 and D-035: standard work terminology; client approval of deliverable, price, completion time, revision and recovery boundaries; internal KAPAPI procurement and selection; result acceptance/revision. Use the current prototype and Korean UX specifications for implementation.
+
 검수 도구: `korean-skills:grammar-checker`, `korean-skills:humanizer`, `korean-skills:style-guide`
 
 ## 검수에서 수정한 항목

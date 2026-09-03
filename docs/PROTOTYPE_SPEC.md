@@ -32,7 +32,7 @@ Current client flow:
 → 작업 조건(SOW) 정리
 → 실행 계약: 결과물 + 가격 + 완료시간 + 수정 경계 + 복구 경계
 → 발주자 승인
-→ (카파피: 제안 도착 · 필수요건 확인 · 선정 · 배정 · 수행)
+→ (카파피 내부: 조달 · 선정 · 배정 · 수행 · QA · 복구)
 → 결과
 → 수락 / 수정 요청
 ```
@@ -51,7 +51,7 @@ Worker flow:
 → 작업대금 + 작업이력
 ```
 
-Future direction:
+Future internal capability:
 
 ```text
 transactions
@@ -60,7 +60,7 @@ transactions
 → instant quoting in proven categories
 → recovery
 → human + AI + automation + partners
-→ work in → result out
+→ more reliable execution across proven categories
 ```
 
 ---
@@ -80,7 +80,7 @@ After roughly 30–60 seconds, a reviewer should be able to answer:
 
 Correct short answer:
 
-> **“카파피에는 일이 먼저 올라옵니다. 할 수 있는 사람이 가격과 완료시간을 제안하고, 카파피가 조건과 실제 작업이력을 보고 작업자를 정합니다. 발주자는 결과물·가격·완료시간이 적힌 실행 계약만 승인하고 결과를 받습니다. 거래가 쌓이면 배정과 복구를 점점 고도화하고 결국 일을 넣으면 사람·AI·자동화 중 적합한 실행수단을 통해 결과를 받는 구조로 발전합니다.”**
+> **“카파피에 업무를 입력하고 결과물·가격·완료시간·수정 경계·복구 경계가 적힌 실행 계약을 승인하면 결과를 받습니다. 카파피는 내부에서 작업자의 가격·완료시간 제안과 사람·AI·자동화 등 적합한 실행수단을 활용해 수행·QA·복구를 처리합니다. 실제 수행 데이터로 견적·배정·복구 능력을 높여 갑니다.”**
 
 ---
 
@@ -175,8 +175,7 @@ Required on the 발주자 surface:
 
 - task-entry hero: one question, one field with file attachment, `맡기기`
 - the 발주자 / 작업자 toggle
-- one end-to-end completed-work example showing 업무 입력 → 카파피 → 결과, with the
-  assignment's criteria visible as a record
+- one end-to-end completed-work example showing 업무 입력 → 실행 계약 승인 → 카파피 → 결과, with assignment rationale available as information
 - result acceptance/revision
 - one account holding both roles
 
@@ -205,7 +204,7 @@ is structured into 작업 조건 (SOW):
 - scope
 - deliverables
 - output format
-- deadline (editable — changing it re-prices the contract)
+- deadline (editable — changing it requires an updated quote before contract approval)
 - acceptance criteria
 - confidentiality/security
 - missing information
@@ -216,16 +215,17 @@ Below the SOW sits the object the 발주자 actually approves — the **실행 �
 | | |
 |---|---|
 | 결과물 | the deliverable formats |
-| 가격 | one figure, market-informed |
+| 가격 | one figure, with the quote's basis disclosed |
 | 완료시간 | the committed elapsed time |
 | 수정 | the revision boundary |
-| 완료되지 않으면 | re-assignment, and no charge if that also fails |
+| 완료되지 않으면 | the contract-defined reassignment, recovery or refund outcome; label demo terms as examples |
 
-The price must disclose what it was derived from — the eligible proposals this
-category is currently receiving, as a count and a range. D-033.6: an instant quote
-is earned, so a quote that hides its basis overclaims. If no proposal can meet the
-chosen deadline, withhold the contract and say so rather than quoting something
-KAPAPI cannot procure.
+The quote begins assisted; as evidence grows, it may use category price/time
+data and eligible supply. Disclose that basis without a client comparison table.
+Prototype counts, ranges and prices must be identified as demo data. D-033.6
+permits near-instant quotes only in proven standardized categories. If KAPAPI
+cannot support the scope or deadline, explain that and revise the conditions
+before offering a contract.
 
 No 작업자 appears on this screen.
 
@@ -288,9 +288,9 @@ different things depending on who is looking.
 → 작업자 배정
 ```
 
-**On the 발주자 surface**, the only trace of this is a record after the fact: who
-was assigned, and the criteria that produced it. It is information, never a
-decision. There is no `이 작업자로 진행`, no `다른 제안 보기`, no ranked list.
+**On the 발주자 surface**, assignment rationale is available as information.
+Executor details may be disclosed where credentials, security, law or trust
+requires them. Selection controls and ranked proposal lists do not appear.
 
 **On `이용 방법`**, the box may be opened, because explaining the mechanism is that
 page's job. It shows the arriving bids, the selected one with its criteria, and
@@ -312,7 +312,7 @@ inspectable selection is the answer to that, not a weaker claim.
 Core:
 
 - work identity
-- assigned worker
+- execution status and assignment rationale; executor details when relevant to trust, credentials or security
 - deadline
 - state timeline
 - files
@@ -323,7 +323,7 @@ Core:
 States:
 
 ```text
-접수됨
+실행 계약 승인 / 접수됨
 → 작업자 배정
 → 작업 시작
 → 결과 전달
@@ -331,7 +331,7 @@ States:
 → 업무 완료
 ```
 
-접수됨 covers the interval the 발주자 experiences as "카파피가 하고 있다" — the
+접수됨 starts after execution-contract approval and covers the interval the 발주자 experiences as "카파피가 하고 있다" — the
 proposals arriving and the selection running. It is one state to them, not four.
 
 No fake human-work progress percentage unless genuinely measurable.
@@ -372,10 +372,10 @@ more completed work
 → instant quoting in proven categories
 → backup/recovery
 → human + AI + automation + partners
-→ work in → result out
+→ more reliable execution across proven categories
 ```
 
-Label as future direction / product evolution.
+Label the capability improvements as future direction / product evolution. The contract-and-result client experience is current.
 
 ---
 
@@ -417,14 +417,13 @@ No universal minimum payment is canonical yet. Category-specific minimum viable 
 
 Internal implementation may use English state identifiers, but user-facing labels should remain ordinary Korean.
 
-Minimum state semantics:
+Client-visible state semantics:
 
 ```text
 초안
 조건 정리 완료
-모집 중
-제안 도착
-작업자 배정
+실행 계약 검토
+실행 계약 승인 / 접수됨
 작업 중
 결과 전달
 검토
@@ -433,6 +432,9 @@ Minimum state semantics:
 보류
 취소
 ```
+
+Internal procurement states such as 모집 중, 제안 도착 and 작업자 배정 remain
+available to operators and relevant worker views. They do not add client choices.
 
 Demo transitions must be deterministic and replayable.
 
@@ -445,8 +447,8 @@ Rules:
 - category-neutral master story
 - the founder's film used as delivered: no crop, no filter, nothing composited onto it
 - no message claiming escrow, completion guarantee, or that selection is already automated at scale
-- 발주자 motion shows `업무 등록 → 실행 계약 승인 → (카파피) → 결과`; the 제안 · 가격 × 완료시간 · 선정 beats belong to the 작업자 surface and `이용 방법`
-- future `work in → result out` may appear as a future-oriented closing beat
+- 발주자 motion shows `업무 입력 → 실행 계약 승인 → (카파피) → 결과`; the 제안 · 가격 × 완료시간 · 선정 beats belong to the 작업자 surface and `이용 방법`
+- a future closing beat may show improved quoting, routing and recovery; `work in → result out` already describes the current client experience
 - mobile/reduced-motion paths must preserve understanding without video
 
 ---
@@ -456,7 +458,7 @@ Rules:
 발주자 surface:
 
 1. Hero: **오늘은 어떤 일을 끝낼까요?** / 파일 + 한 줄 / `맡기기`
-2. 업무 입력 → 카파피 → 결과, as three beats of one real work item, with the assignment's criteria on the record
+2. 업무 입력 → 카파피 → 결과, as three beats of one work item; show execution-contract approval within the handoff and assignment rationale as information
 3. one account, both roles
 
 작업자 surface and `이용 방법` carry the task-first distinction, the
@@ -538,4 +540,4 @@ Do not build or claim:
 
 Desired reviewer reaction:
 
-> **“카파피는 싼 심부름을 모아놓는 곳이 아니라, 끝이 명확한 일을 먼저 올리고 가격과 완료시간으로 거래하면서 결국 일을 넣으면 결과를 받는 실행 레이어로 가는 거구나.”**
+> **“업무를 입력하고 실행 계약을 승인하면 카파피가 수행과 복구를 맡고 결과를 돌려주는구나. 내부 작업시장과 AI·자동화가 그 결과를 만드는 수단이고, 실제 거래로 그 능력을 검증하는 거구나.”**

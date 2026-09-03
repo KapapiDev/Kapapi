@@ -2,7 +2,7 @@
 
 Status: **captured**  
 Decision: **ADOPT PATTERN / P1**  
-Primary KAPAPI use: **QUEST card → QUEST detail / PLAYER card → PLAYER profile**
+Primary KAPAPI use: **Work detail, execution-contract detail and delivered-file inspection**
 
 ---
 
@@ -10,7 +10,7 @@ Primary KAPAPI use: **QUEST card → QUEST detail / PLAYER card → PLAYER profi
 
 This pattern is materially useful because it preserves object continuity. Instead of clicking a card and hard-cutting to a modal or new page, the same visual object expands into its detailed state using shared `layoutId` identities.
 
-That is a better fit for KAPAPI than a generic modal animation because the user should feel that they are opening the same QUEST or PLAYER object they just selected.
+That is a better fit for KAPAPI than a generic modal animation because the user should feel that they are opening the same 업무 or 작업자 object they just selected.
 
 ---
 
@@ -102,7 +102,7 @@ Transition:
 }
 ```
 
-This is closer to a KAPAPI QUEST/PLAYER row becoming a detailed inspection surface.
+This is closer to a KAPAPI 업무/작업자 row becoming a detailed inspection surface.
 
 ### Demo C — image to fullscreen detail
 
@@ -121,33 +121,33 @@ Useful only as evidence that shared-element morphing does not require spring mot
 
 ## KAPAPI adaptation
 
-### Primary application A — QUEST card → QUEST detail
+### Primary application A — 업무 card → 업무 detail on the worker surface
 
 ```text
-QUEST card selected
+업무 card selected
 → card bounds expand or morph into detail surface
-→ QUEST title remains visually continuous
-→ TIME ATTACK / deadline / budget remain anchored
-→ additional brief, files and BID activity appear
+→ 업무 title remains visually continuous
+→ 긴급 업무 / deadline / budget remain anchored
+→ additional brief, files and 제안 activity appear
 ```
 
 The user should perceive:
 
-> “I opened this QUEST.”
+> “I opened this 업무.”
 
 not:
 
 > “A modal appeared on top of the site.”
 
-### Primary application B — PLAYER card → PLAYER profile
+### Conditional application B — disclosed executor summary → supporting evidence
 
 ```text
-PLAYER identity / name / trust summary
+작업자 identity / name / trust summary
 → same identity persists into expanded profile
-→ relevant career, completed QUESTS, on-time rate and recent history appear
+→ relevant career, completed 업무, on-time rate and recent history appear
 ```
 
-This can make trust inspection feel fast and tactile without forcing a full navigation change.
+This can provide required credentials, security or trust information without a full navigation change. It is an informational disclosure, never a client worker-discovery, comparison or selection flow. The client's approval surface is the execution contract: deliverable, price, completion time, revision and recovery boundaries.
 
 ### Possible application C — delivered file preview
 
@@ -184,7 +184,7 @@ A small delivered-file thumbnail or file row may morph into a larger preview/rev
 
 ## KAPAPI motion recommendation
 
-For a QUEST/PLAYER morph, start with something close to:
+For a 업무/작업자 morph, start with something close to:
 
 ```ts
 {
@@ -208,8 +208,8 @@ Do not use morphing dialogs simply because they look polished.
 
 Use them only where **object continuity reduces cognitive load**:
 
-- QUEST summary → same QUEST detail
-- PLAYER summary → same PLAYER detail
+- 업무 summary → same 업무 detail
+- required executor summary → supporting evidence, without a selection action
 - potentially file result → same result preview
 
 Ordinary settings, confirmations, forms and legal dialogs should use simpler transitions.
