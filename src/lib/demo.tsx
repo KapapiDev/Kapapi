@@ -25,6 +25,36 @@ export interface Draft {
   nda: boolean;
 }
 
+/**
+ * D-033.1: what the 발주자 approves is an Execution Contract, not a worker.
+ * D-033.6: the quote is market-informed, not instant magic — it is derived from
+ * the proposals this category is actually receiving, and the page says so.
+ */
+export interface Quote {
+  price: number;
+  hours: number;
+  /** The eligible proposals the price was derived from, so it can be checked. */
+  basis: { count: number; low: number; high: number };
+  feasible: boolean;
+}
+
+export function quoteFor(category: string, deadlineHours: number): Quote {
+  const bids = seedBids(category);
+  const eligible = bids.filter((b) => b.hours <= deadlineHours);
+  if (eligible.length === 0) {
+    const soonest = Math.min(...bids.map((b) => b.hours));
+    return { price: 0, hours: soonest, basis: { count: 0, low: 0, high: 0 }, feasible: false };
+  }
+  const prices = eligible.map((b) => b.price);
+  const low = Math.min(...prices);
+  const high = Math.max(...prices);
+  // Priced so KAPAPI can actually procure any eligible proposal and still stand
+  // behind the completion time, rounded to a legible figure.
+  const price = Math.ceil((high * 1.12) / 1000) * 1000;
+  const hours = Math.max(...eligible.map((b) => b.hours));
+  return { price, hours, basis: { count: eligible.length, low, high }, feasible: true };
+}
+
 interface State {
   quests: Record<string, Quest>;
   draft: Draft | null;

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { NEW_ID, useDemo } from "@/lib/demo";
+import { NEW_ID, quoteFor, useDemo } from "@/lib/demo";
 import { won } from "@/lib/kapapi";
 import s from "@/components/app.module.css";
 
@@ -54,6 +54,7 @@ export default function NewPage() {
     );
   }
 
+  const quote = quoteFor(draft.category, draft.deadlineHours);
   const resolved = draft.missing.length === 0;
 
   return (
@@ -110,28 +111,60 @@ export default function NewPage() {
           </div>
         </div>
 
-        <div className={s.pairGrid}>
-          <div className={s.half}>
-            <p className={s.blockLabel}>마감</p>
-            <div className={s.ctrl}>
-              <label className="sr" htmlFor="dl">마감 선택</label>
-              <select id="dl" className={s.select} value={draft.deadlineHours}
-                onChange={(e) => patchDraft({ deadlineHours: Number(e.target.value) })}>
-                {DEADLINES.map((d) => (<option key={d.h} value={d.h}>{d.label}</option>))}
-              </select>
-            </div>
-            <p className={s.hint} style={{ marginTop: 6 }}>마감을 넘기는 제안은 추천 대상에서 제외됩니다.</p>
+        <div className={s.block}>
+          <p className={s.blockLabel}>마감</p>
+          <div className={s.ctrl}>
+            <label className="sr" htmlFor="dl">마감 선택</label>
+            <select id="dl" className={s.select} value={draft.deadlineHours}
+              onChange={(e) => patchDraft({ deadlineHours: Number(e.target.value) })}>
+              {DEADLINES.map((d) => (<option key={d.h} value={d.h}>{d.label}</option>))}
+            </select>
           </div>
-          <div className={s.half}>
-            <p className={s.blockLabel}>예산 상한</p>
-            <div className={s.ctrl}>
-              <span aria-hidden="true">₩</span>
-              <label className="sr" htmlFor="bg">예산 상한 금액</label>
-              <input id="bg" type="number" className={s.number} min={10000} step={10000}
-                value={draft.budget} onChange={(e) => patchDraft({ budget: Math.max(0, Number(e.target.value)) })} />
-            </div>
-            <p className={s.hint} style={{ marginTop: 6 }}>이 금액을 넘는 제안은 추천하지 않습니다. 금액은 작업자가 정합니다.</p>
+          <p className={s.hint} style={{ marginTop: 6 }}>마감을 바꾸면 실행 계약의 가격과 완료시간도 다시 계산됩니다.</p>
+        </div>
+
+        {/* D-033.1: this is the object the 발주자 approves — a result, a price and a
+            completion time, not a worker. */}
+        <div className={s.contract}>
+          <div className={s.contractHead}>
+            <p className={s.contractTitle}>실행 계약</p>
+            <span className={s.contractTag}>카파피가 제시</span>
           </div>
+
+          {quote.feasible ? (
+            <>
+              <div className={s.contractRows}>
+                <div className={s.contractRow}>
+                  <span className={s.ck}>결과물</span>
+                  <span className={s.cv}>{draft.outputs.join(", ")}</span>
+                </div>
+                <div className={s.contractRow}>
+                  <span className={s.ck}>가격</span>
+                  <span className={`${s.cv} ${s.cvBig}`}>{won(quote.price)}</span>
+                </div>
+                <div className={s.contractRow}>
+                  <span className={s.ck}>완료시간</span>
+                  <span className={`${s.cv} ${s.cvBig}`}>{quote.hours}시간 이내</span>
+                </div>
+                <div className={s.contractRow}>
+                  <span className={s.ck}>수정</span>
+                  <span className={s.cv}>합의한 범위와 다를 경우 1회</span>
+                </div>
+                <div className={s.contractRow}>
+                  <span className={s.ck}>완료되지 않으면</span>
+                  <span className={s.cv}>카파피가 다시 배정합니다. 그래도 안 되면 대금을 청구하지 않습니다.</span>
+                </div>
+              </div>
+              <p className={s.hint}>
+                지금 이 유형의 업무에 들어온 제안 {quote.basis.count}건({won(quote.basis.low)}–{won(quote.basis.high)})을 근거로 계산했습니다.
+                작업자는 카파피가 정하며 발주자가 고르지 않습니다.
+              </p>
+            </>
+          ) : (
+            <p className={s.hint}>
+              이 마감 안에 끝낼 수 있는 제안이 아직 없습니다. 가장 빠른 제안이 {quote.hours}시간이라 마감을 늘리면 계약을 제시할 수 있습니다.
+            </p>
+          )}
         </div>
 
         {resolved ? (
@@ -151,12 +184,13 @@ export default function NewPage() {
         )}
 
         <div className={s.submitBar}>
-          <button type="button" className={`${s.btn} ${s.btnAccent}`} onClick={() => { submit(); router.refresh(); }}>
-            이대로 등록하기
+          <button type="button" className={`${s.btn} ${s.btnAccent}`} disabled={!quote.feasible}
+            onClick={() => { submit(); router.refresh(); }}>
+            이 조건으로 맡기기
           </button>
           <Link href="/" className={`${s.btn} ${s.btnGhost}`}>다시 적기</Link>
           <p className={s.hint} style={{ maxWidth: "44ch" }}>
-            등록하면 조건을 갖춘 작업자들이 가격과 완료시간을 제안합니다. 카파피가 그중에서 배정하고, 결과가 도착하면 알려드립니다.
+            승인하면 카파피가 작업자를 조달하고 배정합니다. 발주자가 제안을 비교하거나 고를 필요는 없습니다.
           </p>
         </div>
       </div>

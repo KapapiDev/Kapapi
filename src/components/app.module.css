@@ -169,3 +169,26 @@
   .pairGrid { grid-template-columns: 1fr; }
   .acts > *, .resultActs > * { flex: 1 1 100%; }
 }
+
+/* ---- D-033.1 Execution Contract: the object the 발주자 approves ---- */
+.contract {
+  margin-top: var(--s5); padding: var(--s5);
+  border: 1.5px solid var(--sapphire-line); border-radius: var(--r-lg);
+  background: var(--sapphire-wash);
+}
+.contractHead { display: flex; align-items: baseline; gap: var(--s3); margin-bottom: var(--s4); }
+.contractTitle { font-size: var(--h2); font-weight: 700; letter-spacing: var(--tight); }
+.contractTag { font-size: var(--meta); font-weight: 500; color: var(--sapphire-press); }
+.contractRows { display: grid; gap: 0; margin-bottom: var(--s4); }
+.contractRow {
+  display: grid; grid-template-columns: 8.5em minmax(0, 1fr);
+  gap: var(--s4); align-items: baseline;
+  padding: 11px 0; border-bottom: 1px solid var(--sapphire-line);
+}
+.contractRow:last-child { border-bottom: 0; }
+.ck { font-size: var(--meta); color: var(--muted); }
+.cv { font-size: var(--body-sm); color: var(--ink); }
+.cvBig { font-size: 1.25rem; font-weight: 700; letter-spacing: var(--tight); font-variant-numeric: tabular-nums; }
+@media (max-width: 620px) {
+  .contractRow { grid-template-columns: 1fr; gap: 3px; }
+}

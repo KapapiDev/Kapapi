@@ -313,6 +313,230 @@ The user-facing unit remains the result.
 
 ---
 
+## D-033 execution-market series — imported from the `개선안` canon
+
+The founder's canonical decisions from the `개선안` redesign workspace (D-018: that
+branch is the current redesign workspace), brought onto this branch on 2026-09-03
+and restated in D-034 vocabulary — GM / PLAYER / QUEST / BID became 발주자 / 작업자 /
+업무 / 제안. Nothing else is changed.
+
+**D-035 was derived independently on this branch and says less than D-033.1 does.**
+See the amendment recorded under D-035.
+
+## D-033.1 — Default 발주자 product is an Execution Contract
+
+The 발주자 should normally buy:
+
+```text
+defined RESULT
++ PRICE
++ COMPLETION TIME
++ acceptance/revision boundary
++ recovery/refund boundary
+```
+
+Default flow:
+
+```text
+work request / files
+→ KAPAPI structures SOW
+→ Execution Contract
+→ 발주자 accepts
+→ KAPAPI procures/routes execution internally
+→ result
+→ accept / revise
+```
+
+The default 발주자 flow must **not** require comparing several 작업자, profiles or 제안.
+
+Executor information may still be disclosed where law, credentials, security or user trust requires it.
+
+## D-033.2 — 작업자 market remains task-first
+
+The founder-origin supply mechanism remains canonical:
+
+```text
+real 업무 exists
+→ 작업자 finds or receives suitable work
+→ PRICE + DELIVERY 제안 / Offer acceptance
+→ execute
+→ 작업대금
+→ task-specific history
+```
+
+작업자 do not need storefront-first seller behavior.
+
+## D-033.3 — PRICE × DELIVERY moves primarily inside the execution engine
+
+PRICE × DELIVERY is no longer mainly a 발주자 comparison feature.
+
+It is the market signal KAPAPI uses for:
+
+- live price discovery;
+- availability;
+- routing;
+- urgency/scarcity;
+- backup capacity;
+- recovery economics.
+
+## D-033.4 — Execution is resource-agnostic
+
+KAPAPI may internally fulfill suitable work through:
+
+- human 작업자;
+- AI/model/agent;
+- deterministic automation;
+- specialist partner;
+- hybrid AI + human;
+- multi-worker/decomposed execution.
+
+The 발주자 대상 unit remains the result.
+
+## D-033.5 — Outcome UX does not mean fake automation
+
+Early KAPAPI may use a **concierge/manual back office** for:
+
+- SOW confirmation;
+- quote construction;
+- supply procurement;
+- routing;
+- monitoring;
+- QA;
+- recovery.
+
+This is validation scaffolding, not the intended permanent operating model.
+
+The product must measure operator minutes and completed-outcome economics so it does not silently become a low-margin outsourcing agency.
+
+## D-033.6 — Instant quote is earned
+
+Evolution:
+
+```text
+Assisted Quote
+→ Market-informed Quote
+→ Near-instant Quote only in proven standardized categories
+```
+
+Do not claim universal instant pricing before data supports it.
+
+## D-033.7 — Initial wedge is not generic cheap/simple work
+
+Preferred early shape:
+
+> **AI에게 그대로 맡기기엔 불안하고, 사람을 직접 찾아 계약하기엔 작은, 범위와 검수가 가능한 디지털 업무.**
+
+Avoid making fully commoditized near-zero-value mechanical work the strategic center because QA/recovery/support can erase margin and AI may close the job directly.
+
+## D-033.8 — Recovery becomes a core differentiator
+
+If the first execution path fails, the product goal is:
+
+```text
+failure/late risk
+→ KAPAPI detects
+→ alternate route/reassignment/recovery
+→ 발주자 does not restart supplier search
+→ result or defined refund/recovery outcome
+```
+
+Do not promise universal SLA guarantees until category data, economics and legal structure support them.
+
+## D-033.9 — Completed-outcome contribution is the early economic unit
+
+Primary early unit metric:
+
+```text
+발주자 revenue
+- execution resource cost
+- payment cost
+- QA/support variable cost
+- revision/rework cost
+- recovery/replacement cost
+= completed-outcome contribution margin
+```
+
+Gross transaction volume without this adjustment can hide a structurally bad category.
+
+## D-033.10 — Category expansion is gated by execution economics
+
+KAPAPI is category-independent in vision but category-specific in execution.
+
+Open/scale a category only when evidence supports:
+
+- external paid demand;
+- qualified supply/resource liquidity;
+- repeatable SOW;
+- predictable price/time distribution;
+- recovery capacity;
+- acceptable QA/support burden;
+- positive or credibly improving completed-outcome contribution;
+- legal/security clarity.
+
+## D-033.11 — Core data flywheel changes
+
+The long-term asset is not merely `who is a good 작업자`.
+
+It is increasingly:
+
+> **which execution configuration reliably completes which work under which price/time/risk conditions.**
+
+Canonical flywheel:
+
+```text
+request
+→ structured SOW
+→ quote
+→ internal procurement
+→ execution
+→ QA / recovery
+→ acceptance
+→ better scope / quote / routing / recovery
+```
+
+## D-033.12 — 2026 모두의 창업 narrative
+
+Preserve the real founder problem, then explain the product leap:
+
+1. founder wanted real small online work to pick up after work;
+2. this creates task-first 작업자 supply;
+3. 발주자s have bounded work but delegation/search overhead is disproportionate;
+4. KAPAPI does not make the 발주자 shop that market;
+5. 발주자 buys result + price + completion time;
+6. KAPAPI uses 작업자/AI/automation underneath;
+7. real executions create data that improves quote/routing/recovery;
+8. long-term destination is work execution infrastructure.
+
+## Supersedes
+
+D-033 supersedes the current-product implications of:
+
+- **D-032** recommendation + 발주자 confirmation as the preferred default 발주자 flow;
+- **D-031** day-one universal hands-off routing as if it were already automated;
+- **D-012** staged UX interpretation that requires the 발주자 to pass through marketplace shopping before Outcome UX;
+- **D-015/D-019** interpretations that require visible 발주자 provider selection in the prototype.
+
+D-033 does **not** supersede:
+
+- founder-origin task-first supply;
+- PRICE + DELIVERY;
+- fixed/result-based work;
+- 작업자 independence;
+- task-specific trust;
+- SOW clarity;
+- 발주자 final result acceptance/revision;
+- category-specific liquidity;
+- security/legal/payment protections;
+- evidence-based responsibility expansion.
+
+---
+
+## Current canonical product sentence
+
+> **KAPAPI is a work execution market where the 발주자 buys a defined result, price and completion time, while KAPAPI internally uses a task-first 작업자 market plus AI/automation/partners to procure, execute and recover the work.**
+
+---
+
 ## D-034 — Submission and product terminology are unified around standard work language
 
 **Decision:** Remove the previous special role/state vocabulary from all current canon, public prototype copy, application material, visual specifications, motion labels and QA rules.
@@ -327,10 +551,29 @@ Use **발주자 / 작업자 / 업무 / 제안 / 작업대금 / 긴급 업무 / �
 
 ## D-035 — The prototype demonstrates the result-return flow; the market runs behind it
 
-**The client's model has three nodes, not five:**
+**Amended 2026-09-03 against the `개선안` canon (정본 우선).** D-035 was derived on
+this branch before D-033.1 was read, and it said less than the canon does. D-033.1
+is authoritative: the 발주자 does not merely upload and wait — they approve an
+**Execution Contract** first.
 
 ```text
-발주자  →  카파피  →  결과
+업무 요청 / 파일
+→ 카파피가 작업 조건(SOW)을 정리
+→ 실행 계약: 결과물 + 가격 + 완료시간 + 검수/수정 경계 + 복구 경계
+→ 발주자 승인
+→ 카파피가 내부적으로 조달·배정·수행
+→ 결과
+→ 수락 / 수정 요청
+```
+
+What D-035 got right and D-033.1 agrees with: the 발주자 never compares 작업자,
+profiles or 제안. What D-035 missed: the thing they *do* approve. Approving a price
+and a completion time is not choosing a worker.
+
+**The client's model, corrected:**
+
+```text
+발주자  →  실행 계약 승인  →  카파피  →  결과
 ```
 
 입찰 and 선정 are not steps the client walks through. They happen *inside* the
@@ -356,6 +599,12 @@ The market did not disappear. It moved behind the boundary:
 - the client keeps the final acceptance and the revision request — the result is not auto-accepted.
 
 **Reason:** The founder's product goal is that a client uploads a file, describes the work briefly, and receives a result. A surface that requires the client to read proposals and pick a worker is the thing that goal removes. Showing the comparison to the client made the prototype demonstrate a marketplace when the product being validated is a work-to-result service.
+
+**Relationship to the imported canon:** D-033.1 supersedes this decision wherever
+the two differ. D-035 remains useful only as the record of why the comparison step
+was removed from the client surface; the contract step it omitted comes from
+D-033.1, and D-033.6 governs how firm the quoted price may be — assisted quote
+first, near-instant only in proven standardized categories.
 
 **Supersedes:** D-031's day-one rejection and D-032's staged confirmation flow **as applied to the client-facing prototype surface**. D-032's growth path (marketplace → trust → routing → repeat capacity → execution layer) still describes how the capability is earned in the real business; D-035 governs what the prototype shows.
 

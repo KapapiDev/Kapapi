@@ -59,13 +59,19 @@ try {
   await sleep(500);
 
   const scope = await text(p);
-  for (const f of ["작업 범위", "제출 형식", "확인 기준", "마감", "예산 상한"]) assert.match(scope, new RegExp(f), `SOW field missing: ${f}`);
+  for (const f of ["작업 범위", "제출 형식", "확인 기준", "마감"]) assert.match(scope, new RegExp(f), `SOW field missing: ${f}`);
   assert.match(scope, /보안 서약 필요/, "confidential request should raise the security flag");
-  assert.match(scope, /카파피가 그중에서 배정하고/, "post-submit model copy missing");
-  ok("작업 사양: 범위·형식·확인 기준·마감·예산 정리됨");
+  // D-033.1: what the client approves is an Execution Contract, not a worker.
+  assert.match(scope, /실행 계약/, "execution contract missing");
+  for (const f of ["결과물", "가격", "완료시간", "수정", "완료되지 않으면"]) {
+    assert.match(scope, new RegExp(f), `contract term missing: ${f}`);
+  }
+  assert.match(scope, /근거로 계산했습니다/, "quote basis not disclosed (D-033.6)");
+  assert.match(scope, /발주자가 고르지 않습니다|비교하거나 고를 필요는 없습니다/, "D-033.1 no-comparison promise missing");
+  ok("실행 계약: 결과물·가격·완료시간·수정·복구 경계를 근거와 함께 제시");
 
   // 3 — post the work
-  await click(p, "이대로 등록하기");
+  await click(p, "이 조건으로 맡기기");
   await sleep(500);
   const created = await text(p);
   assert.match(created, /업무가 등록되었습니다/, "confirmation missing");
