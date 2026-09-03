@@ -1,13 +1,13 @@
 /* Sections already carry up to 128px of bottom padding; an extra footer margin
    on top of that left a dead quarter-screen before the rule. */
-.footer { border-top: 1px solid var(--line); background: var(--white); padding-block: var(--s8) var(--s6); }
-.grid { display: grid; grid-template-columns: minmax(0,1.5fr) minmax(0,1fr) minmax(0,1fr); gap: var(--s6); }
-.brand { font-weight: 800; font-size: 1.1rem; }
-.tag { margin-top: var(--s2); font-size: var(--body-sm); color: var(--graphite); max-width: 32ch; }
-.colTitle { font-size: var(--meta); font-weight: 600; color: var(--faint); margin-bottom: var(--s3); }
-.list { display: grid; gap: 2px; font-size: var(--body-sm); color: var(--graphite); }
-.list a { display: inline-block; padding-block: 6px; }
-.list a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
-.note { margin-top: var(--s7); padding-top: var(--s4); border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: var(--s3) var(--s5); justify-content: space-between; font-size: var(--meta); color: var(--faint); }
+.footer { border-top: 1px solid var(--line); background: var(--white); padding-block: var(--s6); }
+
+/* The only footer content now: the claim disclaimer and the build marker. With
+   the link columns removed there is nothing above it, so it carries no top rule
+   or margin of its own — the footer's own border is the separation. */
+.note {
+  display: flex; flex-wrap: wrap; gap: var(--s3) var(--s5);
+  justify-content: space-between; align-items: baseline;
+  font-size: var(--meta); color: var(--faint);
+}
 .note p { max-width: 64ch; line-height: 1.6; }
-@media (max-width: 780px) { .grid { grid-template-columns: 1fr; gap: var(--s5); } }

@@ -155,3 +155,17 @@
   .flow { grid-template-columns: 1fr; }
   .stepMeta { margin-top: var(--s2); }
 }
+
+/* The header cannot hold text links on a phone, so /how is reached from here —
+   which makes this a real navigation control, not an inline aside, and it has to
+   clear the 44px touch target the inline version did not. */
+.flowLink {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-top: var(--s4); min-height: 44px; padding: 10px 18px 10px 16px;
+  border: 1px solid var(--line-2); border-radius: var(--r-md);
+  background: var(--white);
+  font-size: var(--body-sm); font-weight: 600; color: var(--graphite);
+  transition: border-color var(--t-micro) var(--ease), color var(--t-micro) var(--ease);
+}
+.flowLink:hover { border-color: var(--ink); color: var(--ink); }
+.flowLink:focus-visible { outline: 2px solid var(--sapphire); outline-offset: 3px; }

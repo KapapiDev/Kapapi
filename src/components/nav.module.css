@@ -49,8 +49,9 @@
 
 @media (max-width: 860px) {
   .inner { height: 60px; gap: var(--s3); }
-  /* The toggle is the one thing that must survive a phone: it is how the other
-     half of the product is reachable at all. The text links fold into the footer. */
+  /* Brand + toggle + 회원가입 already need 315px of a 320px screen, so the text
+     links cannot fit here. /my is reached from the account section's 내 업무 보기
+     and /how from the flow section's closing line. */
   .link { display: none; }
   .mode { padding: 6px 13px; font-size: var(--meta); }
   .cta { height: 38px; padding: 0 14px; font-size: var(--meta); }

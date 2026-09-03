@@ -319,6 +319,7 @@ export function ResultFlowSection() {
         <p className={s.flowFoot}>
           결과를 받고 확인하거나 수정을 요청하는 것은 발주자가 합니다. 카파피는 파일과 형식, 도착 시각까지만 확인하며 완료를 보장하지 않습니다.
         </p>
+        <Link href="/how" className={s.flowLink}>이용 방법 자세히 보기<span aria-hidden="true">→</span></Link>
       </div>
     </section>
   );
