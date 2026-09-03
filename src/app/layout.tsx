@@ -5,8 +5,8 @@ import { DemoProvider } from "@/lib/demo";
 import "@/styles/globals.css";
 
 export const metadata: Metadata = {
-  title: "KAPAPI · 맡길 업무만 등록하세요",
-  description: "의뢰를 등록하면 전문가 배정부터 결과 전달까지 카파피가 진행합니다.",
+  title: "KAPAPI · 일이 먼저 올라오는 온라인 업무 플랫폼",
+  description: "해야 할 일을 QUEST로 올리고, 작업자들이 가격과 완료시간을 제안하면 카파피가 조건과 이력을 바탕으로 맞는 제안을 추천합니다.",
 };
 
 export const viewport: Viewport = { themeColor: "#fbfbf9", width: "device-width", initialScale: 1 };
