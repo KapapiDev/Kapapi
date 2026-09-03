@@ -1,696 +1,168 @@
 # KAPAPI
 
 > **WORK IS A QUEST.**  
-> **DROP WORK. GET RESULTS.**
+> **해야 할 일을 올리면, 결과로 돌아온다.**
 
-## 전문가를 찾지 마세요. 결과를 주문하세요.
+KAPAPI is a **task-first online work execution platform**.
 
-KAPAPI는 온라인으로 처리 가능한 전문업무를 맡길 때 발생하는 **사람 찾기, 견적 비교, 납기 협의, 업무 설명, 계약, 보안, 진행관리, 수정과 대체 인력 탐색**의 마찰을 줄여 나가는 결과 중심 전문업무 플랫폼입니다.
+It starts from a simple behavior:
 
-처음부터 게임 용어를 알아야 사용할 수 있는 서비스가 아닙니다. 일반적인 언어로 설명하면 초기 KAPAPI는 다음 구조입니다.
+- someone has spare time + usable skill and wants a small piece of online work to finish and get paid for,
+- someone else has a bounded piece of work that needs to be finished but is too small, irregular or urgent for hiring or heavyweight outsourcing.
 
-> **온라인 전문업무가 필요한 사람이 업무를 등록하면, 전문가들이 가격과 완료시간을 함께 제안하고, 의뢰자가 원하는 조건의 전문가를 선택하는 마켓플레이스**
+KAPAPI puts the **work first**.
 
-```text
-업무 등록
-  ↓
-전문가들이 PRICE + DELIVERY TIME 제안
-  ↓
-가격 / 납기 / 관련경력 / 신뢰도 비교
-  ↓
-전문가 선택
-  ↓
-작업 / 납품 / 검수
-```
+Instead of asking PLAYERs to create storefronts and wait to be discovered, real work appears as a `QUEST`. PLAYERs choose suitable QUESTs, then compete with two mandatory commitments:
 
-KAPAPI는 이 거래를 기억하기 쉽고 활기 있게 표현하기 위해 가벼운 세계관을 사용합니다.
+- **PRICE** — how much they will do it for
+- **DELIVERY TIME** — how long they commit to take after assignment
 
-- 의뢰자 = **GM**
-- 전문가 = **PLAYER**
-- 업무 = **QUEST**
-- 가격 + 완료시간 제안 = **BID**
-- 보상 = **REWARD**
-- 긴급발주 = **TIME ATTACK**
-- 수행이력과 신뢰 = **LEVEL / EXP**
-- 완료 = **QUEST COMPLETE**
-
-따라서 KAPAPI식으로 표현하면:
-
-> **GM이 QUEST 등록 → PLAYER들이 PRICE + DELIVERY TIME으로 BID → GM이 선택 → 결과물 납품**
-
-세계관은 UX와 브랜드를 위한 표현입니다. 계약, 결제, NDA, 개인정보, 파일보안, 납품, 증빙과 분쟁은 전문적인 거래 언어로 처리합니다.
-
----
-
-## 1. 가장 중요한 제품 인사이트
-
-처음 질문은 “좋은 PLAYER를 어떻게 더 빨리 찾게 만들까?”였습니다.
-
-하지만 실제 GM 관점에서 문제를 파고들며 질문이 바뀌었습니다.
-
-> **GM은 PLAYER를 찾고 싶은 것이 아니다. 원하는 시간 안에 원하는 품질의 결과물을 받고 싶은 것이다.**
-
-PLAYER가 누구인지, 어떤 입찰이 있었는지, 계약과 배정이 어떻게 처리됐는지는 결과를 얻기 위한 과정입니다.
-
-그래서 KAPAPI의 장기 목표는 외주 과정을 다음처럼 압축하는 것입니다.
+The initial loop is:
 
 ```text
-기존 외주
-사람 검색 → 포트폴리오 → 문의 → 견적 → 일정 → 설명 → 계약 → 관리 → 수정 → 결과
-
-KAPAPI의 최종 방향
-업무 투입 → KAPAPI → 결과
+GM posts a bounded task
+→ PLAYERs discover the QUEST
+→ PLAYERs BID PRICE + DELIVERY TIME
+→ KAPAPI filters/ranks and recommends
+→ GM confirms
+→ work is completed
+→ GM accepts or requests revision
 ```
 
-장기적으로 GM이 파일과 짧은 지시, 원하는 결과와 기한만 주면 KAPAPI가 업무 정의, 공급자 탐색과 선정, 내부 입찰 또는 배정, 계약과 보안, 진행 추적, 위험 감지, 필요 시 PLAYER 교체, 기본 사전검수까지 오케스트레이션하고 결과를 전달하는 **Autopilot형 전문업무 처리 시스템**을 지향합니다.
-
-> KAPAPI가 만들고 싶은 것은 더 좋은 프리랜서 검색창이 아니라 **사람을 찾을 필요 자체를 점점 없애는 외주 플랫폼**입니다.
-
----
-
-## 2. 어떤 순간에 KAPAPI가 필요한가
-
-KAPAPI의 GM을 단순히 “1인 사업자”로 정의하지 않습니다.
-
-> **지금 자기 조직의 처리능력을 넘어선 작은 전문업무가 발생한 사람 또는 조직**
-
-현재 핵심 수요 가설은 네 가지입니다.
-
-- **Capacity Gap**: 할 수 있지만 지금 시간이 없음
-- **Skill Gap**: 조직 내부에 필요한 기술이 없음
-- **Deadline Gap**: 직접 할 수 있지만 마감 안에 끝낼 수 없음
-- **Employment Gap**: 수요가 불규칙해서 상시 인력을 채용하기 어려움
-
-초기 GM 후보는 1~10인 전문서비스 회사, 1인 전문사업자, 소규모 건축·인테리어·디자인 사무소, 에이전시, 커머스·콘텐츠 팀, 작은 스타트업 등입니다.
-
-많은 경우 KAPAPI의 가장 강한 경쟁자는 다른 플랫폼이 아니라:
-
-> **“그냥 내가 야근해서 하지.”**
-
-입니다.
-
-따라서 KAPAPI는 단순 검색시간이 아니라 **외주를 맡기는 전체 거래비용과 설명비용**을 낮춰야 합니다.
-
----
-
-## 3. 양쪽에서 다르게 보이는 플랫폼
-
-KAPAPI는 양면시장이라 GM과 PLAYER에게 같은 문장으로만 설명할 필요가 없습니다.
-
-### PLAYER 관점
-
-> **온라인 전문 부업 플랫폼**
-
-퇴근 후 남는 시간이나 유휴 역량으로 자신이 잘하는 QUEST에 BID하고 결과를 납품해 수익과 실적을 얻습니다.
-
-### GM 관점
-
-> **필요한 순간 온라인 전문가를 쓰는 초단기 전문업무 외주 플랫폼**
-
-사람을 채용하거나 긴 외주 절차를 밟기 어려운 순간, 처리해야 할 결과 단위를 시장에 던집니다.
-
-두 관점을 합치면:
-
-> **일이 필요한 사람과, 부업이 필요한 사람을 가장 빠르게 연결하는 온라인 전문업무 플랫폼.**
-
-단, 심사·투자 설명에서는 “부업 플랫폼”만으로 정의하지 않습니다. 핵심 차별성은 **발주자 중심 + 짧은 온라인 전문업무 + PRICE × DELIVERY TIME + 점진적 결과 오케스트레이션**입니다.
-
----
-
-## 4. 핵심 시장 메커니즘: PRICE × DELIVERY TIME
-
-모든 BID에는 반드시 다음 두 항목이 함께 들어갑니다.
-
-1. **PRICE**: 얼마에 수행할 것인가
-2. **DELIVERY TIME**: 선택·계약 후 얼마 안에 결과물을 제출할 것인가
-
-DELIVERY TIME은 예상 노동시간이 아니라 **PLAYER 선택 시점부터 실제 납품까지 약속하는 경과시간**입니다.
-
-| PLAYER | PRICE | DELIVERY TIME |
-| --- | ---: | ---: |
-| A | 100,000원 | 18시간 |
-| B | 150,000원 | 8시간 |
-| C | 220,000원 | 4시간 |
-
-KAPAPI는 최저가 낙찰 시장을 지향하지 않습니다. GM의 선택에는 다음이 함께 보여야 합니다.
-
-- 관련 업계 경력
-- 동일 QUEST 유형 수행이력
-- 완료건수
-- 납기 준수율
-- 수정·재작업률
-- 평가
-- 현재 가용성
-- 가격
-- 완료시간
-
-초기 GM 인터뷰에서는 긴급 상황에서 최저가보다 2배 이상 비싼 제안이라도 **더 높은 관련 신뢰와 더 빠른 납기** 때문에 선택될 수 있다는 신호가 나왔습니다.
-
-긴급 QUEST는 **TIME ATTACK**으로 표현합니다. 단, TIME ATTACK이 실제 제품 약속이 되려면 해당 카테고리에 충분한 실시간 공급 유동성이 있어야 합니다.
-
----
-
-## 5. Upwork에서 검증된 거래 뼈대는 함부로 바꾸지 않는다
-
-KAPAPI가 모든 외주 메커니즘을 새로 발명할 필요는 없습니다.
-
-제품 원칙:
-
-> **Upwork에서 검증된 것은 함부로 바꾸지 않는다.**
-
-상용 거래 엔진에서는 다음과 같은 검증된 구조를 적극 벤치마킹합니다.
-
-- 업무 등록
-- PLAYER 제안
-- GM 선택
-- 계약
-- 선결제/에스크로
-- 필요 시 Milestone
-- Workroom의 메시지·파일·계약기록
-- 납품
-- GM 승인 또는 수정요청
-- 정산
-- 양방향 평가
-- 분쟁기록과 보호
-
-KAPAPI가 혁신할 곳은 주로:
-
-- **속도와 낮은 마찰**
-- **한국 현지화**
-- **짧은 PRICE + DELIVERY BID**
-- **AI 업무명세 보조**
-- **게임 세계관 기반 탐색·성취 UX**
-- **장기적인 결과 오케스트레이션**
-
-입니다.
-
-초기 PLAYER 제안은 Upwork식 장문의 Proposal보다 훨씬 짧게 만들고, PRICE·DELIVERY TIME·관련경력·짧은 메시지를 중심으로 수십 초 안에 제출할 수 있는 방향을 지향합니다.
-
----
-
-## 6. AI의 첫 역할은 판사가 아니라 비서
-
-초기 논의에서는 AI가 가격을 산정하거나 결과를 합격/불합격 판정하는 구조도 검토했지만 폐기했습니다.
-
-현실의 전문업무는 파일 상태, 숨은 연쇄 수정, 업계 맥락 때문에 자동 가격·품질 판정이 틀릴 수 있습니다.
-
-따라서 초기 원칙은:
-
-> **가격 결정은 시장, PLAYER 선택은 GM, 최종 품질 승인은 GM, 분쟁은 플랫폼. AI는 업무정의와 보조검사.**
-
-첫 AI 핵심기능은 **애매한 부탁을 계약 가능한 QUEST/SOW로 바꾸는 것**입니다.
-
-GM이:
-
-> “이 도면 좀 수정해주세요.”
-
-라고 입력하면 KAPAPI는 필요한 질문을 통해 다음을 명확하게 만듭니다.
-
-- 제공자료
-- 수정 대상과 위치
-- 구체적 변경사항
-- 결과물 형식
-- 납기
-- 객관적 완료조건
-- 누락된 정보
-- 필요한 보안조건
-
-핵심은 **검수를 잘하는 것보다 발주를 명확하게 만드는 것**입니다.
-
----
-
-## 7. 품질 확인 구조
-
-초기 품질 구조는 세 층으로 생각합니다.
-
-### 1차: 자동 사전검사
-
-AI/프로그램이 객관적으로 확인 가능한 것만 검사합니다.
-
-예:
-
-- 파일 존재
-- 요구한 형식인지
-- DWG/PDF가 정상적으로 열리는지
-- 필수 파일 개수
-- 명세된 체크항목의 기계적 확인 가능 부분
-
-### 2차: GM 검수
-
-실제로 돈을 지불하는 GM이 결과를 승인하거나 수정 요청합니다.
-
-### 3차: 분쟁
-
-명세 해석, 책임, 약속 불이행처럼 자동판정이 부적절한 경우에만 플랫폼의 분쟁 프로세스로 넘어갑니다.
-
-이 구조는 초기에 KAPAPI 운영자가 모든 결과물을 직접 검수하는 구조를 피하고, 장기 Autopilot의 사전 QA로 확장할 수 있습니다.
-
----
-
-## 8. 제품 진화: Marketplace → Assist → Autopilot
-
-### Stage A — Marketplace Mode
+The long-term loop becomes simpler:
 
 ```text
-QUEST → BID → GM 비교 → PLAYER 선택 → 작업 → 납품 → 검수 → 완료
+work in
+→ KAPAPI
+→ result out
 ```
 
-목적은 거래를 만들고 실제 가격·납기·실패·수정·신뢰 데이터를 쌓는 것입니다.
+## Why this is not just another freelancer directory
 
-### Stage B — Assist Mode
+Traditional platforms commonly start from a person, profile or service listing.
+
+KAPAPI starts from **work that already needs to be done**.
+
+The early product is a marketplace, but marketplace activity creates something strategically more valuable:
+
+- real price distributions
+- committed delivery behavior
+- task-specific completion history
+- on-time / revision / failure data
+- category liquidity
+- availability
+- replacement/recovery history
+
+That evidence enables KAPAPI to evolve:
 
 ```text
-파일 + 짧은 지시
-→ AI QUEST/SOW
-→ 누락정보 확인
-→ 추천/비교
-→ GM 승인
-→ 작업
-→ 결과
+Task Marketplace
+→ Trusted Work Market
+→ Intelligent Recommendation / Routing
+→ Repeat Business Capacity
+→ Outcome Layer
 ```
 
-AI는 설명비용, 선택비용, 계약·행정비용을 줄여갑니다.
+So the marketplace is not the final destination. It is the data and supply engine that makes the final destination credible.
 
-### Stage C — Autopilot Mode
+## Founder-origin problem
+
+KAPAPI began from a personal problem rather than an abstract enterprise thesis:
+
+> “퇴근 후 남는 시간에 내가 할 수 있는 작은 온라인 업무를 골라서 끝내고 돈을 벌고 싶다. 프리랜서 상점을 만들거나 고정 알바를 잡고 싶은 건 아니다.”
+
+The mirrored GM problem is:
+
+> “누군가 끝내야 하는 작은 업무가 있는데, 직원을 더 뽑거나 복잡한 외주 절차를 밟기에는 애매하다.”
+
+KAPAPI connects these two forms of unused capacity.
+
+## KAPAPI world terms
+
+Plain language comes first. The game-like vocabulary is a lightweight brand/UX layer.
+
+- client / issuer = **GM**
+- worker = **PLAYER**
+- task = **QUEST**
+- price + delivery proposal = **BID**
+- compensation = **REWARD**
+- urgent QUEST = **TIME ATTACK**
+- verified execution history = **LEVEL / EXP**
+- completion = **QUEST COMPLETE**
+
+## What work fits first
+
+KAPAPI is not limited to construction, CAD or only “professional work.”
+
+Strong early QUESTs are digitally transferable, bounded, inspectable and revisable.
+
+Examples:
+
+- spreadsheet/data cleanup
+- document formatting and structured entry
+- research/data organization
+- PPT cleanup
+- image editing
+- product listing work
+- translation/proofreading
+- subtitle/cut editing
+- CAD/drawing support
+- rendering
+- small web/code fixes
+
+Architecture/CAD is a useful founder-domain testbed, not the market identity.
+
+## Selection today, routing tomorrow
+
+KAPAPI should reduce the GM's decision burden early, but it should not pretend universal auto-routing is already solved.
+
+Preferred early posture:
 
 ```text
-GM: “이거 내일 18시까지 이 품질로.” + 파일
-               ↓
-KAPAPI가 업무정의 / PLAYER 선정·입찰 / NDA·계약 / 배정 / 추적 / 교체 / 사전검수
-               ↓
-GM: 완성 결과물 검수
+BIDs
+→ eligibility + trust + fit + PRICE × DELIVERY ranking
+→ KAPAPI recommendation
+→ GM confirmation
 ```
 
-장기에는 PRICE × DELIVERY TIME 입찰 자체가 GM에게 보이지 않는 **백엔드 자원배분 메커니즘**이 될 수도 있습니다.
+As transaction history becomes reliable, KAPAPI can progressively move toward default routing, backup/replacement and recovery.
 
-Autopilot은 현재 기능이 아니라 North Star입니다. 충분한 거래 데이터, 백업 공급, 품질관리, 복구 운영능력과 실제 성공률 없이 결과·납기를 보장하지 않습니다.
+## Outcome Layer
 
----
+At maturity, KAPAPI should care more about completing the work than exposing the internal executor.
 
-## 9. 초기 Wedge: Architecture / CAD
+Depending on the task, execution may use:
 
-KAPAPI는 처음부터 모든 직군을 열지 않습니다.
+- human PLAYERs
+- AI agents/models
+- deterministic automation
+- specialist partners
+- AI + human hybrid workflows
+- multiple PLAYERs working on decomposed sub-QUESTs
 
-첫 실험실은 **건축/CAD의 명확한 제작·보조 업무**입니다.
+The user buys the **result**.
 
-이유:
+## Product principles
 
-- 실제 업무 흐름을 이해하고 있음
-- 현실적인 QUEST를 직접 만들 수 있음
-- 결과물 품질을 판단할 수 있음
-- Capacity Gap / Deadline Gap이 실제로 발생함
-- 디지털 파일로 입력·납품 가능
+- Task first, not profile first.
+- PRICE + DELIVERY TIME in every BID.
+- Fixed-price/result-based QUESTs first.
+- Ordinary Korean before KAPAPI terminology.
+- GM/PLAYER are contextual roles, not permanent account types.
+- Clear SOW before aggressive automation.
+- AI assists before it judges.
+- Trust is task-specific and two-sided.
+- Category liquidity matters more than total member count.
+- Architecture/CAD is a testbed, not the category.
+- Strong routing and SLA promises are earned from evidence.
+- The strongest proof is **real QUEST COMPLETE**, not registrations.
 
-대표 QUEST:
+## Current North Star
 
-> 제공된 손도면 또는 현황자료를 기준으로 지정된 DWG 현황도를 정해진 기한까지 작성한다.
+> **Early KAPAPI helps people pick up work. Mature KAPAPI helps anyone get work done.**
 
-이런 업무는 “직원이 하기 아까운 잡일”이 아니라 **정상적인 프로젝트 업무가 일시적인 인력 부족 때문에 병목이 된 사례**입니다.
+Or, in the shortest form:
 
-건축/CAD는 최종 시장이 아니라 첫 번째 검증 카테고리입니다.
+> **해야 할 일을 올리면, 결과로 돌아온다.**
 
----
-
-## 10. 어떤 QUEST가 잘 맞는가
-
-초기 적합성 기준:
-
-- 온라인으로 입력자료 전달 가능
-- 결과물이 명확함
-- 몇 시간~약 2일 정도의 짧은 수행
-- GM이 검수 가능
-- 어느 정도 표준화 가능
-- 오류가 나도 수정 가능
-- 높은 규제·안전·불가역 책임이 없음
-
-후보:
-
-- CAD 도면화·확정도면 수정 보조
-- 렌더링
-- 이미지 편집
-- PPT 정리
-- Excel/데이터 정리
-- 쇼핑몰 상품등록
-- 단순 웹·코드 수정
-- 번역·교정
-- 영상 자막·컷 편집
-
-초기 부적합:
-
-- 광범위한 전략 컨설팅
-- 전체 브랜딩
-- 복잡한 건축설계
-- 장기 대형 소프트웨어 개발
-- 법적 자격이 필요한 무자격 전문판단
-- 실패가 되돌리기 어려운 고책임 업무
-
-초기 최적 거래금액이 어느 구간인지는 아직 검증되지 않았습니다. 현재는 대략 **수만원~수십만원 수준의 짧은 결과물**이 유력한 가설일 뿐, 가격대를 제품 헌법처럼 고정하지 않습니다.
-
----
-
-## 11. 신뢰 시스템은 양쪽 모두에 필요하다
-
-PLAYER는 단순 별점보다 **관련경력 + 동일 업무 수행이력 + 납기 신뢰도**가 중요합니다.
-
-예를 들어:
-
-> 건축사사무소 경력 5년
-
-은 단순 스펙이 아니라 GM에게 “자료만 넘겨도 설명비용이 적겠다”는 신호가 됩니다.
-
-장기 PLAYER 신뢰 신호:
-
-- 본인확인
-- 실제 관련 경력
-- 동일 QUEST 유형 완료건수
-- 납기 준수율
-- 수정률
-- 분쟁 이력
-- 허용된 포트폴리오
-- LEVEL / EXP
-
-GM 역시 평판 대상입니다. PLAYER가 좋은 GM을 판단할 수 있도록 장기적으로 다음과 같은 지표를 검토합니다.
-
-- 지급/거래 완료 이력
-- 평균 검수시간
-- 수정요청 패턴
-- PLAYER가 남긴 GM 평가
-- 분쟁·취소 이력
-
-GM에게 반드시 게임식 LEVEL을 줄 필요는 없지만, **양방향 평가**가 기본 거래 엔진에 포함됩니다.
-
-GM과 PLAYER는 영구적인 계정 계급이 아닙니다. 한 사용자가 어떤 QUEST에서는 GM이고 다른 QUEST에서는 PLAYER일 수 있습니다.
-
----
-
-## 12. 기존 거래처도 KAPAPI 안으로
-
-현실의 GM은 이미 믿는 외주업체를 갖고 있을 수 있습니다.
-
-KAPAPI는 이 관계를 없애려 하지 않습니다.
-
-```text
-새 QUEST
-  ├─ 기존 파트너 A
-  ├─ 기존 파트너 B
-  └─ KAPAPI 신규 PLAYER 시장
-          ↓
-가격 / 납기 / 경력 / 품질 / 가용성 비교
-          ↓
-GM 선택
-```
-
-장기 기능 후보:
-
-- 기존 파트너 저장·초대
-- 현재 가용성
-- 과거 가격·납기·품질 이력
-- 신규 PLAYER와 한 화면 비교
-- 기존 파트너 불가 시 대체 PLAYER 추천
-- 외주업무와 업체 이력 통합관리
-
-이 구조는 KAPAPI를 단순 발견 사이트에서 **외부업무 운영 레이어**로 발전시킬 수 있습니다.
-
----
-
-## 13. 보안·계약·행정도 제품이다
-
-GM은 외주를 맡길 때 사람 찾기 외에도 다음을 관리해야 합니다.
-
-- NDA와 프로젝트 기밀
-- 제3자 제공 금지
-- 포트폴리오 무단사용
-- 계약
-- 결제와 증빙
-- 세금·정산자료
-- 파일 삭제·보관
-- 분쟁
-
-KAPAPI는 장기적으로 이 행정비용도 줄입니다.
-
-특히 전문업무에서는 **관련경력 + 계약/NDA + 거래기록**이 “설명 적게 하고 맡길 수 있는가”와 직접 연결될 수 있습니다.
-
----
-
-## 14. 탈중개는 실제 위험이다
-
-좋은 PLAYER를 발견한 GM은 플랫폼 밖에서 장기 거래할 수 있습니다. 실제 인터뷰에서도 약 10년간 같은 CG 업체를 사용한 사례가 있었고, 더 높은 품질의 신규 업체가 나타난 후에는 업무 특성에 따라 두 업체를 나눠 사용했습니다.
-
-따라서 KAPAPI는 숨긴 연락처로 억지 락인하기보다 다음 가치로 재사용을 얻어야 합니다.
-
-- 계약/NDA
-- 안전결제와 증빙
-- 세금·행정 편의
-- 기존·신규 공급 비교
-- 파트너 가용성
-- 대체 공급
-- 거래이력
-- 분쟁지원
-- 향후 SLA/결과보증
-
-GM이 특정 PLAYER보다 **KAPAPI의 결과 전달 능력**을 사게 되는 것이 가장 강한 장기 방어 가설입니다.
-
----
-
-## 15. 데이터와 잠재적 해자
-
-거래가 쌓이면 다음 데이터가 자산이 될 수 있습니다.
-
-- 어떤 QUEST에 어떤 PLAYER가 잘 맞는가
-- 업무별 거래가격 분포
-- 실제 완료시간 분포
-- 관련경력과 업무별 성공률
-- 납기 성공률
-- 수정률
-- 실패·대체 패턴
-- GM 선호
-- 카테고리별 유동성
-
-```text
-거래 증가
-→ 업무·PLAYER 데이터 증가
-→ 더 정확한 명세/매칭/라우팅
-→ 납기·품질 신뢰 증가
-→ 자동화율 증가
-→ GM이 더 많은 업무를 맡김
-→ 거래 증가
-```
-
-이 데이터는 장기적으로 Autopilot 라우팅과 결과예측의 기반이 됩니다.
-
----
-
-## 16. 콜드스타트 전략
-
-이 사업의 가장 큰 초기 위험은 PLAYER보다 **GM/QUEST 유동성**입니다.
-
-창업자가 건축/CAD 업무를 실제로 발주할 수 있다는 점은 초기 시장 점화에 사용할 수 있습니다.
-
-### 공급 검증용 시드
-
-가설적 첫 실험:
-
-- 실제 필요한 CAD QUEST 약 10건
-- 총 예산 약 30~50만원 수준
-- PLAYER 유입, BID 수, 가격·납기 분포, 실제 납품을 관찰
-
-이 거래는 실제 엔진 검증에는 유효하지만 **외부 GM 수요 검증 통계에서는 제외**합니다.
-
-### 외부 GM 수요 검증
-
-1R 이후 본격 검증에서는 초기 GM이 플랫폼을 배우게 하기보다 **파일과 요청만 보내면 KAPAPI가 대신 QUEST로 구조화하는 Concierge 방식**도 사용할 수 있습니다.
-
-첫 사용 마찰을 줄이기 위해 제한적인 첫 QUEST 비용 지원을 실험할 수 있지만, 가장 중요한 신호는:
-
-> **지원 없이 자기 돈으로 두 번째 QUEST를 발주하는가?**
-
-입니다.
-
-지원금 규모와 전환 기준은 실험값이며 현재 확정된 사업정책이 아닙니다.
-
----
-
-## 17. 수익화는 아직 확정하지 않았다
-
-거래수수료(Take Rate)는 가장 자연스러운 후보지만 현재 확정하지 않습니다.
-
-검토해야 할 질문:
-
-- GM이 별도 수수료를 싫어하는가
-- PLAYER 수수료가 좋은 공급을 밀어내는가
-- 총액에 플랫폼 비용이 포함된 방식이 더 자연스러운가
-- 결제/보호/행정가치가 어느 수준의 수수료를 정당화하는가
-- 저가 QUEST에서 분쟁 운영비용이 수익성을 파괴하는가
-
-초기 검증 단계에서는 KAPAPI가 자금을 직접 보관하지 않고, 필요 시 GM↔PLAYER가 직접 지급하며 **플랫폼 수수료 0원**으로 거래 메커니즘부터 확인하는 방향입니다.
-
-상용화 시에는 등록된 PG/에스크로 구조를 사용하고 세무·정산 체계를 별도로 확정합니다.
-
----
-
-## 18. 브랜드와 시각 방향
-
-브랜드 원칙:
-
-> **겉은 게임처럼 재미있게, 속은 Upwork보다 진지하게.**
-
-시각 방향은 과도한 RPG가 아니라 **Linear / Vercel / Raycast 계열의 고급 테크 제품 + 아주 얇은 HUD 요소**입니다.
-
-- 블랙/화이트 중심
-- 강한 타이포그래피
-- 얇은 HUD 정보
-- `LV.12`, `+240 EXP`, `QUEST #0182`, 카운트다운 등으로 세계관 표현
-- 검·코인·픽셀 RPG 같은 직접적 클리셰는 피함
-- 계약/결제/분쟁 화면에서는 게임 장식을 최소화
-
-세계관은 핵심 사업 차별성 그 자체가 아니라 **탐색성, 기억성, 참여·리텐션을 강화하는 UX 레이어**입니다.
-
----
-
-## 19. 현재 단계와 1R 프로토타입
-
-현재 KAPAPI는 **제품 설계 및 초기 검증 단계**이며 2026년 `모두의 창업 프로젝트` 일반·기술 트랙 1R 지원을 준비합니다.
-
-1R 이전 목표는 상용 플랫폼 완성이 아니라:
-
-> **“이 서비스가 실제로 어떻게 돌아가는지”를 한눈에 이해시키는 얇고 완성도 높은 프로토타입**
-
-입니다.
-
-핵심 화면:
-
-1. 랜딩 / 일반어 서비스 설명 / GM·PLAYER 진입
-2. QUEST 목록
-3. QUEST 상세 + PRICE / DELIVERY BID
-4. GM의 BID 비교 및 PLAYER 선택
-5. PLAYER 프로필 + 관련경력 + LEVEL / EXP
-6. 작업 진행 / 완료 흐름
-
-반드시 보여줄 요소:
-
-- Architecture/CAD 실제형 QUEST 예시
-- `50,000원 / 48H`, `70,000원 / 24H`, `100,000원 / 6H` 같은 가격×납기 비교
-- TIME ATTACK
-- NDA/보안 개념
-- 결과물 납품/검수
-
-지금 만들지 않는 것:
-
-- 실제 PG/에스크로
-- 자동정산
-- 복잡한 분쟁센터
-- 네이티브 앱
-- 전체 카테고리
-- 완전한 Autopilot 결과보증
-- AI 최종 품질판정
-
-가능하면 30~60초 데모와 실제 외부 PLAYER의 BID 한두 건을 보조증거로 사용합니다.
-
----
-
-## 20. Roadmap
-
-```text
-NOW
-설계 정본화 / 1R 프로토타입
-  ↓
-1R
-외부 GM 문제·거래 검증 / Concierge 실험 / 실제 QUEST
-  ↓
-2R
-상용 베타 MVP / 안전결제 / Workroom / 계약·보안 / 양방향평가 / 실제 거래
-  ↓
-ASSIST
-파일 + 짧은 지시 → AI SOW → 추천·승인 → 결과
-  ↓
-AUTOPILOT PILOT
-업무 투입 → KAPAPI 오케스트레이션 → 결과
-  ↓
-CATEGORY EXPANSION
-한 카테고리의 거래·유동성 검증 후 다음 전문업무로 확장
-```
-
-PLAYER가 많다는 이유만으로 카테고리를 열지 않습니다. 각 카테고리는 사실상 별개의 유동성 시장이므로 **반복되는 GM 수요 + 충분한 qualified PLAYER 공급**이 확인될 때만 확장합니다.
-
----
-
-## 21. 법적 제품 경계
-
-KAPAPI는 현재 **결과물 기반 독립 용역/도급 거래**를 기본으로 설계합니다.
-
-- GM은 결과물과 납기를 정의
-- PLAYER가 가격과 완료시간을 스스로 제안
-- PLAYER가 작업시간·장소·방식을 독립적으로 결정
-- 출퇴근·시프트·전속·시간통제 기능을 만들지 않음
-- 자격이 필요한 법정 전문업무는 초기 차단 또는 자격검증
-- KAPAPI가 고객 돈을 운영계좌에 직접 보관하지 않음
-
-과거 검토했던 `Fractional Employee / PLAYER 시간 구매` 개념은 현재 로드맵에서 제거되어 있습니다. KAPAPI가 거래하는 단위는 사람의 근무시간보다 **완료 가능한 QUEST/result**입니다.
-
-상세 경계는 [`docs/LEGAL.md`](docs/LEGAL.md)를 따릅니다.
-
----
-
-## 22. 현재 가장 큰 리스크
-
-아직 해결되지 않은 문제:
-
-- 실제 GM 수요 빈도
-- “설명하는 것보다 직접 하는 게 낫다” 문제
-- 모르는 PLAYER에게 기밀 파일을 맡길 신뢰
-- 카테고리별 liquidity
-- TIME ATTACK의 실시간 공급
-- AI로 자동화되는 업무와의 경쟁
-- 너무 짧은 일은 저가·AI 대체, 너무 전문적인 일은 맥락·상담이 커지는 시장 경계
-- 최저가 경쟁으로 좋은 PLAYER가 이탈할 위험
-- 탈중개
-- 수익화 방식
-- 몇만원짜리 거래의 분쟁비용
-- Autopilot 결과보증의 법적·경제적 책임
-
-현재 최우선 질문은 회원 수가 아닙니다.
-
-> **실제 외부 GM이 실제 업무를 올리고 실제 돈을 지불하는가? 그리고 다시 발주하는가?**
-
----
-
-## 23. Repository Documents
-
-| Document | Purpose |
-| --- | --- |
-| [`docs/PRODUCT.md`](docs/PRODUCT.md) | 상세 제품설계와 거래·신뢰·AI·Autopilot 구조 |
-| [`docs/ROADMAP.md`](docs/ROADMAP.md) | 1R → 2R → Assist → Autopilot 실행 로드맵 |
-| [`docs/VALIDATION.md`](docs/VALIDATION.md) | GM 인터뷰, 실험, KPI, Go/Pivot/Kill 기준 |
-| [`docs/LEGAL.md`](docs/LEGAL.md) | 계약·결제·세무·보안·전문자격·법적 경계 |
-| [`docs/DECISIONS.md`](docs/DECISIONS.md) | 중요한 설계변경과 이유 |
-| [`docs/PROGRAM_2026_MODU.md`](docs/PROGRAM_2026_MODU.md) | 모두의 창업 1R/2R 대응전략 |
-| [`docs/README.md`](docs/README.md) | 문서 정본 인덱스 |
-
-현재 설계는 `docs/initial-product-design` 브랜치에서 정리하고, 검토 후 `main`으로 병합합니다. 이후 `main`은 **배포 가능한 코드 + 최신 제품설계 문서가 함께 존재하는 프로젝트 정본**입니다.
-
----
-
-## 24. Product Principles
-
-1. **GM이 원하는 것은 PLAYER가 아니라 결과다.**
-2. **외주를 맡기는 과정 자체를 줄인다.**
-3. **PRICE + DELIVERY TIME + TRUST를 함께 시장화한다.**
-4. **가격은 시장이 발견하고, 최종 품질은 GM이 승인한다.**
-5. **검수를 자동화하기 전에 QUEST/SOW를 명확하게 만든다.**
-6. **Upwork의 안전한 거래 메커니즘은 적극 벤치마킹하고, 속도·한국화·AI·UX에서 혁신한다.**
-7. **기존 거래처를 적으로 만들지 않고 KAPAPI 안에서 함께 관리한다.**
-8. **AI는 처음에는 판사가 아니라 비서다.**
-9. **게임 세계관은 기억성과 활기를 만들고, 돈이 움직이는 화면은 진지하게 만든다.**
-10. **PLAYER 숫자보다 외부 GM의 실제 거래와 재발주를 먼저 검증한다.**
-11. **Architecture/CAD는 첫 번째 실험실일 뿐 전체 시장이 아니다.**
-12. **Autopilot은 충분한 데이터·유동성·복구능력이 생긴 좁은 영역부터 시작한다.**
-13. **사람의 시간을 고용하는 플랫폼이 아니라 완료 가능한 QUEST/result를 거래한다.**
-14. **궁극적으로 GM이 해야 하는 클릭 수, 판단 수, 관리시간을 계속 제거한다.**
-
----
-
-# KAPAPI
-
-> **WORK IS A QUEST.**  
-> **DROP WORK. GET RESULTS.**  
-> 사람이 아니라, **결과를 주문하는 전문업무 플랫폼.**
+See `docs/ORIGIN_AND_GROWTH_THESIS.md`, `docs/DECISIONS.md` D-032, `docs/PRODUCT.md` and `docs/ROADMAP.md` for the current canon.
