@@ -14,12 +14,11 @@ export const HERO_MEDIA = {
   poster: "/media/kapapi-hero-poster.jpg",
 } as const;
 
-/** Examples, no heading — Kmong sets category chips under the input unlabelled. */
 const CHIPS = [
-  "손그림 도면을 현황도로 정리",
+  "PDF 20개 내용을 스프레드시트로 정리",
   "상세페이지 이미지 규격 맞추기",
   "회사소개서 서식 통일",
-  "실측 기록 스프레드시트 정리",
+  "손그림 도면을 현황도로 정리",
 ];
 
 const UI_W = 1280;
@@ -27,12 +26,11 @@ const UI_H = 720;
 
 /**
  * Hero timeline. The film runs, the real product UI appears inside the laptop as
- * the camera pushes in, the shot cuts to full-frame product while the routing
- * resolves, then returns to the film for the payoff.
+ * the camera pushes in, then the shot cuts to the current transaction proof.
  */
-const T_CUT = COMPOSITE_OUT;                 // laptop screen fills the frame
-const T_FULL_END = T_CUT + 5.2;              // full-frame product sequence
-const T_PAYOFF_IN = 5.6;                     // resume point in the footage
+const T_CUT = COMPOSITE_OUT;
+const T_FULL_END = T_CUT + 5.2;
+const T_PAYOFF_IN = 5.6;
 const T_PAYOFF_END = 8.0;
 const LOOP_REST = 1400;
 const CYCLE_MS = (T_FULL_END + (T_PAYOFF_END - T_PAYOFF_IN)) * 1000 + LOOP_REST;
@@ -67,7 +65,6 @@ export function Hero() {
     setPhase(p);
   }, []);
 
-  /** Keep the composited UI locked to the laptop screen every frame. */
   const paintRef = useRef<() => void>(() => {});
   const paint = useCallback(() => {
     const v = videoRef.current;
@@ -93,9 +90,6 @@ export function Hero() {
 
     const at = (ms: number, fn: () => void) => timers.current.push(window.setTimeout(fn, ms));
 
-    // The product UI appears inside the laptop as the push-in begins. On a narrow
-    // stage the laptop is cropped away, so the same beat cuts straight to the
-    // full-frame product instead of compositing onto a screen that isn't there.
     at(COMPOSITE_IN * 1000, () => {
       if (narrow) videoRef.current?.pause();
       setPhaseBoth(narrow ? "full" : "composite");
@@ -104,7 +98,6 @@ export function Hero() {
     at((COMPOSITE_IN + 0.5) * 1000, () => setStep(1));
     at((COMPOSITE_IN + 1.0) * 1000, () => setStep(2));
 
-    // The screen now fills the frame: cut to full-size product.
     at(T_CUT * 1000, () => {
       videoRef.current?.pause();
       setPhaseBoth("full");
@@ -113,7 +106,6 @@ export function Hero() {
     at((T_CUT + 1.9) * 1000, () => setStep(4));
     at((T_CUT + 3.0) * 1000, () => setStep(5));
 
-    // Back to the film for the human payoff.
     at(T_FULL_END * 1000, () => {
       setPhaseBoth("payoff");
       setStep(-1);
@@ -126,7 +118,6 @@ export function Hero() {
     at((T_FULL_END + (T_PAYOFF_END - T_PAYOFF_IN)) * 1000, () => videoRef.current?.pause());
   }, [clearTimers, setPhaseBoth, narrow]);
 
-  /* Play only while the hero is on screen and the tab is visible. */
   useEffect(() => {
     if (reduced) { clearTimers(); return; }
     const node = stageRef.current;
@@ -200,14 +191,12 @@ export function Hero() {
 
         <div className={`${s.veil} ${showFull ? s.veilOut : ""}`} aria-hidden="true" />
 
-        {/* real KAPAPI UI, transformed into the laptop screen */}
         <div className={`${s.screenLayer} ${showComposite ? s.screenOn : ""}`} aria-hidden="true">
           <div className={s.screenUI} ref={uiRef} style={{ width: UI_W, height: UI_H }}>
             <HeroScreen step={step} />
           </div>
         </div>
 
-        {/* the same UI, full frame, once the screen fills the shot */}
         {showFull ? (
           <div className={`${s.full} ${s.fullOn}`} aria-hidden="true">
             <HeroScreen step={step} />
@@ -215,8 +204,8 @@ export function Hero() {
         ) : null}
 
         <div className={`${s.copy} ${copyHidden ? s.copyOut : ""}`}>
-          <h1 className={s.headline} id="hero-h">맡길 업무만 등록하세요</h1>
-          <p className={s.sub}>전문가 배정부터 결과 전달까지 카파피가 진행합니다.</p>
+          <h1 className={s.headline} id="hero-h">맡길 일을 적어주세요</h1>
+          <p className={s.sub}>카파피가 작업 조건을 정리하고 맞는 제안을 추천합니다.</p>
         </div>
 
         {!reduced ? (
