@@ -126,33 +126,92 @@
   .proofState { margin-left: 0; width: 100%; }
 }
 
-/* ---- D-035 client flow: 업무 입력 → KAPAPI → 결과 ---- */
-.flow { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s4); }
-.step {
-  display: flex; flex-direction: column; gap: 10px;
-  padding: var(--s5); border: 1px solid var(--line-2);
-  border-radius: var(--r-lg); background: var(--white);
+/* ---- D-035 client flow: one continuous record of work #0182 ---- */
+
+/* Double bezel. The tray is what makes the record read as a physical document
+   rather than a div with a border. */
+.recordShell {
+  padding: 8px;
+  border-radius: calc(var(--r-shell) + 8px);
+  background: color-mix(in srgb, var(--ink) 3.5%, var(--paper));
+  border: 1px solid var(--hair);
+  box-shadow: var(--e2);
 }
-/* The middle beat is the one the client never has to do. Sapphire marks it as
-   the machine's step, which is the whole claim of the section. */
-.stepMid { border-color: var(--sapphire-line); background: var(--sapphire-wash); }
-.stepNo { font-family: var(--mono); font-size: var(--hud); letter-spacing: .12em; color: var(--faint); }
-.stepMid .stepNo { color: var(--sapphire); }
-.stepKo { font-size: var(--h2); font-weight: 700; letter-spacing: var(--tight); }
-.stepSub { font-size: var(--body-sm); color: var(--muted); }
+.record {
+  border-radius: var(--r-shell);
+  background: var(--white);
+  border: 1px solid var(--hair);
+  box-shadow: var(--inner-lip);
+  overflow: hidden;
+}
+
+.band {
+  display: grid;
+  grid-template-columns: 60px minmax(0, 1fr) auto;
+  gap: 0 clamp(20px, 2.4vw, 40px);
+  align-items: start;
+  padding: clamp(26px, 2.6vw, 40px) clamp(24px, 2.6vw, 40px);
+  border-bottom: 1px solid var(--hair);
+}
+.band:last-child { border-bottom: 0; }
+
+/* The middle band is the step the client does not perform. It is the only
+   surface on the page that carries the accent, so the claim reads without a
+   caption explaining it. */
+.bandMid {
+  background:
+    linear-gradient(180deg,
+      color-mix(in srgb, var(--sapphire) 6%, var(--white)),
+      color-mix(in srgb, var(--sapphire) 3%, var(--white)));
+  border-top: 1px solid color-mix(in srgb, var(--sapphire) 18%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--sapphire) 18%, transparent);
+}
+
+/* The rail carries the step number and the thread that connects the bands, so
+   the three read as a sequence rather than as stacked rows. */
+.bandRail { display: flex; flex-direction: column; align-items: center; gap: 10px; align-self: stretch; }
+.bandNo {
+  display: grid; place-items: center; flex: none;
+  width: 34px; height: 34px; border-radius: 999px;
+  border: 1px solid var(--hair-strong);
+  background: var(--white);
+  font-family: var(--mono); font-size: var(--meta); color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.bandMid .bandNo {
+  border-color: color-mix(in srgb, var(--sapphire) 40%, transparent);
+  color: var(--sapphire-press);
+  background: var(--white);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--sapphire) 10%, transparent);
+}
+.bandLine { flex: 1; width: 1px; background: var(--hair-strong); min-height: 24px; }
+.bandMid .bandLine { background: color-mix(in srgb, var(--sapphire) 28%, transparent); }
+
+.bandBody { min-width: 0; display: flex; flex-direction: column; gap: 8px; }
+.bandKo { font-size: var(--h1); font-weight: 700; letter-spacing: var(--tight); }
+.bandSub { font-size: var(--body-sm); color: var(--muted); }
+
+.bandMeta {
+  display: flex; flex-direction: column; align-items: flex-end; gap: 3px;
+  text-align: right; font-size: var(--meta); color: var(--faint);
+  white-space: nowrap;
+}
+.bandBig {
+  font-size: clamp(1.15rem, 1rem + .55vw, 1.6rem);
+  font-weight: 700; letter-spacing: var(--tight); color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.bandMid .bandBig { color: var(--sapphire-press); }
+
 .stepFiles { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px; }
 .stepFile {
-  display: inline-flex; align-items: center; gap: 7px; max-width: 100%;
-  padding: 5px 10px 5px 5px; border: 1px solid var(--line); border-radius: var(--r-sm);
-  background: var(--paper-2); font-size: var(--meta); color: var(--graphite);
+  display: inline-flex; align-items: center; gap: 8px; max-width: 100%;
+  padding: 5px 12px 5px 5px; border: 1px solid var(--hair); border-radius: 999px;
+  background: var(--paper); font-size: var(--meta); color: var(--graphite);
 }
 .stepWhy, .stepChecks { display: grid; gap: 5px; margin-top: 2px; }
-.stepWhyRow, .stepCheck { display: flex; gap: 8px; font-size: var(--meta); color: var(--muted); }
-.stepMeta {
-  margin-top: auto; padding-top: var(--s3); border-top: 1px solid var(--line);
-  font-size: var(--meta); color: var(--faint);
-}
-.stepMid .stepMeta { border-top-color: var(--sapphire-line); }
+.stepWhyRow, .stepCheck { display: flex; gap: 9px; font-size: var(--meta); color: var(--muted); }
+
 .flowFoot { margin-top: var(--s5); font-size: var(--body-sm); color: var(--muted); max-width: 66ch; }
 
 @media (max-width: 900px) {
@@ -173,3 +232,56 @@
 }
 .flowLink:hover { border-color: var(--ink); color: var(--ink); }
 .flowLink:focus-visible { outline: 2px solid var(--sapphire); outline-offset: 3px; }
+
+/* ---- one account, three simultaneous roles ---- */
+.roles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s4); }
+.role {
+  position: relative;
+  display: flex; flex-direction: column; gap: 10px;
+  padding: clamp(22px, 2.2vw, 32px);
+  border-radius: var(--r-xl);
+  background: var(--white);
+  border: 1px solid var(--hair);
+  box-shadow: var(--e1);
+  transition: transform var(--t-state) var(--ease-out), box-shadow var(--t-state) var(--ease-out);
+}
+.role::before {
+  content: ""; position: absolute; inset: 0 auto 0 0; width: 3px;
+  border-radius: var(--r-xl) 0 0 var(--r-xl);
+}
+.roleClient::before { background: var(--ink); }
+.roleWorker::before { background: var(--sapphire); }
+.roleBid::before { background: var(--line-2); }
+.role:hover { transform: translateY(-3px); box-shadow: var(--e2); }
+
+.roleTag {
+  align-self: flex-start;
+  padding: 5px 11px; border-radius: 999px;
+  font-size: var(--meta); font-weight: 600;
+  border: 1px solid var(--hair);
+}
+.roleClient .roleTag { background: var(--ink); color: #fff; border-color: var(--ink); }
+.roleWorker .roleTag { background: var(--sapphire-wash); color: var(--sapphire-press); border-color: var(--sapphire-line); }
+.roleBid .roleTag { background: var(--paper-2); color: var(--muted); }
+
+.roleWhat { font-size: var(--h2); font-weight: 650; letter-spacing: var(--tight); }
+.roleMeta {
+  margin-top: auto; padding-top: var(--s4); border-top: 1px solid var(--hair);
+  display: flex; align-items: baseline; gap: 10px;
+  font-size: var(--meta); color: var(--faint);
+}
+.roleId { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+
+.rolesFoot {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: var(--s4) var(--s6);
+  margin-top: var(--s6); padding-top: var(--s5);
+  border-top: 1px solid var(--hair);
+}
+.rolesLine { font-size: var(--body-sm); color: var(--muted); max-width: 46ch; }
+
+@media (max-width: 900px) {
+  .roles { grid-template-columns: 1fr; }
+  .role { padding: var(--s5); }
+  .roleMeta { padding-top: var(--s3); }
+}

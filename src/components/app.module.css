@@ -94,13 +94,33 @@
 .filter { padding: 8px 14px; border: 1px solid var(--line-2); border-radius: 999px; background: var(--white); font-size: var(--body-sm); color: var(--graphite); }
 .filterOn { background: var(--ink); border-color: var(--ink); color: #fff; font-weight: 550; }
 .cards { display: grid; gap: var(--s3); }
-.qcard { display: block; border: 1px solid var(--line); border-radius: var(--r-md); background: var(--white); padding: var(--s5); transition: border-color var(--t-micro) var(--ease); }
-.qcard:hover { border-color: var(--line-2); }
+/* Open work is the 작업자's whole reason for being here, so each item is a
+   physical card that responds to the pointer rather than a bordered block. The
+   left edge carries eligibility, which is the first thing they scan for. */
+.qcard {
+  position: relative; display: block; overflow: hidden;
+  border: 1px solid var(--hair); border-radius: var(--r-xl);
+  background: var(--white); padding: clamp(20px, 2vw, 28px);
+  box-shadow: var(--e1);
+  transition: transform var(--t-state) var(--ease-out), box-shadow var(--t-state) var(--ease-out), border-color var(--t-state) var(--ease-out);
+}
+.qcard::before {
+  content: ""; position: absolute; inset: 0 auto 0 0; width: 3px;
+  background: var(--line-2);
+  transition: background var(--t-state) var(--ease-out);
+}
+.qcard:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--e2);
+  border-color: var(--hair-strong);
+}
+.qcard:hover::before { background: var(--sapphire); }
+.qcard:focus-visible { outline: 2px solid var(--sapphire); outline-offset: 3px; }
 .qtop { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 10px; }
 .qid { font-size: var(--meta); font-weight: 500; color: var(--faint); }
 .qtitle { font-size: var(--h2); font-weight: 650; letter-spacing: var(--tight); }
 .qsum { margin-top: 6px; font-size: var(--body-sm); color: var(--muted); }
-.qmeta { display: flex; flex-wrap: wrap; gap: var(--s2) var(--s5); margin-top: var(--s4); padding-top: var(--s3); border-top: 1px solid var(--line); }
+.qmeta { display: flex; flex-wrap: wrap; gap: var(--s2) clamp(24px, 3vw, 48px); margin-top: var(--s5); padding-top: var(--s4); border-top: 1px solid var(--hair); }
 .qblock { margin-top: var(--s3); padding-top: var(--s3); border-top: 1px dashed var(--line-2); font-size: var(--meta); color: var(--muted); }
 
 /* bid form */
@@ -170,25 +190,103 @@
   .acts > *, .resultActs > * { flex: 1 1 100%; }
 }
 
-/* ---- D-033.1 Execution Contract: the object the 발주자 approves ---- */
+/* ---- D-033.1 Execution Contract: the object the 발주자 approves ----
+
+   This is the one screen where money and a time commitment are agreed, so it is
+   the only surface in the app that gets the full nested treatment: a tray, a
+   distinct core, an accent edge, and the two numbers set at display scale. */
 .contract {
-  margin-top: var(--s5); padding: var(--s5);
-  border: 1.5px solid var(--sapphire-line); border-radius: var(--r-lg);
-  background: var(--sapphire-wash);
+  margin-top: var(--s6);
+  padding: 8px;
+  border-radius: calc(var(--r-shell) + 8px);
+  background:
+    linear-gradient(180deg,
+      color-mix(in srgb, var(--sapphire) 12%, var(--paper)),
+      color-mix(in srgb, var(--sapphire) 4%, var(--paper)));
+  border: 1px solid color-mix(in srgb, var(--sapphire) 22%, transparent);
+  box-shadow: var(--e2);
 }
-.contractHead { display: flex; align-items: baseline; gap: var(--s3); margin-bottom: var(--s4); }
-.contractTitle { font-size: var(--h2); font-weight: 700; letter-spacing: var(--tight); }
-.contractTag { font-size: var(--meta); font-weight: 500; color: var(--sapphire-press); }
-.contractRows { display: grid; gap: 0; margin-bottom: var(--s4); }
+.contractCore {
+  border-radius: var(--r-shell);
+  background: var(--white);
+  border: 1px solid color-mix(in srgb, var(--sapphire) 14%, transparent);
+  box-shadow: var(--inner-lip);
+  overflow: hidden;
+}
+.contractHead {
+  display: flex; align-items: baseline; gap: var(--s3);
+  padding: clamp(20px, 2vw, 28px) clamp(22px, 2.2vw, 32px) var(--s4);
+}
+.contractTitle { font-size: var(--h1); font-weight: 720; letter-spacing: var(--tight); }
+.contractTag {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 4px 10px; border-radius: 999px;
+  background: var(--sapphire-wash); color: var(--sapphire-press);
+  border: 1px solid var(--sapphire-line);
+  font-size: var(--meta); font-weight: 600;
+}
+
+/* The two committed numbers, set apart from the terms list. */
+.contractFigures {
+  display: grid; grid-template-columns: 1fr 1fr;
+  border-top: 1px solid color-mix(in srgb, var(--sapphire) 14%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--sapphire) 14%, transparent);
+  background: color-mix(in srgb, var(--sapphire) 3%, var(--white));
+}
+.figure {
+  padding: clamp(18px, 1.8vw, 26px) clamp(22px, 2.2vw, 32px);
+  display: flex; flex-direction: column; gap: 4px;
+}
+.figure + .figure { border-left: 1px solid color-mix(in srgb, var(--sapphire) 14%, transparent); }
+.figureK { font-size: var(--meta); color: var(--muted); }
+.figureV {
+  font-size: clamp(1.7rem, 1.2rem + 1.7vw, 2.5rem);
+  font-weight: 750; letter-spacing: var(--tightest); color: var(--ink);
+  font-variant-numeric: tabular-nums; line-height: 1.1;
+}
+
+.contractRows { display: grid; gap: 0; padding: var(--s2) clamp(22px, 2.2vw, 32px) var(--s4); }
 .contractRow {
-  display: grid; grid-template-columns: 8.5em minmax(0, 1fr);
+  display: grid; grid-template-columns: 9em minmax(0, 1fr);
   gap: var(--s4); align-items: baseline;
-  padding: 11px 0; border-bottom: 1px solid var(--sapphire-line);
+  padding: 13px 0; border-bottom: 1px solid var(--hair);
 }
 .contractRow:last-child { border-bottom: 0; }
 .ck { font-size: var(--meta); color: var(--muted); }
 .cv { font-size: var(--body-sm); color: var(--ink); }
 .cvBig { font-size: 1.25rem; font-weight: 700; letter-spacing: var(--tight); font-variant-numeric: tabular-nums; }
+.contractBasis {
+  padding: var(--s4) clamp(22px, 2.2vw, 32px);
+  border-top: 1px solid var(--hair);
+  background: var(--paper);
+  font-size: var(--meta); color: var(--muted); line-height: 1.65;
+}
 @media (max-width: 620px) {
   .contractRow { grid-template-columns: 1fr; gap: 3px; }
+  .contractFigures { grid-template-columns: 1fr; }
+  .figure + .figure { border-left: 0; border-top: 1px solid color-mix(in srgb, var(--sapphire) 14%, transparent); }
 }
+
+/* The approval control. This is the one moment money and a deadline are agreed,
+   so it carries the same weight as the hero's action rather than the generic
+   button used elsewhere in the app. */
+.approve {
+  display: inline-flex; align-items: center; gap: 12px;
+  height: 56px; padding: 0 8px 0 26px;
+  border-radius: 999px;
+  background: var(--ink); color: #fff;
+  font-size: 1.02rem; font-weight: 620; letter-spacing: -0.012em;
+  box-shadow: var(--e2);
+  transition: transform var(--t-micro) var(--ease-spring), box-shadow var(--t-state) var(--ease-out), background var(--t-micro) var(--ease-out);
+}
+.approve:hover:not(:disabled) { background: #000; box-shadow: var(--e3); transform: translateY(-2px); }
+.approve:active:not(:disabled) { transform: scale(.985); }
+.approve:focus-visible { outline: 2px solid var(--sapphire); outline-offset: 3px; }
+.approve:disabled { opacity: .42; cursor: not-allowed; box-shadow: none; }
+.approveIcon {
+  display: grid; place-items: center; flex: none;
+  width: 40px; height: 40px; border-radius: 999px;
+  background: rgba(255,255,255,.13); font-size: 1.02rem; line-height: 1;
+  transition: transform var(--t-state) var(--ease-spring), background var(--t-state) var(--ease-out);
+}
+.approve:hover:not(:disabled) .approveIcon { background: rgba(255,255,255,.2); transform: translate3d(3px,-1px,0) scale(1.06); }

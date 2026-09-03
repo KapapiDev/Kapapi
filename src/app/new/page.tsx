@@ -61,8 +61,8 @@ export default function NewPage() {
     <div className={`frame ${s.wrap}`}>
       <p className={s.crumb}><Link href="/">업무 등록</Link><span aria-hidden="true">/</span><span>작업 조건 확인</span></p>
       <div className={s.head}>
-        <h1 className={s.title}>이렇게 정리했습니다</h1>
-        <p className={s.sub}>작업 범위와 마감만 확인하면 업무로 등록됩니다.</p>
+        <h1 className={s.title}>이 조건으로 진행할까요?</h1>
+        <p className={s.sub}>요청을 작업 조건으로 정리하고, 카파피가 결과물·가격·완료시간을 제시했습니다. 승인하면 작업자 배정부터 결과 전달까지 카파피가 진행합니다.</p>
       </div>
 
       <div className={s.sheet}>
@@ -126,45 +126,53 @@ export default function NewPage() {
         {/* D-033.1: this is the object the 발주자 approves — a result, a price and a
             completion time, not a worker. */}
         <div className={s.contract}>
-          <div className={s.contractHead}>
-            <p className={s.contractTitle}>실행 계약</p>
-            <span className={s.contractTag}>카파피가 제시</span>
-          </div>
+          <div className={s.contractCore}>
+            <div className={s.contractHead}>
+              <p className={s.contractTitle}>실행 계약</p>
+              <span className={s.contractTag}>카파피가 제시</span>
+            </div>
 
-          {quote.feasible ? (
-            <>
-              <div className={s.contractRows}>
-                <div className={s.contractRow}>
-                  <span className={s.ck}>결과물</span>
-                  <span className={s.cv}>{draft.outputs.join(", ")}</span>
+            {quote.feasible ? (
+              <>
+                {/* The two committed numbers carry the screen. Everything else on
+                    it is a term qualifying them. */}
+                <div className={s.contractFigures}>
+                  <div className={s.figure}>
+                    <span className={s.figureK}>가격</span>
+                    <span className={s.figureV}>{won(quote.price)}</span>
+                  </div>
+                  <div className={s.figure}>
+                    <span className={s.figureK}>완료시간</span>
+                    <span className={s.figureV}>{quote.hours}시간 이내</span>
+                  </div>
                 </div>
-                <div className={s.contractRow}>
-                  <span className={s.ck}>가격</span>
-                  <span className={`${s.cv} ${s.cvBig}`}>{won(quote.price)}</span>
+
+                <div className={s.contractRows}>
+                  <div className={s.contractRow}>
+                    <span className={s.ck}>결과물</span>
+                    <span className={s.cv}>{draft.outputs.join(", ")}</span>
+                  </div>
+                  <div className={s.contractRow}>
+                    <span className={s.ck}>수정</span>
+                    <span className={s.cv}>합의한 범위와 다를 경우 1회</span>
+                  </div>
+                  <div className={s.contractRow}>
+                    <span className={s.ck}>완료되지 않으면</span>
+                    <span className={s.cv}>카파피가 다시 배정합니다. 그래도 안 되면 대금을 청구하지 않습니다.</span>
+                  </div>
                 </div>
-                <div className={s.contractRow}>
-                  <span className={s.ck}>완료시간</span>
-                  <span className={`${s.cv} ${s.cvBig}`}>{quote.hours}시간 이내</span>
-                </div>
-                <div className={s.contractRow}>
-                  <span className={s.ck}>수정</span>
-                  <span className={s.cv}>합의한 범위와 다를 경우 1회</span>
-                </div>
-                <div className={s.contractRow}>
-                  <span className={s.ck}>완료되지 않으면</span>
-                  <span className={s.cv}>카파피가 다시 배정합니다. 그래도 안 되면 대금을 청구하지 않습니다.</span>
-                </div>
-              </div>
-              <p className={s.hint}>
-                지금 이 유형의 업무에 들어온 제안 {quote.basis.count}건({won(quote.basis.low)}–{won(quote.basis.high)})을 근거로 계산했습니다.
-                작업자는 카파피가 정하며 발주자가 고르지 않습니다.
+
+                <p className={s.contractBasis}>
+                  지금 이 유형의 업무에 들어온 제안 {quote.basis.count}건({won(quote.basis.low)}–{won(quote.basis.high)})을 근거로 계산했습니다.
+                  작업자는 카파피가 정하며 발주자가 고르지 않습니다.
+                </p>
+              </>
+            ) : (
+              <p className={s.contractBasis}>
+                이 마감 안에 끝낼 수 있는 제안이 아직 없습니다. 가장 빠른 제안이 {quote.hours}시간이라 마감을 늘리면 계약을 제시할 수 있습니다.
               </p>
-            </>
-          ) : (
-            <p className={s.hint}>
-              이 마감 안에 끝낼 수 있는 제안이 아직 없습니다. 가장 빠른 제안이 {quote.hours}시간이라 마감을 늘리면 계약을 제시할 수 있습니다.
-            </p>
-          )}
+            )}
+          </div>
         </div>
 
         {resolved ? (
@@ -184,9 +192,10 @@ export default function NewPage() {
         )}
 
         <div className={s.submitBar}>
-          <button type="button" className={`${s.btn} ${s.btnAccent}`} disabled={!quote.feasible}
+          <button type="button" className={s.approve} disabled={!quote.feasible}
             onClick={() => { submit(); router.refresh(); }}>
             이 조건으로 맡기기
+            <span className={s.approveIcon} aria-hidden="true">→</span>
           </button>
           <Link href="/" className={`${s.btn} ${s.btnGhost}`}>다시 적기</Link>
           <p className={s.hint} style={{ maxWidth: "44ch" }}>

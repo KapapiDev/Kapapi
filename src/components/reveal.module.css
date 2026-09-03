@@ -1,0 +1,30 @@
+/*
+  The entry state. Transform and opacity only — animating anything that triggers
+  layout would reflow the whole section on every frame.
+
+  The blur is small on purpose: enough to read as depth of field resolving, not
+  enough to look like the page failed to load.
+*/
+.r {
+  opacity: 0;
+  transform: translate3d(0, 22px, 0);
+  filter: blur(6px);
+  transition:
+    opacity var(--t-reveal) var(--ease-out),
+    transform var(--t-reveal) var(--ease-out),
+    filter var(--t-reveal) var(--ease-out);
+  will-change: transform, opacity;
+}
+
+.on {
+  opacity: 1;
+  transform: none;
+  filter: blur(0);
+  /* Released once it has arrived: a permanent will-change keeps a layer alive
+     for every revealed element on the page. */
+  will-change: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .r { opacity: 1; transform: none; filter: none; transition: none; }
+}

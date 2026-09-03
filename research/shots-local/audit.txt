@@ -1,12 +1,12 @@
-desktop  01-home      chars=173   cards=3   ok
-desktop  02-board     chars=429   cards=2   ok
+desktop  01-home      chars=153   cards=1   ok
+desktop  02-board     chars=396   cards=2   ok
 desktop  03-quest     chars=437   cards=4   ok
 desktop  04-detail    chars=446   cards=1   ok
 desktop  05-my        chars=271   cards=2   ok
 desktop  06-how       chars=626   cards=4   ok
-mobile   01-home      chars=141   cards=1   ok
+mobile   01-home      chars=144   cards=1   ok
 mobile   02-board     chars=302   cards=2   ok
 mobile   03-quest     chars=231   cards=1   ok
 mobile   04-detail    chars=237   cards=0   ok
-mobile   05-my        chars=262   cards=2   ok
+mobile   05-my        chars=248   cards=2   ok
 mobile   06-how       chars=364   cards=2   ok

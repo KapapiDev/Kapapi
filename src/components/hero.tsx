@@ -78,11 +78,13 @@ export function Hero() {
     <section className={s.hero} aria-labelledby="hero-h">
       <div className={s.grid}>
         <div className={s.side}>
+          <p className={s.eyebrow}><span className={s.dot} aria-hidden="true" />파일 하나로 시작합니다</p>
           <h1 className={s.headline} id="hero-h">오늘은 어떤 일을 끝낼까요?</h1>
 
           {/* The heading is the field's label, so the placeholder is not carrying it alone. */}
           <div className={s.field}>
             <label className="sr" htmlFor="work">맡길 일</label>
+            <div className={s.shell}>
             <div className={s.box}>
               <input
                 id="hero-files"
@@ -107,6 +109,7 @@ export function Hero() {
                 onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); submit(); } }}
               />
             </div>
+            </div>
 
             {files.length > 0 ? (
               <ul className={s.files}>
@@ -130,11 +133,15 @@ export function Hero() {
 
           {error ? <p className={s.err} id="hero-err" role="alert">{error}</p> : null}
 
-          <button type="button" className={s.submit} onClick={submit}>맡기기</button>
+          <button type="button" className={s.submit} onClick={submit}>
+            맡기기
+            <span className={s.submitIcon} aria-hidden="true">→</span>
+          </button>
         </div>
 
         {/* The file as delivered: full frame, original ratio, nothing on top of it. */}
         <div className={s.media}>
+          <div className={s.mediaShell}>
           <video
             ref={videoRef}
             className={s.film}
@@ -149,6 +156,7 @@ export function Hero() {
             aria-hidden="true"
             tabIndex={-1}
           />
+          </div>
         </div>
       </div>
     </section>
