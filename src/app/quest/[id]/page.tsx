@@ -5,24 +5,15 @@ import { useParams } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import { useDemo } from "@/lib/demo";
-import { ME, PEOPLE, pct, roleIn, route, won, type QuestState } from "@/lib/kapapi";
+import { ME, PEOPLE, pct, roleIn, route, won } from "@/lib/kapapi";
 import s from "@/components/app.module.css";
 
 const STAGES = [
-  { st: "ASSIGNED", ko: "배정" },
+  { st: "ASSIGNED", ko: "확정" },
   { st: "IN_PROGRESS", ko: "작업 중" },
   { st: "DELIVERED", ko: "결과 도착" },
   { st: "COMPLETE", ko: "완료" },
 ] as const;
-
-/** Scripted so a reviewer never waits on a real marketplace. */
-const SCRIPT: { at: number; st: QuestState; ko: string; en: string }[] = [
-  { at: 900, st: "BIDDING", ko: "제안이 도착하고 있습니다", en: "BIDS ARRIVING" },
-  { at: 3200, st: "ROUTING", ko: "조건을 확인하고 있습니다", en: "ELIGIBILITY CHECK" },
-  { at: 4600, st: "ASSIGNED", ko: "전문가가 배정되었습니다", en: "PLAYER ASSIGNED" },
-  { at: 6000, st: "IN_PROGRESS", ko: "작업을 시작했습니다", en: "WORK STARTED" },
-  { at: 9000, st: "DELIVERED", ko: "결과 파일이 도착했습니다", en: "RESULT READY" },
-];
 
 export default function QuestPage() {
   const { id } = useParams<{ id: string }>();
@@ -30,23 +21,29 @@ export default function QuestPage() {
   const q = quests[id];
   const timers = useRef<number[]>([]);
   const [revising, setRevising] = useState(false);
+  const [showAlternatives, setShowAlternatives] = useState(false);
 
   const clear = useCallback(() => {
     timers.current.forEach(window.clearTimeout);
     timers.current = [];
   }, []);
+
   const state = q?.state;
 
+  /* Prototype only: simulate proposals arriving, then stop at recommendation. */
   useEffect(() => {
-    if (!q || !["OPEN", "BIDDING", "ROUTING"].includes(q.state)) return;
+    if (!q || q.state !== "OPEN") return;
     clear();
-    SCRIPT.forEach((e) => {
-      timers.current.push(
-        window.setTimeout(() => setQuestState(q.id, e.st, { at: "방금", ko: e.ko, en: e.en }), e.at),
-      );
-    });
+    timers.current.push(window.setTimeout(
+      () => setQuestState(q.id, "BIDDING", { at: "방금", ko: "제안이 도착하고 있습니다", en: "BIDS ARRIVING" }),
+      800,
+    ));
+    timers.current.push(window.setTimeout(
+      () => setQuestState(q.id, "ROUTING", { at: "방금", ko: "카파피 추천이 준비되었습니다", en: "RECOMMENDATION READY" }),
+      2500,
+    ));
     return clear;
-    // Re-arm only when the quest identity changes, not on every scripted step.
+    // Re-arm only for a newly created quest.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
@@ -73,18 +70,36 @@ export default function QuestPage() {
   const role = roleIn(ME, q);
   const isGm = role === "GM";
   const r = route(q);
+  const recommended = r.picked;
   const assignee = q.assigneeId ? PEOPLE[q.assigneeId] : undefined;
   const issuer = PEOPLE[q.issuerId];
-  const routing = ["OPEN", "BIDDING", "ROUTING"].includes(q.state);
+  const waiting = q.state === "OPEN" || q.state === "BIDDING";
+  const recommendationReady = q.state === "ROUTING";
+  const assigned = ["ASSIGNED", "IN_PROGRESS", "DELIVERED", "REVISION", "COMPLETE"].includes(q.state);
   const delivered = q.state === "DELIVERED";
   const done = q.state === "COMPLETE";
   const stageIdx = STAGES.findIndex((x) => x.st === q.state);
 
-  function skip() {
+  function confirmRecommendation() {
+    if (!recommended) return;
     clear();
-    setQuestState(q.id, "ASSIGNED", { at: "방금", ko: "전문가가 배정되었습니다", en: "PLAYER ASSIGNED" });
-    setQuestState(q.id, "IN_PROGRESS", { at: "방금", ko: "작업을 시작했습니다", en: "WORK STARTED" });
-    setQuestState(q.id, "DELIVERED", { at: "방금", ko: "결과 파일이 도착했습니다", en: "RESULT READY" });
+    setQuestState(q.id, "ASSIGNED", { at: "방금", ko: `${recommended.person.name} 님으로 확정했습니다`, en: "GM CONFIRMED" });
+    timers.current.push(window.setTimeout(
+      () => setQuestState(q.id, "IN_PROGRESS", { at: "방금", ko: "작업을 시작했습니다", en: "WORK STARTED" }),
+      900,
+    ));
+    timers.current.push(window.setTimeout(
+      () => setQuestState(q.id, "DELIVERED", { at: "방금", ko: "결과 파일이 도착했습니다", en: "RESULT READY" }),
+      3800,
+    ));
+  }
+
+  function finishDemo() {
+    if (!recommended) return;
+    clear();
+    setQuestState(q.id, "ASSIGNED", { at: "방금", ko: `${recommended.person.name} 님으로 확정했습니다`, en: "GM CONFIRMED" });
+    window.setTimeout(() => setQuestState(q.id, "IN_PROGRESS", { at: "방금", ko: "작업을 시작했습니다", en: "WORK STARTED" }), 0);
+    window.setTimeout(() => setQuestState(q.id, "DELIVERED", { at: "방금", ko: "결과 파일이 도착했습니다", en: "RESULT READY" }), 20);
   }
 
   const events = (
@@ -119,42 +134,87 @@ export default function QuestPage() {
           {q.nda ? <span className={s.chip}>보안 서약</span> : null}
           <span className={`${s.chip} ${done ? s.chipOk : s.chipAccent}`}>
             <span className={s.dot} aria-hidden="true" />
-            {routing ? "배정 중" : q.state === "IN_PROGRESS" ? "작업 중" : delivered ? "결과 도착" : q.state === "REVISION" ? "수정 중" : "완료"}
+            {waiting ? "제안 받는 중" : recommendationReady ? "추천 확인" : q.state === "IN_PROGRESS" || q.state === "ASSIGNED" ? "작업 중" : delivered ? "결과 도착" : q.state === "REVISION" ? "수정 중" : "완료"}
           </span>
-          {role !== "NONE" ? (
-            <span className={s.chip}>이 의뢰에서 나는 {isGm ? "맡긴 쪽" : "수행하는 쪽"}</span>
-          ) : null}
+          {role !== "NONE" ? <span className={s.chip}>이 의뢰에서 나는 {isGm ? "맡긴 쪽" : "수행하는 쪽"}</span> : null}
         </div>
       </div>
 
       <div className={s.grid}>
         <div className={s.stack}>
-          {routing ? (
+          {waiting ? (
             <section>
               <div className={s.panelHead}>
-                <h2 className={s.panelTitle}>카파피가 배정하고 있습니다</h2>
-                <span className={s.panelEn}>ROUTING</span>
+                <h2 className={s.panelTitle}>제안을 받고 있습니다</h2>
+                <span className={s.panelEn}>BIDDING</span>
               </div>
               <div className={s.work}>
                 <div className={s.workTop}>
                   <span className={s.workId}>의뢰 #{q.id}</span>
-                  <span className={s.workMeta}>제안 {q.bids.length}건</span>
+                  <span className={s.workMeta}>현재 제안 {q.bids.length}건</span>
                 </div>
                 {events}
               </div>
-              <div className={s.acts} style={{ marginTop: 16 }}>
-                <button type="button" className={`${s.btn} ${s.btnLine}`} onClick={skip}>결과까지 건너뛰기</button>
-                <p className={s.hint} style={{ alignSelf: "center" }}>
-                  실제 서비스에서는 결과가 준비되면 알림을 받습니다.
-                </p>
-              </div>
+              <p className={s.note} style={{ marginTop: 14 }}>조건을 충족한 제안이 모이면 카파피가 가격, 완료시간과 관련 이력을 함께 보고 추천합니다.</p>
             </section>
           ) : null}
 
-          {assignee && !routing ? (
+          {recommendationReady && recommended ? (
             <section>
               <div className={s.panelHead}>
-                <h2 className={s.panelTitle}>{isGm ? "배정된 전문가" : "이 의뢰를 맡긴 사람"}</h2>
+                <h2 className={s.panelTitle}>카파피 추천</h2>
+                <span className={s.panelEn}>RECOMMENDATION</span>
+              </div>
+              <div className={s.trust}>
+                <div className={s.chips} style={{ marginBottom: 12 }}>
+                  <span className={`${s.chip} ${s.chipAccent}`}>추천</span>
+                  <span className={s.chip}>{won(recommended.bid.price)}</span>
+                  <span className={s.chip}>{recommended.bid.hours}시간 완료</span>
+                </div>
+                <p className={s.trustName}>{recommended.person.name}</p>
+                <p className={s.trustCareer}>{recommended.person.career}</p>
+                <div className={s.stats}>
+                  <span className={s.stat}><span className={s.sk}>같은 유형</span><span className={s.sv}>{recommended.relevant}건</span></span>
+                  <span className={s.stat}><span className={s.sk}>정시 납품</span><span className={s.sv}>{pct(recommended.person.onTime)}</span></span>
+                  <span className={s.stat}><span className={s.sk}>수정 요청</span><span className={s.sv}>{pct(recommended.person.revision)}</span></span>
+                </div>
+                <div className={s.note}>
+                  <strong style={{ color: "var(--ink)" }}>왜 추천하나요?</strong>
+                  <div className={s.list} style={{ marginTop: 8 }}>
+                    {r.reasons.map((x) => <p key={x} className={s.item}><span className={s.mark} aria-hidden="true">▸</span>{x}</p>)}
+                  </div>
+                </div>
+                {isGm ? (
+                  <div className={s.acts} style={{ marginTop: 18 }}>
+                    <button type="button" className={`${s.btn} ${s.btnAccent}`} onClick={confirmRecommendation}>이 작업자로 진행</button>
+                    <button type="button" className={`${s.btn} ${s.btnLine}`} onClick={() => setShowAlternatives((v) => !v)} aria-expanded={showAlternatives}>다른 제안 보기</button>
+                    <button type="button" className={`${s.btn} ${s.btnGhost}`} onClick={finishDemo}>결과까지 빠르게 보기</button>
+                  </div>
+                ) : null}
+              </div>
+
+              {showAlternatives ? (
+                <div className={s.cards} style={{ marginTop: 16 }}>
+                  {r.ranked.slice(1).map((c) => (
+                    <div key={c.bid.id} className={s.card}>
+                      <p className={s.cardTitle}>{c.person.name}</p>
+                      <p className={s.note}>{c.person.career}</p>
+                      <div className={s.chips}>
+                        <span className={s.chip}>{won(c.bid.price)}</span>
+                        <span className={s.chip}>{c.bid.hours}시간</span>
+                        <span className={s.chip}>유사업무 {c.relevant}건</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : null}
+            </section>
+          ) : null}
+
+          {assignee && assigned ? (
+            <section>
+              <div className={s.panelHead}>
+                <h2 className={s.panelTitle}>{isGm ? "확정된 작업자" : "이 의뢰를 맡긴 사람"}</h2>
                 <span className={s.panelEn}>{isGm ? "PLAYER" : "GM"}</span>
               </div>
               <div className={s.trust}>
@@ -165,24 +225,13 @@ export default function QuestPage() {
                     <span className={s.stat}><span className={s.sk}>같은 유형</span><span className={s.sv}>{assignee.history[q.category] ?? 0}건</span></span>
                     <span className={s.stat}><span className={s.sk}>정시 납품</span><span className={s.sv}>{pct(assignee.onTime)}</span></span>
                     <span className={s.stat}><span className={s.sk}>수정 요청</span><span className={s.sv}>{pct(assignee.revision)}</span></span>
-                    <span className={s.stat}><span className={s.sk}>완료</span><span className={s.sv}>{assignee.done}건</span></span>
-                  </div>
-                ) : null}
-                {isGm && r.reasons.length ? (
-                  <div className={s.note}>
-                    <strong style={{ color: "var(--ink)" }}>왜 이 전문가인가요?</strong>
-                    <div className={s.list} style={{ marginTop: 8 }}>
-                      {r.reasons.map((x) => (
-                        <p key={x} className={s.item}><span className={s.mark} aria-hidden="true">▸</span>{x}</p>
-                      ))}
-                    </div>
                   </div>
                 ) : null}
               </div>
             </section>
           ) : null}
 
-          {!routing ? (
+          {assigned ? (
             <section>
               <div className={s.panelHead}>
                 <h2 className={s.panelTitle}>작업 진행 상황</h2>
@@ -218,10 +267,7 @@ export default function QuestPage() {
                   {q.result.files.map((f) => (
                     <div key={f.name} className={s.file}>
                       <span className={s.kind} aria-hidden="true">{f.kind}</span>
-                      <span style={{ minWidth: 0 }}>
-                        <span className={s.fname}>{f.name}</span>
-                        <span className={s.fmeta}>{f.kind} · {f.size}</span>
-                      </span>
+                      <span style={{ minWidth: 0 }}><span className={s.fname}>{f.name}</span><span className={s.fmeta}>{f.kind} · {f.size}</span></span>
                     </div>
                   ))}
                 </div>
@@ -230,9 +276,7 @@ export default function QuestPage() {
                   <span className={s.stat}><span className={s.sk}>마감 대비</span><span className={s.sv}>{q.result.earlyMinutes}분 일찍</span></span>
                 </div>
                 <div className={s.checks}>
-                  {q.result.checks.map((c) => (
-                    <p key={c} className={s.check}><span className={s.tickMark} aria-hidden="true">✓</span>{c}</p>
-                  ))}
+                  {q.result.checks.map((c) => <p key={c} className={s.check}><span className={s.tickMark} aria-hidden="true">✓</span>{c}</p>)}
                 </div>
                 {isGm && !done ? (
                   <div className={s.resultActs}>
@@ -245,20 +289,12 @@ export default function QuestPage() {
               {revising && isGm && !done ? (
                 <div className={s.card} style={{ marginTop: 16 }}>
                   <p className={s.cardTitle}>어떤 확인 기준이 맞지 않았나요?</p>
-                  <div className={s.list}>
-                    {q.accept.map((a) => (
-                      <p key={a} className={s.item}><span className={s.mark} aria-hidden="true">·</span>{a}</p>
-                    ))}
-                  </div>
+                  <div className={s.list}>{q.accept.map((a) => <p key={a} className={s.item}><span className={s.mark} aria-hidden="true">·</span>{a}</p>)}</div>
                   <div className={s.acts} style={{ marginTop: 16 }}>
-                    <button type="button" className={`${s.btn} ${s.btnPrimary}`} onClick={() => { revise(q.id); setRevising(false); }}>
-                      수정 요청 보내기
-                    </button>
+                    <button type="button" className={`${s.btn} ${s.btnPrimary}`} onClick={() => { revise(q.id); setRevising(false); }}>수정 요청 보내기</button>
                     <button type="button" className={`${s.btn} ${s.btnGhost}`} onClick={() => setRevising(false)}>취소</button>
                   </div>
-                  <p className={s.note}>
-                    수정 요청은 처음에 합의한 범위를 기준으로 합니다. 이 의뢰의 수정 범위는 {q.revisionRule}입니다.
-                  </p>
+                  <p className={s.note}>수정 요청은 처음 합의한 범위를 기준으로 합니다. {q.revisionRule}</p>
                 </div>
               ) : null}
             </section>
@@ -267,7 +303,7 @@ export default function QuestPage() {
           {q.state === "REVISION" ? (
             <section className={s.card}>
               <p style={{ fontWeight: 650 }}>수정을 요청했습니다</p>
-              <p className={s.note}>합의한 범위 안에서 다시 작업하고 있습니다. 수정본이 도착하면 다시 확인하실 수 있습니다.</p>
+              <p className={s.note}>합의한 범위 안에서 다시 작업하고 있습니다. 수정본이 도착하면 다시 확인할 수 있습니다.</p>
             </section>
           ) : null}
         </div>
@@ -275,31 +311,17 @@ export default function QuestPage() {
         <aside className={s.aside}>
           <div className={s.card}>
             <p className={s.cardTitle}>작업 범위</p>
-            <div className={s.list}>
-              {q.scope.map((l) => (<p key={l} className={s.item}><span className={s.mark} aria-hidden="true">·</span>{l}</p>))}
-            </div>
+            <div className={s.list}>{q.scope.map((l) => <p key={l} className={s.item}><span className={s.mark} aria-hidden="true">·</span>{l}</p>)}</div>
           </div>
           <div className={s.card}>
             <p className={s.cardTitle}>확인 기준</p>
-            <div className={s.list}>
-              {q.accept.map((l) => (<p key={l} className={s.item}><span className={s.mark} aria-hidden="true">·</span>{l}</p>))}
-            </div>
+            <div className={s.list}>{q.accept.map((l) => <p key={l} className={s.item}><span className={s.mark} aria-hidden="true">·</span>{l}</p>)}</div>
             <p className={s.note}>제출 형식 {q.outputs.join(", ")} · {q.revisionRule}</p>
           </div>
           {q.inputs.length ? (
             <div className={s.card}>
               <p className={s.cardTitle}>맡긴 자료</p>
-              <div className={s.files}>
-                {q.inputs.map((f) => (
-                  <div key={f.name} className={s.file}>
-                    <span className={s.kind} aria-hidden="true">{f.kind}</span>
-                    <span style={{ minWidth: 0 }}>
-                      <span className={s.fname}>{f.name}</span>
-                      <span className={s.fmeta}>{f.kind} · {f.size}</span>
-                    </span>
-                  </div>
-                ))}
-              </div>
+              <div className={s.files}>{q.inputs.map((f) => <div key={f.name} className={s.file}><span className={s.kind} aria-hidden="true">{f.kind}</span><span style={{ minWidth: 0 }}><span className={s.fname}>{f.name}</span><span className={s.fmeta}>{f.kind} · {f.size}</span></span></div>)}</div>
             </div>
           ) : null}
           <div className={s.card}>
