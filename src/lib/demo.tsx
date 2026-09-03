@@ -5,7 +5,7 @@ import { ALL_QUESTS, CATEGORY, ME, QUESTS, route, type Quest, type QuestState } 
 
 /**
  * Prototype demo state. No auth, no backend — one universal user is always the
- * viewer, and which role they hold is derived per QUEST.
+ * viewer, and which role they hold is derived per work item.
  */
 
 const KEY = "kapapi.v2";
@@ -111,7 +111,7 @@ function reducer(s: State, a: Action): State {
         scope: d.scope, outputs: d.outputs, accept: d.accept,
         revisionRule: "합의한 범위와 다를 경우 1회 수정",
         bids: seedBids(d.category), fit: seedFit(d.category),
-        events: [{ at: "방금", ko: "의뢰가 등록되었습니다", en: "QUEST CREATED" }],
+        events: [{ at: "방금", ko: "의뢰가 등록되었습니다", en: "업무 등록" }],
       };
       return { ...s, submitted: true, quests: { ...s.quests, [NEW_ID]: q } };
     }
@@ -131,20 +131,20 @@ function reducer(s: State, a: Action): State {
       const q = s.quests[a.id];
       if (!q) return s;
       return { ...s, quests: { ...s.quests, [a.id]: { ...q, state: "COMPLETE",
-        events: [...q.events, { at: "방금", ko: "결과 확인이 끝났습니다", en: "QUEST COMPLETE" }] } } };
+        events: [...q.events, { at: "방금", ko: "결과 확인이 끝났습니다", en: "업무 완료" }] } } };
     }
     case "revise": {
       const q = s.quests[a.id];
       if (!q) return s;
       return { ...s, quests: { ...s.quests, [a.id]: { ...q, state: "REVISION",
-        events: [...q.events, { at: "방금", ko: "수정을 요청했습니다", en: "REVISION REQUESTED" }] } } };
+        events: [...q.events, { at: "방금", ko: "수정을 요청했습니다", en: "수정 요청" }] } } };
     }
     case "bid": {
       const q = s.quests[a.id];
       if (!q || q.bids.some((b) => b.personId === ME)) return s;
       return { ...s, quests: { ...s.quests, [a.id]: { ...q, state: "BIDDING",
         bids: [...q.bids, { id: `me-${a.id}`, personId: ME, price: a.price, hours: a.hours }],
-        events: [...q.events, { at: "방금", ko: "제안을 보냈습니다", en: "BID SUBMITTED" }] } } };
+        events: [...q.events, { at: "방금", ko: "제안을 보냈습니다", en: "제안 등록" }] } } };
     }
     case "hydrate": return a.state;
     case "reset": return initial;

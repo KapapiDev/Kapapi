@@ -66,7 +66,7 @@ export default function QuestPage() {
   }
 
   const role = roleIn(ME, q);
-  // Role is CLIENT | WORKER | PROPOSER | NONE — the GM/PLAYER names are gone.
+  // Role is CLIENT | WORKER | PROPOSER | NONE: 발주자 / 작업자 / 제안 참여.
   const isClient = role === "CLIENT";
   const r = route(q);
   const recommended = r.picked;

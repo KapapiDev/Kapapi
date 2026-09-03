@@ -82,7 +82,7 @@ try {
   await sleep(300);
   const confirmed = await text(p);
   assert.match(confirmed, /확정된 작업자/, "confirmation did not create assignment");
-  ok("확정: GM 확인 후 ASSIGNED");
+  ok("확정: 발주자 확인 후 배정");
 
   await p.waitForFunction(() => document.body.innerText.includes("작업을 시작했습니다"), { timeout: 8000 });
   await p.waitForFunction(() => document.body.innerText.includes("결과 파일이 도착했습니다"), { timeout: 12000 });
@@ -151,7 +151,7 @@ try {
   assert.match(mine, /내가 맡긴 업무/, "issued group missing");
   assert.match(mine, /내가 수행 중인 업무/, "executing group missing");
   assert.match(mine, /제안을 보낸 업무/, "bidding group missing");
-  ok("내 의뢰: 한 계정이 GM/PLAYER/BIDDER 역할을 동시에 가질 수 있음");
+  ok("내 업무: 한 계정이 발주자/작업자/제안 참여 역할을 동시에 가질 수 있음");
 
   // 10 — claim hygiene
   const foot = await text(p);

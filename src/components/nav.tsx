@@ -10,7 +10,7 @@ import s from "./nav.module.css";
  * of section links is the thing that makes a visitor start reading instead.
  * 작업 찾기 and 이용 방법 stay reachable from the sections below and the footer.
  *
- * One 회원가입 door, not two — the role comes from each QUEST, not the account.
+ * One 회원가입 door, not two — the role comes from each work item, not the account.
  */
 const INNER_LINKS = [
   { href: "/board", label: "작업 찾기" },
