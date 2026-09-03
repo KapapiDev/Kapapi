@@ -4,388 +4,427 @@ Updated: 2026-09-03
 
 ## North Star
 
-> **해야 할 일을 올리면, 결과로 돌아온다.**
+> **해야 할 일을 넣으면, 결과가 나온다.**
 
-KAPAPI's final destination is not a freelancer directory, a side-job board, a construction service or a marketplace limited to one class of professional work.
+KAPAPI does not need to wait until the end of the roadmap to look like an outcome product.
 
-KAPAPI should become a **work-to-result layer** where a user can submit a bounded task, from ordinary office/support work to skilled professional work, and receive a completed result with progressively less need to search, compare, coordinate, recover or manage execution.
+The new canonical direction is:
 
-The product evolves by increasing how much responsibility KAPAPI can reliably take between **work request** and **completed result**.
+> **Outcome UX from the GM's first interaction; execution automation is earned underneath it over time.**
+
+PLAYERs still experience a task-first market. GM-facing freelancer selection is progressively internalized from the beginning.
 
 ```text
-Task Marketplace
-GM posts work → PLAYER chooses QUEST → PRICE × DELIVERY BID → selection → execution → result
+GM
+work request
+→ RESULT + PRICE + COMPLETION TIME
+→ approve
+→ result
 
-        ↓ transaction + trust data
-
-Trusted Work Market
-KAPAPI learns who reliably completes which kinds of work
-
-        ↓ enough category liquidity + performance data
-
-Intelligent Recommendation / Routing
-KAPAPI ranks/recommends → GM confirms → later KAPAPI routes by default with override/recovery
-
-        ↓ repeat usage + proven recovery
-
-Repeat Business Capacity
-organizations put recurring external work through KAPAPI
-
-        ↓ proven specification + routing + recovery + QA
-
-Outcome Layer
-work in → KAPAPI scopes/decomposes/executes-or-orchestrates/recovers/checks → result out
+KAPAPI underneath
+manual/concierge execution
+→ internal PLAYER market
+→ market-informed quote/routing
+→ recovery/QA automation
+→ human + AI + automation orchestration
 ```
 
-> **Early KAPAPI helps people pick up work. Mature KAPAPI helps anyone get work done.**
-
-The marketplace is the supply/data bootstrap for the Outcome Layer.
+The roadmap therefore evolves the **execution engine**, not the user's need to become better at shopping for freelancers.
 
 ---
 
-## Phase 0 — Now / 1R application readiness
+## Phase 0 — Now / 1R application and prototype realignment
 
 ### Goal
 
-Demonstrate the smallest credible KAPAPI transaction loop without pretending that universal automatic routing or outcome guarantees already exist.
+Demonstrate the smallest credible **work-to-result** interaction without pretending that quote, routing, QA and recovery are already fully automated.
 
-### Prototype story
+### GM prototype story
 
 ```text
-GM has bounded work
-→ creates a QUEST
-→ PLAYERs discover it
-→ PLAYERs BID PRICE + DELIVERY TIME
-→ KAPAPI filters/ranks and recommends
-→ GM confirms
-→ work is completed
-→ GM accepts/revises the result
+GM uploads files / describes work
+→ KAPAPI structures SOW
+→ KAPAPI shows one execution offer
+   RESULT + PRICE + COMPLETION TIME
+→ GM accepts
+→ KAPAPI executes/orchestrates behind the scenes
+→ result delivered
+→ accept / revise
 ```
 
-The judge should understand the plain-language value before KAPAPI terminology:
+### PLAYER prototype story
 
-- PLAYER: **할 수 있는 일을 골라서, 끝내고, 돈 번다.**
-- GM: **해야 할 일을 올리면, 누군가 끝내준다.**
-
-Then introduce GM / PLAYER / QUEST / BID / REWARD / TIME ATTACK / LEVEL / EXP.
+```text
+PLAYER opens real QUEST board
+→ chooses suitable work
+→ commits PRICE + DELIVERY TIME
+→ gets assigned / accepts offer
+→ executes
+→ submits
+→ earns + builds task-specific history
+```
 
 ### Must visibly demonstrate
 
-- task-first discovery rather than storefront-first discovery
-- ordinary bounded online-work examples across categories
-- PRICE × DELIVERY trade-offs
-- TIME ATTACK as a genuine deadline state
-- task-relevant trust/history
-- KAPAPI recommendation with visible rationale
-- GM confirmation, execution and result acceptance/revision
-- architecture/CAD only as one higher-skill founder-domain proof case
-- the future path from transaction data to routing and Outcome Layer
+- no seller storefront as the primary product;
+- GM does not need to compare PLAYERs in the default path;
+- clear Execution Contract: result, price, completion time, revision boundary;
+- PLAYER task-first market and PRICE × DELIVERY mechanism;
+- KAPAPI internal procurement/routing concept;
+- one realistic recovery example;
+- human + AI + automation as possible internal execution resources;
+- Architecture/CAD as one founder-domain case only;
+- the narrow early category logic: AI-alone is risky, human search is disproportionate, scope is bounded and checkable.
 
 ### Explicitly defer
 
-- production PG/escrow
-- platform-held funds
-- automatic settlement/tax engine
-- broad category launch
-- universal automatic PLAYER selection
-- authoritative AI price/quality judgment
-- SLA/outcome guarantee
+- universal instant quote;
+- production escrow/custody;
+- broad category launch;
+- universal SLA/outcome guarantee;
+- autonomous AI final quality judgment;
+- regulated professional execution without category-specific legal structure;
+- full automatic recovery across every task type.
 
 ---
 
-## Phase 1 — Prove the transaction market
+## Phase 1 — Concierge Execution Market
 
 ### Goal
 
-Prove that real work can move through KAPAPI from:
+Prove the user promise manually before automating the engine.
 
-`unresolved → posted → bid → selected/assigned → completed → accepted → paid`
+GM sees:
 
-### Supply hypothesis
+`request → quote/time → approve → result`
 
-Will people with spare time and useful skills actually:
+Behind the scenes KAPAPI may manually perform:
 
-- browse bounded QUESTs
-- choose work matching skill + availability
-- commit PRICE + DELIVERY
-- complete reliably
-- return for more QUESTs
+- SOW clarification;
+- supply search;
+- internal BID/offer collection;
+- quote construction;
+- routing;
+- deadline monitoring;
+- QA;
+- recovery/reassignment.
 
-### Demand hypothesis
+This is allowed only as **validation scaffolding**. The goal is not to become a permanent manual agency.
 
-Will GMs externalize and pay for work currently:
+### Primary business questions
 
-- done personally
-- delayed
-- assigned internally despite capacity pressure
-- sent to existing vendors
-- left unresolved because outsourcing feels disproportionate
+1. Will external GMs pay to avoid freelancer search/selection/coordination?
+2. Will PLAYERs accept bounded QUESTs at viable PRICE × DELIVERY economics?
+3. Can KAPAPI predict a safe enough price and completion time?
+4. Can the task be specified before execution without excessive clarification?
+5. Can failures be recovered without destroying margin?
+6. Will GMs repeat the behavior?
 
 ### Strongest proof
 
-> **real GM + real QUEST + real PLAYER + real completion + accepted result + real payment**
-
-Repeat behavior is stronger still.
-
-Founder-originated Architecture/CAD QUESTs can test supply and the transaction engine, but must remain separate from external GM-demand evidence.
+> **external GM + own money + no PLAYER shopping + accepted result + positive completed-outcome contribution + repeat**
 
 ### Core metrics
 
-- QUEST creation completion
-- time to first valid BID
-- eligible BIDs per QUEST
-- PRICE / DELIVERY distributions
-- selection/assignment rate
-- completion rate
-- on-time rate
-- revision rate
-- result acceptance
-- PLAYER effective earnings
-- GM management time
-- repeat GM rate
-- repeat PLAYER rate
-
-The most important event is **QUEST COMPLETE**, not registration.
+- request → valid SOW time;
+- quote acceptance rate;
+- time to secure execution;
+- internal PRICE × DELIVERY distributions;
+- completion / on-time / revision rate;
+- GM management minutes;
+- recovery rate and recovery cost;
+- support/QA minutes;
+- completed-outcome contribution margin;
+- repeat GM / repeat PLAYER rate.
 
 ### Gate
 
-Continue only if both sides form viable transactions. Narrow, change or kill the mechanism if explanation cost, quality cost, weak supply, weak demand or direct-trade leakage destroys repeat economics.
+Do not scale a category if support + QA + recovery grow roughly linearly with GM revenue and leave no automation/margin path.
 
 ---
 
-## Phase 2 — Trusted Work Market
+## Phase 2 — Structured Internal Market
 
 ### Goal
 
-Turn completed transactions into useful evidence about **who can reliably complete what**.
+Turn concierge knowledge into repeatable transaction structure.
 
-Build production-grade versions of:
+Build production-grade foundations for:
 
-- universal accounts with contextual GM/PLAYER roles
-- QUEST/SOW lifecycle
-- files
-- PRICE + DELIVERY BID
-- assignment/contract record
-- delivery / revision / acceptance
-- compliant payment path
-- two-sided reviews
-- dispute/payment protection
+- structured QUEST / SOW;
+- Execution Contract;
+- files and security boundary;
+- PLAYER eligibility and task-specific history;
+- open QUEST discovery where useful;
+- targeted Offers;
+- PRICE + DELIVERY BID;
+- assignment/acceptance;
+- delivery/revision/acceptance;
+- execution event history;
+- failure/recovery records;
+- compliant payment/contract architecture.
 
-### Task-specific trust
+### Supply models
 
-PLAYER signals increasingly include:
+Use by category:
 
-- verified identity
-- relevant career
-- category/task completion history
-- on-time rate
-- revision/rework rate
-- failure/dispute history
-- availability
-- LEVEL / EXP
+- open BID market;
+- targeted offers;
+- hybrid.
+
+PLAYER supply remains independent and task-first even when the GM never sees the bidding mechanics.
 
 ### Category liquidity
 
-Treat each category as a micro-market. Measure qualified active supply, repeat demand, BID density, price/delivery distributions, completion reliability and backup capacity.
+Track separately per category:
+
+- external paid demand;
+- qualified active supply;
+- response speed;
+- accepted internal price/time range;
+- backup capacity;
+- predictable scope;
+- outcome margin.
 
 ---
 
-## Phase 3 — Intelligent Recommendation / Routing
+## Phase 3 — Market-informed Quote + Routing
 
 ### Goal
 
-Reduce GM decision burden using evidence earned in Phases 1–2.
+Replace operator intuition with transaction evidence.
 
-Evolution:
+Quote model uses:
 
 ```text
-GM chooses manually
-→ KAPAPI ranks/recommends
-→ GM confirms recommendation
-→ KAPAPI routes by default with override
-→ KAPAPI routes + recovers when execution fails
+expected execution cost
++ urgency / scarcity
++ QA and revision expectation
++ recovery reserve
++ payment/support variable cost
++ KAPAPI margin
+= GM execution price
 ```
 
-Routing can consider:
+Completion-time model uses:
 
-1. hard eligibility / credentials / security
-2. GM deadline and commercial constraints
-3. PRICE + DELIVERY
-4. relevant career
-5. task-specific history
-6. on-time / revision / failure signals
-7. availability
-8. semantic task fit
-9. backup/recovery capacity
+```text
+live available capacity
++ predicted execution duration
++ QA time
++ recovery buffer
+= offered completion time
+```
 
-AI may assist interpretation and fit. It should not be an opaque sole selector.
+Routing considers:
 
-### Assist layer
+- eligibility/security;
+- task-specific history;
+- PRICE × DELIVERY;
+- availability;
+- on-time/revision/failure data;
+- expected recovery risk;
+- AI/automation alternative cost;
+- backup capacity.
 
-Add:
+### Success condition
 
-- file + short instruction → structured QUEST/SOW
-- missing-information detection
-- reusable task templates
-- market reference ranges
-- contract/admin assistance
-- risk detection
-- backup PLAYER preparation
-- replacement/reassignment
-
-Success condition:
-
-> Delegating through KAPAPI is materially easier than finding and managing execution manually.
+> KAPAPI can quote and route common tasks with materially less operator intervention while maintaining or improving acceptance, reliability and margin.
 
 ---
 
-## Phase 4 — Repeat Business Capacity
+## Phase 4 — Recovery and Execution Automation
 
 ### Goal
 
-Move from isolated marketplace transactions to dependable external capacity for recurring work.
+Make KAPAPI valuable even when the first execution path fails.
+
+Build:
+
+- late-risk detection;
+- backup executor pre-selection;
+- reassignment rules;
+- parallel recovery where economics justify it;
+- automated objective preflight;
+- category-specific QA workflows;
+- exception queues rather than manual review of every task.
+
+Target behavior:
+
+```text
+executor fails
+→ KAPAPI detects
+→ alternate resource activated
+→ GM does not restart supplier search
+→ result delivered or clear recovery/refund path
+```
+
+### Gate
+
+Recovery must improve GM value without making failure costs structurally larger than category margin.
+
+---
+
+## Phase 5 — AI / Automation Margin Layer
+
+### Goal
+
+Use technology to reduce cost and turnaround where it improves completed outcomes.
+
+Possible execution patterns:
+
+- deterministic automation only;
+- AI only where reliably bounded;
+- AI first pass + PLAYER verification;
+- PLAYER execution + automated preflight;
+- multi-stage automation + human exception handling;
+- decomposed multi-PLAYER workflows.
+
+The metric is not “AI usage.”
+
+Measure:
+
+- cost per accepted outcome;
+- human minutes per outcome;
+- error/revision rate;
+- completion speed;
+- GM acceptance;
+- recovery cost;
+- contribution margin.
+
+---
+
+## Phase 6 — Repeat Business Capacity
+
+### Goal
+
+Move from one-off delegation to a habitual work-execution layer.
 
 Add:
 
-- repeat QUEST templates
-- preferred/verified PLAYER pools
-- existing vendor import
-- organization history
-- reusable SOW patterns
-- team/approval controls where needed
-- availability awareness
-- routing policies
-- backup/replacement capacity
-- consolidated contract/payment/work history
+- repeat Execution Contract templates;
+- reusable SOWs;
+- organization history;
+- preferred/verified internal supply pools;
+- existing vendor import where useful;
+- team approval rules;
+- recurring task triggers;
+- availability awareness;
+- consolidated contracts/payment/work evidence;
+- account-level routing and security policies.
 
 Desired mental shift:
 
-> **“누구한테 맡기지?”** less, **“카파피로 보내.”** more.
+> **“누구한테 맡기지?” → “카파피로 보내.”**
 
 ---
 
-## Phase 5 — Outcome Layer
+## Phase 7 — Work Execution Infrastructure
 
 ### Goal
 
-Prove category by category that KAPAPI can credibly support:
+Expand category by category until KAPAPI can credibly support:
 
-> **work in → result out**
+```text
+work in
+→ scope
+→ quote
+→ procure
+→ execute
+→ check
+→ recover
+→ result out
+```
 
-The mature user should not need to care which marketplace mechanics or executor types were required behind the scenes.
+Execution can combine:
 
-### Resource-agnostic execution
+- human PLAYERs;
+- AI agents/models;
+- deterministic automation;
+- specialist partners;
+- hybrid and multi-PLAYER pipelines.
 
-Depending on task type, KAPAPI may execute or orchestrate through:
+The mature moat is not a prettier marketplace. It is the accumulated ability to predict and manage:
 
-- human PLAYERs
-- AI agents/models
-- deterministic automation
-- specialist partner organizations
-- AI + human hybrid workflows
-- multiple PLAYERs working on decomposed sub-QUESTs
-
-KAPAPI can choose the credible execution path that best satisfies result, time, price, security and legal constraints.
-
-### Outcome-layer functions
-
-- task classification
-- SOW generation
-- task decomposition
-- executor selection / dispatch
-- contract/security/admin
-- progress monitoring
-- late/failure detection
-- replacement/recovery
-- objective pre-delivery checks
-- multi-executor aggregation
-- delivery
-
-### Strong guarantees are earned
-
-Do not promise universal outcome/SLA guarantees because the vision is broad.
-
-Expand responsibility category by category only with sufficient:
-
-- qualified supply or reliable automation
-- repeat demand
-- specification reliability
-- predictable cost distribution
-- delivery reliability
-- backup liquidity
-- recovery performance
-- objective-enough QA
-- viable unit economics after failure allowance
-- legal/commercial clarity
+> **what execution configuration completes what work under what price/time/risk conditions.**
 
 ---
 
-## Category expansion
+## Category strategy
 
 KAPAPI is **category-independent in vision, category-specific in execution**.
+
+Preferred first-category criteria:
+
+- bounded digital inputs/outputs;
+- enough WTP above fully commoditized automation;
+- direct human search feels disproportionate;
+- AI/automation can lower cost but accountability/verification still matters;
+- objective or semi-objective completion checks;
+- multiple potential suppliers/resources;
+- low irreversible liability;
+- repeat or batch behavior;
+- completed-outcome margin can survive QA/recovery.
 
 Potential ladder:
 
 ```text
-ordinary bounded office/support work
-→ skilled office/production work
-→ professional support work
-→ repeat organizational workflows
+repeatable document/data production
+→ skilled office/production support
+→ technical/professional support with bounded responsibility
+→ recurring organizational workflows
 → decomposable multi-step work
 ```
 
-Candidate categories:
-
-- spreadsheet/data
-- document/PPT
-- e-commerce operations
-- image/media editing
-- language/content
-- design/production
-- architecture/CAD support
-- small software/web fixes
-
-Open a new category only when KAPAPI can protect the transaction loop in that category.
+Do not open a category merely because many users or PLAYERs exist globally.
 
 ---
 
 ## Durable stage gates
 
-### Gate A — Transaction Market
-Can real GMs and PLAYERs repeatedly turn unresolved work into accepted paid results?
+### Gate A — Outcome Demand
+Will GMs pay to buy the completed-work commitment instead of shopping for a worker?
 
-### Gate B — Trusted Work Market
-Does transaction history reliably distinguish who/what can complete which work?
+### Gate B — Supply / Liquidity
+Can KAPAPI repeatedly secure credible execution inside the promised price/time window?
 
-### Gate C — Recommendation / Routing
-Can KAPAPI reduce GM decision burden without unacceptable regret or failure?
+### Gate C — Unit Economics
+Does accepted completed work leave positive contribution after execution, QA, support and recovery?
 
-### Gate D — Repeat Capacity
-Do organizations route recurring work through KAPAPI rather than using it only for one-off discovery?
+### Gate D — Repeatability
+Can the same category be specified, quoted and fulfilled repeatedly with declining operator effort?
 
-### Gate E — Outcome Layer
-Can KAPAPI credibly take responsibility for turning work requests into usable results and recovering when execution fails?
+### Gate E — Routing / Recovery
+Can KAPAPI internalize executor selection and failure recovery without unacceptable regret/cost?
+
+### Gate F — Automation Leverage
+Can AI/automation reduce marginal cost and speed without degrading trust?
+
+### Gate G — Expansion
+Do repeated GMs route more kinds or more volume of work through KAPAPI?
 
 ---
 
 ## Strategic summary
 
 ```text
-PEOPLE PICK WORK
+OUTCOME UX FIRST
 ↓
-WORK CREATES TRANSACTIONS
+CONCIERGE EXECUTION
 ↓
-TRANSACTIONS CREATE DATA
+TASK-FIRST PLAYER MARKET
 ↓
-DATA CREATES TRUST
+REAL PRICE / DELIVERY / FAILURE DATA
 ↓
-TRUST ENABLES RECOMMENDATION
+MARKET-INFORMED QUOTE + ROUTING
 ↓
-RECOMMENDATION ENABLES ROUTING
+RECOVERY + QA AUTOMATION
 ↓
-ROUTING + RECOVERY ENABLE REPEAT CAPACITY
+AI / AUTOMATION MARGIN
 ↓
-HUMAN + AI + AUTOMATION + PARTNERS ENABLE OUTCOMES
+REPEAT BUSINESS CAPACITY
+↓
+WORK EXECUTION INFRASTRUCTURE
 ```
 
-> **KAPAPI starts by making it easier to pick up and complete work, and grows into a system where you submit work and get the result back.**
+> **The GM experience starts simple. The engine underneath earns the right to become automatic.**
