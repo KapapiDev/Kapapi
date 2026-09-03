@@ -1,326 +1,238 @@
 # KAPAPI Prototype v2 — FINAL EXECUTION DIRECTIVE
 
-Status: **highest-priority visual/execution directive for `feat/prototype-v2`**  
+Status: **highest-priority visual/execution directive on `개선안`**  
 Updated: **2026-09-03**
 
-This file protects the v2 visual quality bar. **Product/business behavior is governed by the current product canon, especially `docs/DECISIONS.md` D-032.** If an older v2 document, screenshot, QA record or copy example conflicts with D-032, the current canon wins.
+## 0. Authority
 
-## 0. Current product truth
+Product/business behavior is governed by:
 
-KAPAPI is task-first.
+1. `docs/DECISIONS.md` — **D-033**
+2. `docs/PRODUCT.md`
+3. `docs/PROTOTYPE_SPEC.md`
+4. `docs/ROADMAP.md`
+5. `TASK_QUEUE.md`
+6. `CLAUDE_HANDOFF.md`
+
+Existing v2 visual research remains valuable, but **visual/copy examples never override D-033**.
+
+Any old flow centered on:
+
+`BIDs → KAPAPI recommendation → GM confirms PLAYER`
+
+is superseded as the default GM product behavior.
+
+---
+
+## 1. Current product truth
+
+Canonical split:
 
 ```text
-GM posts bounded work
-→ PLAYERs discover the QUEST
-→ PLAYERs BID PRICE + DELIVERY TIME
-→ KAPAPI filters/ranks and recommends
-→ GM confirms
-→ execution
+GM
+work request
+→ structured SOW
+→ RESULT + PRICE + COMPLETION TIME
+→ 이 조건으로 맡기기
+→ KAPAPI executes/orchestrates
 → result
-→ accept / revise
-```
 
-This is the preferred **current prototype** flow.
+PLAYER
+QUEST discovery / Offer
+→ PRICE + DELIVERY
+→ execute
+→ REWARD
 
-Universal automatic routing is **not** a day-one requirement. It is an earned later capability:
-
-```text
-transactions
-→ task-specific trust data
-→ better recommendation
-→ default routing
-→ replacement/recovery
-→ repeat capacity
-→ Outcome Layer
+KAPAPI INTERNAL
+human / AI / automation / partner procurement
+→ route / monitor / QA / recover
 ```
 
 North Star:
 
-> **해야 할 일을 올리면, 결과로 돌아온다.**
+> **해야 할 일을 넣으면, 결과가 나온다.**
 
-At maturity, execution may use human PLAYERs, AI, deterministic automation, specialist partners or hybrid/multi-PLAYER workflows. The user-facing unit is the result.
-
-Architecture/CAD is a founder-domain proof case only. It is never the brand/category identity.
+Do not make the GM shop for a worker in the default path.
 
 ---
 
-## 1. Prototype v1 remains rejected visually
-
-Do not reuse v1 application code, CSS, component hierarchy, hero composition, black routing card, paragraph-heavy landing structure, arbitrary public persona/debug chrome or visual score claims.
-
-Do not cosmetically reskin v1.
-
-The current v2 implementation is the visual baseline, but product behavior must keep following D-032 as it evolves.
-
----
-
-## 2. Visual quality is P0
-
-A behaviorally correct but visually weak public product is not done.
+## 2. Visual quality remains P0
 
 Do not trade away:
 
-- strong first-view composition
-- typography hierarchy
-- disciplined spacing
-- mobile quality
-- real visual proof
-- motion continuity
-- content necessity
+- strong first-view composition;
+- typography hierarchy;
+- disciplined spacing;
+- mobile quality;
+- motion continuity;
+- real product-state proof;
+- accessibility/performance;
 
 for faster feature completion.
 
+The v2 visual baseline can be retained while the transaction story changes.
+
 ---
 
-## 3. Mandatory current reading order
+## 3. Mandatory reading order
 
-Before product behavior changes, read:
+Before implementation changes, read:
 
-1. `docs/ORIGIN_AND_GROWTH_THESIS.md`
-2. `docs/DECISIONS.md` — D-032 is current selection/routing authority
+1. `docs/DECISIONS.md` D-033
+2. `docs/ORIGIN_AND_GROWTH_THESIS.md`
 3. `docs/PRODUCT.md`
 4. `docs/ROADMAP.md`
 5. `docs/VALIDATION.md`
 6. `docs/PROTOTYPE_SPEC.md`
 7. `CLAUDE_HANDOFF.md`
 8. `TASK_QUEUE.md`
+9. `docs/LEGAL.md`
+10. `docs/PROGRAM_2026_MODU.md`
 
-Then use the v2 visual layer:
+Then consult visual layers:
 
-1. `REBUILD_V2_FINAL_DIRECTIVE.md`
-2. `REBUILD_V2_HANDOFF.md`
-3. `docs/PROTOTYPE_V2_CONTENT_GOVERNANCE.md`
-4. `docs/PROTOTYPE_V2_VISUAL_RESEARCH_PROTOCOL.md`
-5. `docs/PROTOTYPE_V2_REFERENCE_ADDENDUM.md`
-6. `docs/PROTOTYPE_V2_VISUAL_COMMUNICATION_RULES.md`
-7. `docs/PROTOTYPE_V2_KOREAN_UX_WRITING.md`
-8. `docs/PROTOTYPE_V2_HERO_COMPOSITING.md`
-9. `docs/KAPAPI_ART_DIRECTION.md`
-10. `docs/KAPAPI_DESIGN.md`
-11. `docs/KAPAPI_MOTION.md`
-12. `docs/HERO_MEDIA.md`
+- `docs/PROTOTYPE_V2_CONTENT_GOVERNANCE.md`
+- `docs/PROTOTYPE_V2_VISUAL_RESEARCH_PROTOCOL.md`
+- `docs/PROTOTYPE_V2_REFERENCE_ADDENDUM.md`
+- `docs/PROTOTYPE_V2_VISUAL_COMMUNICATION_RULES.md`
+- `docs/PROTOTYPE_V2_KOREAN_UX_WRITING.md`
+- `docs/PROTOTYPE_V2_HERO_COMPOSITING.md`
+- `docs/KAPAPI_ART_DIRECTION.md`
+- `docs/KAPAPI_DESIGN.md`
+- `docs/KAPAPI_MOTION.md`
+- `docs/HERO_MEDIA.md`
 
-Visual examples never override current product behavior.
-
----
-
-## 4. Use available capabilities before claiming they are unavailable
-
-For implementation/design work, actually inspect and use relevant connected tools/skills for:
-
-- browser visual QA
-- frontend/UI design
-- screenshots
-- responsive testing
-- motion
-- media compositing
-- Korean UX writing
-- reference research
-
-Do not report a capability unavailable before a real lookup/call attempt.
-
-Record meaningful capability use in the appropriate audit when useful.
+If they conflict with D-033 behavior, preserve the visual principle and rewrite the behavior/copy.
 
 ---
 
-## 5. Live reference study remains required for major visual redesign
+## 4. Hero product narrative
 
-When changing art direction materially, inspect current live references rather than relying on memory or old screenshots.
-
-Core reference families remain:
-
-- Upwork
-- Linear
-- Vercel
-- Factory
-- Raycast
-- Hyperstudio
-- Mercury
-- Kmong
-- Wishket
-- Soomgo
-
-Study more than the hero. Inspect meaningful mid-page sections, mobile behavior, CTA hierarchy, density, trust patterns and interaction.
-
-Use reference principles, never copy brand/layout/assets.
-
----
-
-## 6. Show, do not explain
-
-The landing page is a product demonstration, not a strategy memo.
-
-Prefer:
-
-- real QUEST objects
-- real BID states
-- PRICE × DELIVERY
-- eligibility filtering
-- recommendation evidence
-- GM confirmation
-- files/results
-- deadline states
-- trust/history
-- motion/state transitions
-
-over paragraphs explaining them.
-
-If removing explanatory prose destroys understanding, first improve the visual communication.
-
----
-
-## 7. Korean public copy
-
-Use ordinary Korean before world terminology.
-
-Current public language should make these actions obvious:
-
-- `의뢰 등록`
-- `작업 찾기`
-- `제안 보내기`
-- `카파피 추천`
-- `이 작업자로 진행`
-- `다른 제안 보기`
-- `결과 확인`
-- `수정 요청`
-
-Do not use internal slogans as public copy merely because they exist in strategy docs.
-
-Game/world language is secondary state grammar: QUEST, BID, TIME ATTACK, LEVEL/EXP, QUEST COMPLETE.
-
----
-
-## 8. Hero product narrative
-
-The task-entry action remains the protagonist.
-
-Current semantic promise:
+Primary public semantic direction:
 
 > **맡길 일을 적어주세요.**  
-> 카파피가 작업 조건을 정리하고 맞는 제안을 추천합니다.
+> 카파피가 작업 조건을 정리하고 가격과 완료시각을 제시합니다.
 
-The hero product sequence should communicate:
+Primary CTA:
+
+> **조건 확인하기**
+
+Secondary PLAYER path:
+
+> **작업 찾기**
+
+Hero sequence:
 
 ```text
-QUEST CREATED
-→ BIDS RECEIVED
-→ ELIGIBILITY CHECK
-→ RECOMMENDATION READY
-→ GM CONFIRMED
+REQUEST
+→ SOW READY
+→ RESULT / PRICE / COMPLETION TIME
+→ CONTRACTED
+→ EXECUTION SECURED
 → RESULT READY
 ```
 
-The approved footage's laptop display should carry real KAPAPI UI where technically feasible. Desktop may composite into the laptop screen; mobile may use a clean full-frame cut where the laptop is cropped.
-
-Do not visually imply that recommendation is already universal autonomous assignment.
+Do not use `카파피 추천`, `이 작업자로 진행`, or `다른 제안 보기` as the core GM story.
 
 ---
 
-## 9. Korean marketplace familiarity + KAPAPI difference
+## 5. Show, do not explain
 
-Use familiar transaction concepts where useful:
+Prefer product-state demonstrations of:
 
-- request/commission language
-- deadline/budget
-- delivery/revision
-- trust/history
-- familiar CTA behavior
+- rough request → SOW;
+- Execution Contract;
+- PLAYER QUEST + PRICE × DELIVERY;
+- internal route and backup;
+- recovery;
+- result/accept-revise;
+- execution-data flywheel.
 
-But preserve the KAPAPI task-first distinction:
-
-> **work exists first; PLAYER chooses suitable QUESTs instead of needing a storefront first.**
-
-Do not force a permanent buyer/seller identity split.
+Avoid turning the landing page into a strategy memo.
 
 ---
 
-## 10. Content necessity
+## 6. Internal market visualization
 
-Every visible element must be defensible as:
+A dark/operational visual moment may show the hidden execution engine:
 
-- `PRODUCT REQUIRED`
-- `REFERENCE-SUPPORTED UX`
-- `APPROVED BRAND/WORLD`
+```text
+GM CONTRACT  ₩49,000 / 19:30
+PLAYER A     ₩27,000 / 6H
+PLAYER B     ₩31,000 / 3H
+AI + QA      expected ₩18,000 / 2H
+ROUTE        PLAYER B + preflight
+BACKUP       PLAYER C
+```
 
-Remove arbitrary pseudo-status, debug UI, decorative lore and fixture persona leakage from public neutral surfaces.
-
-Fixture content may exist where a real transaction example needs it.
-
----
-
-## 11. Current product truths that must survive visual work
-
-- one universal KAPAPI user identity
-- GM/PLAYER are contextual per-QUEST roles
-- no permanent role signup fork
-- QUEST is the core object
-- PLAYER can browse open work without creating a storefront first
-- PRICE + committed DELIVERY TIME in every BID
-- current preferred GM flow is **KAPAPI recommendation + GM confirmation**
-- recommendation must be distinct from assignment
-- alternatives may remain visible
-- routing/recovery automation grows from evidence
-- GM accepts/revises the result
-- Architecture/CAD is one proof case only
-- category-neutral brand/hero
-- ordinary office/support and skilled work may share the engine
-- long-term Outcome Layer may combine human + AI + automation + partners
-- light-first public UX
-- restrained world grammar, no fantasy cosplay
+This is an explanatory prototype fixture, not a claim of autonomous production optimization.
 
 ---
 
-## 12. Render, compare, reject, repeat
+## 7. Initial task examples
 
-After major public changes:
+Prefer bounded outcomes where accountability still matters:
 
-1. render the real app
-2. inspect desktop
-3. inspect mobile
-4. inspect reduced-motion where relevant
-5. capture evidence
-6. compare to strong references and the previous approved baseline
-7. check whether copy is doing work the UI should do
-8. check content necessity
-9. redesign if generic, confusing or visually weaker
+- 30 PDFs → specified fields → checked XLSX;
+- messy workbook → defined cleanup rules → verified output;
+- PPT/report → specified standard → final PPTX;
+- e-commerce batch → normalized/upload-ready assets + data;
+- defined CAD production support;
+- reproducible small web/code fix.
 
-Compilation is not visual QA.
+Do not make ultra-cheap mechanical microtasks the brand center.
 
 ---
 
-## 13. QA authority
+## 8. Current public Korean actions
 
-Behavioral QA must follow current `scripts/loop.mjs`.
+Preferred action vocabulary:
 
-Current invariants include:
+- `맡길 일을 적어주세요`
+- `파일 첨부`
+- `조건 확인하기`
+- `이 조건으로 맡기기`
+- `작업 찾기`
+- `제안 보내기`
+- `Offer 수락`
+- `실행 중`
+- `복구 중`
+- `결과 확인`
+- `수정 요청`
+- `QUEST COMPLETE`
 
-- task-first open-work discovery
-- PRICE + DELIVERY required
-- recommendation occurs before assignment
-- GM confirmation creates assignment
-- no universal auto-routing claim
-- one account can hold different QUEST roles
-- result/revision loop works
-- long-term Outcome Layer is future evolution, not a fake current guarantee
-
-`docs/PROTOTYPE_V2_PREVIEW_QA.md` is explicitly a **historical pre-D-032 record** until a fresh preview of the latest branch is verified.
+World terminology remains secondary to ordinary understanding.
 
 ---
 
-## 14. Stop condition
+## 9. Prototype honesty
 
-Do not merge `main` or intentionally promote Production without explicit instruction.
+Do not claim:
 
-A v2 alignment pass is ready for founder review only when:
+- universal instant quote;
+- universal autonomous routing;
+- universal automatic QA;
+- universal SLA;
+- production payment/tax/legal architecture already complete.
 
-- current canon and current UI tell the same story
-- the core loop works from task entry through recommendation/confirmation/result
-- PLAYER task discovery remains clear
-- build/typecheck/lint/tests available to the environment pass
-- desktop/mobile visual QA has been performed on the current build where tooling permits
-- unsupported capabilities are not claimed
-- remaining verification gaps are recorded honestly
+Concierge/manual operation behind the Outcome UX is allowed for validation.
 
-The desired reaction is:
+---
 
-> **“일이 먼저 올라오는 시장에서 시작해서, 거래 데이터를 쌓아 추천·배정·복구를 발전시키고 결국 일을 넣으면 결과가 돌아오는 시스템으로 가는구나.”**
+## 10. Mandatory QA
+
+Before calling redesign complete, verify:
+
+- GM default path contains no worker shopping;
+- RESULT + PRICE + COMPLETION TIME is visually obvious;
+- PLAYER task board still proves task-first supply;
+- PRICE + DELIVERY remains in PLAYER interaction;
+- recovery is visible;
+- Architecture/CAD does not dominate the hero;
+- mobile and reduced-motion versions preserve the story;
+- no old recommendation-first copy survives in the main demo path;
+- no fake automation/SLA claims were introduced.
+
+Definition of done:
+
+> **A reviewer sees a work-execution product backed by a hidden market, not a recommendation-first freelancer marketplace.**
