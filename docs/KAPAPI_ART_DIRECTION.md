@@ -37,7 +37,9 @@ Product identity should come from real work moving through real states, not from
 → 업무 완료
 ```
 
-Do not visually imply universal automatic assignment before client confirmation.
+On the 작업자 surface, do not visually imply assignment before it has happened.
+On the 발주자 surface, D-035 removes the confirmation step: assignment is shown
+as something KAPAPI did, with its rationale available as information.
 
 Future direction:
 

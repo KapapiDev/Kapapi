@@ -1,13 +1,15 @@
 # KAPAPI Identity & Role Model
 
-Status: **canonical identity/role architecture for Prototype v1**  
-Updated: **2026-09-02**
+Status: **canonical identity/role architecture**  
+Updated: **2026-09-03** — terminology per D-034, view toggle per D-035
 
 KAPAPI has **one universal user identity**.
 
-GM and PLAYER are **contextual transaction roles**, not permanent account types, social classes, onboarding choices, or separate products.
+발주자 and 작업자 are **contextual transaction roles**, not permanent account types, social classes, onboarding choices, or separate products.
 
-> **A person is a KAPAPI user first. They become a GM when they issue a QUEST and a PLAYER when they BID/execute another QUEST.**
+> **A person is a KAPAPI user first. They are 발주자 on work they posted and 작업자 on work they proposed for or are performing.**
+
+Historical note: this file previously used GM/PLAYER. D-034 replaced that vocabulary with 발주자/작업자. The architecture below is unchanged; only the nouns are.
 
 The same user may act as GM and PLAYER at the same time across different QUESTs.
 
@@ -34,6 +36,13 @@ Do **not** design:
 - a required onboarding fork such as `I am a client / I am a freelancer`,
 - separate login systems,
 - role switching that feels like changing account type.
+
+**A 발주자 / 작업자 view toggle is permitted and is not a role switch.** It changes
+which surface of the same account is on screen — what the person is currently
+doing — and never which account they have. It must therefore: keep one signup and
+one login, never appear during onboarding, never gate work behind "becoming a
+작업자", and stay reversible at any moment without consequence. 숨고's `고수 가입하기`
+is the pattern this rules out: a second signup door for the supply side.
 
 A user signs up once and may perform either action whenever qualified:
 

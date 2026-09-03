@@ -155,7 +155,10 @@ Recommended semantic direction:
 작업을 찾고 있나요? → 작업 찾기
 ```
 
-Do not imply universal automatic assignment is already solved.
+D-035: the 발주자 surface shows 업무 입력 -> KAPAPI -> 결과. Proposal lists and a
+worker-selection step are not client screens. The market and its 가격 + 완료시간
+mechanism stay fully visible on the 작업자 surface. Do not claim escrow,
+completion guarantee or AI quality judgement.
 
 ---
 

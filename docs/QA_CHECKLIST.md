@@ -105,7 +105,9 @@ Hero semantics match the current stage, e.g.:
 > **사람을 찾지 말고, 할 일을 올리세요.**  
 > 카파피가 작업 조건을 정리하고 맞는 제안을 추천합니다.
 
-Fail if hero promises universal automatic assignment/result delivery as already solved.
+Under D-035 the hero may state result return. Fail if it claims escrow,
+completion guarantee, or AI quality judgement, or shows a fabricated progress
+percentage.
 
 ## C3. Category neutrality — BLOCKER
 

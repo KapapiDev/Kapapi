@@ -317,3 +317,35 @@ Use **발주자 / 작업자 / 업무 / 제안 / 작업대금 / 긴급 업무 / �
 **Reason:** For 모두의 창업, immediate comprehension and business credibility matter more than a branded vocabulary layer. KAPAPI should be memorable because of its mechanism and product experience, especially **가격 + 완료시간 제안**, not because users must learn new nouns.
 
 **Supersedes:** prior interpretations of D-002, D-029 and D-030 that retained a separate game/world terminology layer.
+
+---
+
+## D-035 — The prototype demonstrates the result-return flow; the market runs behind it
+
+**Decision:** The 발주자 surface shows **업무 입력 → KAPAPI → 결과**. The client uploads files and describes the work in one line, and the next thing they are shown is progress and then the result. Proposal lists, ranked comparison and a worker-selection step are **removed from the client surface**.
+
+The market did not disappear. It moved behind the boundary:
+
+```text
+발주자 화면:   업무 입력 → (KAPAPI) → 진행 상황 → 결과 → 수락 / 수정 요청
+작업자 화면:   업무 목록 → 범위·마감 확인 → 가격 + 완료시간 제안 → 배정 → 수행 → 제출
+```
+
+가격 + 완료시간 제안 remains the market mechanism and remains fully visible **to 작업자**, where it is what the user is actually doing. The client sees the outcome of that mechanism, not its machinery.
+
+**Honesty requirements that do not change.** KAPAPI must still be inspectable and must not overclaim:
+
+- the assignment rationale (why this 작업자) stays available to the client as **information**, never as a decision they must make;
+- no fabricated progress percentage;
+- no claim of escrow, completion guarantee or AI quality judgement;
+- the client keeps the final acceptance and the revision request — the result is not auto-accepted.
+
+**Reason:** The founder's product goal is that a client uploads a file, describes the work briefly, and receives a result. A surface that requires the client to read proposals and pick a worker is the thing that goal removes. Showing the comparison to the client made the prototype demonstrate a marketplace when the product being validated is a work-to-result service.
+
+**Supersedes:** D-031's day-one rejection and D-032's staged confirmation flow **as applied to the client-facing prototype surface**. D-032's growth path (marketplace → trust → routing → repeat capacity → execution layer) still describes how the capability is earned in the real business; D-035 governs what the prototype shows.
+
+**Consequently amended:**
+
+- `PROTOTYPE_SPEC.md` §4.2 and §5 — S05 제안 비교/추천 is no longer a client screen;
+- `KAPAPI_ART_DIRECTION.md` — the ban on implying assignment before client confirmation applies to the 작업자 surface only;
+- `QA_CHECKLIST.md` — the hero may state result return, and must still not claim escrow or completion guarantee.
