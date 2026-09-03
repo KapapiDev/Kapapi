@@ -31,13 +31,14 @@ Animate because something happened:
 - 업무 등록
 - 제안 도착
 - 필수요건 확인
-- 추천 준비
-- 발주자 확정
 - 작업자 배정
 - 작업 시작
 - 결과 전달
 - 결과 수락/수정
 - 업무 완료
+
+The 발주자 sees 업무 등록, 작업자 배정, 결과 전달 and the two acceptance states. The
+rest are the middle node.
 
 ### Object continuity
 
@@ -106,16 +107,20 @@ eligible proposals
 
 Do not show assigned state yet.
 
-### MOTION-D — Client confirmation
+### MOTION-D — Assignment
+
+D-035 removed the client-confirmation beat. The transition is KAPAPI's, and the
+발주자 is told it happened.
 
 ```text
-추천
-→ 발주자가 “이 작업자로 진행”
-→ 추천 locks
-→ 확정
-→ 배정 완료
-→ work state begins
+접수됨
+→ (카파피: 제안 · 조건 확인 · 선정)
+→ 배정된 작업자 + 왜 이 작업자인가요
+→ 작업 시작
 ```
+
+Nothing here waits on a click. Motion should read as a state arriving, not as a
+control resolving.
 
 No confetti or winner effect.
 
@@ -168,14 +173,11 @@ Use when spatial continuity helps: work card → work detail, worker row → pro
 
 ```text
 업무 등록
-→ 제안 도착
-→ 조건 확인
-→ 추천 준비
-→ 발주자 확정
+→ (카파피: 제안 도착 · 조건 확인 · 선정 · 배정)
 → 결과 도착
 ```
 
-Recommendation and assignment cannot be visually collapsed.
+선정 and 배정 are one state. There is no confirmation beat between them (D-035).
 
 ### MOTION-J — Outcome evolution
 
@@ -241,7 +243,7 @@ Favor transform/opacity/layout techniques that do not damage first interaction. 
 
 ## 10. Rejection conditions
 
-Reject motion if it makes recommendation look assigned before client confirmation, implies universal autonomous routing, uses celebration to fake satisfaction, creates fake progress certainty, distracts from price × completion time or result proof, looks excessively gamified, or moves merely because a section entered the viewport.
+Reject motion if it implies the 발주자 has a decision to make, uses celebration to fake satisfaction, creates fake progress certainty, distracts from price × completion time or result proof, looks excessively gamified, or moves merely because a section entered the viewport.
 
 Desired feeling:
 

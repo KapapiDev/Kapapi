@@ -132,6 +132,8 @@ Before the 모두의 창업 1R application, demonstrate only the essential loop:
 → 수락 / 수정 요청
 ```
 
+*(Superseded by D-035: the 발주자 확정 step is removed from the client surface.)*
+
 Show real task history and urgent-work behavior where useful. Do not spend pre-1R effort on production payment custody, tax automation, deep dispute tooling or universal outcome guarantees.
 
 ---
@@ -242,10 +244,11 @@ External explanation, product UI and submission materials should lead with the a
 
 - work exists first
 - workers propose price + completion time
-- KAPAPI recommends based on conditions and history
-- the client confirms
+- KAPAPI selects based on conditions and history
 - the result is delivered
 - transaction data enables later routing and recovery
+
+*(Amended by D-035; the client-confirmation line is removed.)*
 
 There is no separate vocabulary layer users must learn.
 
@@ -281,7 +284,9 @@ Preferred early flow:
 → 결과
 ```
 
-Early transactions may use KAPAPI recommendation + client confirmation, lightweight client choice or concierge/manual routing for controlled experiments.
+*(Superseded by D-035 for the prototype surface: KAPAPI 선정 replaces 추천 + 발주자 확정.)*
+
+Early transactions may use KAPAPI recommendation + client confirmation, lightweight client choice or concierge/manual routing for controlled experiments. *(D-035 removes client confirmation from the prototype surface; back-office experiments are unaffected.)*
 
 Reliable routing must be earned from real completion, on-time, revision, failure, availability, category-liquidity and recovery evidence.
 
@@ -321,6 +326,16 @@ Use **발주자 / 작업자 / 업무 / 제안 / 작업대금 / 긴급 업무 / �
 ---
 
 ## D-035 — The prototype demonstrates the result-return flow; the market runs behind it
+
+**The client's model has three nodes, not five:**
+
+```text
+발주자  →  카파피  →  결과
+```
+
+입찰 and 선정 are not steps the client walks through. They happen *inside* the
+middle node. This is the distinction every surface decision follows from: the
+explainer page may open that box, the 발주자 product surface may not.
 
 **Decision:** The 발주자 surface shows **업무 입력 → KAPAPI → 결과**. The client uploads files and describes the work in one line, and the next thing they are shown is progress and then the result. Proposal lists, ranked comparison and a worker-selection step are **removed from the client surface**.
 

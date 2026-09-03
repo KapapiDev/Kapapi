@@ -28,16 +28,15 @@ A first-time viewer should understand:
 Current client flow:
 
 ```text
-업무 요청
+업무 요청 (파일 + 한 줄)
 → 작업조건 정리
 → 업무 등록
-→ 제안 도착
-→ KAPAPI 추천
-→ 발주자 확정
-→ 수행
+→ (카파피: 제안 도착 · 필수요건 확인 · 선정 · 배정 · 수행)
 → 결과
 → 수락 / 수정 요청
 ```
+
+Three nodes from the 발주자's side: 발주자 → 카파피 → 결과.
 
 Worker flow:
 
@@ -143,22 +142,27 @@ Required:
 7. secondary `작업 찾기`
 8. supporting product/media proof
 
-Recommended semantic direction:
+Shipped (D-035):
 
 ```text
-사람을 찾지 말고, 할 일을 올리세요.
-카파피가 작업 조건을 정리하고 맞는 제안을 추천합니다.
+[발주자 | 작업자]                        내 업무   이용 방법   회원가입
 
-[ 어떤 작업이 필요하신가요?                         ]
-[ 파일 첨부 ]                              [ 의뢰 등록 → ]
+오늘은 어떤 일을 끝낼까요?               [ the founder's film, whole ]
 
-작업을 찾고 있나요? → 작업 찾기
+[ + | 파일을 업로드하고 간단하게 설명해 주세요. ]
+
+[ 맡기기 ]
 ```
 
-D-035: the 발주자 surface shows 업무 입력 -> KAPAPI -> 결과. Proposal lists and a
-worker-selection step are not client screens. The market and its 가격 + 완료시간
-mechanism stay fully visible on the 작업자 surface. Do not claim escrow,
-completion guarantee or AI quality judgement.
+The client's model is **발주자 → 카파피 → 결과**: three nodes. 입찰 and 선정 happen
+inside the middle one, so proposal lists and a worker-selection step are not
+client screens. The market and its 가격 + 완료시간 mechanism stay fully visible on
+the 작업자 surface, and `이용 방법` may open the box to explain the mechanism.
+
+`작업 찾기` is not a secondary CTA here — 작업자 is a route (`/board`) reached by
+the header toggle, so this surface carries one action.
+
+Do not claim escrow, completion guarantee or AI quality judgement.
 
 ---
 
@@ -166,20 +170,24 @@ completion guarantee or AI quality judgement.
 
 ## S01 — Landing
 
-Required:
+Required on the 발주자 surface:
 
-- task-entry hero
-- file attachment
-- `의뢰 등록`
-- `작업 찾기`
-- ordinary office/support + skilled-work examples
-- concise explanation of price + completion-time proposals
-- one unmistakable **가격 × 완료시간** comparison scene
-- recommendation/selection proof
-- one end-to-end completed-work example
-- urgent-work example
+- task-entry hero: one question, one field with file attachment, `맡기기`
+- the 발주자 / 작업자 toggle
+- one end-to-end completed-work example showing 업무 입력 → 카파피 → 결과, with the
+  assignment's criteria visible as a record
 - result acceptance/revision
-- future evolution toward routing/execution layer, clearly labeled as direction
+- one account holding both roles
+
+Required on the 작업자 surface (`/board`):
+
+- open work with 보수 range, 완료시간, 마감, 제안 count and eligibility state
+- `내가 할 수 있는 작업` and `오늘 마감` filters
+- 가격 + 완료시간 bidding, with no storefront to build first
+
+The **가격 × 완료시간** comparison scene and the selection proof belong to `이용 방법`
+and the 작업자 surface. Putting the comparison on the client's first screen is what
+D-035 removed.
 
 Do not lead with CAD or ultra-cheap prices.
 
@@ -247,20 +255,28 @@ Proposal requires:
 
 No long cover letter.
 
-## S05 — 제안 비교 / 추천
+## S05 — 선정 (not a client screen)
 
-Sequence:
+D-035 removed the comparison step from the 발주자 surface. What was S05 is now two
+different things depending on who is looking.
+
+**Inside the product**, selection runs without the client:
 
 ```text
 제안 도착
-→ 가격 × 완료시간 비교
-→ 필수요건 확인
-→ KAPAPI 추천
-→ 발주자 확정
+→ 필수요건 확인 (자격 · 마감 · 예산 · 보안)
+→ 통과한 제안만 가격 × 완료시간 × 작업이력으로 정렬
+→ KAPAPI 선정
 → 작업자 배정
 ```
 
-Example:
+**On the 발주자 surface**, the only trace of this is a record after the fact: who
+was assigned, and the criteria that produced it. It is information, never a
+decision. There is no `이 작업자로 진행`, no `다른 제안 보기`, no ranked list.
+
+**On `이용 방법`**, the box may be opened, because explaining the mechanism is that
+page's job. It shows the arriving bids, the selected one with its criteria, and
+the excluded ones with the condition each missed:
 
 | 작업자 | 가격 | 완료시간 | 유사 업무 완료 | 정시완료율 |
 | --- | ---: | ---: | ---: | ---: |
@@ -268,16 +284,10 @@ Example:
 | B | ₩40,000 | 2시간 | 51건 | 99% |
 | C | ₩55,000 | 45분 | 12건 | 96% |
 
-The UI must make clear that cheapest, fastest or highest-rated does not automatically win.
-
-Default UX:
-
-- one clearly recommended worker
-- short `왜 추천하나요?` rationale
-- primary `이 작업자로 진행`
-- secondary `다른 제안 보기`
-
-Do not present fake scientific certainty or universal auto-assignment.
+It must stay clear that cheapest, fastest or highest-rated does not automatically
+win. Do not present fake scientific certainty, and do not present the selection as
+unexplained — `PRODUCT.md` §13 rules out AI as a sole and opaque selector, and an
+inspectable selection is the answer to that, not a weaker claim.
 
 ## S06 — 작업 진행
 
@@ -393,8 +403,6 @@ Minimum state semantics:
 조건 정리 완료
 모집 중
 제안 도착
-추천 준비
-발주자 확정
 작업자 배정
 작업 중
 결과 전달
@@ -424,14 +432,15 @@ Rules:
 
 # 10. Landing narrative order
 
-1. Hero: **사람을 찾지 말고, 할 일을 올린다** / 작업 찾기
-2. Task-first distinction: work exists first
-3. **가격 × 완료시간** signature scene
-4. KAPAPI recommendation + client confirmation
-5. real completed-work case
-6. urgent work
-7. result loop
-8. worker trust/history
+발주자 surface:
+
+1. Hero: **오늘은 어떤 일을 끝낼까요?** / 파일 + 한 줄 / `맡기기`
+2. 업무 입력 → 카파피 → 결과, as three beats of one real work item
+3. one account, both roles
+
+작업자 surface and `이용 방법` carry the task-first distinction, the
+**가격 × 완료시간** signature scene, the selection with its criteria and excluded
+제안, the completed-work case, urgent work, the result loop and worker trust.
 9. future: data → routing → Human/AI/Automation execution layer
 10. worker entry / open work
 

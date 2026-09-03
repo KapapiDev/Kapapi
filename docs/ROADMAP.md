@@ -53,8 +53,7 @@ Demonstrate the smallest credible KAPAPI transaction loop without pretending uni
 발주자가 업무 등록
 → 작업자들이 업무 탐색
 → 가격 + 완료시간 제안
-→ KAPAPI가 조건과 작업이력을 바탕으로 추천
-→ 발주자 확정
+→ KAPAPI가 조건과 작업이력을 바탕으로 선정
 → 수행
 → 결과 전달
 → 수락 / 수정 요청
@@ -75,8 +74,7 @@ No special glossary should be introduced.
 - **가격 × 완료시간** as a signature visual moment
 - genuine urgent-work state
 - task-relevant career/history and reliability
-- KAPAPI recommendation with visible rationale
-- client confirmation
+- KAPAPI selection with visible rationale and the excluded 제안
 - execution and result acceptance/revision
 - architecture/CAD only as one founder-domain proof case
 - future path from transaction data to routing and execution layer
@@ -226,6 +224,10 @@ client chooses manually
 → KAPAPI routes by default with override
 → KAPAPI routes + recovers when execution fails
 ```
+
+This is the capability ladder for the business. D-035 put the **prototype surface**
+at the routing rung so the thesis can be seen; the rungs still have to be earned
+with real transaction, trust and recovery data.
 
 Routing can consider:
 

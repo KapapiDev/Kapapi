@@ -181,9 +181,11 @@ Compare:
 
 Client sees a compact set of eligible proposals.
 
-### Mode B — KAPAPI recommendation + client confirmation
+### Mode B — KAPAPI selection (the shipped prototype, D-035)
 
-KAPAPI highlights one recommendation with visible rationale; alternatives remain available.
+KAPAPI selects and shows the criteria plus the excluded 제안. The client is not
+asked to confirm. Modes A and C remain available as back-office experiments; only
+Mode B is what the prototype surface demonstrates.
 
 ### Mode C — concierge/manual routing
 

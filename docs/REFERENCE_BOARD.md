@@ -22,11 +22,11 @@ Canonical authorities remain:
 
 | Reference | Extract | Best KAPAPI use | Do not copy |
 | --- | --- | --- | --- |
-| **Linear** | precision, compact information hierarchy, hairlines, product-tool density | QUEST Board, BID comparison, Workroom, trust modules | exact dark palette, lime accent, recognizable app layout |
+| **Linear** | precision, compact information hierarchy, hairlines, product-tool density | 업무 목록, BID comparison, Workroom, trust modules | exact dark palette, lime accent, recognizable app layout |
 | **Hyperstudio** | editorial black/off-white contrast, art direction, oversized regular typography, print-like composition | landing, brand statements, major narrative sections | agency-portfolio experimentation, decorative composition over product clarity |
-| **Factory** | operational dark surfaces, live work objects, terse status, terminal-war-room discipline | active QUEST, TIME ATTACK, Workroom | developer-tool cosplay, code-terminal aesthetic everywhere |
+| **Factory** | operational dark surfaces, live work objects, terse status, terminal-war-room discipline | active 업무, 긴급 업무, Workroom | developer-tool cosplay, code-terminal aesthetic everywhere |
 | **Vercel** | white-paper restraint, type hierarchy, neutral hairlines, transaction/settings clarity | forms, BID selection, file/result, contracts/review concepts | sterile sameness, literal Vercel geometry |
-| **Mercury** | premium B2B trust, restrained data surfaces, calm confidence | PLAYER profile, reliability, future payment/admin | banking metaphors, finance-dashboard styling |
+| **Mercury** | premium B2B trust, restrained data surfaces, calm confidence | 작업자 프로필, reliability, future payment/admin | banking metaphors, finance-dashboard styling |
 | **Raycast** | tactile power-tool feeling, micro HUD, compact affordances, polished interaction | small controls, state indicators, micro-interactions | colorful utility grid, glass-heavy macOS mimicry |
 
 ### Combined formula
@@ -62,7 +62,7 @@ Desired result:
 
 > editorial brand page with a credible live product instrument inside it.
 
-### QUEST Board
+### 업무 목록
 
 Primary:
 
@@ -73,7 +73,7 @@ Desired result:
 
 > dense enough to scan real work, quiet enough to make urgency meaningful.
 
-### QUEST Detail / BID comparison
+### 업무 상세 / 제안
 
 Primary:
 
@@ -88,7 +88,7 @@ Desired result:
 
 > serious decision surface where PRICE × DELIVERY TIME is instantly comparable.
 
-### PLAYER profile
+### 작업자 프로필
 
 Primary:
 
@@ -150,11 +150,11 @@ Desired result:
 | Magic UI Animated List | **REMIX / P0** | insertion + `AnimatePresence` + layout reflow | BID arrival / live event insertion |
 | Motion official Layout/Reordering | **ADOPT PATTERN / P0** | spatial continuity during reorder | BID set reflow / ranking changes |
 | Animated Feature Carousel / Le Thanh | **REMIX / P0** | stable shell + sequential narrative states | hero transaction story |
-| Motion Primitives Morphing Dialog | **ADOPT PATTERN / P1** | shared object continuity, accessibility behavior | QUEST detail, PLAYER profile |
+| Motion Primitives Morphing Dialog | **ADOPT PATTERN / P1** | shared object continuity, accessibility behavior | 업무 상세, 작업자 프로필 |
 | Magic UI Animated Beam | **REMIX / P1** | meaningful routing between DOM objects | Autopilot orchestration story |
-| ReUI Timeline / Stepper | **ADOPT SEMANTICS / P0** | completed/active/pending/failure states | QUEST progress |
+| ReUI Timeline / Stepper | **ADOPT SEMANTICS / P0** | completed/active/pending/failure states | 업무 진행 |
 | Blur Fade | **REMIX / P2** | sparse editorial reveal | rare supporting copy only |
-| Animated Card Chart / badtz | **TBD / low priority** | only if historical pattern matters | PLAYER trust history, if justified |
+| Animated Card Chart / badtz | **TBD / low priority** | only if historical pattern matters | 작업자 작업이력, if justified |
 | Animated Card Diagram / badtz | **TBD / low priority** | possible concept diagram pattern | future evolution story only if source merits it |
 | Jessi Animate Card Animation | **REJECT AS PRIMARY** | limited entry/stagger implementation ideas | not BID card styling |
 | Spotlight Card / cursor glow | **DEFAULT REJECT** | possible tiny experimental spotlight only | no normal product use |
@@ -174,7 +174,7 @@ Do not turn every number into a slot machine.
 Keep because it maps directly to the signature event:
 
 ```text
-another PLAYER submits a BID
+another 작업자 submits a 제안
 ```
 
 The important part is not the demo card appearance. It is insertion plus coherent reflow.
@@ -183,7 +183,7 @@ The important part is not the demo card appearance. It is insertion plus coheren
 
 Keep because KAPAPI contains objects users inspect repeatedly.
 
-A QUEST card should feel like it became the QUEST detail rather than disappearing into a generic modal.
+An 업무 card should feel like it became the 업무 상세 rather than disappearing into a generic modal.
 
 ## Animated Beam
 
@@ -263,10 +263,10 @@ KAPAPI is not designed **from** references.
 References help solve individual problems, but the final product language comes from the transaction itself:
 
 ```text
-QUEST
+업무
 → BID
 → PRICE × DELIVERY
-→ PLAYER SELECTED
+→ 작업자 배정
 → WORK MOVING
 → RESULT
 ```

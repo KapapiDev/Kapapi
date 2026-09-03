@@ -70,11 +70,16 @@ Examples:
 
 If such controls are needed, keep them in a hidden/dev-only mechanism, query parameter, keyboard command, dedicated debug route or clearly separated reviewer tooling.
 
-## 4. World-building requires meaning
+## 4. Labels require meaning
 
 KAPAPI terms are not decoration.
 
-`QUEST`, `BID`, `PLAYER`, `TIME ATTACK`, `LEVEL`, `EXP`, `QUEST COMPLETE` are allowed when the current object/state actually represents those concepts.
+**Superseded by D-034:** `QUEST`, `BID`, `PLAYER`, `TIME ATTACK`, `LEVEL`, `EXP` and
+`QUEST COMPLETE` are no longer permitted anywhere a user can see. Use 업무 / 제안 /
+작업자 / 발주자 / 긴급 업무 / 작업이력 / 업무 완료.
+
+A label is allowed only when the object or state it names actually exists in the
+current data — 제안 4건 when there are four, 마감 6시간 when that is the deadline.
 
 Do not invent adjacent lore such as:
 

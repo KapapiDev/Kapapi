@@ -27,15 +27,17 @@ Product identity should come from real work moving through real states, not from
 
 ```text
 업무 등록
-→ 가격 + 완료시간 제안
+→ 작업자들이 가격 + 완료시간 제안
 → 필수요건 확인
-→ KAPAPI 추천
-→ 발주자 확정
+→ KAPAPI 선정
 → 작업자 배정
 → 수행
 → 결과
 → 업무 완료
 ```
+
+On the 발주자 surface this is three nodes — 발주자 → 카파피 → 결과. The lines between
+업무 등록 and 결과 are the middle node, visible on the 작업자 surface and `이용 방법`.
 
 On the 작업자 surface, do not visually imply assignment before it has happened.
 On the 발주자 surface, D-035 removes the confirmation step: assignment is shown
@@ -60,18 +62,21 @@ The first viewport has one protagonist: **the work-entry action**.
 
 ```text
 KAPAPI
-→ plain Korean action/promise
-→ large work-entry surface
-→ file attachment
-→ primary `의뢰 등록`
-→ secondary `작업 찾기`
-→ supporting product proof
+→ 발주자 / 작업자 surface toggle
+→ one-line Korean question
+→ single-line work field with file attachment
+→ primary `맡기기`
+→ the founder's film, whole, beside it
 ```
 
 Copy direction:
 
-> **사람을 찾지 말고, 할 일을 올리세요.**  
-> 카파피가 작업 조건을 정리하고 맞는 제안을 추천합니다.
+> **오늘은 어떤 일을 끝낼까요?**  
+> 파일을 업로드하고 간단하게 설명해 주세요.
+
+`작업 찾기` is not a secondary CTA on this surface. The 작업자 side is a route of
+its own (`/board`) reached by the header toggle, so the client's first screen
+carries one action.
 
 ---
 
@@ -136,14 +141,15 @@ Avoid relying on effects to create identity.
 
 ```text
 제안 도착
-→ 부적합 제안은 조용히 약화
+→ 부적합 제안 제외 (사유와 함께)
 → 가격 × 완료시간 + 작업이력 확인
-→ 한 작업자를 `추천` 상태로 표시
-→ 짧은 추천 근거
-→ [이 작업자로 진행]
-→ 발주자 확정
+→ KAPAPI 선정
 → 배정
 ```
+
+This sequence belongs to `이용 방법` and the 작업자 surface. On the 발주자 surface only
+its outcome appears: 배정된 작업자 with 왜 이 작업자인가요. There is no
+`이 작업자로 진행` control anywhere (D-035).
 
 Before confirmation, label `추천`, not `배정`. Keep alternatives available. Do not use winner celebration or locked-assignment visuals.
 
@@ -204,10 +210,7 @@ Current real-UI sequence:
 
 ```text
 업무 등록
-→ 제안 도착
-→ 조건 확인
-→ 추천 준비
-→ 발주자 확정
+→ (카파피: 제안 도착 · 조건 확인 · 선정 · 배정)
 → 결과 도착
 ```
 
@@ -252,14 +255,18 @@ Make it visually obvious this is earned evolution, not today's universal guarant
 
 ## 14. Landing narrative
 
-1. task-entry hero
-2. task-first open-work proof
-3. price × completion time
-4. recommendation + client confirmation
-5. real completed work
-6. urgent work
-7. result / accept-revise
-8. trust/history
+발주자 surface (`/`):
+
+1. task-entry hero — one question, one field, `맡기기`
+2. 업무 입력 → 카파피 → 결과 as three beats of one real work item
+3. one account, both roles
+
+작업자 surface (`/board`):
+
+1. open work with 보수, 완료시간, 마감, 제안 count, eligibility
+2. price × completion time bidding
+
+`이용 방법` carries the full mechanism, including the excluded 제안.
 9. data → routing/recovery → execution layer
 10. worker entry
 
@@ -269,7 +276,7 @@ Make it visually obvious this is earned evolution, not today's universal guarant
 
 Reject implementation if it reads primarily as a freelancer directory, generic AI SaaS/dashboard, developer console, gamified work app, CAD-only service or pitch-deck page.
 
-Reject if recommendation and assignment are indistinguishable, client confirmation disappears, price × completion time is visually weak, decorative progression outranks real work evidence, or future execution capability is presented as current magic.
+Reject if the 발주자 surface shows a ranked comparison or any control that picks a worker, the assignment arrives with no visible criteria, price × completion time is visually weak on the surfaces that carry it, decorative progression outranks real work evidence, or future execution capability is presented as current magic.
 
 Desired reaction:
 

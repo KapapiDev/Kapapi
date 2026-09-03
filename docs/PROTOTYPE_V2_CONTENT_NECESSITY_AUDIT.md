@@ -17,7 +17,9 @@ one applies. Anything that could not be classified is listed in §3 as deleted.
 |---|---|---|
 | `KAPAPI` wordmark | 3 BRAND-WORLD | The product's own name, linking home. |
 | `로그인` | 1 PRODUCT REQUIRED | Account entry. |
-| `회원가입` (button) | 1 PRODUCT REQUIRED | One door, not two. D-032: the role comes from each QUEST, so there is no 의뢰인/전문가 split — the thing Kmong, Wishket and Soomgo all do and this must not. |
+| `발주자 / 작업자` toggle | 1 PRODUCT REQUIRED | The two surfaces of one account. A view switch, not a signup fork (IDENTITY_ROLE_MODEL §1). Asserted present by `loop.mjs`. |
+| `내 업무`, `이용 방법` | 1 PRODUCT REQUIRED | The account's own work and the explainer. Desktop only; both stay reachable on a phone from the page body. |
+| `회원가입` (button) | 1 PRODUCT REQUIRED | One door, not two. The role comes from each 업무, so there is no 의뢰인/전문가 split — the thing Kmong, Wishket and Soomgo all do and this must not. `loop.mjs` asserts no second signup door exists. |
 
 `작업 찾기` and `이용 방법` are **not** in the landing header. The first screen has to
 read as "put a file here and describe the job", and a row of section links is what
@@ -50,15 +52,31 @@ covered the film or modified how it reads, which the founder's direction forbids
 The example chips went with them: they belonged to a composer that no longer exists,
 and the field asks for one sentence rather than offering four.
 
-### Sections
+### Sections — 발주자 surface (`/`)
 
 | Section | Heading | Justification |
 |---|---|---|
-| RoutingProof | `제안은 경쟁합니다. 비교는 하지 않으셔도 됩니다.` | 1 PRODUCT REQUIRED. D-031 says the issuer never picks; the inspectable ranking with its six weights and hard filters is the proof. The one deliberate dark surface, because it is the only place machine work is shown running. |
-| CaseSection | `실제로 오간 의뢰 한 건` | 1 PRODUCT REQUIRED. One complete transaction with real scope, outputs and acceptance criteria. The 건축·도면 note is the stated beachhead, not decoration. |
-| UrgentSection | `오늘 안에 끝나야 하는 작업` | 1 PRODUCT REQUIRED. Committed delivery time is half of the mandatory PRICE × DELIVERY pair; a live countdown is the only honest way to show a deadline binding. |
-| ResultSection | `마지막 판단은 의뢰한 사람이 합니다` | 1 PRODUCT REQUIRED. Bounds the claim: KAPAPI checks files, formats and arrival time only. Prevents the AI-quality-judgement claim the footer also disclaims. |
-| AccountSection | `같은 계정으로 작업을 받을 수도 있습니다` | 1 PRODUCT REQUIRED. D-032 universal identity, shown as three concurrent rows on one account rather than asserted in prose. |
+| ResultFlowSection | `올리고 나면, 결과가 옵니다` | 1 PRODUCT REQUIRED. D-035's whole claim, as three beats from real `route()` output: 업무를 올립니다 → 카파피가 배정합니다 → 결과가 도착합니다. Beat 02 is the only one carrying the accent, because it is the step the client does not do. |
+| AccountSection | `일을 맡기던 사람이, 다른 일을 할 수도 있습니다` | 1 PRODUCT REQUIRED. Universal identity, shown as three concurrent rows on one account. Also the route to `/my` on a phone, where the header links are hidden. |
+
+The `이용 방법 자세히 보기` control at the end of the flow section is 1 PRODUCT
+REQUIRED: below 860px the header's text links are hidden, so it is the only route
+to `/how`. It is a 44px control rather than an inline link for that reason.
+
+### Sections — 작업자 surface (`/board`)
+
+The work list itself, not a page in front of it. Open 업무 with 보수 range,
+완료시간, 마감, 제안 count and per-item eligibility, plus the 내가 할 수 있는 작업 and
+오늘 마감 filters. This is where 가격 + 완료시간 lives after D-035 moved it off the
+client's screen.
+
+### Not currently rendered
+
+- **UrgentSection** (`오늘 안에 끝나야 하는 작업`). Lost its surface when the 작업자
+  landing was removed. 긴급 업무 is named canon, so it is held rather than deleted.
+- **RoutingProof**, **CaseSection**, **EvolutionSection**. Superseded on the client
+  surface by ResultFlowSection and by `이용 방법`, which now carries the full
+  mechanism including the excluded bids.
 
 ### Footer
 
@@ -83,13 +101,13 @@ rather than waiting for a reviewer.
 | `QUEST NETWORK · ONLINE` eyebrow | No | Substring of the above |
 | `RESET` or any public debug control | No | `loop.mjs` landing assertion |
 | `이런 일들이 올라옵니다` | No | `loop.mjs` landing assertion |
-| Arbitrary avatar / fake logged-in state | No | Nav renders `로그인` only; no avatar element exists |
-| Meaningless ONLINE / system-status decoration | No | The only machine metadata is the routing section's state label, which changes with real `route()` output |
+| Arbitrary avatar / fake logged-in state | No | The header is brand, toggle and `회원가입`; no avatar element exists |
+| Meaningless ONLINE / system-status decoration | No | The only state labels are the flow section's beats, which read off real `route()` output |
 | Unjustified fixed 4-chip row | No | There are no chips. The hero asks for one sentence instead of offering four |
 | `할 일을 던져주세요.` | No | `loop.mjs` landing assertion |
 | `일 던져놔. 결과만 받아.` / `Good. Done.` / `GOOD DONE` | No | Absent from the tree; all Korean copy rewritten in `research/copy-final.md` |
-| Paragraph-wall or 01-02-03-04 numbered-column landing | No | Landing measures **109 characters and 0 cards** in the first viewport, below Notion's 124 and near Toss's 42 |
-| Detached black dashboard card beside the video | No | Nothing sits beside or on the film. The one dark surface on the page is the routing proof, a full section lower |
+| Paragraph-wall or 01-02-03-04 numbered-column landing | No | Landing measures **173 characters** in the first viewport, against Notion's 124, Vercel's 204 and Clerk's 1420. The flow section is numbered 01–03, but it is three real states of one work item rather than a feature grid |
+| Detached black dashboard card beside the video | No | Nothing sits beside or on the film, asserted at five sample points by `hero-qa.mjs` |
 
 ## 3. Considered and deleted
 
@@ -98,6 +116,6 @@ Recorded so the reasoning is not re-litigated.
 - **A statistics band** (`거래 12,400건`, `평균 배정 4분`). Would have been invented numbers with no fixture behind them. Kmong and Soomgo both carry counted trust evidence, so it is reference-supported in form — but only when the count is real. Deleted until there is one.
 - **Category tiles for the four routing categories.** A tile grid is the templated-marketplace pattern the first-viewport measurement was adopted to avoid, and the field takes free text precisely so the visitor does not have to pick a category first.
 - **A testimonial row.** No real customers exist. Fabricated ones fail all three tests.
-- **`전문가 등록` / `고수 가입` as a second CTA.** This is exactly the buyer/seller signup split that Kmong, Wishket and Soomgo all use and that D-032 forbids. `loop.mjs` asserts no such control exists on `/board`.
+- **`전문가 등록` / `고수 가입` as a second CTA.** The buyer/seller signup split Kmong, Wishket and Soomgo all use, and that IDENTITY_ROLE_MODEL §1 forbids. 숨고's worker landing was measured for this audit and is the clearest example: a dedicated sparse page whose single CTA is `고수 가입하기`. The structure was worth taking; that door was not. `loop.mjs` searches the whole page for `작업자 가입`, `고수 가입` and `전문가 등록` and requires zero matches.
 - **A progress percentage on running work.** Not observable, so it would be fiction. `loop.mjs` asserts no `n% 완료 / 진행` string appears.
 - **A celebration state on completion.** Asserted absent by `loop.mjs`; the work is a delivery, not an achievement.

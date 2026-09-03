@@ -20,7 +20,7 @@ Upwork's current homepage first makes the user's intent obvious with:
 
 The page does not require a new visitor to understand marketplace mechanics before taking the first step.
 
-KAPAPI should be even simpler on the GM side.
+KAPAPI should be even simpler on the 발주자 side.
 
 ## 2. KAPAPI first-touch principle
 
@@ -44,7 +44,7 @@ KAPAPI
 일 등록 → 가격·완료시간 제안 → 선택 → 결과 받기
 ```
 
-PLAYER entry should remain available but secondary:
+작업자 entry should remain available but secondary:
 
 ```text
 일하러 오셨나요? → 일 찾기
@@ -58,9 +58,9 @@ A first-time visitor must understand within roughly three seconds:
 
 Fail the design if the visitor must first decode:
 
-- QUEST,
+- 업무,
 - BID,
-- PLAYER,
+- 작업자,
 - LEVEL / EXP,
 - TIME ATTACK,
 - dashboard navigation,
@@ -133,12 +133,12 @@ This is consistent with the product north star:
 
 Before approving the public hero:
 
-1. One obvious GM primary action exists.
+1. One obvious 발주자 primary action exists.
 2. The action is understandable without KAPAPI vocabulary.
 3. The task-entry surface is the strongest visual object above the fold.
 4. The page is light-first by default.
 5. A new user can explain the service after one glance in ordinary language.
-6. PLAYER entry is available but does not compete with the GM action.
+6. 작업자 entry is available but does not compete with the 발주자 action. In the shipped build it is the header toggle.
 7. Dashboard or transaction mechanics appear only after the visitor understands what to do.
 8. The design remains premium through typography, spacing, responsiveness and motion, not through visual complexity.
 

@@ -3,20 +3,26 @@
 Status: **current v2 hero media authority**  
 Updated: **2026-09-03**
 
-The hero movie should visually support the current transaction without baking fake generated product UI into the film.
+The hero film is the founder's own file, used exactly as delivered: served
+byte-for-byte, shown whole at its own ratio, never cropped, filtered, or drawn
+over. Nothing is composited into it — not product UI, not a headline, not a
+gradient. `scripts/hero-qa.mjs` asserts this against the rendered page at five
+viewports, so the rule is enforced rather than remembered.
 
 ## 1. Narrative thesis
 
+What the client experiences is three nodes:
+
 ```text
-업무 등록
-→ 제안 도착
-→ KAPAPI 추천
-→ 발주자 확정
-→ 수행 / 결과
-→ 결과 확인
+발주자  →  카파피  →  결과
 ```
 
-The current prototype does not claim a client can always disappear immediately after submission while KAPAPI universally auto-routes everything.
+입찰 and 선정 happen inside the middle node, so the film's job is not to narrate
+a marketplace. It carries the human half of the composition while the action —
+upload, describe, 맡기기 — sits beside it in real UI, not in the footage.
+
+The prototype still does not claim escrow, completion guarantee, or that a result
+is guaranteed once submitted.
 
 ---
 
@@ -25,12 +31,13 @@ The current prototype does not claim a client can always disappear immediately a
 ```text
 가격 + 완료시간 제안 도착
 → 필수요건 / 작업이력 / 가격 × 완료시간 확인
-→ KAPAPI 추천
-→ 발주자 확정
+→ KAPAPI 선정
 → 작업자 배정
 → 수행
 → 결과 도착
 ```
+
+The client sees none of the first four lines as steps. They are the middle node.
 
 Ending:
 
@@ -46,17 +53,24 @@ Long-term `work in → result out` appears only as clearly future-oriented produ
 
 ## 3. Generated UI is disposable
 
-If source footage contains fake product text, incorrect brand names, distorted buttons, generic dashboards or unreadable AI-generated UI, replace, cover or cut away from it.
+Source footage is used as delivered. If a frame contains a generic dashboard or
+unreadable on-screen UI, that is the footage's own content and it stays: covering
+it would mean compositing onto the film, which is exactly what is forbidden. The
+answer to unusable footage is different footage, not a patch over it.
 
-Preferred final structure:
+Final structure:
 
 ```text
-LIVE ACTION
-→ CAMERA APPROACHES LAPTOP
-→ REAL KAPAPI HTML/CSS UI
-   제안 → 조건 확인 → 추천 → 발주자 확정 → 결과
-→ LIVE ACTION / RESULT PAYOFF
+LEFT   오늘은 어떤 일을 끝낼까요?
+       [ + | 파일을 업로드하고 간단하게 설명해 주세요. ]
+       [ 맡기기 ]
+
+RIGHT  the film, whole, 16:9, ~52% of the viewport
 ```
+
+Superseded: the earlier structure composited real KAPAPI UI onto the laptop screen
+inside the footage and cut full-frame. `PROTOTYPE_V2_HERO_COMPOSITING.md` records
+that work and is marked superseded.
 
 ---
 
@@ -64,22 +78,29 @@ LIVE ACTION
 
 The work-entry surface remains the strongest above-the-fold product object. Video is supporting proof.
 
-Media must support muted, playsInline, poster, reduced-motion/static fallback, responsive crop, mobile fallback, no layout shift and primary text/input before heavy media dependency.
+Media must support muted, playsInline, autoplay, loop, a reduced-motion static
+first frame, no layout shift, and the text/input being usable before the film has
+loaded. It must **not** use responsive crop: `object-fit: cover` would cut the
+founder's frame, so the element takes the file's own ratio and the height follows
+the width. Below 860px the film moves under the action rather than being cropped
+to fit beside it. Decoding stops when the hero scrolls out of view.
 
 ---
 
-## 5. Current hero UI choreography
+## 5. Where the transaction is shown instead
 
-Canonical sequence:
+The hero no longer animates a sequence — the film plays and the action sits beside
+it. The transaction is shown one section down, as three static beats built from
+real `route()` output:
 
 ```text
-업무 등록
-→ 제안 1 / 2 / 3 / 4건 도착
-→ 조건 확인
-→ 추천 준비
-→ 발주자 확정
-→ 결과 도착
+01 업무를 올립니다     파일 · 마감 · 원하는 가격
+02 카파피가 배정합니다  선정된 작업자 · 선정 근거      ← the step the client does not do
+03 결과가 도착합니다    결과 파일 · 검수 항목 · 도착 시각
 ```
+
+Beat 02 is the only one carrying the accent colour, because it is the whole claim
+of the section.
 
 Useful evidence:
 
@@ -91,7 +112,8 @@ Useful evidence:
 
 Do not use special role/state vocabulary, progression levels or experience points.
 
-Do not show `작업자 배정` before `발주자 확정`.
+There is no `발주자 확정` step (D-035). On the 발주자 surface, `작업자 배정` is shown
+as something KAPAPI did, together with the criteria that produced it.
 
 ---
 

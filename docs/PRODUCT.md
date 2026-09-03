@@ -17,7 +17,7 @@ Initial worker-facing form:
 
 Initial client-facing form:
 
-> **사람을 찾지 말고, 할 일을 올린다.** A client defines the work and desired result once. KAPAPI organizes the market, recommends a suitable worker using conditions and work history, and the client confirms before execution.
+> **사람을 찾지 말고, 할 일을 올린다.** A client uploads the files, describes the work in one line, and sets an approximate price ceiling and deadline. KAPAPI organizes the market, selects a worker from the bids using conditions and work history, and returns the result. Per D-035 the client does not compare proposals or pick a worker; the selection's criteria stay visible to them.
 
 Long-term form:
 
@@ -157,12 +157,15 @@ Preferred early default:
 제안 도착
 → 필수요건 확인
 → 작업이력 / 업무 적합도 / 가격 × 완료시간 정렬
-→ KAPAPI 추천
-→ 발주자 확정
+→ KAPAPI 선정
 → 수행
 ```
 
-Alternatives remain available for transparency and learning.
+Per D-035 the selection is KAPAPI's and there is no client confirmation step. The
+criteria and the excluded bids stay visible as a record of what was decided, which
+is what keeps the selection inspectable rather than magical — `PRODUCT.md` §13
+rules out positioning AI as a sole and unexplained selector, not the selection
+itself.
 
 Early experiments may also use lightweight client choice or concierge/manual routing.
 
@@ -223,6 +226,11 @@ Build:
 Evolution:
 
 `client manually chooses → KAPAPI recommends → client confirms → KAPAPI routes by default with override/recovery`
+
+D-035 moved the **prototype surface** to the routing end of this line so the
+product thesis can be seen. The business still has to earn each step with real
+transaction, trust and recovery data — the prototype demonstrates the destination,
+it does not assert the capability is proven.
 
 Add:
 

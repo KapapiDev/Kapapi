@@ -51,16 +51,18 @@ Every proposal requires price + committed completion time. Completion time means
 ```text
 제안
 → 필수요건/정렬
-→ KAPAPI 추천
-→ 발주자 확정
+→ KAPAPI 선정
 → 배정
 ```
 
-Fail if a worker is silently assigned before client confirmation, recommendation and assignment look identical, or universal automatic routing is claimed as current.
+Under D-035 KAPAPI assigns without client confirmation, so that is not a failure. Fail if the assignment arrives with no visible criteria, if the 발주자 surface offers any control that picks a worker, or if escrow / completion guarantee is claimed.
 
-## A6. Decision burden is reduced — BLOCKER
+## A6. Decision burden is zero on the client side — BLOCKER
 
-Default recommendation surface provides one clear recommended worker, concise evidence/rationale, primary `이 작업자로 진행` and secondary access to alternatives.
+The 발주자 surface shows the assigned worker and the criteria that produced the
+assignment, and offers no action on it. Fail if any ranked comparison, alternatives
+list or selection control appears there. `scripts/loop.mjs` queries the DOM for
+worker-selection controls and requires zero matches.
 
 ## A7. Result loop — BLOCKER
 
@@ -125,10 +127,7 @@ Video, if enabled, must not block primary input, must have poster/fallback, must
 
 ```text
 업무 등록
-→ 제안 도착
-→ 조건 확인
-→ 추천 준비
-→ 발주자 확정
+→ (카파피: 제안 도착 · 조건 확인 · 선정 · 배정)
 → 결과 도착
 ```
 
@@ -285,8 +284,8 @@ Update automated invariants so current build fails if:
 - special/game terminology appears in user-facing copy
 - decorative level/experience systems appear
 - price + completion time is absent
-- recommendation equals assignment
-- client confirmation is missing
+- the assignment arrives with no visible criteria
+- the 발주자 surface offers a control that picks a worker
 - CAD becomes hero identity
 - work board becomes storefront-first
 - future execution layer is presented as current universal capability

@@ -125,16 +125,16 @@ No novelty game fonts or pseudo-terminal language.
 4. reliability
 5. short note if useful
 
-### Recommendation
-1. `추천`
+### Assignment record (발주자 surface)
+1. `배정`
 2. worker identity
 3. price + completion time
-4. why/relevant evidence
-5. `이 작업자로 진행`
-6. `다른 제안 보기`
+4. `왜 이 작업자인가요?` with the criteria
+5. — no action. D-035: the client is not asked to choose.
 
 ### Assigned/work state
-Only after client confirmation should the UI use `확정`, `배정 완료`, `작업 시작` semantics.
+`배정`, `작업 시작` and the timeline follow KAPAPI's selection directly. There is no
+confirmation step to gate them behind.
 
 ### Result
 1. delivered file/result
@@ -155,7 +155,7 @@ Only after client confirmation should the UI use `확정`, `배정 완료`, `작
 
 Do not require seller-storefront creation first.
 
-One account may issue and perform different work. Avoid permanent buyer/seller mode-switch design.
+One account may issue and perform different work. Avoid a permanent buyer/seller **account** split: no second signup, no onboarding fork, no separate login. A 발주자 / 작업자 **view** toggle is permitted and is what ships — it changes which surface is on screen, never which account the person has (IDENTITY_ROLE_MODEL §1, §4).
 
 ---
 
@@ -180,13 +180,12 @@ Do not use fictional role names, experience points, levels, rarity, coins, sword
 
 ## 10. Interaction hierarchy
 
-Recommendation primary action:
+The assignment record has no action. The 발주자's only actions in the whole flow are
+at the two ends:
 
-> **이 작업자로 진행**
+> **맡기기** — at the start
 
-Secondary:
-
-> **다른 제안 보기**
+> **결과 확인** / **수정 요청** — at the end
 
 The primary should feel consequential but not celebratory.
 
@@ -205,10 +204,7 @@ Product-movie states:
 
 ```text
 업무 등록
-→ 제안 도착
-→ 조건 확인
-→ 추천 준비
-→ 발주자 확정
+→ (카파피: 제안 도착 · 조건 확인 · 선정 · 배정)
 → 결과 도착
 ```
 

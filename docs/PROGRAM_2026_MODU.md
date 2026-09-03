@@ -111,7 +111,7 @@ The prototype should visibly demonstrate:
 - worker **가격 + 완료시간 제안**
 - task-specific career/history signals
 - KAPAPI recommendation with visible rationale
-- client confirmation
+- KAPAPI selection with disclosed criteria (D-035)
 - genuine urgent-work state
 - result delivery + accept/revise
 - future path from transaction data → recommendation → routing/recovery → execution layer

@@ -38,13 +38,13 @@ The desired output is:
 
 Numbers are core product objects:
 
-- BID price
+- 제안 price
 - DELIVERY TIME
 - TIME ATTACK countdown
-- BID count
-- completed QUEST count
+- 제안 count
+- completed 업무 count
 - on-time rate
-- LEVEL / EXP
+- ~~LEVEL / EXP~~ (removed by D-034; trust is 작업이력 / 정시완료율 / 수정률)
 - delivery performance
 
 Static number replacement makes the interface feel mocked. Smooth numeric transitions can make state changes feel real without adding decorative animation.
@@ -53,10 +53,10 @@ Static number replacement makes the interface feel mocked. Smooth numeric transi
 
 Use the underlying number-transition behavior for:
 
-- `BIDS 06 → 07`
+- `제안 06 → 07`
 - `₩150,000 → ₩220,000` when comparison focus changes
 - trust metrics such as `98% → 99% ON TIME`
-- EXP increment after completion
+- 작업이력 increment after completion
 - optional countdown segments where appropriate
 
 ### Do not copy
@@ -72,7 +72,7 @@ Only animate a number when its value actually changes or when it first becomes t
 
 ### Acceptance test
 
-A changing BID or EXP value should feel like live product state, not a slot-machine effect.
+A changing 제안 value should feel like live product state, not a slot-machine effect. D-034 removed EXP from the product.
 
 ---
 
@@ -85,24 +85,24 @@ A changing BID or EXP value should feel like live product state, not a slot-mach
 
 ### Why KAPAPI needs it
 
-The most important KAPAPI signature motion is a new BID entering the market.
+The most important KAPAPI signature motion is a new 제안 entering the market.
 
 The user should visually understand:
 
-`new proposal arrived → comparison set changed → GM can make a decision`
+`new proposal arrived → comparison set changed → KAPAPI can select` (작업자 surface; the 발주자 never sees this set — D-035)
 
 without reading an explanatory paragraph.
 
 ### KAPAPI adaptation
 
-Study the card-stack entry/exit/reposition pattern and adapt it to BID cards.
+Study the card-stack entry/exit/reposition pattern and adapt it to 제안 cards.
 
 Desired sequence:
 
 ```text
-BID RECEIVED
+제안 도착
      ↓
-new PLAYER card inserts into the comparison set
+new 작업자 card inserts into the comparison set
      ↓
 existing cards shift just enough to make space
      ↓
@@ -123,7 +123,7 @@ The new card should feel **inserted into a system**, not thrown onto a stage.
 
 ### Motion rule
 
-Prefer low-amplitude transform + opacity + layout transition. The GM must be able to compare all BIDs immediately after the transition.
+Prefer low-amplitude transform + opacity + layout transition. All 제안 must be legible immediately after the transition, on the surfaces that show them: `이용 방법` and the 작업자 side.
 
 ### Acceptance test
 
@@ -156,12 +156,12 @@ Do **not** implement a literal feature carousel.
 Use the sequencing pattern to build a hero transaction narrative:
 
 ```text
-QUEST CREATED
-→ BID RECEIVED
-→ multiple BID comparison
-→ PLAYER SELECTED
+업무 등록
+→ 제안 도착
+→ multiple 제안 comparison
+→ 작업자 배정
 → DELIVERED
-→ QUEST COMPLETE
+→ 업무 완료
 ```
 
 The surrounding shell should remain stable while the transaction state evolves inside it.
@@ -200,7 +200,7 @@ Marketplace
 → Autopilot
 ```
 
-A static three-column feature section can make this look like ordinary feature expansion. The actual idea is that GM-facing complexity progressively disappears.
+A static three-column feature section can make this look like ordinary feature expansion. The actual idea is that 발주자-facing complexity progressively disappears.
 
 ### KAPAPI adaptation
 
@@ -210,12 +210,12 @@ Desired visual logic:
 
 ```text
 MARKETPLACE
-GM sees QUEST + BIDs + PLAYER selection
+이용 방법 shows 업무 + 제안 + 작업자 선정
 
         ↓ complexity removed
 
 ASSIST
-GM gives file + short instruction
+발주자 gives file + short instruction
 KAPAPI structures and recommends
 
         ↓ complexity removed
@@ -226,7 +226,7 @@ FILE + DEADLINE
 → RESULT
 ```
 
-The animation should progressively remove steps from the GM side.
+The animation should progressively remove steps from the 발주자 side — D-035 has already removed the comparison and the confirmation.
 
 ### Do not copy
 
@@ -237,7 +237,7 @@ The animation should progressively remove steps from the GM side.
 
 ### Acceptance test
 
-A reviewer should understand that Autopilot is not 'more features'. It is **fewer GM decisions**.
+A reviewer should understand that this is not 'more features'. It is **fewer 발주자 decisions** — D-035 has already removed the comparison and the confirmation, leaving 발주자 → 카파피 → 결과.
 
 ---
 
@@ -250,7 +250,7 @@ A reviewer should understand that Autopilot is not 'more features'. It is **fewe
 
 ### Why KAPAPI needs it
 
-PLAYER trust should feel measurable and task-specific, not like decorative game XP.
+작업자 trust should feel measurable and task-specific, not like a decorative score.
 
 Useful data includes:
 
@@ -266,8 +266,8 @@ Study how compact cards reveal changing metrics and micro-visual data.
 
 Potential applications:
 
-- PLAYER profile trust module
-- BID comparison trust detail
+- 작업자 profile trust module
+- 제안 comparison trust detail
 - recent delivery reliability
 - tiny history graph or completion trend
 
@@ -313,7 +313,7 @@ Allowed only for:
 - every card
 - every heading
 - normal form controls
-- QUEST list items
+- 업무 list items
 
 ### Motion rule
 
@@ -341,7 +341,7 @@ Reject immediately if it:
 - follows the cursor everywhere
 - reduces text contrast
 - looks like a creative-agency portfolio
-- becomes more memorable than the QUEST/BID interaction
+- becomes more memorable than the 업무/제안 interaction
 - costs meaningful GPU time on typical laptops
 
 Default decision: **do not implement unless visual QA proves it adds product value.**
@@ -357,7 +357,7 @@ The references above should be transformed into the following KAPAPI-native moti
 Primary reference: REF-21-002 + REF-21-001
 
 ```text
-NEW BID signal
+NEW 제안 signal
 → card inserted
 → PRICE settles
 → DELIVERY TIME settles
@@ -373,14 +373,14 @@ Target feel: precise, live, operational.
 
 No component should be copied literally. Build from KAPAPI state logic.
 
-When GM selects PLAYER C:
+When KAPAPI selects 작업자 C:
 
 ```text
 A / B reduce emphasis
 C receives selected border/state
 selection control locks
 DELIVERY commitment becomes primary
-PLAYER SELECTED state appears
+작업자 배정 state appears
 ```
 
 Avoid cards flying away, confetti, or exaggerated scaling.
@@ -410,7 +410,7 @@ A calm state machine:
 SELECTED
 → IN PROGRESS
 → DELIVERED
-→ GM REVIEW
+→ 발주자 확인
 → COMPLETE
 ```
 
@@ -425,7 +425,7 @@ Primary references: REF-21-001 plus Factory motion philosophy from KAPAPI design
 Desired sequence:
 
 ```text
-QUEST COMPLETE
+업무 완료
 
 result.dwg
 Delivered 18:42
@@ -453,16 +453,16 @@ This is one of the highest-value storytelling motions.
 Start with visible marketplace complexity:
 
 ```text
-QUEST
-BID A / B / C
-PLAYER
+업무
+제안 A / B / C
+작업자
 NDA
 CONTRACT
 STATUS
 FILES
 ```
 
-Then progressively move those items behind KAPAPI until GM sees only:
+Then progressively move those items behind KAPAPI until the 발주자 sees only:
 
 ```text
 FILE + DEADLINE
@@ -474,7 +474,7 @@ FILE + DEADLINE
 
 The animation visually explains the product thesis:
 
-> **KAPAPI improves by removing decisions from the GM workflow.**
+> **KAPAPI improves by removing decisions from the 발주자 workflow.**
 
 ---
 
@@ -485,7 +485,7 @@ Until `KAPAPI_MOTION.md` defines final tokens, use these provisional limits duri
 | Motion class | Target range | Purpose |
 | --- | ---: | --- |
 | Micro interaction | 120–180ms | hover, press, focus |
-| Product state | 180–280ms | BID arrival, selection, status |
+| Product state | 180–280ms | 제안 arrival, selection, status |
 | Major state | 280–420ms | delivery, complete, panel transition |
 | Narrative step | 450–800ms | hero/product story |
 | Ambient | 2–8s | subtle periodic live state |
@@ -532,10 +532,10 @@ Do not install five animation libraries because five reference components use di
 | ID | Reference | KAPAPI use | Decision |
 | --- | --- | --- | --- |
 | REF-21-001 | Number Flow | PRICE / TIME / EXP / live metrics | **P0** |
-| REF-21-002 | Animate Card Animation | BID arrival / insertion | **P0** |
+| REF-21-002 | Animate Card Animation | 제안 arrival / insertion | **P0** |
 | REF-21-003 | Animated Feature Carousel | hero transaction sequence | **P0** |
 | REF-21-004 | Animated Card Diagram | Marketplace → Assist → Autopilot | **P1** |
-| REF-21-005 | Animated Card Chart | PLAYER trust history | **P1** |
+| REF-21-005 | Animated Card Chart | 작업자 trust history | **P1** |
 | REF-21-006 | Blur Fade | rare editorial reveal | **P2** |
 | REF-21-X01 | Spotlight Cursor | possible hero experiment | **Default reject** |
 

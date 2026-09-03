@@ -29,7 +29,7 @@ At maturity, execution may be performed by human workers, AI, deterministic auto
 ## Canonical reading order
 
 1. `docs/ORIGIN_AND_GROWTH_THESIS.md`
-2. `docs/DECISIONS.md` — D-032 through D-034 are current authority for market/routing/terminology
+2. `docs/DECISIONS.md` — D-032 through D-035 are current authority for market, routing, terminology and what the client surface shows
 3. `docs/PRODUCT.md`
 4. `docs/ROADMAP.md`
 5. `docs/VALIDATION.md`
@@ -68,7 +68,7 @@ There is no separate fictional/game vocabulary layer. Do not reintroduce special
 1. **Task first, not profile first.** Work is the core public object, not a worker storefront.
 2. **Price + completion time are mandatory** in every proposal.
 3. **Result-based/fixed-price first.** Do not drift into controlled hourly staffing as the core model.
-4. **Do not pretend routing intelligence exists before the data exists.** Early selection can be KAPAPI recommendation + client confirmation, lightweight client choice or concierge routing.
+4. **Do not pretend routing intelligence exists before the data exists.** Behind the scenes, early selection can be KAPAPI recommendation with human review, lightweight client choice or concierge routing. D-035 governs what the prototype *shows* — 발주자 → 카파피 → 결과 — not a claim that the routing is already automated at scale.
 5. **Routing responsibility grows with evidence.** Verified completion, on-time, revision, failure, availability and category-liquidity data enable stronger recommendations and later default routing.
 6. **The client remains the final result judge** through accept/revise until category-specific evidence justifies stronger guarantees.
 7. **Architecture/CAD is a testbed, not the market identity.**
@@ -82,16 +82,23 @@ There is no separate fictional/game vocabulary layer. Do not reintroduce special
 
 ---
 
-## Preferred current prototype selection posture
+## Current prototype selection posture (D-035)
+
+What the 발주자 sees is three nodes:
+
+```text
+발주자  →  카파피  →  결과  →  수락 / 수정 요청
+```
+
+What happens inside the middle node, visible on the 작업자 surface and `이용 방법`:
 
 ```text
 업무 등록
 → 작업자들이 가격 + 완료시간 제안
-→ KAPAPI 필수요건 확인 / 정렬 / 추천
-→ 발주자 확정
+→ KAPAPI 필수요건 확인 / 정렬 / 선정
+→ 작업자 배정
 → 수행
 → 결과
-→ 수락 / 수정 요청
 ```
 
 Future direction:

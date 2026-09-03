@@ -19,12 +19,29 @@ Current preferred prototype selection flow:
 
 ```text
 작업자들이 독립적으로 가격 + 완료시간 제안
-→ KAPAPI 필수요건 확인 / 정렬 / 추천
-→ 발주자 확정
+→ KAPAPI 필수요건 확인 / 정렬 / 선정
 → 작업자 배정
 ```
 
-Universal platform-controlled routing is a later capability and changes KAPAPI's responsibility profile as it grows.
+**D-035 changed this and the change is legally material.** Removing 발주자 확정 moves
+the selection from the client to KAPAPI, so KAPAPI can no longer describe itself as
+a venue whose user made the choice. Before any commercial launch, review with
+counsel:
+
+- who is the contracting party for the work once KAPAPI selects the 작업자;
+- whether selecting creates a duty of care in the selection itself;
+- what KAPAPI owes when a selected 작업자 fails, and what recovery is promised;
+- how the selection criteria are disclosed, retained and explained on dispute;
+- whether the client's remaining acceptance/revision right is sufficient to keep
+  final quality judgement with them.
+
+The prototype mitigates none of this by itself. What it does do is keep the
+selection inspectable — the criteria and the excluded 제안 are shown — and keep
+final acceptance with the client, which is the minimum the disclosure above
+assumes.
+
+Universal platform-controlled routing remains a later capability and continues to
+change KAPAPI's responsibility profile as it grows.
 
 ---
 
@@ -70,7 +87,7 @@ If retained/fractional capacity is revisited later, conduct separate labor/inter
 
 ### Stage A — Task marketplace + recommendation
 
-> Client defines work/constraints; workers propose; KAPAPI recommends; client confirms; client judges result.
+> Client defines work/constraints; workers propose; KAPAPI selects (D-035); client judges result and holds the revision right.
 
 ### Stage B — Default routing
 
@@ -271,7 +288,7 @@ Recommended early posture:
 - clear 발주자/작업자/KAPAPI role disclosure
 - worker sets price + completion time
 - KAPAPI recommends using transparent evidence
-- client confirms current recommendation
+- KAPAPI selects, with the criteria and the excluded 제안 disclosed
 - client remains final acceptance/revision authority
 - no claim AI guarantees the best worker or result
 - no universal routing/SLA guarantee

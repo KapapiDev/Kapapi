@@ -41,52 +41,52 @@ If a section needs that structure, redesign the visual.
 
 ## 3. Show the current KAPAPI transaction truthfully
 
-Current prototype behavior under D-032:
+Current prototype behavior under D-035. What the 발주자 sees is three nodes:
 
 ```text
-[GM posts bounded work]
+[발주자: 파일 + 한 줄 설명]
           ↓
-[QUEST CREATED]
+[      카파피      ]
           ↓
-[PLAYERs find the QUEST]
+[     결과 도착     ]
           ↓
-[BIDs arrive: PRICE × DELIVERY]
-          ↓
-[ineligible options fall away]
-          ↓
-[KAPAPI RECOMMENDATION]
-          ↓
-[GM CONFIRMS]
-          ↓
-[ASSIGNED / WORK STARTED]
-          ↓
-[RESULT READY]
-          ↓
-[ACCEPT / REVISE]
+[   수락 / 수정 요청  ]
 ```
 
-Use product UI, files, timing, states and motion so this can be understood without a long explanation.
+Inside the middle node, and visible on the 작업자 surface and `이용 방법`:
 
-Do **not** visually collapse `RECOMMENDATION` and `ASSIGNED` into the same state. The GM confirmation is the current-stage bridge between them.
+```text
+[업무 등록] → [작업자들이 PRICE × DELIVERY 입찰]
+           → [자격·마감·예산·보안 미충족 제외]
+           → [KAPAPI 선정] → [작업자 배정] → [수행]
+```
+
+Use product UI, files, timing, states and motion so this can be understood without
+a long explanation.
+
+Do **not** put the bid list, a ranked comparison, or a selection control on the
+발주자 surface. There is no confirmation bridge to visualize — 선정 and 배정 are one
+state, and the client is shown the result of it with its criteria attached.
 
 ---
 
 ## 4. Demonstrate KAPAPI's present differentiation
 
-The current differentiation is not “the GM never chooses anything from day one.”
+The differentiation is that the 발주자 never chooses a worker, and that this is
+still inspectable rather than opaque.
 
-Show instead:
+Show:
 
-- work exists first, not a PLAYER storefront;
-- PLAYERs compete with PRICE + DELIVERY;
-- KAPAPI removes invalid/ineligible options;
-- task-specific trust/history matters;
-- KAPAPI recommends one strongest fit;
-- the GM can confirm with one clear action;
-- alternatives remain available without forcing a giant comparison wall;
-- the result closes the QUEST and creates better future data.
+- work exists first, not a 작업자 storefront;
+- 작업자 compete with PRICE + DELIVERY;
+- KAPAPI removes invalid/ineligible options and says which condition each missed;
+- task-specific trust and work history decide, not the lowest price;
+- KAPAPI selects, and the criteria stay on the record;
+- the 발주자 does nothing between uploading and receiving;
+- acceptance and the revision request remain the client's;
+- the result closes the 업무 and creates better future data.
 
-The recommendation surface should itself reduce decision burden.
+The selection surface should carry no decision burden at all on the client side.
 
 ---
 
@@ -97,7 +97,7 @@ The long-term Outcome Layer is important, but it is future evolution.
 Preferred visual progression:
 
 ```text
-QUEST COMPLETE
+업무 완료
 → PRICE / DELIVERY / fit / on-time / revision data
 → stronger task-specific trust
 → better recommendation
@@ -109,7 +109,7 @@ QUEST COMPLETE
 
 If execution resources are shown, the mature layer may include:
 
-- HUMAN PLAYER
+- HUMAN WORKER
 - AI
 - AUTOMATION
 - SPECIALIST PARTNER
@@ -123,16 +123,17 @@ Do not depict universal autonomous routing or SLA guarantees as current producti
 
 Use real state objects:
 
-- `QUEST #0182`
-- `BIDS 04`
-- `PRICE`
-- `DELIVERY`
-- `TIME ATTACK`
-- `RECOMMENDATION READY`
-- `GM CONFIRMED`
-- `PLAYER ASSIGNED`
-- `LV.12`
-- `QUEST COMPLETE`
+- `업무 #0182`
+- `제안 4건`
+- `가격`
+- `완료시간`
+- `긴급 업무`
+- `작업자 배정`
+- `결과 도착`
+- `업무 완료`
+
+Korean labels are set in the sans face without letter-spacing. The mono treatment
+was designed for latin small-caps and splits Hangul into detached glyphs.
 
 Do not write essays explaining the world.
 
@@ -161,13 +162,13 @@ The page should feel like a product in use, not a brochure about a future produc
 
 ## 8. Task-first supply proof
 
-The PLAYER side is part of the product thesis, not a hidden implementation detail.
+The 작업자 side is part of the product thesis, not a hidden implementation detail. D-035 moved the market off the client's screen, not out of the product.
 
-Show that a PLAYER can:
+Show that a 작업자 can:
 
 ```text
 작업 찾기
-→ open QUESTs
+→ open 업무
 → 내가 할 수 있는 작업
 → inspect scope/deadline
 → BID PRICE + DELIVERY
@@ -216,7 +217,7 @@ Reject a public section if:
 - recommendation and assignment are visually indistinguishable;
 - it implies day-one universal auto-routing;
 - CAD/construction dominates category perception;
-- the PLAYER supply path is reduced to generic seller/profile marketing.
+- the 작업자 supply path is reduced to generic seller/profile marketing.
 
 ---
 
@@ -228,7 +229,7 @@ For each major section, answer YES to:
 - Is there one dominant product/media object?
 - Does the actual UI demonstrate the claim?
 - Is current behavior clearly distinguished from future evolution?
-- Is recommendation clearly before GM confirmation/assignment?
+- Is the 발주자 surface free of any control that picks a worker?
 - Is copy supporting rather than replacing the visual?
 - Does the section feel like a premium product rather than documentation?
 

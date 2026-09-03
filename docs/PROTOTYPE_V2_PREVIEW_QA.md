@@ -1,86 +1,80 @@
-# KAPAPI Prototype v2 — Historical Preview QA
+# KAPAPI Prototype v2 — Preview and live QA
 
-Status: **historical pre-D-032 deployment record**  
+Status: **current deployment record**
+Branch: `feat/prototype-v2`
 Updated: **2026-09-03**
 
-> This file records the live Preview QA performed **before** the product decision changed from day-one automatic routing to the D-032 task-first / recommendation-first model. It is useful evidence about the v2 visual implementation and hero compositing, but its old `no picker anywhere` and universal auto-routing assertions are **not current product requirements**.
-
-Current product behavior is governed by:
-
-1. `ORIGIN_AND_GROWTH_THESIS.md`
-2. `DECISIONS.md` D-032
-3. `PRODUCT.md`
-4. `ROADMAP.md`
-5. `PROTOTYPE_SPEC.md`
-6. current `scripts/loop.mjs`
-
-## Historical deployment
+## Deployment
 
 | | |
 |---|---|
 | Preview URL | <https://kapapi-git-feat-prototype-v2-calcome.vercel.app> |
-| Branch | `feat/prototype-v2` |
-| Deployed commit | `d003027` |
-| Deployment | `dpl_HgXvmC8stwQDbGazfy2ySsCvKpFb` |
-| Project recorded at the time | `prj_OE2VU0XUNFCnjGebuJLeVkKhEy5s` |
-| Target | preview, not production |
+| Project | `prj_OE2VU0XUNFCnjGebuJLeVkKhEy5s` (`kapapi`, team `team_cuJFcIPj1zvkSmGeDk3hckZd`) |
+| Target | `null` — **preview, not production** |
 
-`main` was not changed by this historical preview work.
+`main` is untouched at `4cd13ab`. Nothing has been merged and nothing promoted. The
+branch alias always points at the newest v2 preview, so the URL stays current
+across redeploys.
 
-## Historical QA results worth retaining
+## What the build demonstrates
 
-The deployed preview was checked with:
-
-- `scripts/loop.mjs`
-- `scripts/shots.mjs`
-- `scripts/hero-qa.mjs`
-- direct media requests
-
-Useful visual/technical findings that remain relevant:
-
-- the hero video and real-UI compositing timeline stayed synchronized over the deployed CDN path;
-- desktop composited the real product surface into the laptop display and then cut full-frame;
-- narrow/mobile layouts used a direct full-frame product cut because the laptop screen was cropped out;
-- desktop/mobile route captures found no horizontal overflow in the tested viewports;
-- the dedicated hero-timeline capture was necessary because ordinary route screenshots could be green while defects existed several seconds into the animation;
-- reduced-motion/mobile behavior requires separate visual verification rather than inference from desktop.
-
-## Superseded behavior
-
-The historical harness treated the following as required:
-
-> **no GM worker-selection control anywhere; KAPAPI automatically assigns the PLAYER**
-
-That requirement is superseded by D-032.
-
-Current preferred prototype flow is:
+D-035. The 발주자's model is three nodes:
 
 ```text
-QUEST posted
-→ PLAYERs BID PRICE + DELIVERY
-→ KAPAPI filters/ranks and recommends
-→ GM confirms recommended PLAYER
-→ ASSIGNED
-→ execution
-→ result
-→ accept / revise
+발주자  →  카파피  →  결과
 ```
 
-Universal automatic routing is now a later capability that must be earned from transaction, trust, liquidity and recovery data.
+입찰 and 선정 happen inside the middle node. The 작업자 surface (`/board`) carries
+the market, because proposing 가격 + 완료시간 is what that person is there to do,
+and `이용 방법` opens the box to explain the mechanism.
 
-## Current QA authority
+The two surfaces are one account, switched by the header toggle. `/` is 발주자 and
+`/board` is 작업자, so the active side is read off the URL rather than stored.
 
-Use the current `scripts/loop.mjs` for behavioral invariants. It now checks that:
+## Harnesses
 
-- task-first discovery exists;
-- PRICE + DELIVERY are mandatory;
-- recommendation appears before assignment;
-- GM confirmation creates assignment;
-- alternatives remain accessible;
-- one universal account can occupy different QUEST roles;
-- the product does not claim universal automatic routing or completion guarantees;
-- the long-term Outcome Layer is framed as future evolution.
+All three run against the deployed URL, not localhost.
 
-## Current live-QA status
+| Harness | Covers |
+|---|---|
+| `scripts/loop.mjs` | 10 canon invariants |
+| `scripts/hero-qa.mjs` | the film's rules at 1920, 1440, 1280, tablet, mobile |
+| `scripts/shots.mjs` | 6 routes × desktop and mobile: overflow, touch targets, unnamed controls, first-viewport density |
 
-The code and canon were realigned on 2026-09-03 after the historical preview above. A fresh live Vercel Preview verification is still required for the new recommendation/confirmation flow. The previously recorded project/deployment identifiers could not be resolved through the currently connected Vercel access during this alignment pass, so this file must not be read as proof that the latest branch head has been deployed or visually verified.
+### What `loop.mjs` asserts
+
+- the landing is 업무 입력 → 배정 → 결과, with no `제안 비교` or `가장 적합한 후보를 추천`;
+- the 발주자 / 작업자 toggle exists, and **no second signup door** does — `작업자 가입`,
+  `고수 가입`, `전문가 등록` are all searched for and must be absent (숨고's
+  `고수 가입하기` is the pattern this rules out);
+- posting work promises assignment without comparison;
+- the 발주자 surface reaches 배정된 작업자 with 왜 이 작업자인가요, and carries **no**
+  `이 작업자로 진행`, `다른 제안 보기` or `카파피 추천`, verified by querying the DOM for
+  any worker-selection control;
+- work runs to the result without another client step;
+- no fabricated progress percentage;
+- revision and acceptance still work;
+- 작업 찾기 browses open work with no storefront and no separate account;
+- 가격 + 완료시간 are both required and validated against the deadline;
+- one account holds 발주자 / 작업자 / 제안 참여 at once;
+- the footer states what is not provided.
+
+### What `hero-qa.mjs` asserts
+
+The founder's file is used as delivered, so this measures the rendered element
+rather than trusting the CSS: the original path and resolution, rendered ratio
+within 0.02 of the source, `object-fit` never `cover`, **zero** elements painted
+over the frame at five sample points, no filter, no controls, actually playing, no
+horizontal scroll, and the film at 50–55% of the viewport on desktop / stacked
+under the action on a phone.
+
+## Known gaps
+
+- `UrgentSection` (긴급 업무, 가격 × 완료시간) is built but not rendered anywhere. It lost
+  its surface when the 작업자 landing was removed. 긴급 업무 is named canon and
+  `PROTOTYPE_SPEC` §5 lists it, so it is waiting for a surface rather than deleted.
+- The 발주자 landing was reduced to hero + one proof section + the account section.
+  `PROTOTYPE_SPEC` S01 has been amended to match, but the reduction was a founder
+  direction ("완전히 비우고"), not a measured result.
+- No live QA has been run against a Production deployment, because there has
+  deliberately not been one for this branch.

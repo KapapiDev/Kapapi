@@ -62,10 +62,8 @@ Preferred current semantic language includes:
 - `제안 보내기`
 - `제안이 도착했습니다`
 - `조건을 확인합니다`
-- `카파피 추천`
-- `왜 추천하나요?`
-- `이 작업자로 진행`
-- `다른 제안 보기`
+- `카파피가 작업자를 배정했습니다`
+- `왜 이 작업자인가요?`
 - `작업을 시작했습니다`
 - `결과가 도착했습니다`
 - `결과 확인`
@@ -92,11 +90,9 @@ Input:
 
 Primary CTA:
 
-> `의뢰 등록`
+> `맡기기`
 
-PLAYER entry:
-
-> `작업 찾기`
+작업자 entry: the 발주자 / 작업자 header toggle, not a CTA on the client's surface.
 
 Do not use hero copy such as:
 
@@ -106,7 +102,7 @@ because universal auto-routing is a later earned capability.
 
 ---
 
-## 4. Task-first PLAYER language
+## 4. Task-first 작업자 language
 
 KAPAPI should feel like a place where real work exists before a seller storefront.
 
@@ -122,7 +118,7 @@ Useful labels:
 - `완료`
 - `마감`
 
-Avoid copy that suggests a PLAYER must first become a “seller,” create a shop or permanently switch account roles.
+Avoid copy that suggests a 작업자 must first become a “seller,” create a shop or permanently switch account roles.
 
 ---
 
@@ -146,29 +142,24 @@ No long proposal-letter language is required by default.
 
 ---
 
-## 6. Recommendation language
+## 6. Selection language
 
-Recommendation must be clearly different from assignment.
+D-035 removed the confirmation step, so there is no "before / after" pair any more.
+KAPAPI selects, and the 발주자 is told what happened.
 
-Before GM confirmation:
+On the 발주자 surface:
 
-- `추천`
-- `카파피 추천`
-- `추천이 준비되었습니다`
-- `왜 이 작업자를 추천하나요?`
-
-After GM confirmation:
-
-- `확정`
-- `이 작업자로 진행합니다`
-- `확정된 작업자`
+- `카파피가 작업자를 배정했습니다`
+- `배정된 작업자`
+- `왜 이 작업자인가요?`
 - `작업을 시작했습니다`
 
-Do not use `배정 완료`, `PLAYER ASSIGNED` or equivalent before confirmation in the current prototype.
+Do **not** write `추천`, `확정`, `이 작업자로 진행` or `다른 제안 보기` on the 발주자
+surface. They describe a decision the client is no longer asked to make, and the
+words invite them to look for a control that is not there.
 
-Alternatives should remain understandable through simple language such as:
-
-> `다른 제안 보기`
+`이용 방법` may say `선정` and show the criteria and the excluded 제안, because
+explaining the mechanism is that page's job.
 
 ---
 
@@ -188,10 +179,10 @@ Prefer:
 - `수정본이 도착했습니다`
 - `작업이 완료되었습니다`
 
-World layer may accompany ordinary Korean:
+State labels stay in Korean (D-034):
 
-- `RESULT READY`
-- `QUEST COMPLETE`
+- `결과 도착`
+- `업무 완료`
 
 No confetti, trophy or congratulatory copy is needed for professional transaction completion.
 
@@ -203,7 +194,7 @@ Current public product may explain the long-term direction, but it must be frame
 
 Good semantic direction:
 
-> 완료된 QUEST가 쌓일수록 추천이 좋아지고, 검증된 업무부터 카파피가 배정과 복구를 더 많이 맡습니다.
+> 완료된 업무가 쌓일수록 배정이 정확해지고, 검증된 업무부터 카파피가 복구까지 더 많이 맡습니다.
 
 Long-term concept:
 
@@ -213,7 +204,7 @@ Do not write as if current users already receive universal autonomous execution 
 
 When mentioning future execution, KAPAPI may combine:
 
-- human PLAYERs
+- human 작업자
 - AI
 - automation
 - specialist partners
@@ -223,22 +214,26 @@ The public message should still focus on the result, not technical orchestration
 
 ---
 
-## 9. World terminology
+## 9. State labels
 
-KAPAPI world terms are concise state grammar after ordinary Korean makes the action clear.
+A state label is a short Korean phrase beside the sentence, not a second language.
 
 Good:
 
-`의뢰가 등록되었습니다`  
-`QUEST CREATED`
+`업무가 등록되었습니다`  
+`업무 등록`
 
-`추천이 준비되었습니다`  
-`RECOMMENDATION READY`
+`카파피가 작업자를 배정했습니다`  
+`작업자 배정`
 
-`작업이 완료되었습니다`  
-`QUEST COMPLETE`
+`업무가 완료되었습니다`  
+`업무 완료`
 
-Avoid paragraphs explaining QUEST/BID/PLAYER/LEVEL/EXP on transactional screens.
+Two rules learned from shipping this: the label must be Korean (D-034 removed the
+latin state vocabulary), and it must therefore not be set in the mono face with
+letter-spacing — that treatment was designed for latin small-caps and splits
+Hangul into detached glyphs (`업 무 #0211`, `6시 간`). Sans, no tracking, tabular
+figures where numbers need to line up.
 
 ---
 
@@ -281,8 +276,8 @@ Before founder review, inspect every visible Korean string across:
 - upload controls
 - scope confirmation
 - submit confirmation
-- QUEST board
-- QUEST detail
+- 업무 목록
+- 업무 상세
 - BID form
 - recommendation/confirmation
 - profile/trust
