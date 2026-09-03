@@ -1,9 +1,9 @@
-# KAPAPI Prototype v1 Specification
+# KAPAPI Prototype Specification
 
-Status: **canonical implementation scope for the public Prototype v1**  
-Updated: **2026-09-02**
+Status: **canonical implementation scope for the current public prototype**  
+Updated: 2026-09-03
 
-This document translates the current product decisions into a buildable prototype. It does not replace the broader product roadmap.
+This document translates the current product canon into a buildable prototype. `DECISIONS.md` D-032 supersedes older prototype assumptions that universal automatic routing must already be solved.
 
 ---
 
@@ -11,89 +11,90 @@ This document translates the current product decisions into a buildable prototyp
 
 Build the smallest public product that makes KAPAPI's differentiated transaction obvious, credible and memorable.
 
-The prototype must communicate:
+A first-time viewer should understand two things:
 
-> A GM can submit professional work once, KAPAPI handles routine vendor selection and coordination, and the GM returns mainly to inspect the result.
+### PLAYER
 
-Default GM flow:
+> **할 수 있는 일을 골라서, 끝내고, 돈 번다.**
+
+### GM
+
+> **해야 할 일을 올리면, 누군가 끝내준다.**
+
+The prototype must prove the present transaction and clearly hint at the future Outcome Layer without pretending the future is already production reality.
+
+Current GM flow:
 
 ```text
 work request
 → scope confirmation
-→ 맡기기
-→ KAPAPI orchestration
+→ QUEST posted
+→ BIDs arrive
+→ KAPAPI recommendation
+→ GM confirms
+→ execution
 → result
-→ accept / revision request
+→ accept / revise
 ```
 
-Internal / PLAYER market flow:
+PLAYER flow:
 
 ```text
-QUEST opens
-→ qualified PLAYERs BID with PRICE + DELIVERY
-→ KAPAPI evaluates eligibility + market terms + trust/performance + task fit
-→ KAPAPI assigns a PLAYER
-→ execution
-→ delivery
+QUEST discovery
+→ understand scope/deadline
+→ BID PRICE + DELIVERY
+→ selected/assigned
+→ execute
+→ submit
+→ earn + build history
 ```
 
-This is **Auto-Routed Marketplace / Autopilot-lite**, not full outcome-guaranteed Autopilot.
+Future direction:
+
+```text
+transactions
+→ trust data
+→ better recommendation
+→ default routing
+→ recovery
+→ work in → result out
+```
 
 ---
 
 # 2. Prototype success test
 
-A first-time viewer should be able to answer these questions after roughly 30–60 seconds:
+After roughly 30–60 seconds, a reviewer should be able to answer:
 
 1. What is KAPAPI?
-2. What do I do first if I have work to hand off?
-3. What do PLAYERs compete on?
-4. Who normally chooses the PLAYER?
-5. What does the GM do when the work comes back?
-6. Why is this meaningfully different from browsing freelancers on a conventional marketplace?
+2. Why does the work appear before the worker/profile?
+3. What can a PLAYER do here?
+4. What do PLAYERs compete on?
+5. How does the GM choose without studying a giant freelancer directory?
+6. What happens when work returns?
+7. How can this evolve beyond a conventional marketplace?
 
 Correct short answer:
 
-> “I submit the work. Experts compete on price and delivery. KAPAPI chooses/routes the best fit, the work gets done, and I inspect the result.”
+> “카파피에는 일이 먼저 올라옵니다. 할 수 있는 사람이 가격과 완료시간을 제안하고, 카파피가 조건과 이력을 보고 추천해줘서 의뢰자가 빠르게 확정합니다. 거래가 쌓이면 추천·배정·복구가 점점 자동화되고 결국 일을 넣으면 결과를 받는 구조로 발전합니다.”
 
 ---
 
-# 3. Audience and roles
+# 3. Product identity
 
-## GM
+KAPAPI is **task-first**, not profile-first.
 
-The GM is a person or small organization with professional work that exceeds current capacity, skill or deadline availability.
+Do not make the public product feel like:
 
-Prototype GM jobs:
+- a seller storefront catalog
+- a portfolio social network
+- a generic expert directory
+- a CAD/construction-only service
+- a magical AI auto-outsourcing product with no evidence
 
-- describe desired result,
-- attach input file(s),
-- confirm scope/deadline/budget boundary,
-- submit,
-- optionally inspect status,
-- inspect result,
-- accept or request revision.
+The core object is the QUEST.
 
-The GM should **not** be required to browse PLAYER profiles or compare routine BIDs after submission.
-
-## PLAYER
-
-The PLAYER is an independent professional who chooses whether to participate and sets:
-
-- PRICE,
-- committed DELIVERY TIME,
-- short note if needed.
-
-Prototype PLAYER jobs:
-
-- discover an eligible QUEST,
-- understand the deliverable/deadline,
-- BID quickly,
-- see assignment status,
-- submit result,
-- build visible trust history.
-
-Roles are transactional, not permanent account classes.
+One account may be GM in one QUEST and PLAYER in another. Do not create permanent buyer/seller account classes.
 
 ---
 
@@ -101,255 +102,178 @@ Roles are transactional, not permanent account classes.
 
 ## 4.1 Three-second rule
 
-The first viewport must make this thought immediate:
+The GM path must immediately communicate:
 
 > **“여기에 내가 맡길 일을 적으면 되는구나.”**
 
-The visitor must not need to decode `QUEST`, `BID`, `PLAYER`, `LEVEL`, `EXP`, `TIME ATTACK`, routing logic or dashboards before acting.
+The PLAYER path must also be discoverable without competing with the primary GM action:
+
+> **“작업 찾기”**
+
+Do not require a visitor to understand QUEST / BID / LEVEL / EXP / TIME ATTACK before taking action.
 
 ## 4.2 Above-the-fold hierarchy
 
-Required hierarchy:
+Required:
 
 1. KAPAPI identity
-2. plain-language GM promise
+2. category-neutral plain-language promise
 3. large task-entry surface
-4. file attachment affordance
-5. primary CTA `일 맡기기`
-6. very short process reassurance
-7. secondary PLAYER entry
-8. hero media/product proof if it does not compete with the action
+4. file attachment
+5. primary CTA
+6. short reassurance about the next step
+7. secondary `작업 찾기`
+8. supporting product/media proof
 
-Recommended copy direction:
-
-- headline: **할 일을 던져주세요.**
-- supporting promise: **전문가들이 가격과 완료시간을 제안하고, 카파피가 가장 적합한 작업자를 연결해 결과를 가져옵니다.**
-- input examples may rotate across categories, but the master hero must remain category-neutral.
-- primary CTA: **일 맡기기 →**
-- secondary: **일하러 오셨나요? → 일 찾기**
-
-Short process line:
+Recommended semantic direction, not mandatory copy:
 
 ```text
-일 등록 → KAPAPI 자동 배정 → 작업 → 결과 확인
+맡길 일을 적어주세요.
+카파피가 작업 조건을 정리하고, 맞는 제안을 추천합니다.
+
+[ 어떤 작업이 필요하신가요?                         ]
+[ 파일 첨부 ]                              [ 의뢰 등록 → ]
+
+작업을 찾고 있나요? → 작업 찾기
 ```
 
-Do not show a BID comparison wall above the fold.
+Do not say that KAPAPI will universally auto-assign and return only the result as if this is already proven.
 
 ---
 
-# 5. Theme architecture
+# 5. Required screens / surfaces
 
-## Public default
+## S01 — Landing
 
-**Light-first.**
-
-- white / off-white background
-- graphite/black type
-- restrained hairlines
-- generous whitespace
-- one signal accent family
-- small radii and compact controls
-
-## Dark contextual moments
-
-Near-black/dark is allowed where operational state benefits from it:
-
-- TIME ATTACK module
-- routing / active work state
-- Workroom / operational timeline
-- selected brand contrast section
-
-Do not make the whole product a dark developer console.
-
----
-
-# 6. Required screens / surfaces
-
-## S01 — Landing / GM entry
-
-Purpose: understand KAPAPI and submit work.
+Purpose: explain task-first KAPAPI in seconds and provide both market entrances.
 
 Required:
 
-- light-first hero
-- task input
-- attach-file control
-- `일 맡기기`
-- secondary PLAYER link
-- hero media slot documented in `HERO_MEDIA.md`
-- below-fold transaction explanation
-- below-fold flagship case study
-- trust/product thesis section
-- Autopilot direction section clearly framed as direction, not current guarantee
+- task-entry hero
+- file attachment
+- `의뢰 등록` / equivalent primary CTA
+- `작업 찾기` secondary path
+- examples across ordinary office/support + skilled work
+- concise explanation that PLAYERs BID PRICE + DELIVERY
+- a recommendation/selection proof module
+- one end-to-end completed QUEST example
+- TIME ATTACK example
+- result acceptance/revision
+- future evolution toward routing/Outcome Layer, clearly labeled as direction
 
-No dense dashboard in hero.
+Do not lead with CAD.
 
-## S02 — Scope confirmation / QUEST draft
+## S02 — QUEST draft / scope confirmation
 
-Purpose: demonstrate AI-assisted delegation-friction reduction.
+Purpose: reduce posting/explanation friction.
 
-Input can begin vague:
+GM input may be vague:
 
-```text
-“이 손그림 기준으로 현황도 CAD 정리해서 내일 오전까지 주세요.”
-```
+> “이 PDF들 표로 정리해서 오늘 안에 주세요.”
 
-Prototype output should structure:
+Prototype may deterministically/mock structure:
 
-- work summary
-- source/input files
+- request summary
+- files
+- task scope
 - deliverables
-- deadline
 - output format
-- objective acceptance points
+- deadline
+- acceptance criteria
 - revision boundary
+- optional budget ceiling
+- confidentiality/security
 - missing information
-- optional budget ceiling / commercial constraint
-- confidentiality/NDA indicator
 
-AI behavior may be deterministic/mock for the prototype.
-
-Important:
-
-- do not generate authoritative final price,
-- do not pretend AI can judge subjective final professional quality,
-- make scope clarity the value.
+AI behavior may be mocked, but do not claim authoritative price or subjective quality judgment.
 
 Primary action:
 
-**`이대로 맡기기`**
+**`이대로 등록하기`**
 
-After submission, show a strong hands-off confirmation such as:
+## S03 — QUEST Board / PLAYER discovery
 
-> **맡겼습니다. 이제 하시던 일 하세요.**
-
-## S03 — GM orchestration status
-
-Purpose: show that work continues without GM vendor selection.
-
-State sequence:
-
-```text
-QUEST OPEN
-→ BIDS ARRIVING
-→ ROUTING
-→ PLAYER ASSIGNED
-→ WORK STARTED
-→ FILE DELIVERED
-→ RESULT READY
-```
-
-The GM may inspect details, but there is no default `Choose this PLAYER` control.
-
-Show compact routing evidence rather than opaque magic:
-
-- qualified BIDs received
-- price/delivery range
-- relevant career/history
-- on-time/revision indicators
-- selected/routed result
-- short `왜 이 작업자?` rationale
-
-Example rationale:
-
-> “마감 6시간 내 충족, 유사업무 47건, 정시 99%, 수정률 낮음. 예산 범위 내 최고 신뢰도.”
-
-Do not imply that an LLM alone chose the PLAYER.
-
-Optional secondary/debug affordance may expose proposals, but manual selection is not the default GM story.
-
-## S04 — QUEST Board / PLAYER discovery
-
-Purpose: demonstrate supply-side marketplace energy.
+Purpose: prove the founder-origin and task-first supply behavior.
 
 Required QUEST metadata:
 
 - plain-language title
 - category
-- REWARD or expected commercial range if appropriate
-- deadline / TIME ATTACK when real
-- files/source indicator
+- compensation/range where appropriate
+- deadline
+- TIME ATTACK when genuine
 - brief scope
-- eligibility tags
+- files/source indicator
+- eligibility
 - BID count
 - status
 
-Use KAPAPI vocabulary after ordinary language is clear.
+Useful filters:
 
-## S05 — QUEST Detail / PLAYER BID
+- 전체
+- 내가 할 수 있는 작업
+- 오늘 마감
 
-Purpose: demonstrate mandatory PRICE × DELIVERY competition.
+A PLAYER should be able to browse real work without first creating a storefront.
 
-PLAYER sees:
+## S04 — QUEST Detail / PLAYER BID
+
+Required:
 
 - exact deliverable
 - deadline
-- input files
+- input/source files
 - acceptance criteria
-- confidentiality/NDA
-- relevant skills/credentials
-- current BID context only to the degree product policy allows
+- confidentiality/security
+- relevant requirements
 
-BID form requires:
+BID requires:
 
 - PRICE
-- committed elapsed DELIVERY TIME
-- short relevant note optional
+- committed DELIVERY TIME
+- optional short relevant note
 
-Do not ask for a long Upwork-style cover letter.
+No long Upwork-style cover letter.
 
-Example:
+## S05 — BID / recommendation state
+
+Purpose: show what KAPAPI adds beyond simply collecting proposals.
+
+Sequence:
 
 ```text
-₩100,000 / 18H
-₩150,000 / 8H
-₩220,000 / 4H
+BIDS RECEIVED
+→ ELIGIBILITY FILTER
+→ KAPAPI RECOMMENDATION
+→ GM CONFIRMATION
+→ ASSIGNED
 ```
 
-## S06 — Routing / internal market proof
+Show multiple BIDs with visible PRICE + DELIVERY and task-relevant trust.
 
-This can be a product-proof module rather than a separate navigation destination.
+Recommendation may consider:
 
-Purpose: make KAPAPI's differentiation visible.
+- hard eligibility/security
+- deadline/budget feasibility
+- relevant career/history
+- on-time/revision indicators
+- availability
+- PRICE × DELIVERY trade-off
 
-Show:
+Default prototype UX:
 
-1. eligibility filtering
-2. multiple BIDs arriving
-3. PRICE × DELIVERY
-4. relevant verified trust data
-5. KAPAPI routing decision
-6. assignment lock
+- one clearly recommended PLAYER
+- short `왜 추천하나요?` rationale
+- primary `이 작업자로 진행`
+- secondary `다른 제안 보기`
 
-The routing decision should visually feel inspectable and mechanical, not mystical.
+Do not present a fake scientific routing score as truth.
 
-For prototype demo data, use deterministic routing so the same candidate wins reliably.
+Do not present universal auto-assignment as already solved.
 
-## S07 — PLAYER Profile
+## S06 — Assignment / Workroom
 
-Required trust hierarchy:
-
-1. relevant career
-2. task-specific completion history
-3. on-time rate
-4. revision/rework rate
-5. completion count
-6. rating
-7. dispute/failure signal where appropriate
-8. LEVEL / EXP as secondary world layer
-
-A profile must answer:
-
-> “Can this person understand and deliver this kind of work with low explanation burden?”
-
-Do not let decorative LEVEL dominate relevant professional proof.
-
-## S08 — Workroom / progress
-
-Purpose: know what is happening without managing minute by minute.
-
-Not chat-first.
+Purpose: know what is happening without micromanaging.
 
 Core:
 
@@ -362,7 +286,7 @@ Core:
 - revision state
 - security/NDA indicator
 
-Canonical observable states:
+States:
 
 ```text
 ASSIGNED
@@ -373,76 +297,110 @@ ASSIGNED
 → COMPLETE
 ```
 
-Support:
+Support fixtures for blocked / late / revision requested / cancelled when useful.
 
-- blocked
-- revision requested
-- late/risk
-- cancelled/failed fixture if needed
+No fake percentage for human work unless genuinely measurable.
 
-No fake percentage such as `73% complete` for human work unless measurable.
+## S07 — Result / acceptance
 
-## S09 — Result / acceptance
+Prioritize:
 
-Purpose: close the loop.
-
-Result surface prioritizes:
-
-- delivered file(s)
-- timestamp / delivery against deadline
-- objective preflight checks actually performed
+- delivered files
+- delivery timestamp vs deadline
+- objective checks actually performed
 - result preview where feasible
-- `결과 확인 / 합격`
-- `수정 요청`
+- accept / QUEST COMPLETE
+- request revision
 
-Revision request should reference the agreed scope rather than open-ended dissatisfaction.
+Revision should refer to agreed scope.
 
-Completion may then show restrained EXP/history update.
+## S08 — PLAYER trust/profile
 
-No confetti.
+Trust hierarchy:
+
+1. relevant career
+2. task-specific completion history
+3. on-time rate
+4. revision/rework rate
+5. completion count
+6. rating
+7. failure/dispute signals where appropriate
+8. LEVEL / EXP as secondary brand layer
+
+Profile answers:
+
+> “이 사람이 이 종류의 일을 제대로 끝낼 가능성이 높은가?”
+
+## S09 — Future direction / Outcome Layer proof
+
+This can be a landing module, not a fake production feature.
+
+Explain the earned progression:
+
+```text
+more completed QUESTs
+→ better task-specific trust data
+→ better recommendations
+→ default routing
+→ backup/recovery
+→ work in → result out
+```
+
+At maturity, execution may use human PLAYERs, AI, automation, specialist partners or hybrid workflows.
+
+Label this as **future direction / product evolution**, not current universal capability.
 
 ---
 
-# 7. Flagship case study
+# 6. Demo fixtures
 
-Architecture/CAD is the first proof case, not the hero identity.
+Use category-neutral variety.
 
-Use below the hero as a concrete end-to-end example.
+At minimum include:
 
-Suggested case:
+### Ordinary bounded work
 
-```text
-QUEST #001
-손그림/현황 자료 → 지정 DWG 현황도 정리
-Deadline: today / defined time
-Deliverables: DWG + PDF
-NDA: ON
-```
+- PDF → spreadsheet extraction
+- PPT formatting cleanup
+- e-commerce image resizing/product listing
 
-Demonstrate multiple BIDs with price + delivery and trust differences.
+### Skilled support work
 
-Example fixture only:
+- defined CAD/drawing support
+- rendering
+- small code/web fix
 
-| PLAYER | PRICE | DELIVERY | Relevant proof | On-time |
+Architecture/CAD may be the detailed founder-domain case, but it must not dominate the hero or overall category impression.
+
+---
+
+# 7. Recommendation fixture
+
+Example:
+
+| PLAYER | PRICE | DELIVERY | Relevant history | On-time |
 | --- | ---: | ---: | --- | ---: |
-| A | ₩80,000 | 12H | 유사업무 8건 | 94% |
-| B | ₩110,000 | 6H | 유사업무 47건 | 99% |
-| C | ₩150,000 | 4H | 유사업무 11건 | 96% |
+| A | ₩50,000 | 18H | 31 similar QUESTs | 97% |
+| B | ₩70,000 | 8H | 84 similar QUESTs | 99% |
+| C | ₩90,000 | 4H | 12 similar QUESTs | 96% |
 
-For a deadline-sensitive fixture, KAPAPI may deterministically route B because it satisfies the deadline with stronger task history/reliability at acceptable cost. Do not teach users that highest price or shortest time always wins.
+A deadline-sensitive fixture may recommend B because it satisfies the deadline with stronger task history/reliability at acceptable cost.
+
+The UI should make clear that cheapest, fastest or highest-rated does not automatically win in every case.
 
 ---
 
 # 8. State model
 
-Prototype state enum should support at least:
+Prototype should support at least:
 
 ```text
 DRAFT
 SCOPE_READY
 OPEN
 BIDDING
-ROUTING
+RECOMMENDATION_READY
+CONFIRMED
 ASSIGNED
 IN_PROGRESS
 DELIVERED
@@ -455,224 +413,110 @@ CANCELLED
 
 Demo transitions must be deterministic and replayable.
 
-The implementation may use URL state, local store or mock API abstraction, but do not build production infrastructure merely to simulate the loop.
+---
+
+# 9. Hero/media behavior
+
+Hero media supports the action; it is not the product itself.
+
+Rules:
+
+- category-neutral master story
+- real KAPAPI UI rather than fake generated readable UI
+- no message implying universal auto-routing already exists
+- motion may show `submit → bids → recommendation → confirmation → work → result`
+- future `work in → result out` may appear as a clearly future-oriented closing beat
+- mobile/reduced-motion paths must preserve understanding without video
 
 ---
 
-# 9. Routing fixture architecture
+# 10. Landing narrative order
 
-The prototype should represent selection as a score/policy assembled from visible evidence.
+Recommended:
 
-Conceptual pipeline:
+1. Hero: submit work / find work
+2. Task-first distinction: work exists first
+3. PRICE × DELIVERY market proof
+4. KAPAPI recommendation + GM confirmation
+5. real completed QUEST case
+6. TIME ATTACK
+7. result loop
+8. PLAYER trust / LEVEL-EXP as evidence layer
+9. future evolution: data → routing → Outcome Layer
+10. PLAYER entry / open QUESTs
 
-```text
-hard eligibility
-→ deadline/budget feasibility
-→ task relevance
-→ verified history
-→ reliability
-→ PRICE × DELIVERY trade-off
-→ assignment
-```
-
-Suggested typed fields:
-
-```text
-eligibilityPass
-credentialMatch
-securityMatch
-price
-committedDeliveryHours
-relevantCompletionCount
-onTimeRate
-revisionRate
-rating
-availability
-semanticTaskFit
-routingScore
-routingReason[]
-```
-
-Do not present `routingScore` as scientific truth. It is a prototype decision-support abstraction.
-
-AI can support semantic task fit and scope interpretation; it should not be depicted as the sole judge.
+Avoid turning the landing page into a pitch deck or card wall.
 
 ---
 
-# 10. Hero media behavior
+# 11. Visual rules
 
-See `docs/HERO_MEDIA.md` for the current footage concept and asset status.
+Keep current v2 visual authority unless product behavior conflicts.
 
-Product rule:
+- public UX light-first
+- dark only as contextual operational punctuation
+- premium typography
+- restrained HUD/world language
+- no fantasy RPG imagery
+- no generic SaaS dashboard collage
+- no invented public labels without product meaning
 
-- hero media is supporting proof, not the primary CTA,
-- master footage must remain category-neutral,
-- real KAPAPI HTML/CSS UI should replace/generated fake UI when the camera reaches the screen,
-- no AI-generated readable product UI is authoritative,
-- motion should communicate: submit → leave → KAPAPI works → result returns.
-
-On slow/mobile/reduced-data contexts, use a strong poster/static alternative and preserve the product explanation without video.
-
----
-
-# 11. Landing page below-fold sequence
-
-Recommended narrative order:
-
-1. **Hero:** hand off work
-2. **How it works:** one plain-language strip
-3. **KAPAPI handles the middle:** routing proof / internal competition
-4. **Flagship real QUEST:** CAD case study
-5. **Trust:** relevant career + task history + reliability
-6. **TIME ATTACK:** urgency as a real state, not a gimmick
-7. **Result loop:** accept / revision
-8. **Autopilot direction:** complexity collapses behind KAPAPI
-9. **PLAYER entry:** professional side-job supply proposition
-
-Avoid repeating the same card layout for every section.
+World-building should come from real states such as QUEST, BID, TIME ATTACK, LEVEL / EXP and QUEST COMPLETE.
 
 ---
 
-# 12. Motion requirements
-
-Follow `KAPAPI_MOTION.md` timings and anti-patterns.
-
-For current auto-routing behavior, interpret legacy motion names as follows:
-
-- `BID_ARRIVAL`: still valid
-- legacy `BID_DECISION`: **KAPAPI routing decision** by default, not GM choice
-- `QUEST_PROGRESS`: valid, replace `PLAYER SELECTED` semantic source with `KAPAPI ASSIGNED PLAYER`
-- `QUEST_COMPLETE`: valid
-- `HERO_TRANSACTION`: update semantic sequence to:
-
-```text
-WORK SUBMITTED
-→ BIDS ARRIVE
-→ KAPAPI ROUTES
-→ WORK RUNS
-→ RESULT READY
-```
-
-- `AUTOPILOT_COLLAPSE`: still valid as future-direction narrative, but do not imply unsupported guarantees
-
-Use no visible bounce. No confetti. No generic fade-up site.
-
----
-
-# 13. Responsive behavior
-
-## Desktop
-
-The hero may use a split composition where the task-entry action owns roughly the stronger share and media/product proof occupies the secondary share.
-
-## Mobile
-
-Priority order:
-
-1. promise
-2. task input
-3. attach
-4. `일 맡기기`
-5. simple process line
-6. media/poster
-7. PLAYER secondary entry
-
-Do not squeeze desktop dashboard compositions into horizontal-scroll mobile cards.
-
-Controls must be touch-safe and readable.
-
----
-
-# 14. Accessibility
+# 12. Accessibility / responsive / performance
 
 Required:
 
-- semantic headings and landmarks
-- keyboard-operable task entry/BID/result controls
-- visible focus states
-- labeled file controls
+- semantic headings/landmarks
+- keyboard-operable controls
+- visible focus
+- labeled files and form controls
 - sufficient contrast
 - reduced-motion path
-- video controls/accessibility behavior appropriate to autoplay-muted hero media
-- status not communicated only by color
-- no noisy screen-reader countdown announcements
-
-The prototype should remain understandable with motion disabled.
-
----
-
-# 15. Performance
-
-Public first impression must not be sacrificed for video or animation.
-
-Hero media rules:
-
-- muted/playsInline when autoplay is used
-- poster image
-- avoid blocking initial text/input rendering on video download
-- lazy/conditional media loading where appropriate
-- no giant unoptimized background video
-
-Prefer CSS/HTML for product UI motion rather than baking UI into video.
-
-Avoid layout shifts when media loads.
+- status not color-only
+- touch-safe mobile controls
+- no horizontal overflow
+- text/action must render before heavy hero media
+- poster/fallback for video
+- no layout shifts caused by media
 
 ---
 
-# 16. Explicit prototype non-goals
+# 13. Explicit non-goals before 1R
 
-Do not build pre-1R:
+Do not build or claim:
 
-- production PG/escrow
-- platform-held funds
+- production escrow/custody
 - tax settlement engine
-- production identity verification pipeline
+- universal identity verification automation
 - deep dispute center
 - full messaging suite
 - broad category marketplace backend
 - native apps
-- authoritative AI price setting
+- authoritative AI pricing
 - subjective AI final quality judgment
-- SLA/outcome guarantee
-- employee/hourly staffing model
-- regulated professional judgment by unverified PLAYERs
-
-Mock these only where needed to explain the product, and label the product state honestly.
+- universal automatic PLAYER routing
+- universal SLA/outcome guarantee
+- controlled hourly staffing
+- unqualified regulated professional judgment
 
 ---
 
-# 17. Demo script target
-
-A reviewer should be able to demo the core in approximately 60 seconds:
+# 14. 60-second demo target
 
 ```text
-00–08s  Landing: “할 일을 던져주세요.”
-08–16s  GM enters task + file
-16–24s  scope becomes structured, GM submits
-24–34s  PLAYER side BID: price + delivery
-34–44s  KAPAPI auto-routing / assignment
-44–52s  progress / result ready
-52–60s  GM result review → accept or revision
+00–08s   Landing: task-first promise + task input
+08–16s   GM input becomes a clear QUEST draft
+16–24s   PLAYER board: real work exists first
+24–32s   PLAYER submits PRICE + DELIVERY BID
+32–42s   BIDs filtered → KAPAPI recommends → GM confirms
+42–52s   Work progresses → result delivered
+52–58s   GM accepts / requests revision
+58–60s   Future: transactions → trust → routing → Outcome Layer
 ```
 
-The prototype does not need to make the reviewer wait in real time. Demo state transitions may be scripted.
+Desired reviewer reaction:
 
----
-
-# 18. Acceptance summary
-
-Do not approve the prototype if any of these are true:
-
-- first screen looks like a freelancer directory,
-- first screen looks like a dark AI/developer dashboard,
-- GM must choose among routine BIDs,
-- KAPAPI vocabulary obscures the basic action,
-- AI appears to subjectively judge final professional quality,
-- CAD dominates the hero and makes KAPAPI look architecture-only,
-- motion is ornamental rather than state-driven,
-- the result/revision loop is missing,
-- the product cannot be explained in ordinary Korean after one glance.
-
-Approve when the prototype feels like:
-
-> **A professional-work operating layer where the GM hands off the work and KAPAPI absorbs the messy middle.**
+> **“지금은 일이 먼저 올라오는 거래시장이고, 이 거래 데이터를 쌓아서 결국 일을 넣으면 결과가 나오는 시스템으로 가려는 거구나.”**

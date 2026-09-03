@@ -1,453 +1,254 @@
-# KAPAPI — Claude Code Implementation Handoff
+# KAPAPI — Implementation Handoff
 
-Status: **implementation handoff for Prototype v1**  
-Target implementation branch: `feat/prototype-v1`
+Status: **current implementation handoff**  
+Authority branch: `docs/initial-product-design`  
+Current visual implementation branch: `feat/prototype-v2`
 
 ## Mission
 
-Build a public, high-polish KAPAPI Prototype v1 that makes the product understandable in seconds, demonstrates one complete result-oriented transaction loop, and expresses a distinctive KAPAPI world without sacrificing professional trust.
+Build and maintain a high-polish KAPAPI prototype that makes the present transaction understandable in seconds and the long-term Outcome Layer credible without pretending it already exists.
 
-The product is **not** a freelancer directory with game decoration.
+The product is **not** a freelancer directory with game decoration, a CAD marketplace, or a magical auto-outsourcing demo.
 
-The GM-facing promise is:
-
-> **일 던져놔. 결과만 받아.**
->
-> **DROP WORK. GET RESULTS.**
-
-The default behavior is:
+Current product story:
 
 ```text
-GM submits a valid work request
-→ GM routine work ends
-→ PLAYERs BID with PRICE + DELIVERY TIME
-→ KAPAPI ranks/selects/routes automatically
+TASK FIRST
+GM posts bounded work
+→ PLAYERs discover QUESTs
+→ PLAYERs BID PRICE + DELIVERY TIME
+→ KAPAPI filters/ranks and recommends
+→ GM confirms
 → PLAYER executes
 → result returns
-→ GM accepts or requests revision
+→ GM accepts/revises
 ```
 
-Do **not** implement the older default where the GM must compare BID A/B/C and choose a PLAYER. That behavior is superseded by `docs/DECISIONS.md` D-031 and the current `docs/PRODUCT.md` / `docs/PROTOTYPE_SPEC.md`.
+Growth story:
+
+```text
+transactions → trust data → recommendation → routing → recovery → repeat capacity → Outcome Layer
+```
+
+North Star:
+
+> **해야 할 일을 올리면, 결과로 돌아온다.**
 
 ---
 
-## Read order and authority
+## Mandatory reading order
 
-Before writing application code, read these files in this order:
+Before changing implementation, read:
 
-1. `docs/README.md`
-2. `docs/DECISIONS.md`
+1. `docs/ORIGIN_AND_GROWTH_THESIS.md`
+2. `docs/DECISIONS.md` — **D-032 is the current routing/selection authority**
 3. `docs/PRODUCT.md`
-4. `docs/IDENTITY_ROLE_MODEL.md`
-5. `docs/PROTOTYPE_SPEC.md`
-6. `docs/KAPAPI_ART_DIRECTION.md`
-7. `docs/KAPAPI_DESIGN.md`
-8. `docs/KAPAPI_MOTION.md`
-9. `docs/UPWORK_FIRST_TOUCH_REFERENCE.md`
-10. `docs/HERO_MEDIA.md`
-11. `docs/QA_CHECKLIST.md`
-12. `TASK_QUEUE.md`
-13. `docs/LEGAL.md`
-14. `docs/VALIDATION.md`
-15. `docs/REFERENCE_BOARD.md`
+4. `docs/ROADMAP.md`
+5. `docs/VALIDATION.md`
+6. `docs/PROTOTYPE_SPEC.md`
+7. `docs/PROGRAM_2026_MODU.md`
+8. `docs/LEGAL.md`
+9. current v2 visual/content override documents
+10. `docs/KAPAPI_ART_DIRECTION.md`
+11. `docs/KAPAPI_DESIGN.md`
+12. `docs/KAPAPI_MOTION.md`
+13. `docs/HERO_MEDIA.md`
+14. `docs/QA_CHECKLIST.md`
+15. `TASK_QUEUE.md`
 
-Authority rules:
+If older copy or behavior conflicts with D-032 or the files above, the newer task-first canon wins.
 
-- Product behavior: latest `DECISIONS.md` + `PRODUCT.md` + `PROTOTYPE_SPEC.md`.
-- Identity / role architecture: **`IDENTITY_ROLE_MODEL.md`**.
-- Current public art direction / world-building: **`KAPAPI_ART_DIRECTION.md`**.
-- Detailed component/material/layout reference: `KAPAPI_DESIGN.md`, only where it does not conflict with current product/art direction.
-- Motion timing/behavior: `KAPAPI_MOTION.md`, with legacy `GM selects BID` choreography interpreted as **KAPAPI routes/selects** for the default flow.
-- Hero media integration: `HERO_MEDIA.md`.
-- Acceptance: `QA_CHECKLIST.md` + the mandatory visual/world QA gate in `KAPAPI_ART_DIRECTION.md` + the role-model QA gate in `IDENTITY_ROLE_MODEL.md`.
-
-If an older example conflicts with D-031, the universal-user role model, the current prototype spec, light-first public direction or `KAPAPI_ART_DIRECTION.md`, the newer rule wins.
+D-031's day-one universal hands-off auto-routing requirement is superseded.
 
 ---
 
 ## Non-negotiable product truths
 
-1. The visitor must understand within roughly three seconds: **“여기에 내가 맡길 일을 적으면 되는구나.”**
-2. The GM primary action is **`일 맡기기`**, not `Start a QUEST` or `QUEST 등록하기`.
-3. Use normal Korean first. Introduce `QUEST`, `PLAYER`, `BID`, `LEVEL / EXP`, `TIME ATTACK` after the business action is understood.
-4. The GM does **not** routinely compare or select PLAYERs after submitting a valid request.
-5. PLAYERs still compete behind the scenes with mandatory **PRICE + committed DELIVERY TIME**.
-6. KAPAPI selection is not an opaque LLM whim. The UI should imply hard eligibility + market terms + verified trust/performance + task fit + routing policy.
-7. The GM remains the final result judge through **accept / revision request**.
-8. **KAPAPI has one universal user identity. GM and PLAYER are contextual QUEST roles, never permanent account types.** A single user may issue one QUEST as GM and BID/execute another as PLAYER, including during the same period.
-9. Do not require a permanent `GM / PLAYER` choice during signup/onboarding, separate logins, or two accounts. Prefer action-oriented entry such as `일 맡기기`, `일 찾기`, `내 QUEST`.
-10. Architecture/CAD is the flagship test case below the hero, not the market definition and not the hero master category.
-11. Do not claim production escrow, SLA guarantees, authoritative AI quality judgment, tax automation, or regulated-professional coverage that does not exist.
-12. This is a thin public prototype. Visual/product clarity matters more than backend breadth.
+1. **Task first, not profile first.** The core marketplace object is the QUEST.
+2. The GM must understand within seconds that they can submit work here.
+3. The PLAYER must have a clear `작업 찾기` path to real open work.
+4. PLAYERs do not need to create a storefront before earning.
+5. Every BID requires **PRICE + committed DELIVERY TIME**.
+6. Early selection should reduce burden without fake certainty. Preferred prototype default: **KAPAPI recommendation + GM confirmation**.
+7. Alternatives may be visible through `다른 제안 보기`; do not force a giant proposal-comparison wall.
+8. Universal automatic routing is a later capability earned from transaction/trust/liquidity/recovery data.
+9. GM remains the final result judge through accept/revise.
+10. Architecture/CAD is one founder-domain proof case, not the hero category or market definition.
+11. Early categories may include ordinary office/support work and skilled professional support work.
+12. KAPAPI world terms come after ordinary-language understanding.
+13. One universal account; GM/PLAYER are contextual QUEST roles.
+14. AI initially helps scope, missing information, task fit and objective checks. It is not an infallible selector or subjective quality judge.
+15. Long-term execution may use human PLAYERs, AI, automation, specialist partners or hybrid workflows.
+16. Strong SLA/outcome guarantees are earned category by category.
 
 ---
 
-# ONE USER, CONTEXTUAL ROLES
+## Current GM UX
 
-Do not accidentally implement GM and PLAYER as two user species.
-
-Canonical model:
+Preferred current flow:
 
 ```text
-USER A
-├─ QUEST #0104 → issuer → GM
-├─ QUEST #0182 → assigned executor → PLAYER
-└─ QUEST #0201 → bidder → PLAYER
+LANDING
+→ task input / files
+→ KAPAPI structures QUEST
+→ GM confirms posting
+→ BIDs arrive
+→ KAPAPI recommendation appears
+→ GM confirms recommended PLAYER
+→ execution status
+→ delivered result
+→ accept / revise
 ```
 
-Role is derived from the user's relationship to each QUEST.
+Recommendation surface should show enough evidence to be credible:
 
-This means:
+- deadline/budget feasibility
+- relevant history/career
+- on-time/revision signals
+- PRICE + DELIVERY trade-off
+- short rationale
 
-- signup is universal,
-- identity is universal,
-- a user may hand off work and also take other work,
-- qualification may restrict which QUESTs a user can execute, but does not change account identity,
-- profile architecture may show both issuer-side and execution-side reputation without collapsing them into one meaningless score.
+Primary action:
 
-Do not build:
+> **이 작업자로 진행**
 
-- `GM account` vs `PLAYER account`,
-- permanent role onboarding,
-- mutually exclusive `GM MODE / PLAYER MODE`,
-- a separate supply-side product that requires another account.
+Secondary:
 
-A temporary filter/view toggle is acceptable if it only organizes activity and does not change identity semantics.
+> **다른 제안 보기**
 
-The world-building implication is important: GM and PLAYER are **roles inside each QUEST**, not RPG classes chosen at signup.
+Do not label this universal auto-routing.
 
 ---
 
-# WORLD-BUILDING IS A CORE DIFFERENTIATOR
-
-Do not treat KAPAPI vocabulary as a late decorative skin.
-
-The KAPAPI world should be recognizable through:
-
-- language,
-- work state,
-- reputation/progression,
-- routing/completion motion,
-- compact operational metadata.
-
-Canonical vocabulary includes:
-
-- GM
-- PLAYER
-- QUEST
-- BID
-- REWARD
-- TIME ATTACK
-- LEVEL / EXP
-- QUEST COMPLETE
-
-The world must be introduced through a layered system:
-
-> **plain-language meaning → product state → KAPAPI world term**
-
-Examples:
+## Current PLAYER UX
 
 ```text
-업무 등록 완료
-QUEST #0182 CREATED
+작업 찾기
+→ open QUEST board
+→ filter by fit / deadline
+→ inspect bounded scope
+→ BID PRICE + DELIVERY
+→ assignment
+→ execute
+→ submit result
+→ earn / verified history
 ```
 
-```text
-입찰 7건이 도착했습니다
-7 BIDS RECEIVED
-```
-
-```text
-KAPAPI가 작업자를 배정했습니다
-PLAYER ASSIGNED
-```
-
-```text
-긴급 업무
-TIME ATTACK · 04:18:22
-```
-
-```text
-작업이 완료되었습니다
-QUEST COMPLETE
-```
-
-World-building intensity should vary by surface:
-
-- GM first-touch: low and subtle,
-- GM orchestration: medium,
-- PLAYER surfaces: strong,
-- contracts/NDA/payment/dispute/result acceptance: sober and low.
-
-The desired system is **a serious professional-work marketplace with the engagement/progression logic of a game**.
-
-Do not use:
-
-- swords,
-- coins,
-- fantasy badges,
-- rarity tiers,
-- medieval/fantasy UI,
-- pixel-RPG motifs,
-- gamer RGB,
-- loot/reward visuals,
-- game-launcher composition.
-
-Game energy should come from `QUEST`, `TIME ATTACK`, `REWARD`, `LEVEL / EXP`, live states, deadlines, assignment, completion and tactile motion.
-
----
-
-## External first-touch benchmark — Upwork
-
-Reference site:
-
-> `https://www.upwork.com/`
-
-Use the current Upwork homepage as a **UX benchmark only** for:
-
-- immediate first-view comprehension,
-- large and simple hero hierarchy,
-- one obvious main action,
-- clean light-theme trust,
-- low cognitive load,
-- restrained navigation,
-- short supporting copy,
-- category/example shortcuts that make starting easy.
-
-Do not copy Upwork's:
-
-- layout,
-- component structure,
-- branding,
-- colors,
-- typography,
-- copy,
-- video/art direction,
-- talent-search model,
-- manual freelancer-selection flow.
-
-KAPAPI should be **easier and more automatic** on the GM side.
-
-Repository canon always overrides Upwork.
-
----
-
-## Visual north star
-
-### Public / marketplace default
-
-**LIGHT FIRST.**
-
-Use:
-
-- white / off-white paper field,
-- black / graphite typography,
-- restrained borders,
-- disciplined spacing,
-- premium typography,
-- high readability,
-- one restrained **cool sapphire-blue signal family**.
-
-Dark is contextual, not global. Reserve near-black/dark surfaces for selected operational moments such as TIME ATTACK, active routing/workroom state, or deliberate brand contrast sections.
-
-> **Light marketplace first. Dark operational moments second.**
-
-The public experience should feel easier than Kmong and at least as immediately understandable as Upwork, while being more result-oriented and more distinctive.
-
-### Sapphire signal rule
-
-Use sapphire blue only where state or interaction deserves a signal:
-
-- submit confirmation,
-- focus/active state,
-- routing activation,
-- assignment lock,
-- important system operation,
-- restrained primary CTA emphasis where required.
-
-The submit interaction may use the approved signature:
-
-> final click → 0.2–0.4s localized sapphire confirmation → work leaves the GM.
-
-Do not default to violet/purple AI gradients or purple card ecosystems.
-
-### Reject these outputs
-
-Do not ship:
-
-- generic Tailwind/shadcn SaaS dashboard aesthetics,
-- dark-first developer-console landing,
-- Upwork/Kmong clone composition,
-- crypto/game launcher styling,
-- purple AI gradients,
-- neon gradients,
-- glassmorphism everywhere,
-- giant rounded-card walls,
-- fantasy RPG motifs,
-- dashboard collage in the first viewport,
-- decorative animation that competes with the task-entry action.
-
-Premium quality must come from typography, grid, composition, hierarchy, product-state detail and restrained motion.
+This supply path is strategically important because it preserves the founder-origin problem.
 
 ---
 
 ## Hero requirement
 
-The first viewport has one protagonist: **the task-entry surface**.
+The first viewport should remain category-neutral and action-led.
 
-Recommended semantic hierarchy:
+The task-entry surface is the protagonist.
 
-```text
-KAPAPI
-
-할 일을 던져주세요.
-전문가들이 가격과 완료시간을 제안하고,
-카파피가 가장 적합한 작업자를 자동으로 배정합니다.
-
-[ 맡길 일을 적어주세요...                              ]
-[ 파일 첨부 ]                                  [ 일 맡기기 → ]
-
-일 등록 → KAPAPI 자동 배정 → 작업 → 결과 확인
-
-일 찾기 →
-```
-
-Do not copy this layout literally if a stronger composition passes the same tests. The task-entry action must remain visually dominant.
-
-`일 찾기` is a secondary **action available to the same universal user**, not an entrance to a separate permanent PLAYER account.
-
-The hero may use the real-video concept documented in `docs/HERO_MEDIA.md`, but the CTA/input remains the protagonist. Do not turn the hero into a mini dashboard.
-
-Do not use a complete generated reference screenshot as a layout template. Design from principles and acceptance criteria.
-
----
-
-## Prototype loop to implement
-
-The prototype must allow a reviewer to experience or clearly demo:
+Approved semantic direction:
 
 ```text
-LANDING
-→ user describes work / attaches file
-→ AI-assisted scope preview (thin prototype)
-→ SUBMIT / 맡기기
-→ that user is GM for this QUEST
-→ hands-off orchestration status
-→ supply-side perspective: eligible users can see QUEST and submit PRICE + DELIVERY BID as PLAYERs
-→ KAPAPI receives BIDs and auto-routes a PLAYER
-→ work status progresses
-→ result is delivered
-→ GM chooses 결과 확인 / 수정 요청
-→ completion / trust history updates
+맡길 일을 적어주세요.
+카파피가 작업 조건을 정리하고 맞는 제안을 추천합니다.
+
+[ 어떤 작업이 필요하신가요?                         ]
+[ 파일 첨부 ]                              [ 의뢰 등록 → ]
+
+작업을 찾고 있나요? → 작업 찾기
 ```
 
-The demo may switch transaction perspectives to explain both sides, but it must never imply that GM and PLAYER require different permanent accounts.
+Do not use copy that implies:
 
-Use deterministic mock data/state where production backend is unnecessary. The demo must be stable and repeatable.
+> “등록만 하면 KAPAPI가 이미 완벽하게 자동배정하고 결과만 돌려준다.”
 
----
-
-## Implementation posture
-
-Recommended technical direction unless the repository already establishes an equivalent stack:
-
-- Next.js App Router + TypeScript
-- a disciplined CSS/token system; Tailwind is acceptable but must not dictate visual design
-- Motion (`motion/react`) for shared layout and state animation
-- Number Flow where numeric interpolation is genuinely useful
-- local typed mock data / deterministic demo state for Prototype v1
-- no production database, payment stack or auth complexity unless already required by existing code
-
-Prefer custom KAPAPI components over assembling a recognizable component-library demo.
-
-Accessibility and performance are part of visual quality, not cleanup tasks.
+The long-term `work in → result out` story belongs below the current transaction proof or in a clearly future-oriented beat.
 
 ---
 
-## Mandatory pre-code design gate
+## Landing narrative
 
-Before heavy implementation, do all of the following **in text only**:
+Recommended order:
 
-1. Propose **three distinct hero information structures**. Do not produce screenshot clones.
-2. Score each against:
-   - three-second understanding,
-   - GM primary-action clarity,
-   - KAPAPI differentiation,
-   - world-building integration,
-   - premium visual potential,
-   - mobile viability.
-3. Choose the strongest structure yourself.
-4. Write a short **world-building integration map** for:
-   - first-touch,
-   - GM orchestration,
-   - PLAYER board/profile,
-   - completion/result.
-5. Write a short **identity-role map** showing how the same universal user can access `일 맡기기`, `일 찾기`, and mixed GM/PLAYER QUEST history without permanent role selection.
-6. Verify the chosen structure does not visually copy Upwork.
+1. task-entry hero
+2. task-first distinction / PLAYER open-work entry
+3. PRICE × DELIVERY proof
+4. KAPAPI recommendation + GM confirmation
+5. completed QUEST case across a believable category
+6. TIME ATTACK
+7. result / accept-revise
+8. trust / LEVEL-EXP
+9. future progression: transactions → trust → routing → Outcome Layer
 
-Then implement.
+Do not make Architecture/CAD the dominant identity.
 
-Do not stop and ask the user to choose between normal implementation options unless there is a genuine product conflict.
+---
+
+## Visual authority
+
+Keep the v2 quality bar and visual rules unless product behavior conflicts:
+
+- light-first public UX
+- dark as contextual operational punctuation
+- premium typography and spacing
+- restrained HUD/world layer
+- no fantasy RPG cosplay
+- no generic SaaS dashboard wall
+- no arbitrary public pseudo-lore
+- real product states should drive motion
+
+Existing v2 hero compositing work can remain, but the composited product sequence must communicate the current recommendation/confirmation transaction rather than unsupported universal auto-assignment.
+
+---
+
+## Technical posture
+
+Continue the established Next.js App Router + TypeScript implementation unless a real technical blocker requires change.
+
+Prefer:
+
+- typed deterministic fixtures for prototype flow
+- stable replayable demo states
+- custom KAPAPI components
+- accessible forms/navigation
+- responsive desktop/mobile behavior
+- reduced-motion path
+- real QA against deployed preview when available
+
+Do not build production database/payment/auth complexity merely to simulate the 1R transaction.
+
+---
+
+## Definition of done for the aligned prototype
+
+The prototype is ready for review when:
+
+- task-first identity is unmistakable
+- ordinary online-work examples appear, not just CAD
+- `작업 찾기` visibly supports PLAYER discovery
+- PRICE + DELIVERY bidding is clear
+- KAPAPI recommendation is visible and evidence-backed
+- GM confirmation exists
+- no page claims universal automatic routing is already solved
+- result / revision loop is visible
+- future routing/Outcome Layer is clearly framed as earned evolution
+- Architecture/CAD is a testbed/example only
+- current visual polish is preserved
+- desktop/mobile/reduced-motion remain credible
+- build/lint/typecheck/tests available to the repository pass
+- current v2 QA invariants are updated for the new recommendation state
+
+Desired reaction:
+
+> **“카파피는 일이 먼저 올라오는 시장에서 시작해서, 거래 데이터를 쌓아 결국 일을 넣으면 결과가 나오는 시스템으로 가는구나.”**
 
 ---
 
 ## Working protocol
 
-1. Update origin references and work only from `feat/prototype-v1`.
-2. Re-read the canon before choosing screen structure.
-3. Complete the mandatory pre-code design gate above.
-4. Implement in small coherent tasks following `TASK_QUEUE.md`.
-5. After each major surface, self-audit against `docs/QA_CHECKLIST.md`, `docs/KAPAPI_ART_DIRECTION.md`, and `docs/IDENTITY_ROLE_MODEL.md`.
-6. Test desktop and mobile.
-7. Run build/typecheck/lint/tests available in the repository.
-8. Do a final visual/product/world/role-model audit before declaring completion.
-9. Do **not** merge to `main` automatically. Stop with the implementation branch ready for review.
-
-Do not make the user act as a technical courier. Resolve normal implementation choices, retries and debugging independently.
-
----
-
-## Definition of done
-
-Prototype v1 is ready for review when:
-
-- a new visitor understands the service at a glance,
-- the landing page is unmistakably light-first,
-- one obvious task-entry action dominates above the fold,
-- `일 찾기` exists but is secondary to demand-side first-touch,
-- a single universal user can conceptually act as GM on one QUEST and PLAYER on another without a permanent role/account split,
-- signup/onboarding does not require a permanent GM/PLAYER choice,
-- navigation/profile architecture does not imply mutually exclusive user classes,
-- the prototype demonstrates mandatory PRICE × DELIVERY bidding,
-- KAPAPI auto-routing is visible and the GM is not asked to select a routine BID,
-- world-building feels structurally integrated rather than pasted on,
-- QUEST / BID / PLAYER vocabulary is taught gradually,
-- PLAYER surfaces show stronger progression/world language while professional proof remains dominant,
-- sapphire is used as a restrained signal rather than decorative color flooding,
-- the result/revision loop is visible,
-- the flagship CAD case appears below the hero without making KAPAPI look CAD-only,
-- motion explains state change rather than decorating scroll,
-- responsive/accessibility/reduced-motion behavior is credible,
-- no unsupported production/legal promises are made,
-- the 30–60 second demo path can be performed without confusion,
-- the final output passes `docs/QA_CHECKLIST.md`, the mandatory art/world QA gate in `docs/KAPAPI_ART_DIRECTION.md`, and the role-model QA gate in `docs/IDENTITY_ROLE_MODEL.md`.
-
-Before stopping, self-score:
-
-- 3-second comprehension: target 10/10
-- product differentiation: target 9/10+
-- visual/art-direction quality: target 9/10+
-- world-building coherence: target 9/10+
-- universal-role coherence: target 10/10
-- interaction/motion polish: target 9/10+
-- professional trust: target 9/10+
-
-Any score below 8 requires another refinement pass.
-
-The desired reaction is not:
-
-> “nice freelancer marketplace.”
-
-It is:
-
-> **“I give KAPAPI the work, it handles the messy middle, and I can also take QUESTs I’m qualified to do without becoming a different kind of user.”**
+1. Fetch the latest target branch before changes.
+2. Do not implement against stale local assumptions.
+3. Follow the current canon above all older screenshots/copy examples.
+4. Keep code and docs aligned in the same change set.
+5. Run available build/typecheck/lint/tests.
+6. Verify the actual UI visually when a preview is available.
+7. Do not merge to `main` automatically unless explicitly instructed.
+8. Do not make the user act as a technical courier when connected tools can perform the work.

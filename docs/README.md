@@ -2,106 +2,118 @@
 
 This directory is the product/business/design canon for KAPAPI.
 
-## Prototype v2 execution authority
+## Current product thesis
 
-`feat/prototype-v2` is a from-scratch visual rebuild. For v2 implementation, read the root-level v2 directives **before** older visual examples.
+> **해야 할 일을 올리면, 결과로 돌아온다.**
 
-### Mandatory v2 reading order
+KAPAPI starts as a **task-first online work market**: work exists first, PLAYERs choose QUESTs they can finish, and every BID commits both **PRICE + DELIVERY TIME**.
 
-1. `../REBUILD_V2_FINAL_DIRECTIVE.md`
-2. `../REBUILD_V2_HANDOFF.md`
-3. `PROTOTYPE_V2_CONTENT_GOVERNANCE.md`
-4. `PROTOTYPE_V2_VISUAL_RESEARCH_PROTOCOL.md`
-5. `PROTOTYPE_V2_REFERENCE_ADDENDUM.md`
-6. `PROTOTYPE_V2_VISUAL_COMMUNICATION_RULES.md`
-7. `PROTOTYPE_V2_KOREAN_UX_WRITING.md`
-8. `PROTOTYPE_V2_HERO_COMPOSITING.md`
-9. `DECISIONS.md`
-10. `PRODUCT.md`
-11. `IDENTITY_ROLE_MODEL.md`
-12. `PROTOTYPE_SPEC.md`
-13. `KAPAPI_ART_DIRECTION.md`
-14. `KAPAPI_DESIGN.md`
-15. `KAPAPI_MOTION.md`
-16. `UPWORK_FIRST_TOUCH_REFERENCE.md`
-17. `HERO_MEDIA.md`
-18. `QA_CHECKLIST.md`
-19. `../TASK_QUEUE.md`
-20. `LEGAL.md`
-21. `VALIDATION.md`
-22. `REFERENCE_BOARD.md`
+The marketplace is the bootstrap, not the final destination. Real transactions create the price, delivery, task-fit, trust, failure and recovery data needed for KAPAPI to evolve toward recommendation, routing, repeat external capacity and eventually a **work-to-result Outcome Layer**.
 
-When older copy/visual examples conflict with a v2 override, **the v2 override wins**. Product/business behavior still follows the latest applicable decision/product canon.
+Canonical growth path:
 
-## v2 non-negotiable rules
+```text
+Task Marketplace
+→ Trusted Work Market
+→ Intelligent Recommendation / Routing
+→ Repeat Business Capacity
+→ Outcome Layer
+```
 
-- Prototype v1 implementation is a rejected visual example and must not be reused or cosmetically reskinned.
-- Public visual quality is P0. Functional correctness does not compensate for weak art direction.
-- Live references must be opened, scrolled, visually compared and used as evidence. Text summaries are insufficient.
-- Mandatory references include Upwork, Linear, Vercel, Factory, Raycast, Hyperstudio, Mercury, Kmong, Wishket and Soomgo, plus broad additional current research.
-- Korean public copy must be rewritten from zero and reviewed against real Korean product/marketplace language.
-- `할 일을 던져주세요.`, `일 던져놔. 결과만 받아.`, `Good. Done.` and similar internal shorthand are not approved public copy.
-- The Hero footage's laptop display is intended to carry real KAPAPI UI where technically feasible; otherwise use a clean editorial cut into real UI, not a detached dashboard card.
-- Public landing copy must not become a document/pitch deck. Prefer product UI, motion, state, media and real examples over paragraph explanations.
-- Every visible public element must be `PRODUCT REQUIRED`, `REFERENCE-SUPPORTED UX`, or `APPROVED BRAND/WORLD`. Otherwise remove it.
-- Fixture names/personas are test data, not global brand content.
-- `QUEST NETWORK`, fake `ONLINE` status, public `RESET`, arbitrary logged-in user identity and v1's `이런 일들이 올라옵니다` treatment are not canonical product requirements.
-- KAPAPI has one universal user identity; GM/PLAYER are contextual roles per QUEST.
-- Default GM behavior uses KAPAPI auto-routing, not routine manual PLAYER selection.
-- Public UX is light-first; dark is contextual operational punctuation.
-- World-building comes from real QUEST/BID/PLAYER/TIME ATTACK/LEVEL/EXP state grammar, not invented pseudo-lore or fantasy decoration.
+KAPAPI is category-independent in vision and category-specific in execution. Architecture/CAD is a founder-domain testbed, not the product identity. Early QUESTs may range from ordinary office/support work to skilled professional support work when they are bounded, digitally transferable and inspectable.
 
-## Core product documents
+At maturity, execution may be performed by human PLAYERs, AI, deterministic automation, specialist partners or hybrid workflows. The user-facing unit is the **result**.
 
+---
+
+## Canonical reading order
+
+For product/business understanding and all new implementation work, read in this order:
+
+1. `docs/ORIGIN_AND_GROWTH_THESIS.md` — why KAPAPI exists, task-first origin, supply/demand bridge and growth logic
+2. `docs/DECISIONS.md` — durable decisions; **D-032 is the current selection/routing authority**
+3. `docs/PRODUCT.md` — current product mechanics and stage model
+4. `docs/ROADMAP.md` — stage-by-stage validation and expansion
+5. `docs/VALIDATION.md` — evidence, hypotheses, metrics and kill signals
+6. `docs/PROTOTYPE_SPEC.md` — current buildable prototype story
+7. `docs/PROGRAM_2026_MODU.md` — 모두의 창업 application strategy
+8. `docs/LEGAL.md` — legal/product/payment/security boundaries
+9. `docs/IDENTITY_ROLE_MODEL.md` if present — one account, contextual GM/PLAYER roles
+10. visual/interaction documents (`KAPAPI_ART_DIRECTION.md`, `KAPAPI_DESIGN.md`, `KAPAPI_MOTION.md`, `HERO_MEDIA.md`, v2 override docs)
+11. `TASK_QUEUE.md` — implementation queue
+12. `CLAUDE_HANDOFF.md` — operational handoff
+
+If an older visual, copy or behavior example conflicts with D-032, `ORIGIN_AND_GROWTH_THESIS.md`, `PRODUCT.md` or `ROADMAP.md`, the newer task-first canon wins.
+
+---
+
+## Core documents
+
+- [ORIGIN_AND_GROWTH_THESIS.md](./ORIGIN_AND_GROWTH_THESIS.md) — founder-origin problem, task-first market thesis and growth ladder
 - [DECISIONS.md](./DECISIONS.md) — durable decisions and supersession history
-- [PRODUCT.md](./PRODUCT.md) — product definition and routed marketplace mechanics
-- [IDENTITY_ROLE_MODEL.md](./IDENTITY_ROLE_MODEL.md) — universal identity / contextual GM-PLAYER roles
-- [PROTOTYPE_SPEC.md](./PROTOTYPE_SPEC.md) — buildable prototype behavior and demo loop
-- [ROADMAP.md](./ROADMAP.md) — routed marketplace through Routing Intelligence / Outcome Autopilot
-- [VALIDATION.md](./VALIDATION.md) — observed evidence, hypotheses, metrics and kill signals
-- [LEGAL.md](./LEGAL.md) — legal/product/payment/security/professional-service boundaries
+- [PRODUCT.md](./PRODUCT.md) — current KAPAPI product definition and transaction architecture
+- [ROADMAP.md](./ROADMAP.md) — Task Market → Outcome Layer roadmap
+- [VALIDATION.md](./VALIDATION.md) — PLAYER + GM + marketplace validation framework
+- [PROTOTYPE_SPEC.md](./PROTOTYPE_SPEC.md) — prototype screens, states and demo loop
 - [PROGRAM_2026_MODU.md](./PROGRAM_2026_MODU.md) — 2026 모두의 창업 strategy
+- [LEGAL.md](./LEGAL.md) — legal/product/security/payment boundaries
 
 ## Visual / interaction documents
 
-- [KAPAPI_ART_DIRECTION.md](./KAPAPI_ART_DIRECTION.md) — public art-direction and world-building layer; legacy copy examples remain illustrative under v2
-- [KAPAPI_DESIGN.md](./KAPAPI_DESIGN.md) — detailed visual language and anti-template rules; v2 overrides govern conflicts
-- [KAPAPI_MOTION.md](./KAPAPI_MOTION.md) — motion language and accessibility/performance rules
-- [HERO_MEDIA.md](./HERO_MEDIA.md) — original product-movie narrative and source-media strategy; v2 compositing authority overrides implementation ambiguity
-- [QA_CHECKLIST.md](./QA_CHECKLIST.md) — functional/review gates, supplemented by v2 visual/content gates
+Prototype v2 visual override documents remain the primary implementation interpretation layer for the current v2 branch. Product behavior always follows the current product canon above.
 
-## Prototype v2 override documents
+- `PROTOTYPE_V2_CONTENT_GOVERNANCE.md`
+- `PROTOTYPE_V2_VISUAL_RESEARCH_PROTOCOL.md`
+- `PROTOTYPE_V2_REFERENCE_ADDENDUM.md`
+- `PROTOTYPE_V2_VISUAL_COMMUNICATION_RULES.md`
+- `PROTOTYPE_V2_KOREAN_UX_WRITING.md`
+- `PROTOTYPE_V2_HERO_COMPOSITING.md`
+- `KAPAPI_ART_DIRECTION.md`
+- `KAPAPI_DESIGN.md`
+- `KAPAPI_MOTION.md`
+- `HERO_MEDIA.md`
+- `QA_CHECKLIST.md`
 
-- [PROTOTYPE_V2_CONTENT_GOVERNANCE.md](./PROTOTYPE_V2_CONTENT_GOVERNANCE.md) — prevents arbitrary personas, labels, pseudo-branding, debug UI and meaningless invented public content
-- [PROTOTYPE_V2_VISUAL_RESEARCH_PROTOCOL.md](./PROTOTYPE_V2_VISUAL_RESEARCH_PROTOCOL.md) — broad live visual-research requirement
-- [PROTOTYPE_V2_REFERENCE_ADDENDUM.md](./PROTOTYPE_V2_REFERENCE_ADDENDUM.md) — global + Korean marketplace mandatory references
-- [PROTOTYPE_V2_VISUAL_COMMUNICATION_RULES.md](./PROTOTYPE_V2_VISUAL_COMMUNICATION_RULES.md) — show rather than explain; copy-deletion gate
-- [PROTOTYPE_V2_KOREAN_UX_WRITING.md](./PROTOTYPE_V2_KOREAN_UX_WRITING.md) — Korean public-copy rewrite authority
-- [PROTOTYPE_V2_HERO_COMPOSITING.md](./PROTOTYPE_V2_HERO_COMPOSITING.md) — laptop-screen real-UI compositing authority and clean-cut fallback
+---
 
-Evidence produced while executing the v2 rebuild, rather than authority over it:
+## Current non-negotiable product rules
 
-- [PROTOTYPE_V2_LIVE_REFERENCE_AUDIT.md](./PROTOTYPE_V2_LIVE_REFERENCE_AUDIT.md) — 38 sites opened and measured in a browser; the first-viewport character and card counts the design was gated on
-- [PROTOTYPE_V2_VISUAL_GATE.md](./PROTOTYPE_V2_VISUAL_GATE.md) — the three rendered directions, why A was chosen, and the hero compositing proof with its tracked corners
-- [PROTOTYPE_V2_CONTENT_NECESSITY_AUDIT.md](./PROTOTYPE_V2_CONTENT_NECESSITY_AUDIT.md) — every visible landing element against governance §0, plus the v1-leakage negative audit
-- [PROTOTYPE_V2_TOOL_AUDIT.md](./PROTOTYPE_V2_TOOL_AUDIT.md) — what was used, what was genuinely unavailable, and what no harness caught
-- [PROTOTYPE_V2_PREVIEW_QA.md](./PROTOTYPE_V2_PREVIEW_QA.md) — the deployed Preview URL and the QA run against it
+1. **Task first, not profile first.** The core public object is the QUEST, not a PLAYER storefront.
+2. **PRICE + DELIVERY TIME are mandatory** in every BID.
+3. **Result-based/fixed-price first.** Do not drift into controlled hourly staffing as the core model.
+4. **Do not pretend routing intelligence exists before the data exists.** Early selection can be KAPAPI recommendation + GM confirmation, lightweight GM choice or concierge routing.
+5. **Routing responsibility grows with evidence.** Verified completion, on-time, revision, failure, availability and category liquidity data enable stronger recommendations and later default routing.
+6. **The GM remains the final result judge** through accept/revise until category-specific evidence justifies stronger guarantees.
+7. **Architecture/CAD is a testbed, not the market identity.**
+8. **KAPAPI is broader than “professional work.”** Small office/support work and skilled professional support work can share the same bounded-task engine.
+9. **World terms are secondary.** Explain the real action in ordinary Korean before GM / PLAYER / QUEST / BID / LEVEL / EXP.
+10. **One universal identity.** A user may issue one QUEST and perform another.
+11. **AI is initially an aid, not a magical judge.** Use it for scoping, missing information, fit assistance and objective checks where reliable.
+12. **Long-term execution is resource-agnostic.** Human PLAYER, AI, automation, partner or hybrid execution are all possible; the product sells completion.
+13. **Strong outcome/SLA guarantees are earned category by category.**
+14. **The strongest proof is QUEST COMPLETE with real economics**, not signup count.
+15. Approved canon and implementation should ultimately live together on `main`; until then, do not confuse branch separation with product disagreement.
 
-## Supporting references
+---
 
-- [UPWORK_FIRST_TOUCH_REFERENCE.md](./UPWORK_FIRST_TOUCH_REFERENCE.md) — first-touch behavioral reference, not a copy/layout authority
-- [REFERENCE_BOARD.md](./REFERENCE_BOARD.md) — reference influence map, not direct implementation authority
-- [MOTION_REFERENCES_21ST.md](./MOTION_REFERENCES_21ST.md) and [`motion-sources/`](./motion-sources/) — motion evidence/reference material
+## Prototype v2 interpretation
 
-## Canon interpretation rules
+The existing `feat/prototype-v2` visual work remains valuable, but any copy/state that presents universal automatic assignment as already solved must be reframed.
 
-1. Chat discussion is not the final source of truth once recorded here.
-2. New major product decisions must be recorded in `DECISIONS.md`.
-3. Observed evidence and hypotheses remain separate in `VALIDATION.md`.
-4. Architecture/CAD is an initial proof/testbed, not KAPAPI's market identity.
-5. D-031/current product canon supersedes routine GM BID comparison / PLAYER selection examples.
-6. Universal identity supersedes any permanent buyer/seller account interpretation.
-7. Examples in documents are illustrative unless explicitly marked required/canonical/approved.
-8. A visual or copy example never outranks current product behavior.
-9. For Prototype v2, the v2 override documents above are the implementation interpretation layer.
-10. Founder visual approval is required before v2 is treated as ready for main/Production.
+Preferred current prototype selection posture:
+
+```text
+QUEST posted
+→ PLAYERs BID PRICE + DELIVERY
+→ KAPAPI filters/ranks and recommends
+→ GM confirms recommended PLAYER (with alternatives available)
+→ execution
+→ result
+→ accept / revise
+```
+
+The prototype should also show the future direction without claiming it is already universally available:
+
+```text
+transactions → trust data → better recommendations → default routing → recovery → Outcome Layer
+```
