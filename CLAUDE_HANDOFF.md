@@ -1,38 +1,19 @@
 # KAPAPI — Implementation Handoff
 
-Status: **current implementation handoff**  
-Authority branch: `docs/initial-product-design`  
-Current visual implementation branch: `feat/prototype-v2`
+Status: **current implementation handoff on `개선안`**  
+Updated: 2026-09-03
 
 ## Mission
 
-Build and maintain a high-polish KAPAPI prototype that makes the present transaction understandable in seconds and the long-term Outcome Layer credible without pretending it already exists.
+Build and maintain a high-polish KAPAPI prototype that makes the new D-033 product truth obvious:
 
-The product is **not** a freelancer directory with game decoration, a CAD marketplace, or a magical auto-outsourcing demo.
+> **PLAYER에게는 일이 먼저 보이는 시장, GM에게는 사람을 고르지 않아도 되는 실행 서비스.**
 
-Current product story:
+GM North Star:
 
-```text
-TASK FIRST
-GM posts bounded work
-→ PLAYERs discover QUESTs
-→ PLAYERs BID PRICE + DELIVERY TIME
-→ KAPAPI filters/ranks and recommends
-→ GM confirms
-→ PLAYER executes
-→ result returns
-→ GM accepts/revises
-```
+> **해야 할 일을 넣으면, 결과가 나온다.**
 
-Growth story:
-
-```text
-transactions → trust data → recommendation → routing → recovery → repeat capacity → Outcome Layer
-```
-
-North Star:
-
-> **해야 할 일을 올리면, 결과로 돌아온다.**
+The product is not a freelancer directory with game decoration, a CAD marketplace, a generic microtask board or a magical AI outsourcing demo.
 
 ---
 
@@ -40,127 +21,142 @@ North Star:
 
 Before changing implementation, read:
 
-1. `docs/ORIGIN_AND_GROWTH_THESIS.md`
-2. `docs/DECISIONS.md` — **D-032 is the current routing/selection authority**
+1. `docs/DECISIONS.md` — **D-033 is the highest current product authority**
+2. `docs/ORIGIN_AND_GROWTH_THESIS.md`
 3. `docs/PRODUCT.md`
 4. `docs/ROADMAP.md`
 5. `docs/VALIDATION.md`
 6. `docs/PROTOTYPE_SPEC.md`
 7. `docs/PROGRAM_2026_MODU.md`
 8. `docs/LEGAL.md`
-9. current v2 visual/content override documents
-10. `docs/KAPAPI_ART_DIRECTION.md`
-11. `docs/KAPAPI_DESIGN.md`
-12. `docs/KAPAPI_MOTION.md`
-13. `docs/HERO_MEDIA.md`
-14. `docs/QA_CHECKLIST.md`
-15. `TASK_QUEUE.md`
+9. `TASK_QUEUE.md`
+10. `docs/README.md`
+11. current visual/content documents
 
-If older copy or behavior conflicts with D-032 or the files above, the newer task-first canon wins.
+If older v2 copy/behavior conflicts, the D-033 canon wins.
 
-D-031's day-one universal hands-off auto-routing requirement is superseded.
+Do not restore D-032's preferred default `recommend PLAYER → GM confirms PLAYER` flow.
 
 ---
 
 ## Non-negotiable product truths
 
-1. **Task first, not profile first.** The core marketplace object is the QUEST.
-2. The GM must understand within seconds that they can submit work here.
-3. The PLAYER must have a clear `작업 찾기` path to real open work.
-4. PLAYERs do not need to create a storefront before earning.
-5. Every BID requires **PRICE + committed DELIVERY TIME**.
-6. Early selection should reduce burden without fake certainty. Preferred prototype default: **KAPAPI recommendation + GM confirmation**.
-7. Alternatives may be visible through `다른 제안 보기`; do not force a giant proposal-comparison wall.
-8. Universal automatic routing is a later capability earned from transaction/trust/liquidity/recovery data.
-9. GM remains the final result judge through accept/revise.
-10. Architecture/CAD is one founder-domain proof case, not the hero category or market definition.
-11. Early categories may include ordinary office/support work and skilled professional support work.
-12. KAPAPI world terms come after ordinary-language understanding.
-13. One universal account; GM/PLAYER are contextual QUEST roles.
-14. AI initially helps scope, missing information, task fit and objective checks. It is not an infallible selector or subjective quality judge.
-15. Long-term execution may use human PLAYERs, AI, automation, specialist partners or hybrid workflows.
-16. Strong SLA/outcome guarantees are earned category by category.
+1. GM default UX is **Outcome UX**.
+2. PLAYER experience remains **task-first**.
+3. The GM normally buys an **Execution Contract**, not a worker profile.
+4. Execution Contract shows **RESULT + PRICE + COMPLETION TIME + revision/recovery boundary**.
+5. GM does not normally compare several PLAYER/BID cards.
+6. Every PLAYER BID still requires **PRICE + committed DELIVERY TIME**.
+7. KAPAPI may use open BIDs, targeted Offers or hybrid supply internally.
+8. Execution may use human PLAYER, AI, automation, specialist partner or hybrid/multi-resource flows.
+9. Early quote/routing/QA/recovery may be concierge/manual. Do not fake autonomy.
+10. Instant quote is earned category by category.
+11. Recovery is strategically important: failure should not force the GM to restart supplier search.
+12. GM remains final result acceptance/revision authority in the early model.
+13. Architecture/CAD is one founder-domain test case, not the hero category.
+14. Initial wedge is not generic cheap/simple work.
+15. Preferred wedge is **AI-alone risky + human search disproportionate + bounded/checkable digital result**.
+16. World terms come after ordinary-language understanding.
+17. One universal account; GM/PLAYER are contextual roles.
+18. AI is not an infallible final price or quality judge.
+19. Completed-outcome contribution matters more than GMV/signup vanity.
+20. Strong legal/SLA responsibility is earned category by category.
 
 ---
 
-## Current GM UX
-
-Preferred current flow:
+## Canonical GM UX
 
 ```text
 LANDING
-→ task input / files
-→ KAPAPI structures QUEST
-→ GM confirms posting
-→ BIDs arrive
-→ KAPAPI recommendation appears
-→ GM confirms recommended PLAYER
-→ execution status
+→ rough task input / files
+→ KAPAPI structures SOW
+→ Execution Contract
+   - expected result
+   - fixed price
+   - completion time
+   - revision/recovery summary
+→ GM accepts `이 조건으로 맡기기`
+→ KAPAPI secures execution internally
+→ progress / recovery if needed
 → delivered result
 → accept / revise
 ```
 
-Recommendation surface should show enough evidence to be credible:
+Do not use a PLAYER-selection screen as the default GM decision surface.
 
-- deadline/budget feasibility
-- relevant history/career
-- on-time/revision signals
-- PRICE + DELIVERY trade-off
-- short rationale
-
-Primary action:
-
-> **이 작업자로 진행**
-
-Secondary:
-
-> **다른 제안 보기**
-
-Do not label this universal auto-routing.
+Optional executor detail may be shown when law/security/credentials/trust requires it.
 
 ---
 
-## Current PLAYER UX
+## Canonical PLAYER UX
 
 ```text
-작업 찾기
-→ open QUEST board
-→ filter by fit / deadline
-→ inspect bounded scope
-→ BID PRICE + DELIVERY
-→ assignment
+작업 찾기 / targeted Offer
+→ inspect bounded QUEST
+→ BID PRICE + DELIVERY or accept Offer
+→ assigned
 → execute
-→ submit result
-→ earn / verified history
+→ submit
+→ REWARD + task-specific history
 ```
 
-This supply path is strategically important because it preserves the founder-origin problem.
+No storefront creation requirement before seeing earning opportunities.
+
+No long cover-letter theatre.
+
+---
+
+## Internal execution proof
+
+The prototype should show or communicate an internal execution market such as:
+
+```text
+GM CONTRACT
+₩49,000 / today 19:30
+
+PLAYER A  ₩27,000 / 6H
+PLAYER B  ₩31,000 / 3H
+PLAYER C  ₩42,000 / 1.5H
+AI + QA   expected ₩18,000 / 2H
+
+ROUTE: PLAYER B + automated preflight
+BACKUP: PLAYER C
+```
+
+Routing may consider:
+
+- eligibility/security;
+- task-specific history;
+- PRICE × DELIVERY;
+- availability;
+- expected QA/recovery burden;
+- automation alternatives;
+- backup capacity.
+
+This may be deterministic demo logic. Never present fake scientific certainty.
 
 ---
 
 ## Hero requirement
 
-The first viewport should remain category-neutral and action-led.
+The first viewport should communicate:
 
-The task-entry surface is the protagonist.
+> **맡길 일을 적어주세요.**  
+> 카파피가 작업 조건을 정리하고 가격과 완료시각을 제시합니다.
 
-Approved semantic direction:
+Primary CTA semantic direction:
 
-```text
-맡길 일을 적어주세요.
-카파피가 작업 조건을 정리하고 맞는 제안을 추천합니다.
+> **조건 확인하기**
 
-[ 어떤 작업이 필요하신가요?                         ]
-[ 파일 첨부 ]                              [ 의뢰 등록 → ]
+Secondary PLAYER entry:
 
-작업을 찾고 있나요? → 작업 찾기
-```
+> **작업 찾기**
 
-Do not use copy that implies:
+Avoid copy such as:
 
-> “등록만 하면 KAPAPI가 이미 완벽하게 자동배정하고 결과만 돌려준다.”
-
-The long-term `work in → result out` story belongs below the current transaction proof or in a clearly future-oriented beat.
+- `맞는 제안을 추천합니다` as the core product promise;
+- `이 작업자로 진행` as the primary GM CTA;
+- universal instant/automatic execution claims.
 
 ---
 
@@ -168,87 +164,133 @@ The long-term `work in → result out` story belongs below the current transacti
 
 Recommended order:
 
-1. task-entry hero
-2. task-first distinction / PLAYER open-work entry
-3. PRICE × DELIVERY proof
-4. KAPAPI recommendation + GM confirmation
-5. completed QUEST case across a believable category
-6. TIME ATTACK
-7. result / accept-revise
-8. trust / LEVEL-EXP
-9. future progression: transactions → trust → routing → Outcome Layer
+1. task input hero;
+2. structured SOW;
+3. Execution Contract: result + price + completion time;
+4. why GM does not need to shop workers;
+5. PLAYER task-first market + PRICE × DELIVERY;
+6. internal human/AI/automation routing;
+7. recovery proof;
+8. result acceptance;
+9. initial wedge explanation;
+10. execution data → better quote/routing/recovery.
 
-Do not make Architecture/CAD the dominant identity.
+Show the mechanism through real product UI rather than strategy paragraphs whenever possible.
+
+---
+
+## Demo fixtures
+
+Prefer outcome-shaped examples:
+
+- `30 PDFs → 12 fields → checked XLSX`;
+- `messy workbook → defined cleanup rules → verified output`;
+- `PPT/report → specified formatting standard → final PPTX`;
+- `50 product assets/data → normalized upload-ready batch`;
+- `defined CAD production support → delivered file`;
+- `reproducible small web bug → fixed + verified`.
+
+Do not let raw data entry/background removal define the brand.
 
 ---
 
 ## Visual authority
 
-Keep the v2 quality bar and visual rules unless product behavior conflicts:
+The existing v2 art direction remains useful and should be preserved where strong:
 
-- light-first public UX
-- dark as contextual operational punctuation
-- premium typography and spacing
-- restrained HUD/world layer
-- no fantasy RPG cosplay
-- no generic SaaS dashboard wall
-- no arbitrary public pseudo-lore
-- real product states should drive motion
+- premium light-first public UX;
+- strong typography/hierarchy;
+- high-quality motion;
+- restrained HUD/world states;
+- dark operational moments where useful;
+- mobile quality;
+- no fantasy RPG treatment;
+- no generic SaaS card-wall aesthetic.
 
-Existing v2 hero compositing work can remain, but the composited product sequence must communicate the current recommendation/confirmation transaction rather than unsupported universal auto-assignment.
+However, visual documents never override D-033 product behavior.
 
----
-
-## Technical posture
-
-Continue the established Next.js App Router + TypeScript implementation unless a real technical blocker requires change.
-
-Prefer:
-
-- typed deterministic fixtures for prototype flow
-- stable replayable demo states
-- custom KAPAPI components
-- accessible forms/navigation
-- responsive desktop/mobile behavior
-- reduced-motion path
-- real QA against deployed preview when available
-
-Do not build production database/payment/auth complexity merely to simulate the 1R transaction.
+If an old reference assumes `BIDs → recommendation → GM chooses`, reinterpret the visual principle for the new flow rather than restoring the old transaction.
 
 ---
 
-## Definition of done for the aligned prototype
+## State model
 
-The prototype is ready for review when:
+GM/work states should use the new model:
 
-- task-first identity is unmistakable
-- ordinary online-work examples appear, not just CAD
-- `작업 찾기` visibly supports PLAYER discovery
-- PRICE + DELIVERY bidding is clear
-- KAPAPI recommendation is visible and evidence-backed
-- GM confirmation exists
-- no page claims universal automatic routing is already solved
-- result / revision loop is visible
-- future routing/Outcome Layer is clearly framed as earned evolution
-- Architecture/CAD is a testbed/example only
-- current visual polish is preserved
-- desktop/mobile/reduced-motion remain credible
-- build/lint/typecheck/tests available to the repository pass
-- current v2 QA invariants are updated for the new recommendation state
+```text
+DRAFT
+SOW_READY
+QUOTE_PREPARING
+OFFER_READY
+CONTRACTED
+EXECUTION_SECURED
+IN_PROGRESS
+AT_RISK
+RECOVERY_STARTED
+REASSIGNED
+QA
+DELIVERED
+REVIEW
+REVISION_REQUESTED
+COMPLETE
+REFUND_PENDING
+CANCELLED
+```
 
-Desired reaction:
+PLAYER/supply states may include:
 
-> **“카파피는 일이 먼저 올라오는 시장에서 시작해서, 거래 데이터를 쌓아 결국 일을 넣으면 결과가 나오는 시스템으로 가는구나.”**
+```text
+OPEN
+BIDDING
+OFFERED
+BID_SUBMITTED
+ACCEPTED
+DECLINED
+ASSIGNED
+SUBMITTED
+```
 
 ---
 
-## Working protocol
+## Prototype honesty
 
-1. Fetch the latest target branch before changes.
-2. Do not implement against stale local assumptions.
-3. Follow the current canon above all older screenshots/copy examples.
-4. Keep code and docs aligned in the same change set.
-5. Run available build/typecheck/lint/tests.
-6. Verify the actual UI visually when a preview is available.
-7. Do not merge to `main` automatically unless explicitly instructed.
-8. Do not make the user act as a technical courier when connected tools can perform the work.
+Do not imply production availability of:
+
+- universal instant quote;
+- universal automatic routing;
+- universal QA;
+- universal SLA/outcome guarantee;
+- production payment custody;
+- tax settlement automation;
+- every-category legal clearance.
+
+It is acceptable for the prototype/validation model to use concierge/manual operations behind a simple GM experience.
+
+---
+
+## Validation-aware implementation
+
+Preserve the ability to later measure or test:
+
+- GM multiple-choice vs single execution-offer preference;
+- request → SOW friction;
+- quote acceptance;
+- time to execution secured;
+- PRICE × DELIVERY distributions;
+- completion/on-time/revision;
+- recovery;
+- operator/QA minutes;
+- completed-outcome contribution;
+- repeat GM/PLAYER.
+
+Do not fabricate analytics or validation data in the public prototype.
+
+---
+
+## Definition of done for the redesign
+
+A reviewer can understand without explanation:
+
+> **“의뢰자는 결과·가격·완료시각을 보고 일을 맡기고, 뒤에서는 카파피가 task-first PLAYER 시장과 AI/자동화를 이용해 실행·복구한다.”**
+
+And no current UI/copy makes the default product look like a recommendation-first freelancer marketplace.
