@@ -1,377 +1,103 @@
-# KAPAPI Prototype v2 — REBUILD HANDOFF
+# KAPAPI Prototype v2 — REDESIGN HANDOFF
 
-Status: **mandatory v2 visual/implementation entry point**  
-Updated: **2026-09-03**
+Status: **current redesign handoff on `개선안`**  
+Updated: 2026-09-03
 
-Prototype v1 remains rejected as a visual implementation. The current v2 visual baseline may be evolved, but product behavior must follow the latest canon rather than old auto-routing screenshots or notes.
+## Product authority
 
-## 1. Product baseline before design
+Read first:
 
-Read these first:
+1. `docs/DECISIONS.md` D-033
+2. `docs/PRODUCT.md`
+3. `docs/PROTOTYPE_SPEC.md`
+4. `TASK_QUEUE.md`
+5. `CLAUDE_HANDOFF.md`
 
-1. `docs/ORIGIN_AND_GROWTH_THESIS.md`
-2. `docs/DECISIONS.md` — D-032 is current selection/routing authority
-3. `docs/PRODUCT.md`
-4. `docs/ROADMAP.md`
-5. `docs/VALIDATION.md`
-6. `docs/PROTOTYPE_SPEC.md`
-7. `CLAUDE_HANDOFF.md`
-8. `TASK_QUEUE.md`
+D-033 supersedes the old recommendation-first default GM flow.
 
-Then read the v2 visual/content authorities.
+## Current product sentence
 
-Current product loop:
+> **KAPAPI is a work execution market where the GM buys a defined result, price and completion time, while KAPAPI internally uses a task-first PLAYER market plus AI/automation/partners to procure, execute and recover the work.**
 
-```text
-GM posts bounded work
-→ PLAYERs discover QUESTs
-→ PLAYERs BID PRICE + DELIVERY TIME
-→ KAPAPI filters/ranks and recommends
-→ GM confirms
-→ PLAYER executes
-→ result returns
-→ GM accepts/revises
-```
+## Preserve from v2
 
-Current preferred prototype selection model is **KAPAPI recommendation + GM confirmation**.
+Preserve strong existing visual work where possible:
 
-Do not restore the superseded D-031 assumption that KAPAPI must universally auto-assign on day one.
+- premium composition;
+- typography and spacing;
+- motion quality;
+- light-first public UX;
+- restrained HUD/world cues;
+- responsive/mobile quality;
+- strong real-product visual proof.
 
-Long-term evolution:
+Do not preserve old behavior merely because it is already implemented.
+
+## Replace in v2
+
+Remove/reframe the default GM sequence:
 
 ```text
-transaction data
-→ task-specific trust
-→ better recommendation
-→ default routing
-→ replacement/recovery
-→ repeat external capacity
-→ Outcome Layer
-```
-
-At maturity, execution may use human PLAYERs, AI, deterministic automation, specialist partners or hybrid workflows.
-
----
-
-# 2. Founder-origin / task-first identity
-
-KAPAPI begins from a specific behavior:
-
-> a person with spare time + useful skill wants to choose a bounded online task and earn without first creating a freelancer storefront or accepting a fixed shift.
-
-The mirrored GM problem is bounded unresolved work that does not justify hiring or heavyweight outsourcing.
-
-Therefore:
-
-- QUEST is the primary market object;
-- work exists before a PLAYER storefront;
-- `작업 찾기` is a real supply-side product path;
-- one universal account may issue one QUEST and perform another;
-- GM/PLAYER are contextual per-QUEST roles.
-
-Architecture/CAD is one founder-domain proof case. It must never define the hero, brand or total market.
-
----
-
-# 3. Mandatory tool / skill posture
-
-Before claiming a relevant capability unavailable, actually attempt to discover/use connected tools for:
-
-- frontend/UI design
-- browser visual QA
-- screenshots
-- responsive testing
-- motion
-- media/video compositing
-- Korean UX writing
-- live reference research
-
-Do not use the user as a technical courier when a connected capability can do the work.
-
----
-
-# 4. Live reference study for major visual changes
-
-When changing art direction materially, inspect live references rather than relying on old notes.
-
-Core reference set remains:
-
-- Upwork
-- Linear
-- Vercel
-- Factory
-- Raycast
-- Hyperstudio
-- Mercury
-- Kmong
-- Wishket
-- Soomgo
-
-Inspect more than the hero. Study trust, transaction language, density, CTA hierarchy, mobile behavior, product proof and motion.
-
-Use principles only. Do not clone layouts or brand assets.
-
----
-
-# 5. Visual gate
-
-Major redesigns require visually inspectable alternatives before heavy implementation when practical.
-
-Evaluate against:
-
-- three-second comprehension
-- task-entry dominance
-- task-first distinctiveness
-- premium quality
-- Korean transaction familiarity
-- PLAYER discovery clarity
-- recommendation/confirmation clarity
-- mobile viability
-- world-building restraint
-- distance from generic SaaS/dashboard aesthetics
-
-Do not ship a direction that is merely technically correct.
-
----
-
-# 6. Visual-first communication
-
-Core rule:
-
-> **If the product can show it, do not explain it in a paragraph.**
-
-Demonstrate the thesis through:
-
-- open QUESTs
-- files and bounded scope
-- BID arrival
-- PRICE × DELIVERY
-- eligibility filtering
-- task-specific trust
-- KAPAPI recommendation
-- GM confirmation
-- assignment/work state
-- delivered result
-- QUEST COMPLETE data
-
-The landing is not a pitch deck or documentation page.
-
----
-
-# 7. Current hero contract
-
-The task-entry surface remains the protagonist.
-
-Current semantic direction:
-
-> **맡길 일을 적어주세요.**  
-> 카파피가 작업 조건을 정리하고 맞는 제안을 추천합니다.
-
-Hero product sequence:
-
-```text
-QUEST CREATED
-→ BIDS RECEIVED
-→ ELIGIBILITY CHECK
-→ RECOMMENDATION READY
-→ GM CONFIRMED
-→ RESULT READY
-```
-
-Keep category examples broad enough that KAPAPI does not read as CAD/construction-specific.
-
-The approved laptop footage may still be used. Real KAPAPI UI should be composited into the screen where technically sound, with a clean full-frame fallback on narrow/mobile layouts.
-
-Do not show recommendation as autonomous assignment before GM confirmation.
-
----
-
-# 8. Current GM surfaces
-
-The current prototype should make this path coherent:
-
-```text
-LANDING
-→ rough request + files
-→ structured QUEST draft
-→ post
-→ BIDs arrive
+BIDs
 → KAPAPI recommendation
-→ GM sees rationale + alternatives
-→ GM confirms
-→ assigned/work state
+→ GM selects PLAYER
+```
+
+Replace with:
+
+```text
+rough request/files
+→ structured SOW
+→ RESULT + PRICE + COMPLETION TIME
+→ `이 조건으로 맡기기`
+→ internal route
+→ execution / recovery
 → result
 → accept / revise
 ```
 
-Recommendation must be inspectable and evidence-backed through fields such as:
+## PLAYER side
 
-- hard eligibility/security
-- deadline/budget feasibility
-- PRICE
-- DELIVERY
-- relevant career/history
-- on-time/revision indicators
-
-Primary action:
-
-> **이 작업자로 진행**
-
-Secondary:
-
-> **다른 제안 보기**
-
-Do not force a giant Upwork-style comparison wall.
-
----
-
-# 9. Current PLAYER surfaces
+Keep and strengthen:
 
 ```text
 작업 찾기
-→ open QUEST board
-→ filter by fit/deadline
-→ inspect bounded scope
-→ BID PRICE + DELIVERY
-→ wait for selection/assignment
+→ bounded QUEST
+→ PRICE + DELIVERY BID / Offer
 → execute
-→ submit result
-→ earn + verified history
+→ REWARD
 ```
 
-PLAYERs should not be required to create a service storefront or long cover letter first.
+No storefront-first requirement.
 
-LEVEL / EXP remain secondary to task-specific evidence.
+## Internal market proof
 
----
+Reuse ranking/routing fixture logic where useful, but move it out of the GM shopping flow.
 
-# 10. World / identity grammar
+It should now prove that KAPAPI has an internal execution market and can compare:
 
-Use ordinary Korean first.
+- PLAYER cost/time/trust/availability;
+- AI/automation alternative;
+- backup/recovery path.
 
-World language may appear after the action is clear:
+## Recovery proof
 
-- QUEST
-- BID
-- TIME ATTACK
-- LEVEL / EXP
-- QUEST COMPLETE
+Add a deterministic state where the first executor becomes late/unavailable and KAPAPI activates an alternative without asking the GM to choose another worker.
 
-Avoid fantasy/RPG art, coins, swords, rarity systems, gamer RGB and game-launcher aesthetics.
+Do not market this as a universal SLA.
 
-KAPAPI has one universal user identity. No permanent GM/PLAYER signup fork or identity mode switch.
+## Initial wedge
 
----
+Examples should communicate:
 
-# 11. Current landing narrative
+> **AI-alone risky + human search disproportionate + bounded/checkable digital result.**
 
-Preferred sequence:
+Avoid making raw low-price microtasks the entire value proposition.
 
-1. task-entry hero
-2. task-first / `작업 찾기` proof
-3. PRICE × DELIVERY market proof
-4. KAPAPI recommendation + GM confirmation
-5. completed QUEST case
-6. TIME ATTACK
-7. result loop
-8. transaction data → trust
-9. future recommendation → routing/recovery → Outcome Layer
-10. universal identity / PLAYER entry
+## Definition of done
 
-The future Outcome Layer must be clearly future evolution, not a fake current guarantee.
+A reviewer can say:
 
----
+> **“카파피는 프리랜서를 추천해주는 사이트가 아니라, 결과·가격·완료시각을 사고 뒤의 실행시장을 카파피가 운영하는 서비스다.”**
 
-# 12. Outcome Layer direction
-
-Long-term user experience:
-
-```text
-work in
-→ KAPAPI scopes / decomposes / routes / executes-or-orchestrates / monitors / recovers / checks
-→ result out
-```
-
-Execution resources may include:
-
-- human PLAYERs
-- AI agents/models
-- deterministic automation
-- specialist partners
-- AI + human hybrids
-- multiple PLAYERs on decomposed sub-QUESTs
-
-Strong guarantees must be earned category by category through supply/automation reliability, QA, recovery and unit economics.
-
----
-
-# 13. Content/claim hygiene
-
-Do not claim current availability of:
-
-- universal automatic PLAYER routing
-- universal SLA/outcome guarantee
-- production escrow/payment custody if absent
-- tax settlement if absent
-- subjective AI final quality judgment
-- regulated professional judgment without appropriate qualification
-
-Current prototype footer/metadata should accurately describe recommendation + GM confirmation.
-
-Historical Preview QA that validated no-picker auto-routing is pre-D-032 evidence only.
-
----
-
-# 14. Mandatory rendered comparison loop
-
-After major public changes:
-
-1. render the actual app
-2. inspect desktop
-3. inspect mobile
-4. inspect reduced motion where relevant
-5. capture screenshots/evidence
-6. compare to strong references and prior baseline
-7. inspect overflow, touch targets, labels and focus
-8. check hero timing/compositing
-9. check whether copy is doing the work of the interface
-10. reject and redesign if generic or confusing
-
-Compilation is not visual QA.
-
----
-
-# 15. Current behavioral QA
-
-`scripts/loop.mjs` is the current behavioral harness.
-
-It should verify:
-
-- task-first open-work discovery
-- PRICE + DELIVERY required
-- recommendation appears before assignment
-- GM confirmation creates assignment
-- alternatives exist
-- one account can have multiple contextual roles
-- result/revision loop remains intact
-- no universal auto-routing claim
-- future Outcome Layer is labeled honestly
-
-Old `no picker anywhere` assertions are superseded.
-
----
-
-# 16. Preview / stop condition
-
-When deployment access is available:
-
-- deploy or use the current `feat/prototype-v2` Preview
-- inspect the actual deployed branch head on desktop/mobile
-- verify hero media, fonts, animation, responsive behavior and the core transaction
-- record the current commit/deployment identifiers
-
-Do not merge `main` or intentionally promote Production without explicit instruction.
-
-The desired founder reaction is:
-
-> **“일이 먼저 올라오는 시장에서 시작해서, 거래 데이터를 쌓아 추천·배정·복구를 발전시키고 결국 일을 넣으면 결과가 돌아오는 시스템으로 가는구나.”**
+Run build/lint/typecheck and real desktop/mobile visual QA after the behavioral rebuild.
