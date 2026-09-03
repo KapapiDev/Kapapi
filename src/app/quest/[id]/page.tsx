@@ -66,7 +66,8 @@ export default function QuestPage() {
   }
 
   const role = roleIn(ME, q);
-  const isGm = role === "GM";
+  // Role is CLIENT | WORKER | PROPOSER | NONE — the GM/PLAYER names are gone.
+  const isClient = role === "CLIENT";
   const r = route(q);
   const recommended = r.picked;
   const assignee = q.assigneeId ? PEOPLE[q.assigneeId] : undefined;
@@ -134,7 +135,7 @@ export default function QuestPage() {
             <span className={s.dot} aria-hidden="true" />
             {waiting ? "제안 받는 중" : recommendationReady ? "추천 확인" : q.state === "IN_PROGRESS" || q.state === "ASSIGNED" ? "작업 중" : delivered ? "결과 도착" : q.state === "REVISION" ? "수정 중" : "업무 완료"}
           </span>
-          {role !== "NONE" ? <span className={s.chip}>이 업무에서 나는 {isGm ? "발주자" : "작업자"}</span> : null}
+          {role !== "NONE" ? <span className={s.chip}>이 업무에서 나는 {isClient ? "발주자" : "작업자"}</span> : null}
         </div>
       </div>
 
@@ -182,7 +183,7 @@ export default function QuestPage() {
                     {r.reasons.map((x) => <p key={x} className={s.item}><span className={s.mark} aria-hidden="true">▸</span>{x}</p>)}
                   </div>
                 </div>
-                {isGm ? (
+                {isClient ? (
                   <div className={s.acts} style={{ marginTop: 18 }}>
                     <button type="button" className={`${s.btn} ${s.btnAccent}`} onClick={confirmRecommendation}>이 작업자로 진행</button>
                     <button type="button" className={`${s.btn} ${s.btnLine}`} onClick={() => setShowAlternatives((v) => !v)} aria-expanded={showAlternatives}>다른 제안 보기</button>
@@ -212,13 +213,13 @@ export default function QuestPage() {
           {assignee && assigned ? (
             <section>
               <div className={s.panelHead}>
-                <h2 className={s.panelTitle}>{isGm ? "확정된 작업자" : "이 업무의 발주자"}</h2>
-                <span className={s.panelEn}>{isGm ? "작업자" : "발주자"}</span>
+                <h2 className={s.panelTitle}>{isClient ? "확정된 작업자" : "이 업무의 발주자"}</h2>
+                <span className={s.panelEn}>{isClient ? "작업자" : "발주자"}</span>
               </div>
               <div className={s.trust}>
-                <p className={s.trustName}>{isGm ? assignee.name : issuer.name}</p>
-                <p className={s.trustCareer}>{isGm ? assignee.career : issuer.career}</p>
-                {isGm ? (
+                <p className={s.trustName}>{isClient ? assignee.name : issuer.name}</p>
+                <p className={s.trustCareer}>{isClient ? assignee.career : issuer.career}</p>
+                {isClient ? (
                   <div className={s.stats}>
                     <span className={s.stat}><span className={s.sk}>유사 업무</span><span className={s.sv}>{assignee.history[q.category] ?? 0}건</span></span>
                     <span className={s.stat}><span className={s.sk}>정시완료</span><span className={s.sv}>{pct(assignee.onTime)}</span></span>
@@ -276,7 +277,7 @@ export default function QuestPage() {
                 <div className={s.checks}>
                   {q.result.checks.map((c) => <p key={c} className={s.check}><span className={s.tickMark} aria-hidden="true">✓</span>{c}</p>)}
                 </div>
-                {isGm && !done ? (
+                {isClient && !done ? (
                   <div className={s.resultActs}>
                     <button type="button" className={`${s.btn} ${s.btnAccent}`} onClick={() => accept(q.id)}>결과 확인</button>
                     <button type="button" className={`${s.btn} ${s.btnLine}`} onClick={() => setRevising((v) => !v)} aria-expanded={revising}>수정 요청</button>
@@ -284,7 +285,7 @@ export default function QuestPage() {
                 ) : null}
               </div>
 
-              {revising && isGm && !done ? (
+              {revising && isClient && !done ? (
                 <div className={s.card} style={{ marginTop: 16 }}>
                   <p className={s.cardTitle}>어떤 확인 기준이 맞지 않았나요?</p>
                   <div className={s.list}>{q.accept.map((a) => <p key={a} className={s.item}><span className={s.mark} aria-hidden="true">·</span>{a}</p>)}</div>

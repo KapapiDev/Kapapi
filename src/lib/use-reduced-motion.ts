@@ -23,13 +23,3 @@ function useMedia(query: string): boolean {
 export function useReducedMotion(): boolean {
   return useMedia("(prefers-reduced-motion: reduce)");
 }
-
-/**
- * The hero stage turns from 16:9 to 4:5 here. `object-fit: cover` then crops the
- * film hard enough that the laptop no longer reads as a laptop, so the composite
- * onto its screen is dropped below this width and the product cut carries the
- * sequence instead. Matches the 900px breakpoint in hero.module.css.
- */
-export function useNarrowStage(): boolean {
-  return useMedia("(max-width: 900px)");
-}

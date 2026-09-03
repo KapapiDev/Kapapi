@@ -39,7 +39,7 @@ try {
   assert.match(home, /의뢰 등록/, "primary action missing");
   assert.match(home, /작업 찾기/, "task-first supply entry missing");
   assert.match(home, /시장은 시작점입니다/, "outcome evolution proof missing");
-  assert.match(home, /HUMAN PLAYER · AI · AUTOMATION/, "resource-agnostic outcome proof missing");
+  assert.match(home, /HUMAN WORKER · AI · AUTOMATION/, "resource-agnostic outcome proof missing");
   for (const banned of ["전문가 배정부터 결과 전달까지 카파피가 진행합니다", "QUEST NETWORK", "RESET", "이런 일들이 올라옵니다"]) {
     assert.ok(!home.includes(banned), `stale product copy on landing: ${banned}`);
   }
@@ -61,7 +61,7 @@ try {
   await click(p, "이대로 등록하기");
   await sleep(500);
   const created = await text(p);
-  assert.match(created, /의뢰가 등록되었습니다/, "confirmation missing");
+  assert.match(created, /업무가 등록되었습니다/, "confirmation missing");
   assert.match(created, /제안이 모이면 카파피가/, "recommendation expectation missing");
   assert.ok(!created.includes("결과가 준비되면 확인만"), "stale auto-routing promise survived");
   ok("등록 완료: 제안 → 추천 → 확인 흐름을 약속");
@@ -100,7 +100,7 @@ try {
   await click(p, "결과 확인");
   await sleep(400);
   const complete = await text(p);
-  assert.match(complete, /작업이 완료되었습니다/, "completion missing");
+  assert.match(complete, /업무가 완료되었습니다/, "completion missing");
   assert.ok(!/축하|🎉/.test(complete), "celebration copy found");
   ok("결과: 수정/완료 루프 유지");
 
@@ -148,9 +148,9 @@ try {
   await p.goto(`${BASE}/my`, { waitUntil: "networkidle2" });
   await sleep(500);
   const mine = await text(p);
-  assert.match(mine, /내가 맡긴 의뢰/, "issued group missing");
-  assert.match(mine, /내가 수행 중인 작업/, "executing group missing");
-  assert.match(mine, /제안을 보낸 의뢰/, "bidding group missing");
+  assert.match(mine, /내가 맡긴 업무/, "issued group missing");
+  assert.match(mine, /내가 수행 중인 업무/, "executing group missing");
+  assert.match(mine, /제안을 보낸 업무/, "bidding group missing");
   ok("내 의뢰: 한 계정이 GM/PLAYER/BIDDER 역할을 동시에 가질 수 있음");
 
   // 10 — claim hygiene
