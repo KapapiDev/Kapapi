@@ -1,6 +1,6 @@
 # KAPAPI Decisions
 
-Updated: 2026-09-02
+Updated: 2026-09-03
 
 This file records durable product/business decisions and the reason behind them. New evidence may reverse a decision; when that happens, add a new decision instead of silently erasing history.
 
@@ -135,7 +135,7 @@ Product stages:
 
 **Reason:** Marketplace activity creates the supply, trust and transaction data required before KAPAPI can safely automate routing and promise outcomes.
 
-**Superseded for GM selection by D-031.** The data-building logic remains valid, but default GM proposal comparison/selection is no longer the intended primary flow.
+**Superseded for GM selection by D-031, then superseded again by D-032.** The enduring logic is that transaction data must be earned before routing responsibility expands.
 
 ---
 
@@ -178,7 +178,7 @@ Original include list:
 
 Defer production payment, tax automation, deep dispute tooling and Autopilot guarantees.
 
-**Superseded for prototype GM selection by D-031.** The prototype should still expose price + delivery competition, but routine GM comparison/selection should be hidden behind KAPAPI routing in the default demo.
+**Current interpretation under D-032:** the prototype must prove the task-first transaction loop and may use lightweight GM selection, KAPAPI recommendation + GM confirmation, or concierge routing. Universal automatic selection is not a prerequisite.
 
 ---
 
@@ -229,7 +229,7 @@ Commercial transaction design should strongly benchmark:
 
 **Reason:** KAPAPI's differentiation does not require reinventing basic marketplace safety. Innovate in speed, localization, lightweight bidding, AI scoping, gamified UX and outcome orchestration.
 
-**Explicit exception added by D-031:** mandatory client comparison/selection is one proven Upwork mechanic KAPAPI now intentionally removes from the default GM path because eliminating that decision is central to the product thesis.
+**Current exception under D-032:** KAPAPI should progressively reduce GM comparison/selection as recommendation and routing become evidence-backed. Do not remove control before the data supports doing so.
 
 ---
 
@@ -251,7 +251,7 @@ SOW should define inputs, exact scope, outputs, deadline and acceptance/revision
 2. GM final acceptance / revision
 3. platform dispute process only when needed
 
-**Reason:** AI should not act as subjective professional judge, and manual platform inspection of every low-value QUEST would damage unit economics.
+**Reason:** AI should not act as subjective professional judge, and manual platform inspection of every low-value professional deliverable would damage unit economics.
 
 ---
 
@@ -354,7 +354,7 @@ Examples:
 
 Avoid obvious swords/coins/pixel-RPG motifs.
 
-**Reason:** The service must feel lively and memorable to PLAYERs while remaining credible for professional GMs spending meaningful money.
+**Reason:** The service must feel lively and memorable to PLAYERs while remaining credible for GMs spending meaningful money.
 
 ---
 
@@ -366,10 +366,10 @@ Do not lead with “GM makes QUESTs and PLAYERs level up.”
 
 Lead with:
 
-- short online professional work
-- client-led posting
+- bounded online work
+- task-first posting/discovery
 - price + delivery-time competition
-- lower outsourcing friction
+- lower delegation friction
 - long-term outcome orchestration
 
 **Reason:** Otherwise KAPAPI risks being dismissed as “gamified Kmong” before the actual business mechanism is understood.
@@ -378,82 +378,144 @@ Lead with:
 
 ## D-031 — Default GM flow is hands-off auto-routing
 
-**Decision:** After a GM submits a valid QUEST with the required result, deadline and commercial constraints, routine BID comparison and PLAYER selection become **KAPAPI's job**, not the GM's job.
+**Decision at the time:** after a GM submits a valid QUEST, routine BID comparison and PLAYER selection become KAPAPI's job.
 
-Default GM flow:
+**Status:** **SUPERSEDED BY D-032.**
 
-```text
-발주 / QUEST 확정
-→ GM routine work ends
-→ PLAYERs BID with price + delivery
-→ KAPAPI ranks/selects/routes
-→ PLAYER executes
-→ result delivered
-→ GM accepts or requests revision
-```
+The insight that reducing GM selection burden is strategically valuable remains valid. What is superseded is the assumption that universal hands-off auto-routing should be the default before KAPAPI has enough transaction, trust, liquidity and recovery data to earn that responsibility.
 
-Default PLAYER/internal market flow:
+---
+
+## D-032 — Task-first market first; routing responsibility is earned
+
+**Decision:** KAPAPI starts as a **task-first work marketplace** and grows into a work-to-result layer by accumulating real transaction data. Universal automatic PLAYER selection is not a prerequisite for the first product or first transaction.
+
+Canonical growth path:
 
 ```text
-QUEST
-→ eligible PLAYERs
-→ PRICE × DELIVERY BIDs
-→ hard-filter + trust/performance + task-fit ranking
-→ KAPAPI assignment
-→ execution
+Task Marketplace
+→ Trusted Work Market
+→ Intelligent Recommendation / Routing
+→ Repeat Business Capacity
+→ Outcome Layer
 ```
 
-### Routing rule
+### Initial two-sided mental model
 
-KAPAPI selection must not be an opaque LLM-only decision.
+PLAYER:
 
-Use:
+```text
+see real QUEST
+→ judge fit
+→ BID PRICE + DELIVERY TIME
+→ get selected/assigned
+→ finish
+→ earn
+→ build verified history
+```
 
-1. hard eligibility / credential / security / deadline / budget filters
-2. actual BID price and committed delivery
-3. relevant verified career and task history
-4. on-time / revision / failure / dispute signals
-5. availability
-6. AI-assisted semantic task-fit where useful
-7. an inspectable routing policy
+GM:
 
-The GM remains the **final result judge** through acceptance/revision.
+```text
+define bounded work
+→ publish/submit
+→ receive lightweight choices or recommendation
+→ work executes
+→ receive result
+→ accept/revise
+```
 
-### Manual selection
+### Selection during the early market
 
-Manual GM BID comparison may remain as:
+Early transactions may use one of three evidence-building modes:
 
-- exceptional fallback
-- trust-building/debug mode during validation
-- category-specific requirement where auto-routing is not reliable
+1. **KAPAPI recommendation + GM confirmation** — preferred default prototype posture.
+2. lightweight GM BID selection when transparency/control is useful.
+3. concierge/manual KAPAPI routing for controlled experiments.
 
-It is **not** the primary product promise or default prototype story.
+The product should reduce selection burden immediately where possible, but it must not pretend that routing intelligence exists before the data needed to support it exists.
 
-### Why
+### Why this supersedes D-031
 
-The product's strongest thesis is not “compare freelancers faster.” It is:
+D-031 correctly identified the long-term differentiation: the GM ultimately wants the result, not a freelancer-shopping workflow. But it moved the end-state mechanism too early.
 
-> **일 던져놔. 결과만 받아.**
+Reliable routing needs evidence about:
 
-If the GM must wait for BIDs, study profiles and make the final vendor decision every time, KAPAPI remains structurally close to a faster Upwork/Kmong. Removing routine selection creates a materially different product and aligns the initial experience with the long-term orchestration thesis.
+- task/category fit
+- actual PRICE and committed DELIVERY distributions
+- verified completions
+- on-time behavior
+- revisions/rework
+- failures/disputes
+- availability
+- category liquidity
+- replacement/recovery success
 
-### Validation burden
+Those signals are created by transactions. Therefore the marketplace is the **data and supply bootstrap for the Outcome Layer**, not an embarrassing phase to hide.
 
-This is a hypothesis that increases platform responsibility and must be tested.
+### Task-first product identity
 
-Track:
+KAPAPI is not defined by PLAYER storefronts or service listings. The core object is the **QUEST**: work exists first, and people with suitable time and skill can choose it.
 
-- routing decision latency
-- GM override / “who did you select?” demand
-- on-time rate
-- revision rate
-- replacement/recovery rate
-- final acceptance
-- GM management minutes
-- repeat self-funded usage
+This preserves the founder-origin problem:
 
-If auto-routing materially increases regret/failure or users insist on choosing themselves, the routing policy or category scope must be adjusted rather than protecting the idea.
+> “I have spare time and usable skills. I want to pick a small piece of online work I can finish and get paid for, without becoming a full-time freelancer or creating a storefront.”
+
+The mirrored GM problem is:
+
+> “I have a bounded piece of work that needs to be finished, but hiring or heavyweight outsourcing feels disproportionate.”
+
+### Market boundary
+
+KAPAPI is **category-independent in vision and category-specific in execution**.
+
+Do not define the company as architecture/CAD, construction, or only “professional work.” Initial QUESTs may range from ordinary office/support work to skilled professional support work when they are digitally transferable, bounded, inspectable and reversible.
+
+Architecture/CAD remains a founder-domain testbed, not the brand identity.
+
+### Long-term execution resources
+
+The mature Outcome Layer is not restricted to human PLAYER execution. Depending on the task, KAPAPI may fulfill work through:
+
+- human PLAYERs
+- AI agents/models
+- deterministic software automation
+- specialist partner organizations
+- hybrid AI + human workflows
+- multi-PLAYER decomposition and aggregation
+
+The user-facing unit remains the **result**, not the internal executor type.
+
+### Long-term North Star
+
+> **해야 할 일을 올리면, 결과로 돌아온다.**
+
+At maturity:
+
+```text
+work in
+→ KAPAPI scopes / decomposes / routes / executes-or-orchestrates / monitors / recovers / checks
+→ result out
+```
+
+Strong guarantees are earned category by category. Do not promise universal SLA/outcome guarantees before supply, recovery, QA and unit economics support them.
 
 ### Supersedes
 
-This decision supersedes the **default GM selection** portions of D-012, D-015 and D-019. It does **not** remove bidding, contracts, safe payment, workroom records, approval/revision, settlement, reviews or dispute protection.
+D-032 supersedes:
+
+- D-031's default universal hands-off auto-routing requirement
+- D-012/D-015 interpretations that force one fixed early GM selection model
+- D-019's client-selection exception as a day-one universal rule
+
+It does **not** supersede:
+
+- mandatory PRICE + DELIVERY TIME in BIDs
+- fixed-price/result-based QUESTs
+- task-first discovery
+- SOW clarity
+- GM final acceptance/revision
+- security/contract/payment protections
+- two-sided trust
+- category-specific liquidity
+- the long-term work-in → result-out destination.
