@@ -5,17 +5,17 @@ import s from "./hero-screen.module.css";
 
 /**
  * The KAPAPI surface shown inside the laptop and then full-frame.
- * Candidate order, exclusions and rationale are driven by the deterministic
- * evidence policy. The top candidate is a recommendation until GM confirmation.
+ * Candidate order, exclusions and rationale are driven by deterministic evidence.
+ * The top candidate is a recommendation until client confirmation.
  */
 
 export const STEPS = [
-  { ko: "의뢰가 등록되었습니다", en: "QUEST CREATED", ms: 900 },
-  { ko: "제안 4건이 도착했습니다", en: "4 BIDS RECEIVED", ms: 1500 },
-  { ko: "조건을 확인하고 있습니다", en: "ELIGIBILITY CHECK", ms: 1400 },
-  { ko: "추천이 준비되었습니다", en: "RECOMMENDATION READY", ms: 1800 },
-  { ko: "추천 작업자로 확정했습니다", en: "GM CONFIRMED", ms: 1100 },
-  { ko: "결과 파일이 도착했습니다", en: "RESULT READY", ms: 2100 },
+  { ko: "업무가 등록되었습니다", en: "업무 등록", ms: 900 },
+  { ko: "제안 4건이 도착했습니다", en: "제안 도착", ms: 1500 },
+  { ko: "조건을 확인하고 있습니다", en: "조건 확인", ms: 1400 },
+  { ko: "추천이 준비되었습니다", en: "추천 준비", ms: 1800 },
+  { ko: "추천 작업자로 확정했습니다", en: "발주자 확정", ms: 1100 },
+  { ko: "결과 파일이 도착했습니다", en: "결과 도착", ms: 2100 },
 ] as const;
 
 const QUEST = QUESTS["0182"];
@@ -34,7 +34,7 @@ export function HeroScreen({ step }: { step: number }) {
     <div className={s.ui}>
       <div className={s.bar}>
         <span className={s.mark}>KAPAPI</span>
-        <span className={s.metaNum}>의뢰 #{QUEST.id}</span>
+        <span className={s.metaNum}>업무 #{QUEST.id}</span>
         <span className={`${s.meta} ${s.metaEnd}`}>마감 {QUEST.deadlineHours}시간</span>
       </div>
 
@@ -111,14 +111,14 @@ export function HeroScreen({ step }: { step: number }) {
       </div>
 
       <div className={s.foot}>
-        <span>같은 유형 <b>{ROUTED.picked?.relevant ?? 0}건</b></span>
-        <span>정시 납품 <b>{Math.round((ROUTED.picked?.person.onTime ?? 0) * 100)}%</b></span>
+        <span>유사 업무 <b>{ROUTED.picked?.relevant ?? 0}건</b></span>
+        <span>정시완료 <b>{Math.round((ROUTED.picked?.person.onTime ?? 0) * 100)}%</b></span>
         <span>수정 요청 <b>{Math.round((ROUTED.picked?.person.revision ?? 0) * 100)}%</b></span>
       </div>
 
       <div className={s.track} aria-hidden="true">
         {STEPS.map((st, i) => (
-          <span key={st.en} className={`${s.tick} ${i <= step ? s.tickOn : ""}`} />
+          <span key={`${st.ko}-${i}`} className={`${s.tick} ${i <= step ? s.tickOn : ""}`} />
         ))}
       </div>
     </div>
