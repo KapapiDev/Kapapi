@@ -4,375 +4,370 @@ Updated: 2026-09-03
 
 > This document is a product-design risk register, **not formal legal advice**. Commercial launch requires Korean legal/accounting review.
 
-## 1. Core legal architecture
+## 1. Core legal/product change
 
-KAPAPI should begin around **independent result-based bounded work**, not controlled worker-hours, shift staffing or employee dispatch.
+The new canonical product direction changes KAPAPI's responsibility profile.
 
-Working early structure:
+GM-facing product:
 
-- **GM ↔ PLAYER**: actual work/service contract parties as appropriate
-- **KAPAPI**: task marketplace, recommendation and transaction-support platform
+> **defined result + price + completion time + revision/recovery boundary**
 
-The traded unit is a defined QUEST/result.
+Default GM experience does not require selecting a specific PLAYER.
 
-Current preferred prototype selection flow:
+Internally KAPAPI may procure execution through:
 
-```text
-PLAYERs independently BID PRICE + DELIVERY
-→ KAPAPI filters/ranks and recommends
-→ GM confirms
-→ PLAYER is assigned
-```
+- independent PLAYERs;
+- AI/automation;
+- specialist partners;
+- hybrid/multi-resource execution.
 
-Universal platform-controlled routing is a later capability and changes KAPAPI's responsibility profile as it grows.
+This is materially different from a pure recommendation marketplace.
+
+Do **not** assume that simply calling KAPAPI an intermediary will determine its legal status or liability.
+
+The actual commercial flow, contracting parties, payment structure, routing control, representations and recovery obligations matter.
 
 ---
 
-## 2. PLAYER independence
+## 2. Early work boundary
 
-PLAYER should generally retain control over:
+KAPAPI should begin around **bounded result-based digital work**, not controlled worker-hours, shift staffing or employee dispatch.
 
-- whether to BID
-- requested price
-- committed delivery time
-- whether to accept/continue where a separate acceptance step is required
-- when and where work is performed
-- work method, subject to deliverable requirements
+Strong early properties:
 
-GM/KAPAPI should specify what is necessary for the transaction/result:
-
-- desired result
-- source materials
-- deadline
-- output format
-- objective requirements
-- budget/security constraints
+- defined output;
+- limited execution window;
+- objective/semi-objective acceptance criteria;
+- revisable mistakes;
+- low irreversible liability;
+- no reserved professional judgment unless the execution/legal structure supports it.
 
 Avoid designing around:
 
-- attendance
-- fixed daily working hours
-- workplace control
-- shift scheduling
-- strong day-to-day supervision
-- exclusivity
-- employee-like absence management
-- recurring controlled hours sold as substitute employees
+- attendance;
+- fixed daily hours;
+- workplace control;
+- shift scheduling;
+- exclusivity;
+- employee-like supervision;
+- recurring controlled hours sold as substitute employees.
 
-Actual operation matters more than contract labels.
-
----
-
-## 3. Hourly / fractional staffing remains deferred
-
-Do not currently sell controlled blocks such as “20 PLAYER hours per month” as the core KAPAPI product.
-
-Current unit:
-
-> **defined QUEST/result + PLAYER-set PRICE + PLAYER-set DELIVERY commitment**
-
-If retained/fractional capacity is revisited later, conduct a separate labor/intermediary legal review first.
+Actual operation matters more than labels.
 
 ---
 
-## 4. Early recommendation vs later routing responsibility
+## 3. PLAYER independence remains important
 
-KAPAPI now has staged responsibility levels.
+When human PLAYERs participate, they should generally retain meaningful independent choice over:
 
-### Stage A — Task marketplace + recommendation
+- whether to BID or accept an Offer;
+- requested/accepted compensation;
+- committed DELIVERY TIME;
+- whether to accept a task;
+- when and where work is performed;
+- work method, subject to deliverable/security requirements.
 
-> GM defines work/constraints; PLAYERs BID; KAPAPI recommends; GM confirms; GM judges result.
+KAPAPI may define or enforce the result boundary needed for the GM Execution Contract:
 
-### Stage B — Default routing
+- scope;
+- deliverable;
+- deadline/completion promise;
+- output format;
+- objective checks;
+- security/confidentiality;
+- revision terms.
 
-> KAPAPI increasingly selects/routes by default under explicit GM constraints, with override/recovery.
-
-### Stage C — Outcome Layer
-
-> KAPAPI may additionally orchestrate replacement, QA and defined delivery/outcome responsibility across human/AI/automation/partner execution.
-
-These are legally/commercially different levels of platform control.
-
-Do not treat recommendation, default provider selection and outcome assurance as legally identical.
-
----
-
-## 5. Recommendation transparency
-
-Early recommendation should be grounded in inspectable factors such as:
-
-- hard eligibility/credentials
-- security/NDA requirements
-- GM deadline/budget
-- PRICE + DELIVERY
-- relevant task history/career
-- on-time/revision/failure history
-- availability
-
-Do not market an opaque AI-only “best worker” judgment as authoritative.
-
-The GM should understand that the current recommendation is decision support and that confirmation creates assignment.
+The more KAPAPI controls method, schedule, worker behavior and continuity, the more carefully labor/intermediation implications must be reviewed.
 
 ---
 
-## 6. Payment / escrow
+## 4. Contracting architecture is now a research-load-bearing question
 
-For commercial launch, KAPAPI should not casually hold customer funds in an ordinary operating bank account.
+Previous documents could assume an early `GM ↔ PLAYER` service contract with KAPAPI as marketplace/recommender.
 
-Preferred direction:
+The Outcome UX creates multiple possible commercial structures, none of which should be treated as legally settled without review.
 
-- compliant PG/payment provider
-- escrow/safe-payment structure where required/appropriate
-- clear transaction records
-- cancellation/refund/dispute rules
+Potential structures include, depending on category and law:
 
-Early mechanism testing may use:
+### A. Marketplace/intermediary structure
 
-- KAPAPI fee = 0
-- no KAPAPI custody of funds
-- direct GM↔PLAYER payment where a real pre-commercial payment is needed
+- GM contract ultimately forms with PLAYER/provider;
+- KAPAPI quotes/routes under authorized rules;
+- KAPAPI provides platform/recovery support.
 
-This is a temporary validation posture, not final commercial settlement architecture.
+### B. Principal/contractor structure
 
-Before later default routing, ensure KAPAPI never routes a BID outside the commercial amount/rule the GM has authorized.
+- GM buys the completed service from KAPAPI;
+- KAPAPI subcontracts execution to PLAYER/partner/resources.
+
+### C. Hybrid/category-specific structure
+
+Different execution categories may require different contracting/disclosure rules.
+
+Before commercial launch, obtain Korean legal/accounting review on:
+
+- intermediary vs principal characterization;
+- subcontracting consent/disclosure;
+- platform-controlled provider selection;
+- refund/liability allocation;
+- consumer/commercial transaction duties;
+- taxes/invoicing/settlement;
+- worker/intermediation implications.
+
+Do not hard-code a business model in software until this structure is reasonably clear.
 
 ---
 
-## 7. Taxes and transaction evidence
+## 5. Execution Contract disclosure
 
-Do not hard-code universal “3.3%” treatment.
+The GM-facing Execution Contract should disclose what is necessary for informed agreement, including as applicable:
 
-PLAYERs may be individuals, sole proprietors, corporations or other participant types with different tax/evidence rules.
+- exact result/scope;
+- price;
+- completion time/deadline;
+- acceptance/revision boundary;
+- cancellation/refund rule;
+- recovery/reassignment rule;
+- security/confidentiality conditions;
+- whether subcontracting or mixed human/AI/automation execution may occur;
+- credentialed/regulated requirements;
+- KAPAPI's role and responsibility boundary.
 
-Commercial settlement/tax flows require accounting review.
-
-Administrative convenience may itself become part of KAPAPI's repeat-use value.
+Do not promise broader outcome guarantees than the commercial/legal architecture can support.
 
 ---
 
-## 8. Marketplace / intermediary posture
+## 6. Executor disclosure and consent
 
-Do not rely on “KAPAPI is only an intermediary” as a blanket shield.
+Outcome UX does not mean hiding information that must be disclosed.
 
-Commercial product should clearly disclose, as applicable:
+Depending on work, KAPAPI may need to disclose or obtain consent for:
 
-- transaction parties
-- KAPAPI's recommendation/routing role
-- high-level recommendation/routing criteria
-- what KAPAPI facilitates
-- what it does/does not guarantee
-- fees
-- cancellation/refund
-- complaints/disputes
-- replacement/recovery policy
-- gated/prohibited categories
+- named human provider/partner;
+- professional credentials;
+- subcontracting;
+- overseas processing;
+- AI/model processing;
+- third-party file/data access;
+- security-relevant execution location or method.
 
-As KAPAPI takes more control over provider selection, recovery, QA and outcome promises, legal responsibility may increase.
+Default UX can remain non-shopping-oriented while still exposing legally/security-relevant facts.
 
-Exact Korean e-commerce/intermediary obligations require formal review before launch.
+---
+
+## 7. Payment / escrow / custody
+
+KAPAPI should not casually hold customer funds in an ordinary operating account.
+
+Commercial launch should evaluate:
+
+- compliant PG/payment provider;
+- escrow/safe-payment where required/appropriate;
+- payment authorization timing;
+- executor settlement;
+- refund/recovery reserve;
+- chargebacks/disputes;
+- transaction evidence.
+
+If KAPAPI sells an all-in execution price and later pays subcontracted executors, the accounting/tax/cash-flow structure may differ materially from a simple marketplace fee.
+
+Early pre-commercial validation may use a simplified lawful flow, but it must not be mistaken for the production architecture.
+
+---
+
+## 8. Taxes and evidence
+
+Do not hard-code universal `3.3%` treatment.
+
+Participants may be:
+
+- individuals;
+- sole proprietors;
+- corporations;
+- partner organizations;
+- overseas providers in future.
+
+Tax/invoice/withholding evidence depends on the actual contracting structure and participant type.
+
+Accounting review is required before commercial settlement automation.
 
 ---
 
 ## 9. Confidential files / NDA
 
-KAPAPI should support appropriate confidentiality controls for work containing project/client data:
+KAPAPI's internal routing makes data handling more important, not less.
 
-- QUEST-specific confidentiality terms
-- NDA where needed
-- no unauthorized third-party disclosure
-- portfolio-use restrictions
-- retention/deletion rules
-- access control
-- file-transfer/delivery audit trail
-- breach/remedy process
+Support appropriate controls for:
 
-Security claims must match actual technical/legal protection.
+- QUEST/Execution Contract confidentiality;
+- NDA where needed;
+- least-privilege file access;
+- executor-specific access;
+- AI/model processing disclosure and restrictions;
+- third-party/subcontractor disclosure;
+- retention/deletion;
+- access logs;
+- portfolio-use prohibition by default where appropriate;
+- breach/remedy process.
 
-Security eligibility should be checked before a candidate is recommended or later routed.
+Never route sensitive work to a resource that does not satisfy the authorized security boundary.
 
 ---
 
 ## 10. Intellectual property
 
-Do not assume payment automatically transfers every IP right.
+Execution Contract design should clarify:
 
-QUEST contract design should clarify:
+- GM authority over source materials;
+- deliverable ownership/license;
+- PLAYER/partner reuse rights;
+- portfolio permission;
+- third-party asset restrictions;
+- AI-generated or third-party component considerations where relevant.
 
-- ownership/authority over source material
-- deliverable ownership/license
-- permitted PLAYER reuse
-- portfolio permission
-- third-party asset restrictions
-
-Avoid simplistic promises that conflict with non-transferable rights or actual law.
+Do not assume payment automatically transfers every right.
 
 ---
 
 ## 11. Regulated professional work
 
-Architecture/CAD support must distinguish production/support tasks from regulated statutory professional judgment.
+KAPAPI must distinguish production/support execution from reserved professional judgment.
 
-Potentially suitable support examples, depending on facts:
+Architecture/CAD examples that may be suitable depending on facts:
 
-- CAD digitization of GM-provided materials
-- edits under responsible professional direction
-- 3D modeling/rendering
-- presentation production
-- data cleanup
+- CAD digitization from supplied material;
+- edits under responsible professional instruction;
+- 3D modeling/rendering;
+- presentation production;
+- data/document production support.
 
-Do not market unlicensed PLAYERs or AI as independently providing reserved professional services.
+Do not market unqualified PLAYERs, KAPAPI or AI as independently providing reserved professional services.
 
-If KAPAPI later enters architecture, law, medicine, tax or other regulated areas, each needs category-specific credential/responsibility review.
-
----
-
-## 12. Personal data / file security
-
-Design for data minimization:
-
-- collect only necessary personal information
-- secure credentials/authentication
-- delegate payment details to compliant provider where possible
-- access-controlled files
-- appropriate logging/audit
-- retention/deletion policy
-- privacy policy matching actual processing
-
-Refresh legal/privacy documents against the real production architecture before commercial launch.
+Architecture, law, medicine, tax and other regulated areas require category-specific credential/responsibility review before launch.
 
 ---
 
-## 13. SOW clarity reduces risk
+## 12. AI / automation execution
 
-A clear QUEST/SOW should define as appropriate:
+Before using AI/automation in a commercial task, evaluate:
 
-- scope
-- inputs
-- deliverables
-- deadline
-- output format
-- acceptance criteria
-- revision boundary
-- confidentiality conditions
-- authorized payment/budget rule
+- whether user data may be sent to the model/service;
+- model/provider terms;
+- confidentiality restrictions;
+- copyright/IP risk;
+- accuracy/reliability boundary;
+- human review requirement;
+- disclosure/consent;
+- prohibited regulated judgment;
+- fallback/recovery path.
 
-Initial quality architecture:
+Technical ability to automate a task does not remove responsibility for the delivered result.
 
-1. objective technical preflight where reliable
-2. GM approval/revision
-3. platform recovery/replacement where promised
-4. dispute process when needed
-
-Do not claim AI can conclusively adjudicate subjective professional quality.
+Do not claim AI is the authoritative final judge of subjective quality.
 
 ---
 
-## 14. Long-term resource-agnostic execution adds new legal questions
+## 13. Quality / recovery liability
 
-The mature Outcome Layer may combine:
+KAPAPI's promise to internalize failure can create additional responsibility.
 
-- human PLAYERs
-- AI agents/models
-- deterministic automation
-- specialist partner organizations
-- hybrid/multi-PLAYER workflows
+Define category-specific rules for:
 
-Before commercializing each execution mode/category, review:
+- normal in-scope revision;
+- executor late/failure;
+- reassignment;
+- backup execution;
+- KAPAPI-caused delay;
+- non-performance;
+- partial completion;
+- refund/credit;
+- consequential-loss exclusions/limits where lawful;
+- dispute process.
 
-- who is the contracting/service provider
-- subcontracting disclosure/consent
-- data-sharing boundaries
-- IP ownership
-- AI output responsibility
-- professional-qualification requirements
-- replacement/recovery responsibility
-- liability/insurance
-- refund/compensation rules
+Do not promise universal deadline guarantees before the product can price and legally support the risk.
 
-Do not let the technical ability to automate a task outrun legal responsibility for the result.
+---
+
+## 14. Personal data / security
+
+Design for minimization and role-based access:
+
+- collect only necessary data;
+- secure authentication;
+- separate payment data via compliant provider where possible;
+- access-controlled task files;
+- executor access limited to assigned work;
+- appropriate logging/audit;
+- retention/deletion policy;
+- privacy policy matching actual processing;
+- incident process.
+
+Refresh privacy/legal documents against the real production architecture before launch.
 
 ---
 
 ## 15. Initial prohibited / gated work
 
-Until reviewed, block or gate:
+Until category review, block or gate:
 
-- regulated professional judgment requiring licenses
-- illegal/infringing work
-- confidential material supplied without authority
-- dangerous/high-liability instructions
-- employee-like shift/dispatch arrangements
-- tasks where scope/responsibility cannot reasonably be bounded
-- categories where KAPAPI cannot safely evaluate eligibility/security
+- regulated professional judgment requiring licenses;
+- illegal/infringing work;
+- confidential material supplied without authority;
+- dangerous/high-liability instructions;
+- employee-like shift/dispatch arrangements;
+- work with unbounded scope/responsibility;
+- tasks where KAPAPI cannot enforce the authorized security boundary;
+- work where irreversible harm is disproportionate to the transaction;
+- categories where recovery/QA responsibility is legally unclear.
 
 ---
 
 ## 16. MVP legal posture
 
-Recommended early posture:
+Recommended prototype/validation posture:
 
-- adults initially
-- bounded result-based QUESTs
-- no hourly shift marketplace
-- no controlled fractional-hours product
-- clear GM/PLAYER/KAPAPI role disclosure
-- PLAYER sets PRICE + DELIVERY
-- KAPAPI recommends using transparent evidence
-- GM confirms current recommendation
-- GM remains final acceptance/revision authority
-- no claim that AI guarantees the best performer or result
-- no universal routing/SLA guarantee
-- minimal personal-data collection
-- basic terms/privacy/QUEST terms/NDA as needed
-- fee 0 during initial mechanism tests if appropriate
-- no KAPAPI custody of funds during simple pre-commercial validation
-- regulated work gated/excluded without review
+- adults initially;
+- bounded result-based work;
+- no controlled hourly staffing;
+- PLAYERs independently bid/accept Offers;
+- GM sees a clearly defined Execution Contract;
+- KAPAPI may manually/concierge route for validation;
+- no claim of universal instant quote;
+- no universal SLA;
+- GM retains result acceptance/revision authority;
+- minimal data collection;
+- regulated work gated/excluded;
+- payment/custody kept deliberately simple and lawful until production review;
+- execution method disclosure when legally/security-relevant.
 
----
-
-## 17. Later routing / Outcome Layer legal gate
-
-Before KAPAPI moves from recommendation to default routing, and again before stronger Outcome Layer guarantees, review:
-
-- platform/intermediary classification
-- implications of platform-controlled provider selection
-- consumer/commercial transaction duties
-- subcontracting structure
-- liability allocation
-- insurance
-- replacement responsibility
-- refund/compensation policy
-- recommendation/routing disclosure
-- AI/automation responsibility
-- category-specific regulated-work boundaries
-
-D-032 deliberately makes this responsibility **earned in stages**, which allows legal/commercial review to progress with real evidence rather than assuming the final model on day one.
+The prototype may simulate payment or routing states. Do not imply commercial legal infrastructure is already complete.
 
 ---
 
-## 18. Questions before production launch
+## 17. Production legal gate
 
-1. Korean online intermediary/e-commerce registration and disclosures
-2. Standard QUEST contract/NDA structure
-3. PG/escrow/payment authorization/refund design
-4. participant tax/settlement evidence
-5. uploaded-file privacy/security obligations
-6. IP/deliverable defaults
-7. regulated-professional category rules
-8. legal implications of KAPAPI recommendations
-9. additional implications when KAPAPI later routes by default
-10. AI/automation/subcontractor responsibility in Outcome Layer
-11. insurance/indemnity needs
-12. KAPAPI trademark/name clearance
+Before paid commercial launch, resolve at minimum:
+
+1. Korean intermediary/principal/service-provider structure;
+2. subcontracting/routing disclosure and consent;
+3. e-commerce/online platform obligations;
+4. PG/escrow/payment/refund architecture;
+5. tax/invoice/settlement evidence;
+6. worker/labor/intermediation implications;
+7. uploaded-file/privacy/security obligations;
+8. IP/deliverable defaults;
+9. AI/automation processing responsibility;
+10. category-specific professional rules;
+11. recovery/liability limitations;
+12. insurance/indemnity needs;
+13. KAPAPI trademark/name clearance.
 
 ---
 
-## 19. Trademark / brand clearance
+## 18. Product principle
 
-KAPAPI is the chosen working brand, but commercial use should still include:
+The new canon should be legally honest:
 
-- formal KIPRIS/trademark search
-- class strategy
-- domestic/overseas same-name service review
-- relevant app/social conflicts
-- filing strategy where appropriate
+> **KAPAPI may remove supplier shopping from the GM experience, but it cannot remove the legal responsibility created by controlling more of the execution.**
+
+The product should earn stronger responsibility category by category, with corresponding contract, pricing, security and recovery design.
