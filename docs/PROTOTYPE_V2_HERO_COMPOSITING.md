@@ -1,138 +1,178 @@
 # KAPAPI Prototype v2 — Hero Screen Compositing Authority
 
 Status: **mandatory hero-media implementation rule for `feat/prototype-v2`**  
-Updated: **2026-09-02**
+Updated: **2026-09-03**
 
-This document overrides any weaker or ambiguous hero-media interpretation in older files.
+This document governs the visual integration of real KAPAPI UI into the approved live-action hero footage. Product behavior follows D-032.
 
 ## 0. Intended hero effect
 
-The laptop display inside the approved live-action hero footage is not decorative empty space.
+The laptop display inside the approved footage is an intended stage for real KAPAPI product UI.
 
-**It is the intended stage for the KAPAPI product UI demonstration.**
-
-The desired visual story is:
+Current visual story:
 
 ```text
 user submits work
-→ user leaves / camera approaches laptop
-→ KAPAPI UI appears INSIDE the laptop display
+→ camera approaches laptop
+→ real KAPAPI UI appears inside the laptop display
 → BIDs arrive
 → PRICE × DELIVERY / trust signals resolve
-→ ROUTING
-→ PLAYER ASSIGNED
-→ WORK STARTED / RESULT READY
-→ cut/return to user elsewhere
-→ result check
+→ RECOMMENDATION READY
+→ GM CONFIRMED
+→ PLAYER ASSIGNED / WORK STARTED
+→ RESULT READY
+→ return to user / result check
 → subtle satisfied reaction
 ```
 
-Do not replace this idea with a separate dashboard card placed beside the video.
+Do not replace this with a detached generic dashboard card beside the film.
+
+Do not depict recommendation as autonomous assignment before GM confirmation.
+
+---
 
 ## 1. Laptop screen is the primary compositing target
 
-When the laptop screen is visible and large enough, make a real attempt to place the real KAPAPI UI **within the screen quadrilateral**.
+When the laptop screen is visible and large enough, prefer:
 
-Preferred approaches, in order:
+1. browser-layer overlay clipped/masked and perspective-transformed to the laptop quadrilateral;
+2. robust precomposited screen replacement;
+3. clean editorial cut from the laptop display into full-frame real KAPAPI UI and back.
 
-1. robust browser-layer overlay clipped/masked and perspective-transformed to the laptop screen;
-2. precomposited screen replacement using available video/editing/FFmpeg/compositing tools;
-3. clean editorial cut at the moment the laptop screen fills enough of the frame, transitioning into full-frame real KAPAPI UI and then back to live action.
+Use keyframed transforms if camera movement requires it and tooling can do so robustly.
 
-If the camera movement requires multiple corner positions, use keyframed transforms or another robust technique if the available tooling can do it reliably.
+Do not build fragile tracking merely to demonstrate technical cleverness.
 
-Do not build fragile computer-vision tracking in the browser merely to show technical cleverness.
+---
 
-## 2. Honest fallback rule
+## 2. Honest fallback
 
-If high-quality screen replacement is technically infeasible in the available environment:
+If high-quality screen replacement is not reliable:
 
-- say so in the implementation report,
-- keep the laptop screen neutral/clean or preserve the source footage,
-- use a deliberate clean cut into real KAPAPI UI,
-- then return to live action for the payoff.
-
-**Never fake compliance by putting an unrelated UI panel beside the video.**
+- preserve clean source footage;
+- cut deliberately into real KAPAPI UI;
+- return to live action for the payoff;
+- record the limitation honestly.
 
 A clean cut is better than a visibly fake overlay.
 
-## 3. Product UI shown inside the laptop
+Never fake compliance with an unrelated floating panel.
 
-The laptop UI should visually demonstrate the product, not explain it with paragraphs.
+---
 
-Use concise state choreography such as:
+## 3. Product UI choreography
+
+Keep screen text extremely concise.
+
+Preferred state sequence:
 
 ```text
 QUEST CREATED
-BIDS 01 → 02 → 03
+BIDS 01 → 02 → 03 → 04
+ELIGIBILITY CHECK
 ₩118,000 · 5H
-₩132,000 · 6H
-eligibility / trust indicators resolve
-ROUTING
-PLAYER ASSIGNED
+RECOMMENDATION READY
+GM CONFIRMED
 WORK STARTED
 RESULT READY
 ```
 
-Keep text extremely short. The screen should feel like a real product in motion.
+The recommendation step may surface a few visible evidence signals such as:
 
-Do not show GM manual selection.
+- relevant completion history
+- on-time rate
+- revision rate
+- PRICE
+- DELIVERY
 
-Do not show long routing explanations.
+Do not show long explanations inside the cinematic sequence.
 
-Do not show fake AI magic labels without evidence.
+Do not show opaque AI-magic labels.
 
-## 4. Phone screen
+Do not skip directly from BIDs to `PLAYER ASSIGNED` in the current prototype story.
 
-Where the result is checked on a phone, use the same principle if technically practical:
+---
 
-- real KAPAPI result/completion UI inside the phone,
-- concise status,
-- result object,
-- `결과 확인` / `수정 요청` where appropriate.
+## 4. Relationship to the actual interactive flow
 
-If phone replacement is not robust, prioritize the laptop screen replacement and keep the final human reaction natural.
+The cinematic hero can compress time, but it must preserve the same semantics as the interactive product:
 
-## 5. Acting / ending rule
+```text
+BIDs
+→ KAPAPI recommendation
+→ GM confirmation
+→ assignment
+```
 
-The ending is visual, not verbal.
+The detailed interactive route may expose `왜 추천하나요?` and `다른 제안 보기`; the cinematic screen only needs enough evidence to make the recommendation feel grounded.
 
-The user sees the work is complete and gives only a **small, believable satisfied reaction**.
+Long-term default routing is future evolution and should not be presented as current universal behavior.
 
-Do not overlay or write:
+---
+
+## 5. Phone/result screen
+
+Where the result is checked on a phone, show the real result state if technically practical:
+
+- result object/file
+- concise status
+- delivery timing
+- `결과 확인` / `수정 요청` where appropriate
+
+If phone replacement is not robust, prioritize the laptop/full-frame product sequence and keep the final reaction natural.
+
+---
+
+## 6. Acting / ending
+
+The user sees the result and gives only a small believable satisfied reaction.
+
+Do not overlay:
 
 - `GOOD DONE`
-- `Good. Done.`
 - `SUCCESS!`
 - celebration language
-- exaggerated relief
-- testimonial-style copy
+- exaggerated testimonial/reaction copy
+- confetti/trophy effects
 
-The face/reaction should carry the meaning.
+Let the result state and acting carry the ending.
 
-## 6. Composition rule
+---
 
-The movie and product UI must feel like one art-directed object.
+## 7. Composition rule
+
+The movie and product UI should feel like one art-directed object.
 
 Reject:
 
-- video on one side + generic black dashboard card on the other,
-- arbitrary floating UI detached from the device,
-- demo UI that does not align with the camera/story,
-- giant explanatory text covering the film,
-- fake generated device text left visible as product truth.
+- video on one side + generic dashboard card on the other;
+- arbitrary floating UI detached from the device/story;
+- giant explanatory copy covering the film;
+- fake generated readable device UI left as product truth;
+- choreography whose states contradict the interactive product.
 
-The transition should make the viewer feel that **KAPAPI continues working inside the device after the user leaves.**
+---
 
-## 7. Technical proof before founder review
+## 8. Mobile behavior
 
-Before marking the hero ready:
+Below widths where the laptop screen is cropped or too small for a credible composite, a direct full-frame cut is acceptable and preferred.
 
-1. capture at least three frames from the laptop sequence,
-2. verify the KAPAPI UI is convincingly contained in the screen or that the fallback cut is deliberate,
-3. inspect at full desktop size and mobile crop,
-4. verify no fake/garbled generated UI remains authoritative,
-5. verify the first paint does not depend on video download,
-6. verify reduced-motion/poster fallback still communicates the task-entry action.
+Mobile does not need to reproduce desktop perspective compositing if doing so reduces readability or visual quality.
 
-If the screen replacement visibly breaks perspective, clipping, timing, or readability, reject it and use the clean-cut fallback.
+Both paths must preserve the same transaction semantics.
+
+---
+
+## 9. Technical proof before founder review
+
+Before marking the current hero verified:
+
+1. capture film / handover / recommendation / result beats;
+2. inspect desktop compositing or deliberate cut;
+3. inspect mobile crop/cut;
+4. verify recommendation occurs before confirmation/assignment;
+5. verify generated/fake readable UI is not authoritative;
+6. verify first paint is not blocked by video download;
+7. verify reduced-motion/poster fallback still communicates the primary task-entry action.
+
+If perspective, clipping, timing or readability visibly fails, use the clean-cut fallback.
