@@ -1,6 +1,6 @@
 # KAPAPI Prototype v2 — Visual Research Protocol
 
-Status: **mandatory visual-research gate for `feat/prototype-v2`**  
+Status: **mandatory visual-research gate for `main`**  
 Updated: **2026-09-02**
 
 Visual quality is the highest-priority execution risk for Prototype v2. This protocol exists because reading design notes is not equivalent to looking at excellent websites.

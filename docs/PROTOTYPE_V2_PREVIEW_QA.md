@@ -1,8 +1,8 @@
 # KAPAPI Prototype v2 — Preview and live QA
 
 Status: **SUPERSEDED — historical preview and QA snapshot**
-Branch: `feat/prototype-v2`
-Updated: **2026-09-03**
+Branch: `main`
+Updated: **2026-09-04** (deployment facts only; the QA body below is 2026-09-03)
 
 > This records a previous preview session, not verification of the latest branch
 > HEAD or the current destination of the preview alias. The build and test claims
@@ -12,15 +12,26 @@ Updated: **2026-09-03**
 
 ## Deployment
 
+The branch this file was written against no longer exists. On 2026-09-04 the
+repository was consolidated onto a single branch by founder direction: `main` was
+fast-forwarded to `bb81af0` — the same tree, no merge commit — and
+`feat/prototype-v1`, `feat/prototype-v2` and `개선안` were deleted. The first and
+last are preserved as the tags `archive/prototype-v1` and
+`archive/improvement-canon`, so their history survives without a branch.
+
 | | |
 |---|---|
-| Preview URL | <https://kapapi-git-feat-prototype-v2-calcome.vercel.app> |
+| Production | <https://kapapi.vercel.app> |
 | Project | `prj_OE2VU0XUNFCnjGebuJLeVkKhEy5s` (`kapapi`, team `team_cuJFcIPj1zvkSmGeDk3hckZd`) |
-| Target | `null` — **preview, not production** |
+| Target | `production` — promoted by founder direction |
 
-`main` is untouched at `4cd13ab`. Nothing has been merged and nothing promoted. The
-branch alias always points at the newest v2 preview, so the URL stays current
-across redeploys.
+The old preview alias still resolves to the last deployment it was given, but no
+push will ever update it again. Use the production domain.
+
+The three harnesses were re-run against the production URL after the promotion:
+`loop.mjs` 10/10, `hero-qa.mjs` no video-rule violation across five viewports,
+`shots.mjs` 6 routes × 2 viewports all ok. That covers the deployment only — the
+historical claims in the rest of this file are unchanged.
 
 ## What the build demonstrates
 

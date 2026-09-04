@@ -1,7 +1,7 @@
 # KAPAPI 개선안 — 실시간 업무 실행 시장
 
 Status: **PROMOTED / integrated into current canon**  
-Branch: imported to `feat/prototype-v2` on 2026-09-03  
+Branch: imported to `main` on 2026-09-03  
 Updated: 2026-09-03
 
 This file was the original alternative proposal that challenged the previous recommendation-first KAPAPI flow. Restated in D-034 vocabulary on import; the substance is unchanged.

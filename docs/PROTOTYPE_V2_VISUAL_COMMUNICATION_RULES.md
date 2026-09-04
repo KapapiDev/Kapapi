@@ -1,6 +1,6 @@
 # Prototype v2 — Visual-First Communication Rules
 
-Status: **mandatory for `feat/prototype-v2`**  
+Status: **mandatory for `main`**  
 Updated: **2026-09-03**
 
 KAPAPI v2 must follow one core rule:

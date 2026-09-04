@@ -2,7 +2,7 @@
 
 Status: **current implementation queue**  
 Updated: **2026-09-03**  
-Primary implementation target: `feat/prototype-v2`
+Primary implementation target: `main`
 
 Authority:
 

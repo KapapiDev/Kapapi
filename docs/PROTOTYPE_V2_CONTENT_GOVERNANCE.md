@@ -1,6 +1,6 @@
 # KAPAPI Prototype v2 — Content & Surface Governance
 
-Status: **mandatory authority for `feat/prototype-v2`**  
+Status: **mandatory authority for `main`**  
 Updated: **2026-09-03**
 
 This document exists to prevent Prototype v1's content mistakes from returning through new implementation choices.

@@ -2,7 +2,7 @@
 
 Status: **current implementation handoff**  
 Authority: `docs/DECISIONS.md` D-033.1–.12 (imported from `개선안`), D-034, D-035  
-Current visual implementation branch: `feat/prototype-v2`
+Current visual implementation branch: `main`
 
 ## Mission
 

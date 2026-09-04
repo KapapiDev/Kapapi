@@ -1,7 +1,7 @@
 # Motion/UI Source Pools
 
 Status: **reference registry**  
-Applies to: current `feat/prototype-v2` reference research
+Applies to: current `main` reference research
 
 These are source pools for implementation research. They must not override `docs/DECISIONS.md` D-033.1–.12, D-034 and D-035, `docs/KAPAPI_DESIGN.md` or `docs/KAPAPI_MOTION.md`.
 

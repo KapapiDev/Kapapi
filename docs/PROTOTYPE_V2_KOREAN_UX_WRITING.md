@@ -1,6 +1,6 @@
 # KAPAPI Prototype v2 — Korean UX Writing Authority
 
-Status: **mandatory copy authority for `feat/prototype-v2`**  
+Status: **mandatory copy authority for `main`**  
 Updated: **2026-09-03**
 
 Public Korean copy follows D-033.1–.12, D-034 and D-035. The 발주자 approves an

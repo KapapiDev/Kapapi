@@ -1,7 +1,7 @@
 # KAPAPI Prototype v2 — Tool Audit
 
 Status: **SUPERSEDED — historical tool-use and verification snapshot**
-Branch: `feat/prototype-v2`
+Branch: `main`
 Updated: **2026-09-03**
 
 > This file preserves the earlier session's reported tool attempts and checks.

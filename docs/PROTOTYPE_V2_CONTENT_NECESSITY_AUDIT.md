@@ -1,7 +1,7 @@
 # KAPAPI Prototype v2 — Content Necessity Audit
 
 Status: **SUPERSEDED — historical rendered-content audit**
-Branch: `feat/prototype-v2`
+Branch: `main`
 Updated: **2026-09-03**
 
 > The tables and checks below describe an earlier rendered build and preserve its

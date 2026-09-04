@@ -1,6 +1,6 @@
 # Prototype v2 — Live Reference Addendum
 
-Status: **mandatory for `feat/prototype-v2` rebuild**  
+Status: **mandatory for `main` rebuild**  
 Updated: 2026-09-03
 
 This addendum extends `REBUILD_V2_HANDOFF.md`.

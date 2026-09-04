@@ -377,7 +377,7 @@ Old `no picker anywhere` assertions are superseded.
 
 When deployment access is available:
 
-- deploy or use the current `feat/prototype-v2` Preview
+- deploy or use the current `main` Preview
 - inspect the actual deployed branch head on desktop/mobile
 - verify hero media, fonts, animation, responsive behavior and the core transaction
 - record the current commit/deployment identifiers

@@ -12,7 +12,7 @@ Status: **SUPERSEDED — historical directive**
 > Kept unedited as a record of what was asked, not as an instruction to follow.
 
 
-Status: **highest-priority visual/execution directive for `feat/prototype-v2`**  
+Status: **highest-priority visual/execution directive for `main`**  
 Updated: **2026-09-03**
 
 This file protects the v2 visual quality bar. **Product/business behavior is governed by the current product canon, especially `docs/DECISIONS.md` D-032.** If an older v2 document, screenshot, QA record or copy example conflicts with D-032, the current canon wins.
